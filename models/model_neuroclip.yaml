@@ -3,7 +3,7 @@ name: "NeuroClips"
 version: "1.0.0"
 modality: ["fMRI", "video"]
 upstream_repo: "https://github.com/gongzix/NeuroClips"
-paper: "https://arxiv.org/abs/2405.19049"
+paper: "https://arxiv.org/abs/2410.19452"
 notes: >
   High-fidelity fMRI-to-video reconstruction framework (NeurIPS 2024 Oral). 
   Uses semantic and perceptual reconstructors to decode brain activity into 
