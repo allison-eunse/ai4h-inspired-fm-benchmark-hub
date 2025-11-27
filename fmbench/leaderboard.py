@@ -44,7 +44,8 @@ def format_metrics(metrics_dict: Optional[Dict], max_display: int = 6) -> str:
     }
     
     # Prioritize common metrics
-    priority_keys = ["AUROC", "Accuracy", "F1-Score", "robustness_score", "MSE", "R2"]
+    priority_keys = ["AUROC", "Accuracy", "F1-Score", "robustness_score", "MSE", "R2",
+                     "clinical_accuracy", "finding_recall", "bertscore", "bleu"]
     sorted_keys = sorted(
         display_metrics.keys(),
         key=lambda x: (priority_keys.index(x) if x in priority_keys else 100, x)
@@ -55,6 +56,60 @@ def format_metrics(metrics_dict: Optional[Dict], max_display: int = 6) -> str:
         sorted_keys = sorted_keys[:max_display]
     
     return "<br>".join([f"**{k}**: {display_metrics[k]}" for k in sorted_keys])
+
+
+def generate_stratified_tables(
+    evals: List[Dict], 
+    models: List[Dict],
+    stratify_by: List[str]
+) -> str:
+    """Generate sub-tables stratified by specific dimensions."""
+    md = ""
+    
+    for eval_data in evals:
+        metrics = eval_data.get("metrics", {})
+        stratified = metrics.get("stratified", {})
+        
+        if not stratified:
+            continue
+        
+        model_ids = eval_data.get("model_ids", {})
+        model_name = list(model_ids.values())[0] if model_ids else "Unknown"
+        model_data = get_by_id(models, "model_id", model_name)
+        if model_data:
+            model_name = model_data.get("name", model_name)
+        
+        for strat_key in stratify_by:
+            if strat_key not in stratified:
+                continue
+            
+            strat_data = stratified[strat_key]
+            if not strat_data:
+                continue
+            
+            # Create collapsible section
+            title = strat_key.replace("_", " ").title()
+            md += f"\n<details>\n<summary>📊 <strong>{model_name}</strong> by {title}</summary>\n\n"
+            
+            # Get all metric keys from first group
+            sample_metrics = list(next(iter(strat_data.values())).keys())
+            # Filter to important metrics
+            display_metrics = [m for m in sample_metrics if m not in ["N"]][:4]
+            
+            # Table header
+            md += f"| {title} | " + " | ".join(display_metrics) + " | N |\n"
+            md += "|" + "|".join(["---"] * (len(display_metrics) + 2)) + "|\n"
+            
+            # Sort groups
+            for group_name in sorted(strat_data.keys()):
+                group_metrics = strat_data[group_name]
+                vals = [str(group_metrics.get(m, "-")) for m in display_metrics]
+                n = group_metrics.get("N", "-")
+                md += f"| {group_name} | " + " | ".join(vals) + f" | {n} |\n"
+            
+            md += "\n</details>\n"
+    
+    return md
 
 
 def generate_markdown_table(
@@ -74,6 +129,7 @@ def generate_markdown_table(
     if "clinical_relevance" in benchmark:
         md += f"**Clinical Relevance**: {benchmark['clinical_relevance']}\n\n"
 
+    # Main leaderboard table
     md += "| Model | Dataset | Metrics | Status | Date |\n"
     md += "| :--- | :--- | :--- | :--- | :--- |\n"
 
@@ -105,6 +161,16 @@ def generate_markdown_table(
         md += f"| {model_str} | {dataset_name} | {metrics_str} | {status} | {date} |\n"
 
     md += "\n"
+    
+    # Add stratified sub-tables if available
+    stratify_dimensions = ["scanner", "site", "acquisition_type", "preprocessing", 
+                          "disease_stage", "sex", "age_group", "ethnicity"]
+    stratified_content = generate_stratified_tables(evals, models, stratify_dimensions)
+    if stratified_content:
+        md += "#### Granular Performance Breakdown\n\n"
+        md += stratified_content
+        md += "\n"
+    
     return md
 
 

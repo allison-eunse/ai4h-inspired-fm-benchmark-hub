@@ -2,7 +2,7 @@
 
 **Standardized Evaluation for Neurogenomic Foundation Models**
 
-[![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://CHANGE_ME.github.io/ai4h-inspired-fm-benchmarks)
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 ## Mission
@@ -56,14 +56,14 @@ This project explicitly references and adapts the following ITU-T Focus Group de
 
 ## Getting Started
 
-For full documentation, including installation instructions, benchmark definitions, and current leaderboards, please visit our [Documentation Site](https://CHANGE_ME.github.io/ai4h-inspired-fm-benchmarks).
+For full documentation, including installation instructions, benchmark definitions, and current leaderboards, please visit our [Documentation Site](https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub).
 
 ### Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/CHANGE_ME/ai4h-inspired-fm-benchmarks.git
-cd ai4h-inspired-fm-benchmarks
+git clone https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
+cd ai4h-inspired-fm-benchmark-hub
 
 # Install dependencies
 pip install -r requirements.txt

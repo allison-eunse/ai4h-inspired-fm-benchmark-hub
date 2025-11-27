@@ -8,29 +8,32 @@ on:
     branches:
       - main
 
+# Allow GitHub Actions to write to gh-pages branch
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for git info
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install -e .
 
       - name: Build Leaderboard
-        run: python scripts/build_leaderboard.py
+        run: python -m fmbench build-leaderboard
 
-      - name: Build Docs
-        run: mkdocs build
-
-      # Optional: Deploy to GitHub Pages on main branch
-      # - name: Deploy to GitHub Pages
-      #   if: github.ref == 'refs/heads/main'
-      #   uses: mkdocs/deploy-gh-pages@v1.0.0
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        run: mkdocs gh-deploy --force
 

@@ -1,0 +1,120 @@
+# BrainLM Granular fMRI Evaluation
+# Demonstrates stratified metrics for sub-leaderboards
+
+eval_id: FMRI-GRANULAR-brainlm-20240115
+benchmark_id: BM-FMRI-GRANULAR
+
+model_ids:
+  candidate: brainlm
+
+dataset_id: hcp_1200
+
+run_metadata:
+  date: "2024-01-15"
+  runner: "fmbench"
+  hardware: "8x NVIDIA A100"
+  notes: "Evaluated on HCP 1200 subjects"
+
+# Overall metrics
+metrics:
+  AUROC: 0.91
+  Accuracy: 0.87
+  F1-Score: 0.86
+  MSE: 0.42
+  Correlation: 0.81
+  
+  # Stratified by scanner manufacturer
+  stratified:
+    scanner:
+      Siemens:
+        AUROC: 0.93
+        Accuracy: 0.89
+        F1-Score: 0.88
+        N: 450
+      GE:
+        AUROC: 0.88
+        Accuracy: 0.84
+        F1-Score: 0.83
+        N: 380
+      Philips:
+        AUROC: 0.90
+        Accuracy: 0.86
+        F1-Score: 0.85
+        N: 370
+    
+    # Stratified by acquisition type
+    acquisition_type:
+      resting_state:
+        AUROC: 0.92
+        Accuracy: 0.88
+        F1-Score: 0.87
+        N: 600
+      task_based:
+        AUROC: 0.89
+        Accuracy: 0.85
+        F1-Score: 0.84
+        N: 400
+      working_memory:
+        AUROC: 0.90
+        Accuracy: 0.86
+        N: 150
+      motor:
+        AUROC: 0.88
+        Accuracy: 0.84
+        N: 150
+      language:
+        AUROC: 0.91
+        Accuracy: 0.87
+        N: 100
+    
+    # Stratified by preprocessing pipeline
+    preprocessing:
+      fmriprep:
+        AUROC: 0.92
+        Accuracy: 0.88
+        N: 500
+      hcp:
+        AUROC: 0.91
+        Accuracy: 0.87
+        N: 400
+      minimal:
+        AUROC: 0.85
+        Accuracy: 0.81
+        N: 300
+    
+    # Stratified by field strength
+    field_strength:
+      3T:
+        AUROC: 0.91
+        Accuracy: 0.87
+        N: 900
+      7T:
+        AUROC: 0.94
+        Accuracy: 0.91
+        N: 100
+    
+    # Site-level performance
+    site:
+      MGH:
+        AUROC: 0.92
+        Accuracy: 0.88
+        N: 200
+      UCLA:
+        AUROC: 0.90
+        Accuracy: 0.86
+        N: 180
+      WashU:
+        AUROC: 0.93
+        Accuracy: 0.89
+        N: 220
+      UMinn:
+        AUROC: 0.89
+        Accuracy: 0.85
+        N: 200
+      Oxford:
+        AUROC: 0.91
+        Accuracy: 0.87
+        N: 200
+
+status: Completed
+

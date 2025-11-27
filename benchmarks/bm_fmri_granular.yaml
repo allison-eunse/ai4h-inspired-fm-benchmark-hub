@@ -1,0 +1,153 @@
+# Granular fMRI Foundation Model Benchmark
+# Detailed sub-rankings by acquisition type, scanner, and preprocessing
+
+benchmark_id: BM-FMRI-GRANULAR
+name: "fMRI Foundation Model Benchmark (Granular)"
+version: "1.0.0"
+
+# DEL10: Health Topic Definition
+health_domain: "Neurology"
+health_topic: "Functional Brain Imaging Analysis"
+clinical_relevance: >
+  Foundation models for fMRI must generalize across diverse acquisition 
+  parameters, scanner manufacturers, and preprocessing pipelines. This
+  benchmark provides granular rankings to identify optimal model-data matches.
+
+# DEL10: AI Task Specification
+ai_task: "Classification/Reconstruction"
+input_modality: "fMRI"
+output_type: "Label/Embedding"
+
+# Granular stratification dimensions
+stratification_dimensions:
+  # 1. Acquisition Type
+  acquisition_type:
+    categories:
+      - id: "resting_state"
+        name: "Resting-State fMRI"
+        description: "Eyes-open or eyes-closed rest, no task"
+        typical_duration: "5-15 minutes"
+      - id: "task_based"
+        name: "Task-Based fMRI"
+        description: "Cognitive/motor tasks during scanning"
+        subtypes:
+          - "working_memory"
+          - "motor"
+          - "language"
+          - "emotion"
+          - "social"
+      - id: "naturalistic"
+        name: "Naturalistic Viewing"
+        description: "Movie watching, story listening"
+  
+  # 2. Scanner Manufacturer
+  scanner:
+    categories:
+      - id: "siemens"
+        name: "Siemens"
+        common_models: ["Prisma", "Skyra", "Trio", "Verio"]
+      - id: "ge"
+        name: "GE Healthcare"
+        common_models: ["Discovery MR750", "Signa", "Premier"]
+      - id: "philips"
+        name: "Philips"
+        common_models: ["Ingenia", "Achieva", "Elition"]
+  
+  # 3. Field Strength
+  field_strength:
+    categories:
+      - id: "1.5T"
+        name: "1.5 Tesla"
+      - id: "3T"
+        name: "3 Tesla"
+      - id: "7T"
+        name: "7 Tesla (Ultra-high field)"
+  
+  # 4. Preprocessing Pipeline
+  preprocessing:
+    categories:
+      - id: "fmriprep"
+        name: "fMRIPrep"
+        description: "Robust preprocessing pipeline (Poldrack Lab)"
+      - id: "hcp"
+        name: "HCP Pipelines"
+        description: "Human Connectome Project standard"
+      - id: "conn"
+        name: "CONN Toolbox"
+        description: "Functional connectivity analysis"
+      - id: "dpabi"
+        name: "DPABI/DPARSF"
+        description: "Data Processing Assistant for RS-fMRI"
+      - id: "minimal"
+        name: "Minimal Preprocessing"
+        description: "Motion correction + registration only"
+  
+  # 5. Parcellation/Atlas
+  parcellation:
+    categories:
+      - id: "schaefer"
+        name: "Schaefer Atlas"
+        variants: ["100", "200", "400", "1000"]
+      - id: "glasser"
+        name: "Glasser HCP-MMP1"
+        description: "360 cortical regions"
+      - id: "aal"
+        name: "AAL (Automated Anatomical Labeling)"
+      - id: "gordon"
+        name: "Gordon Atlas"
+      - id: "voxelwise"
+        name: "Voxel-wise (no parcellation)"
+
+# DEL3: Performance Metrics
+metrics:
+  primary: "AUROC"
+  secondary:
+    - "Accuracy"
+    - "F1-Score"
+    - "Correlation"
+    - "MSE"
+  
+  # Metrics shown in sub-leaderboards
+  stratified_display:
+    - metric: "AUROC"
+      show_by: ["acquisition_type", "scanner", "preprocessing"]
+    - metric: "Accuracy"
+      show_by: ["acquisition_type", "scanner"]
+
+# DEL3: Data Requirements
+data_spec:
+  input_format: "NIfTI (.nii.gz) or connectivity matrix"
+  temporal_resolution: "TR 0.5-3.0s typical"
+  required_metadata:
+    - acquisition_type
+    - scanner_manufacturer
+    - field_strength
+    - preprocessing_pipeline
+    - parcellation
+
+# Reference datasets for benchmarking
+reference_datasets:
+  - dataset_id: "hcp_1200"
+    name: "Human Connectome Project (1200 Subjects)"
+    acquisition_type: "task_based"
+    scanner: "siemens"
+    field_strength: "3T"
+    
+  - dataset_id: "ukb_fmri"
+    name: "UK Biobank fMRI"
+    acquisition_type: "resting_state"
+    scanner: "siemens"
+    field_strength: "3T"
+    
+  - dataset_id: "abcd"
+    name: "ABCD Study"
+    acquisition_type: "both"
+    scanner: "mixed"
+    field_strength: "3T"
+
+# References
+references:
+  - "ITU-T FG-AI4H DEL10.8 (TG-Neuro)"
+  - "fMRIPrep: Esteban et al., 2019"
+  - "HCP Pipelines: Glasser et al., 2013"
+

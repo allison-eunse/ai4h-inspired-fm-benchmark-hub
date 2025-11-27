@@ -1,8 +1,8 @@
 site_name: AI4H-Inspired FM Benchmarks
 site_description: "Benchmarking Hub for Genetics & Brain Foundation Models"
-site_url: "https://CHANGE_ME.github.io/ai4h-inspired-fm-benchmarks"
-repo_url: "https://github.com/CHANGE_ME/ai4h-inspired-fm-benchmarks"
-repo_name: "ai4h-inspired-fm-benchmarks"
+site_url: "https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub"
+repo_url: "https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub"
+repo_name: "ai4h-inspired-fm-benchmark-hub"
 
 theme:
   name: material
@@ -47,6 +47,8 @@ extra_css:
 nav:
   - Home: index.md
   - Leaderboards: leaderboards/index.md
+  - Submit Results:
+    - Submission Guide: contributing/submission_guide.md
   - Protocols (Recipes):
     - CCA & Permutation: integration/analysis_recipes/cca_permutation.md
     - Prediction Baselines: integration/analysis_recipes/prediction_baselines.md
@@ -56,7 +58,7 @@ nav:
     - sMRI: integration/modality_features/smri.md
     - Genomics: integration/modality_features/genomics.md
   - Models: 
-    - Overview: models/index.md # We will create this
+    - Overview: models/index.md
   - Design:
     - AI4H Alignment: design/ai4h_alignment.md
 
@@ -69,5 +71,5 @@ markdown_extensions:
   - tables
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
