@@ -13,6 +13,89 @@ This repository hosts an open benchmarking hub that provides:
 - **Robustness testing** to assess model resilience to real-world perturbations
 - **Downloadable evaluation tools** for local testing and validation
 
+---
+
+## 🔒 Privacy-Preserving Evaluation
+
+!!! success "Your Model Stays Private — AI4H DEL3 Aligned"
+    
+    **You don't need to share your model to appear on our leaderboard!**
+    
+    Our framework follows the [ITU/WHO FG-AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) principle of **local evaluation with standardized result reporting**.
+
+```mermaid
+flowchart LR
+    subgraph YOUR_MACHINE["🔒 Your Machine (Private)"]
+        A[Download fmbench toolkit] --> B[Wrap your model]
+        B --> C[Run benchmarks locally]
+        C --> D[Generate eval.yaml]
+    end
+    
+    subgraph LEADERBOARD["🌐 Public Leaderboard"]
+        E[Review submission]
+        F[Add to rankings]
+    end
+    
+    D -->|"Submit metrics only<br/>❌ No weights<br/>❌ No code"| E
+    E --> F
+```
+
+### What Gets Shared vs Stays Private
+
+| Item | Shared? | Where it Lives |
+|:---|:---:|:---|
+| 📦 Benchmark toolkit | ✅ Public | This GitHub repo |
+| 📊 Test datasets | ✅ Public | `toy_data/` |
+| 📈 Your metrics | ✅ Public | Submitted `eval.yaml` |
+| 🔐 **Model weights** | ❌ **Private** | Your machine only |
+| 💻 **Model code** | ❌ **Private** | Your machine only |
+| 🗃️ **Training data** | ❌ **Private** | Your machine only |
+
+### Researcher Workflow (5 Minutes)
+
+```bash
+# 1. Install the toolkit
+git clone https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
+cd ai4h-inspired-fm-benchmark-hub && pip install -e .
+
+# 2. Generate test data
+python -m fmbench generate-toy-data
+
+# 3. Create a simple wrapper for YOUR model (stays on your machine!)
+cat > my_model.py << 'EOF'
+import numpy as np
+
+class MyModelWrapper:
+    def __init__(self):
+        # Load YOUR private model here
+        self.model = load_my_checkpoint("path/to/my/weights")
+    
+    def predict(self, X: np.ndarray) -> np.ndarray:
+        return self.model.predict(X)
+    
+    def predict_proba(self, X: np.ndarray) -> np.ndarray:
+        return self.model.predict_proba(X)
+EOF
+
+# 4. Create a config file
+cat > my_config.yaml << 'EOF'
+model_id: my_awesome_model
+type: python_class
+import_path: "my_model:MyModelWrapper"
+EOF
+
+# 5. Run benchmark LOCALLY
+python -m fmbench run --suite SUITE-TOY-CLASS --model my_config.yaml --out results/
+
+# 6. Submit ONLY the metrics via GitHub Issue
+# Your weights and code NEVER leave your machine!
+```
+
+[📤 Submit Your Results](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md){ .md-button .md-button--primary }
+[📖 Full Submission Guide](contributing/submission_guide.md){ .md-button }
+
+---
+
 ## 🧬🧠 Domain Focus
 
 ### Genomics

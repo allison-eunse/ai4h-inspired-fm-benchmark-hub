@@ -1,7 +1,7 @@
 # 🏆 Foundation Model Leaderboards
 
 !!! success "Benchmark Hub Stats"
-    🎯 **7** Benchmarks | 🤖 **20** Models Evaluated | 📊 **36** Total Evaluations
+    🎯 **7** Benchmarks | 🤖 **21** Models Evaluated | 📊 **38** Total Evaluations
 
 Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all submitted models** from best to developing, helping you find the right model for your use case.
 
@@ -183,33 +183,34 @@ Expand sections below to see how models perform across different conditions:
 
 ```
          🥇          
-     [Brain-JEPA]    
+     [geneformer]    
     ┌─────────┐     
  🥈 │         │ 🥉  
-[BrainHarmo]│         │[Geneformer]
+[Brain-JEPA]│         │[BrainHarmo]
 ────┴─────────┴────
 ```
 
-**All 6 models ranked by robustness_score:**
+**All 7 models ranked by robustness_score:**
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Brain-JEPA** 👑 | 0.8650 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-20 |
-| 🥈 | **BrainHarmony** 🌟 | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-18 |
-| 🥉 | **Geneformer** ✨ | 0.8350 | ✅ Good | DS-TOY-GENOMICS | 2024-01-10 |
+| 🥇 | **geneformer** 👑 | 0.9995 | ⭐ Excellent | - | 2025-11-27 |
+| 🥈 | **Brain-JEPA** 🌟 | 0.8650 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-20 |
+| 🥉 | **BrainHarmony** ✨ | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-18 |
+| 🏅 | Geneformer | 0.8350 | ✅ Good | DS-TOY-GENOMICS | 2024-01-10 |
 | 🏅 | BrainLM | 0.8250 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-16 |
-| 🏅 | HyenaDNA | 0.7950 | 🔶 Fair | DS-TOY-GENOMICS | 2024-01-12 |
+| 🎖️ | HyenaDNA | 0.7950 | 🔶 Fair | DS-TOY-GENOMICS | 2024-01-12 |
 | 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | - | 2025-11-27 |
 
 
 #### 📖 Ranking Explanation
 
 !!! abstract "Why These Rankings?"
-    **🥇 Brain-JEPA** leads with robustness_score=0.8650
+    **🥇 geneformer** leads with robustness_score=0.9995
 
-    - Gap to 🥈 **BrainHarmony**: +0.0200 (2.4% better)
-    - Score range across all models: 0.0840
-    - Performance distribution: ✅ 4 good, 🔶 2 fair
+    - Gap to 🥈 **Brain-JEPA**: +0.1345 (15.5% better)
+    - Score range across all models: 0.2185
+    - Performance distribution: ⭐ 1 excellent, ✅ 4 good, 🔶 2 fair
 
 
 <details>
@@ -277,18 +278,19 @@ Models evaluated across:
 
 | Rank | Model | robustness_score | dropout_rAUC | expression_rAUC | line_noise_rAUC | masking_rAUC | noise_rAUC | perm_equivariance | shift_rAUC |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 🥇 ✅ | Brain-JEPA | **0.8650** | 0.8800 | - | 0.8400 | - | 0.8500 | 0.8900 | 0.8650 |
-| 🥈 ✅ | BrainHarmony | **0.8450** | 0.8600 | - | 0.8200 | - | 0.8300 | 0.8700 | 0.8450 |
-| 🥉 ✅ | Geneformer | **0.8350** | 0.8500 | 0.8100 | - | 0.8600 | 0.8200 | 0.8350 | - |
+| 🥇 ⭐ | geneformer | **0.9995** | 0.9995 | - | 0.9995 | - | 0.9995 | 0.9995 | 0.9995 |
+| 🥈 ✅ | Brain-JEPA | **0.8650** | 0.8800 | - | 0.8400 | - | 0.8500 | 0.8900 | 0.8650 |
+| 🥉 ✅ | BrainHarmony | **0.8450** | 0.8600 | - | 0.8200 | - | 0.8300 | 0.8700 | 0.8450 |
+| 🏅 ✅ | Geneformer | **0.8350** | 0.8500 | 0.8100 | - | 0.8600 | 0.8200 | 0.8350 | - |
 | 🏅 ✅ | BrainLM | **0.8250** | 0.8400 | - | 0.8000 | - | 0.8100 | 0.8500 | 0.8250 |
-| 🏅 🔶 | HyenaDNA | **0.7950** | 0.8100 | 0.7700 | - | 0.8200 | 0.7800 | 0.8000 | - |
+| 🎖️ 🔶 | HyenaDNA | **0.7950** | 0.8100 | 0.7700 | - | 0.8200 | 0.7800 | 0.8000 | - |
 | 🎖️ 🔶 | Baseline (Random/Majority) | **0.7810** | 0.7760 | - | 0.7737 | - | 0.7867 | 0.7819 | 0.7874 |
 
 !!! tip "Legend"
     📊 **Primary metric**: robustness_score (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by **robustness_score** (higher is better). Last updated from 10 evaluation(s).*
+*Ranked by **robustness_score** (higher is better). Last updated from 11 evaluation(s).*
 
 ## 🧬 Genomics
 
@@ -627,11 +629,21 @@ Models evaluated across:
 
 #### 🏆 Leaderboard
 
-**All 1 models ranked by AUROC:**
+**All 2 models ranked by AUROC:**
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
 | 🥇 | **Baseline (Random/Majority)** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
+| 🥈 | **BrainLM** 🌟 | 0.5193 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
+
+
+#### 📖 Ranking Explanation
+
+!!! abstract "Why These Rankings?"
+    **🥇 Baseline (Random/Majority)** leads with AUROC=0.5597
+
+    - Gap to 🥈 **BrainLM**: +0.0404 (7.8% better)
+    - Performance distribution: 📈 2 developing
 
 
 <details>
@@ -700,6 +712,7 @@ Models evaluated across:
 | Rank | Model | AUROC | Accuracy | F1-Score |
 |:---:|:---|:---:|:---:|:---:|
 | 🥇 📈 | Baseline (Random/Majority) | **0.5597** | 0.5750 | 0.5732 |
+| 🥈 📈 | BrainLM | **0.5193** | 0.5100 | 0.5100 |
 
 !!! tip "Legend"
     📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
@@ -764,8 +777,76 @@ Expand sections below to see how models perform across different conditions:
 
 </details>
 
+<details>
+<summary>🔬 <strong>BrainLM</strong> by Scanner</summary>
+
+| Scanner | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 Philips | 0.6226 | 0.5479 | 0.5476 | 73 |
+| 🥈 Siemens | 0.5099 | 0.5088 | 0.5086 | 57 |
+| GE | 0.4087 | 0.4714 | 0.4687 | 70 |
+
+</details>
+
+<details>
+<summary>🏥 <strong>BrainLM</strong> by Site</summary>
+
+| Site | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 SiteA | 0.5791 | 0.5417 | 0.5394 | 72 |
+| 🥈 SiteC | 0.4944 | 0.5070 | 0.5035 | 71 |
+| SiteB | 0.4643 | 0.4737 | 0.4722 | 57 |
+
+</details>
+
+<details>
+<summary>🩺 <strong>BrainLM</strong> by Disease Stage</summary>
+
+| Disease Stage | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 MCI | 0.6372 | 0.6143 | 0.6136 | 70 |
+| 🥈 AD | 0.4649 | 0.4500 | 0.4462 | 60 |
+| CN | 0.4286 | 0.4571 | 0.4571 | 70 |
+
+</details>
+
+<details>
+<summary>👤 <strong>BrainLM</strong> by Sex</summary>
+
+| Sex | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 F | 0.5513 | 0.5217 | 0.5208 | 92 |
+| M | 0.4881 | 0.5000 | 0.4985 | 108 |
+
+</details>
+
+<details>
+<summary>📅 <strong>BrainLM</strong> by Age Group</summary>
+
+| Age Group | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 age_40-60 | 0.5730 | 0.5538 | 0.5430 | 65 |
+| 🥈 age_80-100 | 0.5667 | 0.4545 | 0.4500 | 11 |
+| 🥉 age_60-80 | 0.5357 | 0.5286 | 0.5238 | 70 |
+| age_20-40 | 0.4528 | 0.4444 | 0.4444 | 54 |
+
+</details>
+
+<details>
+<summary>🌍 <strong>BrainLM</strong> by Ethnicity</summary>
+
+| Ethnicity | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 Asian | 0.6667 | 0.5862 | 0.5817 | 29 |
+| 🥈 Black | 0.6165 | 0.6316 | 0.6306 | 38 |
+| 🥉 White | 0.4717 | 0.4545 | 0.4522 | 77 |
+| Hispanic | 0.4630 | 0.5116 | 0.5106 | 43 |
+| Other | 0.2857 | 0.3077 | 0.3077 | 13 |
+
+</details>
+
 ---
-*Ranked by **AUROC** (higher is better). Last updated from 5 evaluation(s).*
+*Ranked by **AUROC** (higher is better). Last updated from 6 evaluation(s).*
 
 ### 🧠 fMRI Foundation Model Benchmark (Granular)
 

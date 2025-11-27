@@ -2,6 +2,18 @@
 
 Welcome! This guide explains how to get your Foundation Model evaluated and added to our leaderboards.
 
+!!! success "🔒 Privacy-Preserving Evaluation — AI4H Aligned"
+    **Your model code and weights stay on YOUR machine!**
+    
+    This submission process follows [ITU/WHO FG-AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) principles:
+    
+    - ✅ You download the benchmark toolkit
+    - ✅ You run evaluations locally  
+    - ✅ You submit **only metrics** (eval.yaml)
+    - ❌ You do NOT share model weights
+    - ❌ You do NOT share model code
+    - ❌ You do NOT share training data
+
 !!! note "Curated Benchmark Hub"
     This is a **curated benchmark hub**. All submissions are reviewed before being added to the leaderboards. We do not accept direct code contributions - only benchmark result submissions and protocol proposals.
 
