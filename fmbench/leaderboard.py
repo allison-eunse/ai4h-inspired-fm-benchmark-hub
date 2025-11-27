@@ -229,6 +229,77 @@ def get_primary_score(metrics: Dict, ai_task: str = "") -> Tuple[float, str]:
     return 0.0, "unknown"
 
 
+def get_metric_explanation(metric: str) -> str:
+    """Get a human-readable explanation of what a metric measures."""
+    explanations = {
+        "AUROC": "Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)",
+        "Accuracy": "Proportion of correct predictions (0.0-1.0)",
+        "F1-Score": "Harmonic mean of precision and recall, balancing false positives/negatives",
+        "Correlation": "Pearson correlation between predicted and actual values (-1 to 1)",
+        "MSE": "Mean Squared Error - average squared difference (lower is better)",
+        "R2": "Coefficient of determination - variance explained by model (0.0-1.0)",
+        "robustness_score": "Average performance retention under data perturbations (0.0-1.0)",
+        "report_quality_score": "Composite score of linguistic fluency + clinical accuracy (0.0-1.0)",
+        "clinical_accuracy": "Proportion of clinically correct findings in generated reports",
+        "bertscore": "Semantic similarity using BERT embeddings (0.0-1.0)",
+        "bleu": "N-gram overlap with reference text (0-100)",
+        "finding_recall": "Proportion of ground-truth findings captured in output",
+        "hallucination_rate": "Proportion of generated content not in source (lower is better)",
+        "perm_equivariance": "Model's consistency when input features are permuted",
+        "dropout_rAUC": "Relative AUROC under feature dropout perturbations",
+        "noise_rAUC": "Relative AUROC under Gaussian noise injection",
+    }
+    return explanations.get(metric, f"Performance measure for this task")
+
+
+def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
+    """Generate explanation of how scores are calculated and interpreted."""
+    md = "\n#### 📐 Scoring Methodology\n\n"
+    
+    md += "<details>\n<summary>🔍 <strong>How are models scored?</strong></summary>\n\n"
+    
+    # Primary metric explanation
+    md += f"**Primary Ranking Metric: `{primary_metric}`**\n\n"
+    md += f"> {get_metric_explanation(primary_metric)}\n\n"
+    
+    # How primary metric is selected
+    md += "**How is the primary metric chosen?**\n\n"
+    if "generation" in ai_task.lower():
+        md += "For **generation tasks**, we prioritize:\n"
+        md += "1. `report_quality_score` (composite clinical + linguistic quality)\n"
+        md += "2. `clinical_accuracy` (correctness of medical content)\n"
+        md += "3. `bertscore` (semantic similarity)\n\n"
+    elif "robustness" in ai_task.lower():
+        md += "For **robustness testing**, we prioritize:\n"
+        md += "1. `robustness_score` (overall perturbation resilience)\n"
+        md += "2. Individual probe scores (dropout, noise, etc.)\n\n"
+    else:
+        md += "For **classification/regression tasks**, we prioritize:\n"
+        md += "1. `AUROC` (best for imbalanced medical data)\n"
+        md += "2. `Accuracy` (overall correctness)\n"
+        md += "3. `F1-Score` (precision-recall balance)\n\n"
+    
+    # Score interpretation
+    md += "**Score Interpretation (Clinical Context)**\n\n"
+    md += "| Range | Tier | Clinical Meaning |\n"
+    md += "|:---:|:---:|:---|\n"
+    md += "| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |\n"
+    md += "| 0.80-0.89 | ✅ Good | Promising, may need validation |\n"
+    md += "| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |\n"
+    md += "| < 0.70 | 📈 Developing | Not recommended for clinical use |\n\n"
+    
+    # Ranking tiebreakers
+    md += "**Ranking Rules**\n\n"
+    md += "1. Models are ranked by **primary metric** (descending)\n"
+    md += "2. If tied, secondary metrics are compared\n"
+    md += "3. Each model's **best evaluation** is used\n"
+    md += "4. Scores are reported to 4 decimal places\n\n"
+    
+    md += "</details>\n\n"
+    
+    return md
+
+
 def generate_ranking_explanation(
     ranked_evals: List[Tuple],
     models: List[Dict],
@@ -492,6 +563,9 @@ def generate_markdown_table(
     
     # Add ranking explanation
     md += generate_ranking_explanation(unique_ranked, models, primary_metric, ai_task)
+    
+    # Add scoring methodology explanation
+    md += generate_scoring_methodology(primary_metric, ai_task)
     
     # Full metrics comparison table (visible by default)
     md += generate_full_metrics_table(unique_ranked, models, primary_metric)

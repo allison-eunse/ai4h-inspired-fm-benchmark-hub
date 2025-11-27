@@ -52,6 +52,41 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
     - Score range across all models: 0.1500
 
 
+#### 📐 Scoring Methodology
+
+<details>
+<summary>🔍 <strong>How are models scored?</strong></summary>
+
+**Primary Ranking Metric: `report_quality_score`**
+
+> Composite score of linguistic fluency + clinical accuracy (0.0-1.0)
+
+**How is the primary metric chosen?**
+
+For **generation tasks**, we prioritize:
+1. `report_quality_score` (composite clinical + linguistic quality)
+2. `clinical_accuracy` (correctness of medical content)
+3. `bertscore` (semantic similarity)
+
+**Score Interpretation (Clinical Context)**
+
+| Range | Tier | Clinical Meaning |
+|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |
+| 0.80-0.89 | ✅ Good | Promising, may need validation |
+| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |
+| < 0.70 | 📈 Developing | Not recommended for clinical use |
+
+**Ranking Rules**
+
+1. Models are ranked by **primary metric** (descending)
+2. If tied, secondary metrics are compared
+3. Each model's **best evaluation** is used
+4. Scores are reported to 4 decimal places
+
+</details>
+
+
 #### 📋 Complete Metrics Comparison
 
 | Rank | Model | report_quality_score | clinical_accuracy | bertscore | bleu | finding_recall | hallucination_rate | finding_precision | flesch_kincaid |
@@ -121,6 +156,40 @@ Expand sections below to see how models perform across different conditions:
 | 🥇 | **dummy_classifier** 👑 | 0.7810 | 🔶 Fair | - | 2025-11-27 |
 
 
+#### 📐 Scoring Methodology
+
+<details>
+<summary>🔍 <strong>How are models scored?</strong></summary>
+
+**Primary Ranking Metric: `robustness_score`**
+
+> Average performance retention under data perturbations (0.0-1.0)
+
+**How is the primary metric chosen?**
+
+For **robustness testing**, we prioritize:
+1. `robustness_score` (overall perturbation resilience)
+2. Individual probe scores (dropout, noise, etc.)
+
+**Score Interpretation (Clinical Context)**
+
+| Range | Tier | Clinical Meaning |
+|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |
+| 0.80-0.89 | ✅ Good | Promising, may need validation |
+| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |
+| < 0.70 | 📈 Developing | Not recommended for clinical use |
+
+**Ranking Rules**
+
+1. Models are ranked by **primary metric** (descending)
+2. If tied, secondary metrics are compared
+3. Each model's **best evaluation** is used
+4. Scores are reported to 4 decimal places
+
+</details>
+
+
 #### 📋 Complete Metrics Comparison
 
 | Rank | Model | robustness_score | dropout_rAUC | line_noise_rAUC | noise_rAUC | perm_equivariance | shift_rAUC | shift_sensitivity |
@@ -151,6 +220,41 @@ Expand sections below to see how models perform across different conditions:
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
 | 🥇 | **Geneformer** 👑 | 0.9100 | ⭐ Excellent | PBMC 68k | 2023-11-01 |
+
+
+#### 📐 Scoring Methodology
+
+<details>
+<summary>🔍 <strong>How are models scored?</strong></summary>
+
+**Primary Ranking Metric: `Accuracy`**
+
+> Proportion of correct predictions (0.0-1.0)
+
+**How is the primary metric chosen?**
+
+For **classification/regression tasks**, we prioritize:
+1. `AUROC` (best for imbalanced medical data)
+2. `Accuracy` (overall correctness)
+3. `F1-Score` (precision-recall balance)
+
+**Score Interpretation (Clinical Context)**
+
+| Range | Tier | Clinical Meaning |
+|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |
+| 0.80-0.89 | ✅ Good | Promising, may need validation |
+| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |
+| < 0.70 | 📈 Developing | Not recommended for clinical use |
+
+**Ranking Rules**
+
+1. Models are ranked by **primary metric** (descending)
+2. If tied, secondary metrics are compared
+3. Each model's **best evaluation** is used
+4. Scores are reported to 4 decimal places
+
+</details>
 
 
 #### 📋 Complete Metrics Comparison
@@ -185,6 +289,41 @@ Expand sections below to see how models perform across different conditions:
 | 🥇 | **UNI** 👑 | 0.9200 | ⭐ Excellent | Alzheimer's Disease Neuroimaging Initiative (ADNI) | 2023-10-27 |
 
 
+#### 📐 Scoring Methodology
+
+<details>
+<summary>🔍 <strong>How are models scored?</strong></summary>
+
+**Primary Ranking Metric: `AUROC`**
+
+> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
+
+**How is the primary metric chosen?**
+
+For **classification/regression tasks**, we prioritize:
+1. `AUROC` (best for imbalanced medical data)
+2. `Accuracy` (overall correctness)
+3. `F1-Score` (precision-recall balance)
+
+**Score Interpretation (Clinical Context)**
+
+| Range | Tier | Clinical Meaning |
+|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |
+| 0.80-0.89 | ✅ Good | Promising, may need validation |
+| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |
+| < 0.70 | 📈 Developing | Not recommended for clinical use |
+
+**Ranking Rules**
+
+1. Models are ranked by **primary metric** (descending)
+2. If tied, secondary metrics are compared
+3. Each model's **best evaluation** is used
+4. Scores are reported to 4 decimal places
+
+</details>
+
+
 #### 📋 Complete Metrics Comparison
 
 | Rank | Model | AUROC | Accuracy |
@@ -215,6 +354,41 @@ Expand sections below to see how models perform across different conditions:
 | 🥇 | **BrainLM** 👑 | 0.7800 |  | UK Biobank fMRI tensors | 2025-11-15 |
 
 
+#### 📐 Scoring Methodology
+
+<details>
+<summary>🔍 <strong>How are models scored?</strong></summary>
+
+**Primary Ranking Metric: `Correlation`**
+
+> Pearson correlation between predicted and actual values (-1 to 1)
+
+**How is the primary metric chosen?**
+
+For **classification/regression tasks**, we prioritize:
+1. `AUROC` (best for imbalanced medical data)
+2. `Accuracy` (overall correctness)
+3. `F1-Score` (precision-recall balance)
+
+**Score Interpretation (Clinical Context)**
+
+| Range | Tier | Clinical Meaning |
+|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |
+| 0.80-0.89 | ✅ Good | Promising, may need validation |
+| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |
+| < 0.70 | 📈 Developing | Not recommended for clinical use |
+
+**Ranking Rules**
+
+1. Models are ranked by **primary metric** (descending)
+2. If tied, secondary metrics are compared
+3. Each model's **best evaluation** is used
+4. Scores are reported to 4 decimal places
+
+</details>
+
+
 #### 📋 Complete Metrics Comparison
 
 | Rank | Model | Correlation | MSE |
@@ -240,6 +414,41 @@ Expand sections below to see how models perform across different conditions:
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
 | 🥇 | **dummy_classifier** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
+
+
+#### 📐 Scoring Methodology
+
+<details>
+<summary>🔍 <strong>How are models scored?</strong></summary>
+
+**Primary Ranking Metric: `AUROC`**
+
+> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
+
+**How is the primary metric chosen?**
+
+For **classification/regression tasks**, we prioritize:
+1. `AUROC` (best for imbalanced medical data)
+2. `Accuracy` (overall correctness)
+3. `F1-Score` (precision-recall balance)
+
+**Score Interpretation (Clinical Context)**
+
+| Range | Tier | Clinical Meaning |
+|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |
+| 0.80-0.89 | ✅ Good | Promising, may need validation |
+| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |
+| < 0.70 | 📈 Developing | Not recommended for clinical use |
+
+**Ranking Rules**
+
+1. Models are ranked by **primary metric** (descending)
+2. If tied, secondary metrics are compared
+3. Each model's **best evaluation** is used
+4. Scores are reported to 4 decimal places
+
+</details>
 
 
 #### 📋 Complete Metrics Comparison
@@ -350,6 +559,41 @@ Expand sections below to see how models perform across different conditions:
     - Gap to 🥈 **BrainBERT**: +0.0400 (4.6% better)
     - Score range across all models: 0.0800
     - Performance distribution: ⭐ 1 excellent, ✅ 2 good
+
+
+#### 📐 Scoring Methodology
+
+<details>
+<summary>🔍 <strong>How are models scored?</strong></summary>
+
+**Primary Ranking Metric: `AUROC`**
+
+> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
+
+**How is the primary metric chosen?**
+
+For **classification/regression tasks**, we prioritize:
+1. `AUROC` (best for imbalanced medical data)
+2. `Accuracy` (overall correctness)
+3. `F1-Score` (precision-recall balance)
+
+**Score Interpretation (Clinical Context)**
+
+| Range | Tier | Clinical Meaning |
+|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |
+| 0.80-0.89 | ✅ Good | Promising, may need validation |
+| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |
+| < 0.70 | 📈 Developing | Not recommended for clinical use |
+
+**Ranking Rules**
+
+1. Models are ranked by **primary metric** (descending)
+2. If tied, secondary metrics are compared
+3. Each model's **best evaluation** is used
+4. Scores are reported to 4 decimal places
+
+</details>
 
 
 #### 📋 Complete Metrics Comparison
