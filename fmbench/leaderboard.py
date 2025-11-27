@@ -256,44 +256,63 @@ def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     """Generate explanation of how scores are calculated and interpreted."""
     md = "\n#### 📐 Scoring Methodology\n\n"
     
-    md += "<details>\n<summary>🔍 <strong>How are models scored?</strong></summary>\n\n"
+    md += "<details>\n<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>\n\n"
+    
+    # AI4H Standards Reference
+    md += "!!! note \"ITU/WHO FG-AI4H Alignment\"\n"
+    md += "    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:\n\n"
+    md += "    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)\n"
+    md += "    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)\n"
+    md += "    - **DEL10.x**: Topic Description Documents for health domains\n\n"
     
     # Primary metric explanation
     md += f"**Primary Ranking Metric: `{primary_metric}`**\n\n"
     md += f"> {get_metric_explanation(primary_metric)}\n\n"
     
     # How primary metric is selected
-    md += "**How is the primary metric chosen?**\n\n"
+    md += "**How is the primary metric chosen?** *(per DEL3 Section 6)*\n\n"
     if "generation" in ai_task.lower():
         md += "For **generation tasks**, we prioritize:\n"
-        md += "1. `report_quality_score` (composite clinical + linguistic quality)\n"
-        md += "2. `clinical_accuracy` (correctness of medical content)\n"
-        md += "3. `bertscore` (semantic similarity)\n\n"
+        md += "1. `report_quality_score` – composite clinical + linguistic quality\n"
+        md += "2. `clinical_accuracy` – correctness of medical content\n"
+        md += "3. `bertscore` – semantic similarity\n"
+        md += "4. `hallucination_rate` – safety-critical (lower is better)\n\n"
     elif "robustness" in ai_task.lower():
         md += "For **robustness testing**, we prioritize:\n"
-        md += "1. `robustness_score` (overall perturbation resilience)\n"
-        md += "2. Individual probe scores (dropout, noise, etc.)\n\n"
+        md += "1. `robustness_score` – overall perturbation resilience\n"
+        md += "2. Individual probe scores (dropout, noise, shift, etc.)\n"
+        md += "3. `perm_equivariance` – consistency under input reordering\n\n"
     else:
         md += "For **classification/regression tasks**, we prioritize:\n"
-        md += "1. `AUROC` (best for imbalanced medical data)\n"
-        md += "2. `Accuracy` (overall correctness)\n"
-        md += "3. `F1-Score` (precision-recall balance)\n\n"
+        md += "1. `AUROC` – best for imbalanced medical data (DEL3 recommended)\n"
+        md += "2. `Accuracy` – overall correctness rate\n"
+        md += "3. `F1-Score` – precision-recall balance\n"
+        md += "4. `Sensitivity/Specificity` – for diagnostic screening\n\n"
     
-    # Score interpretation
-    md += "**Score Interpretation (Clinical Context)**\n\n"
-    md += "| Range | Tier | Clinical Meaning |\n"
-    md += "|:---:|:---:|:---|\n"
-    md += "| ≥ 0.90 | ⭐ Excellent | Suitable for clinical decision support |\n"
-    md += "| 0.80-0.89 | ✅ Good | Promising, may need validation |\n"
-    md += "| 0.70-0.79 | 🔶 Fair | Research use, needs improvement |\n"
-    md += "| < 0.70 | 📈 Developing | Not recommended for clinical use |\n\n"
+    # Score interpretation with AI4H context
+    md += "**Score Interpretation** *(Clinical Deployment Readiness)*\n\n"
+    md += "| Range | Tier | DEL3 Deployment Level | Clinical Guidance |\n"
+    md += "|:---:|:---:|:---:|:---|\n"
+    md += "| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |\n"
+    md += "| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |\n"
+    md += "| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |\n"
+    md += "| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |\n\n"
+    
+    # Stratified evaluation per DEL3
+    md += "**Generalizability Analysis** *(DEL3 Section 4.3)*\n\n"
+    md += "Models are evaluated across demographic and technical strata:\n\n"
+    md += "- 👤 **Demographics**: Age groups, sex, ethnicity\n"
+    md += "- 🔬 **Technical**: Scanner manufacturer, acquisition parameters\n"
+    md += "- 🏥 **Clinical**: Disease stage, comorbidities, site\n\n"
+    md += "Sub-group performance gaps > 10% are flagged for fairness review.\n\n"
     
     # Ranking tiebreakers
     md += "**Ranking Rules**\n\n"
-    md += "1. Models are ranked by **primary metric** (descending)\n"
-    md += "2. If tied, secondary metrics are compared\n"
-    md += "3. Each model's **best evaluation** is used\n"
-    md += "4. Scores are reported to 4 decimal places\n\n"
+    md += "1. Models ranked by **primary metric** (descending, higher = better)\n"
+    md += "2. Ties broken by secondary metrics in priority order\n"
+    md += "3. Each model's **best evaluation run** is used\n"
+    md += "4. Scores reported to 4 decimal places for precision\n"
+    md += "5. Statistical significance assessed via bootstrap CI (when available)\n\n"
     
     md += "</details>\n\n"
     
