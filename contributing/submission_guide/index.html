@@ -703,10 +703,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-submit-via-pull-request" class="md-nav__link">
+  <a href="#4-submit-via-issue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Submit via Pull Request
+        4. Submit via Issue
       
     </span>
   </a>
@@ -802,10 +802,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pr-checklist" class="md-nav__link">
+  <a href="#submission-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PR Checklist
+        Submission Checklist
       
     </span>
   </a>
@@ -1443,10 +1443,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-submit-via-pull-request" class="md-nav__link">
+  <a href="#4-submit-via-issue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Submit via Pull Request
+        4. Submit via Issue
       
     </span>
   </a>
@@ -1542,10 +1542,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pr-checklist" class="md-nav__link">
+  <a href="#submission-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PR Checklist
+        Submission Checklist
       
     </span>
   </a>
@@ -1662,14 +1662,12 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 ├── eval.yaml      # Evaluation record (submit this!)
 └── report.md      # Human-readable report
 </code></pre></div>
-<h3 id="4-submit-via-pull-request">4. Submit via Pull Request</h3>
+<h3 id="4-submit-via-issue">4. Submit via Issue</h3>
 <ol>
-<li><strong>Fork</strong> the repository</li>
-<li><strong>Add</strong> your files:</li>
-<li><code>configs/model_your_model.yaml</code> - Model configuration</li>
-<li><code>evals/YOUR_EVAL_ID.yaml</code> - Evaluation results</li>
-<li>(Optional) <code>models/your_model.yaml</code> - Detailed model metadata</li>
-<li><strong>Create PR</strong> with title: <code>[Submission] Your Model Name - Benchmark Name</code></li>
+<li>Go to <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md"><strong>Issues → New Issue → 📊 Benchmark Submission</strong></a></li>
+<li>Paste your <code>eval.yaml</code> contents in the issue</li>
+<li>Attach any supporting files (model config, etc.)</li>
+<li>The maintainer will review and add your results to the leaderboard</li>
 </ol>
 <hr />
 <h2 id="evaluation-yaml-format">Evaluation YAML Format</h2>
@@ -1850,8 +1848,8 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 <span class="w">  </span><span class="nt">expression_rAUC</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.81</span>
 </code></pre></div>
 <hr />
-<h2 id="pr-checklist">PR Checklist</h2>
-<p>Before submitting, ensure:</p>
+<h2 id="submission-checklist">Submission Checklist</h2>
+<p>Before submitting your issue, ensure:</p>
 <ul>
 <li>[ ] Model config YAML is valid</li>
 <li>[ ] Eval YAML has correct <code>benchmark_id</code></li>
@@ -1861,11 +1859,8 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 </ul>
 <hr />
 <h2 id="questions">Questions?</h2>
-<ul>
-<li>Open an <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues">Issue</a></li>
-<li>Check existing <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions">Discussions</a></li>
-</ul>
-<p>Thank you for contributing to open FM benchmarking! 🎉</p>
+<p>Open an <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new">Issue</a> with your question.</p>
+<p>Thank you for your interest in FM benchmarking! 🎉</p>
 
 
 
