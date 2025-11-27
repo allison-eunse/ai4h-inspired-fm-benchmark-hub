@@ -1,0 +1,6 @@
+# Caduceus - Bidirectional DNA Model
+model_id: caduceus
+type: adapter
+adapter_name: caduceus
+device: "cpu"
+

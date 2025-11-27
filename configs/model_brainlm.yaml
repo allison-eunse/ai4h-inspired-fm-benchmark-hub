@@ -1,0 +1,7 @@
+# BrainLM - fMRI Foundation Model
+model_id: brainlm
+type: adapter
+adapter_name: brainlm
+checkpoint_path: "external/brainlm/pretrained_models/2023-06-06-22_15_00-checkpoint-1400"
+device: "cpu"
+

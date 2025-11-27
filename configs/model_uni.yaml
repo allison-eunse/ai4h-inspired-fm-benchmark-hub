@@ -1,0 +1,6 @@
+# UNI - Histopathology Foundation Model
+model_id: uni
+type: adapter
+adapter_name: uni
+device: "cpu"
+

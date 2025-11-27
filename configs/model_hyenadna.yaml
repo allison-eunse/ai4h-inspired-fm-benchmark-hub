@@ -1,0 +1,7 @@
+# HyenaDNA - DNA Foundation Model
+model_id: hyenadna
+type: adapter
+adapter_name: hyenadna
+model_name: "hyenadna-small-32k-seqlen"
+device: "cpu"
+

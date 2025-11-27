@@ -1,0 +1,6 @@
+# DNABERT-2 - DNA Language Model
+model_id: dnabert2
+type: adapter
+adapter_name: dnabert2
+device: "cpu"
+

@@ -1,0 +1,6 @@
+# Brain-JEPA - JEPA-based Brain Foundation Model
+model_id: brainjepa
+type: adapter
+adapter_name: brainjepa
+device: "cpu"
+

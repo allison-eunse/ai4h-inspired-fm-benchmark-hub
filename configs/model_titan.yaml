@@ -1,0 +1,6 @@
+# TITAN - Pathology Slide-Level Model
+model_id: titan
+type: adapter
+adapter_name: titan
+device: "cpu"
+

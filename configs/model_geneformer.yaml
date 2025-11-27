@@ -1,0 +1,7 @@
+# Geneformer - Single-Cell Foundation Model
+model_id: geneformer
+type: adapter
+adapter_name: geneformer
+model_version: "Geneformer-V2-104M"
+device: "cpu"
+
