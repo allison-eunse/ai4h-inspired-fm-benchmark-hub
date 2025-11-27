@@ -1,0 +1,14 @@
+# Baseline Model - Not a Foundation Model
+model_id: dummy_classifier
+name: "Baseline (Random/Majority)"
+version: "1.0.0"
+type: baseline
+modality: ["any"]
+description: >
+  Simple baseline classifier (sklearn DummyClassifier) for establishing 
+  minimum performance thresholds. Uses stratified random prediction or 
+  majority class voting. NOT a foundation model - included for comparison only.
+paper: null
+license: "BSD-3-Clause"
+notes: "Use as lower-bound reference only"
+

@@ -1,0 +1,24 @@
+# BrainHarmony evaluation for Robustness
+eval_id: eval_brainharmony_robustness_001
+benchmark_id: robustness_testing
+
+model_ids:
+  candidate: brainharmony
+
+dataset_id: DS-TOY-NEURO-ROBUSTNESS
+
+run_metadata:
+  date: "2024-01-18"
+  runner: "fmbench"
+  hardware: "NVIDIA A100 80GB"
+
+metrics:
+  robustness_score: 0.8450
+  dropout_rAUC: 0.8600
+  noise_rAUC: 0.8300
+  line_noise_rAUC: 0.8200
+  perm_equivariance: 0.8700
+  shift_rAUC: 0.8450
+
+status: Completed
+

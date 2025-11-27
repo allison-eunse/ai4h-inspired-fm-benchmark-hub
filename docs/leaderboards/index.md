@@ -1,7 +1,7 @@
 # 🏆 Foundation Model Leaderboards
 
 !!! success "Benchmark Hub Stats"
-    🎯 **7** Benchmarks | 🤖 **9** Models Evaluated | 📊 **19** Total Evaluations
+    🎯 **7** Benchmarks | 🤖 **20** Models Evaluated | 📊 **36** Total Evaluations
 
 Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all submitted models** from best to developing, helping you find the right model for your use case.
 
@@ -27,29 +27,32 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
 
 ```
          🥇          
-     [Flamingo]    
+     [Me-LLaMA]    
     ┌─────────┐     
  🥈 │         │ 🥉  
-[Med-Flamin]│         │[RadBERT]
+[M3FM (Mult]│         │[Flamingo]
 ────┴─────────┴────
 ```
 
-**All 3 models ranked by report_quality_score:**
+**All 6 models ranked by report_quality_score:**
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Flamingo** 👑 | 0.8400 |  | mimic_cxr_reports | 2024-01-20 |
-| 🥈 | **Med-Flamingo** 🌟 | 0.7800 |  | mimic_cxr_reports | 2024-01-18 |
-| 🥉 | **RadBERT** ✨ | 0.6900 |  | mimic_cxr_reports | 2024-01-12 |
+| 🥇 | **Me-LLaMA** 👑 | 0.8750 |  | mimic_cxr_reports | 2024-02-05 |
+| 🥈 | **M3FM (Multilingual Medical Model for Findings)** 🌟 | 0.8600 |  | mimic_cxr_reports | 2024-01-28 |
+| 🥉 | **Flamingo** ✨ | 0.8400 |  | mimic_cxr_reports | 2024-01-20 |
+| 🏅 | TITAN (Transformer-based pathology Image & Text Alignment Network) | 0.8100 |  | mimic_cxr_reports | 2024-01-25 |
+| 🏅 | Med-Flamingo | 0.7800 |  | mimic_cxr_reports | 2024-01-18 |
+| 🎖️ | RadBERT | 0.6900 |  | mimic_cxr_reports | 2024-01-12 |
 
 
 #### 📖 Ranking Explanation
 
 !!! abstract "Why These Rankings?"
-    **🥇 Flamingo** leads with report_quality_score=0.8400
+    **🥇 Me-LLaMA** leads with report_quality_score=0.8750
 
-    - Gap to 🥈 **Med-Flamingo**: +0.0600 (7.7% better)
-    - Score range across all models: 0.1500
+    - Gap to 🥈 **M3FM (Multilingual Medical Model for Findings)**: +0.0150 (1.7% better)
+    - Score range across all models: 0.1850
 
 
 #### 📐 Scoring Methodology
@@ -110,9 +113,12 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 | Rank | Model | report_quality_score | clinical_accuracy | bertscore | bleu | finding_recall | hallucination_rate | finding_precision | flesch_kincaid |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 🥇  | Flamingo | **0.8400** | 0.8900 | 0.8700 | 38.5000 | 0.8500 | 0.0600 | 0.9100 | 10.2000 |
-| 🥈  | Med-Flamingo | **0.7800** | 0.8200 | 0.8200 | 32.5000 | 0.7900 | 0.0900 | 0.8500 | 11.5000 |
-| 🥉  | RadBERT | **0.6900** | 0.7200 | 0.7400 | 24.2000 | 0.6800 | 0.1500 | 0.7500 | 13.2000 |
+| 🥇  | Me-LLaMA | **0.8750** | 0.9200 | 0.9000 | 43.5000 | 0.8800 | 0.0400 | 0.9300 | 9.5000 |
+| 🥈  | M3FM (Multilingual Medical Model for Findings) | **0.8600** | 0.9100 | 0.8900 | 41.2000 | 0.8700 | 0.0450 | 0.9200 | 9.8000 |
+| 🥉  | Flamingo | **0.8400** | 0.8900 | 0.8700 | 38.5000 | 0.8500 | 0.0600 | 0.9100 | 10.2000 |
+| 🏅  | TITAN (Transformer-based pathology Image & Text Alignment Network) | **0.8100** | 0.8600 | 0.8500 | 35.2000 | 0.8200 | 0.0700 | 0.8800 | 10.8000 |
+| 🏅  | Med-Flamingo | **0.7800** | 0.8200 | 0.8200 | 32.5000 | 0.7900 | 0.0900 | 0.8500 | 11.5000 |
+| 🎖️  | RadBERT | **0.6900** | 0.7200 | 0.7400 | 24.2000 | 0.6800 | 0.1500 | 0.7500 | 13.2000 |
 
 !!! tip "Legend"
     📊 **Primary metric**: report_quality_score (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
@@ -156,7 +162,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 ---
-*Ranked by **report_quality_score** (higher is better). Last updated from 3 evaluation(s).*
+*Ranked by **report_quality_score** (higher is better). Last updated from 6 evaluation(s).*
 
 ### 🌐 Foundation Model Robustness Evaluation
 
@@ -168,11 +174,35 @@ Expand sections below to see how models perform across different conditions:
 
 #### 🏆 Leaderboard
 
-**All 1 models ranked by robustness_score:**
+```
+         🥇          
+     [Brain-JEPA]    
+    ┌─────────┐     
+ 🥈 │         │ 🥉  
+[Brain Harm]│         │[Geneformer]
+────┴─────────┴────
+```
+
+**All 6 models ranked by robustness_score:**
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **dummy_classifier** 👑 | 0.7810 | 🔶 Fair | - | 2025-11-27 |
+| 🥇 | **Brain-JEPA** 👑 | 0.8650 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-20 |
+| 🥈 | **Brain Harmony** 🌟 | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-18 |
+| 🥉 | **Geneformer** ✨ | 0.8350 | ✅ Good | DS-TOY-GENOMICS | 2024-01-10 |
+| 🏅 | BrainLM | 0.8250 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-16 |
+| 🏅 | HyenaDNA | 0.7950 | 🔶 Fair | DS-TOY-GENOMICS | 2024-01-12 |
+| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | - | 2025-11-27 |
+
+
+#### 📖 Ranking Explanation
+
+!!! abstract "Why These Rankings?"
+    **🥇 Brain-JEPA** leads with robustness_score=0.8650
+
+    - Gap to 🥈 **Brain Harmony**: +0.0200 (2.4% better)
+    - Score range across all models: 0.0840
+    - Performance distribution: ✅ 4 good, 🔶 2 fair
 
 
 #### 📐 Scoring Methodology
@@ -230,15 +260,20 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 #### 📋 Complete Metrics Comparison
 
-| Rank | Model | robustness_score | dropout_rAUC | line_noise_rAUC | noise_rAUC | perm_equivariance | shift_rAUC | shift_sensitivity |
-|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 🥇 🔶 | dummy_classifier | **0.7810** | 0.7760 | 0.7737 | 0.7867 | 0.7819 | 0.7874 | 0.7897 |
+| Rank | Model | robustness_score | dropout_rAUC | expression_rAUC | line_noise_rAUC | masking_rAUC | noise_rAUC | perm_equivariance | shift_rAUC |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 🥇 ✅ | Brain-JEPA | **0.8650** | 0.8800 | - | 0.8400 | - | 0.8500 | 0.8900 | 0.8650 |
+| 🥈 ✅ | Brain Harmony | **0.8450** | 0.8600 | - | 0.8200 | - | 0.8300 | 0.8700 | 0.8450 |
+| 🥉 ✅ | Geneformer | **0.8350** | 0.8500 | 0.8100 | - | 0.8600 | 0.8200 | 0.8350 | - |
+| 🏅 ✅ | BrainLM | **0.8250** | 0.8400 | - | 0.8000 | - | 0.8100 | 0.8500 | 0.8250 |
+| 🏅 🔶 | HyenaDNA | **0.7950** | 0.8100 | 0.7700 | - | 0.8200 | 0.7800 | 0.8000 | - |
+| 🎖️ 🔶 | Baseline (Random/Majority) | **0.7810** | 0.7760 | - | 0.7737 | - | 0.7867 | 0.7819 | 0.7874 |
 
 !!! tip "Legend"
     📊 **Primary metric**: robustness_score (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by **robustness_score** (higher is better). Last updated from 5 evaluation(s).*
+*Ranked by **robustness_score** (higher is better). Last updated from 10 evaluation(s).*
 
 ## 🧬 Genomics
 
@@ -253,11 +288,35 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 #### 🏆 Leaderboard
 
-**All 1 models ranked by Accuracy:**
+```
+         🥇          
+     [Evo 2]    
+    ┌─────────┐     
+ 🥈 │         │ 🥉  
+[Geneformer]│         │[SwiFT]
+────┴─────────┴────
+```
+
+**All 6 models ranked by Accuracy:**
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Geneformer** 👑 | 0.9100 | ⭐ Excellent | PBMC 68k | 2023-11-01 |
+| 🥇 | **Evo 2** 👑 | 0.9250 | ⭐ Excellent | PBMC 68k | 2024-02-01 |
+| 🥈 | **Geneformer** 🌟 | 0.9100 | ⭐ Excellent | PBMC 68k | 2023-11-01 |
+| 🥉 | **SwiFT** ✨ | 0.8950 | ✅ Good | PBMC 68k | 2024-01-15 |
+| 🏅 | Caduceus | 0.8850 | ✅ Good | PBMC 68k | 2024-01-12 |
+| 🏅 | HyenaDNA | 0.8700 | ✅ Good | PBMC 68k | 2024-01-08 |
+| 🎖️ | DNABERT-2 | 0.8500 | ✅ Good | PBMC 68k | 2024-01-05 |
+
+
+#### 📖 Ranking Explanation
+
+!!! abstract "Why These Rankings?"
+    **🥇 Evo 2** leads with Accuracy=0.9250
+
+    - Gap to 🥈 **Geneformer**: +0.0150 (1.6% better)
+    - Score range across all models: 0.0750
+    - Performance distribution: ⭐ 2 excellent, ✅ 4 good
 
 
 #### 📐 Scoring Methodology
@@ -318,13 +377,18 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 | Rank | Model | Accuracy | F1-Score |
 |:---:|:---|:---:|:---:|
-| 🥇 ⭐ | Geneformer | **0.9100** | 0.8500 |
+| 🥇 ⭐ | Evo 2 | **0.9250** | 0.8900 |
+| 🥈 ⭐ | Geneformer | **0.9100** | 0.8500 |
+| 🥉 ✅ | SwiFT | **0.8950** | 0.8550 |
+| 🏅 ✅ | Caduceus | **0.8850** | 0.8400 |
+| 🏅 ✅ | HyenaDNA | **0.8700** | 0.8200 |
+| 🎖️ ✅ | DNABERT-2 | **0.8500** | 0.8000 |
 
 !!! tip "Legend"
     📊 **Primary metric**: Accuracy (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by **Accuracy** (higher is better). Last updated from 1 evaluation(s).*
+*Ranked by **Accuracy** (higher is better). Last updated from 6 evaluation(s).*
 
 ## 🧠 Neurology
 
@@ -339,11 +403,32 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 #### 🏆 Leaderboard
 
-**All 1 models ranked by AUROC:**
+```
+         🥇          
+     [Brain-JEPA]    
+    ┌─────────┐     
+ 🥈 │         │ 🥉  
+[UNI]│         │[BrainLM]
+────┴─────────┴────
+```
+
+**All 3 models ranked by AUROC:**
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **UNI** 👑 | 0.9200 | ⭐ Excellent | Alzheimer's Disease Neuroimaging Initiative (ADNI) | 2023-10-27 |
+| 🥇 | **Brain-JEPA** 👑 | 0.9350 | ⭐ Excellent | ADNI | 2024-01-20 |
+| 🥈 | **UNI** 🌟 | 0.9200 | ⭐ Excellent | Alzheimer's Disease Neuroimaging Initiative (ADNI) | 2023-10-27 |
+| 🥉 | **BrainLM** ✨ | 0.9100 | ⭐ Excellent | ADNI | 2024-01-15 |
+
+
+#### 📖 Ranking Explanation
+
+!!! abstract "Why These Rankings?"
+    **🥇 Brain-JEPA** leads with AUROC=0.9350
+
+    - Gap to 🥈 **UNI**: +0.0150 (1.6% better)
+    - Score range across all models: 0.0250
+    - Performance distribution: ⭐ 3 excellent
 
 
 #### 📐 Scoring Methodology
@@ -404,13 +489,15 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 | Rank | Model | AUROC | Accuracy |
 |:---:|:---|:---:|:---:|
-| 🥇 ⭐ | UNI | **0.9200** | 0.8800 |
+| 🥇 ⭐ | Brain-JEPA | **0.9350** | 0.8950 |
+| 🥈 ⭐ | UNI | **0.9200** | 0.8800 |
+| 🥉 ⭐ | BrainLM | **0.9100** | 0.8700 |
 
 !!! tip "Legend"
     📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by **AUROC** (higher is better). Last updated from 1 evaluation(s).*
+*Ranked by **AUROC** (higher is better). Last updated from 3 evaluation(s).*
 
 ### 🧠 Brain Time-Series Modeling
 
@@ -508,7 +595,7 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **dummy_classifier** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
+| 🥇 | **Baseline (Random/Majority)** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
 
 
 #### 📐 Scoring Methodology
@@ -569,7 +656,7 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 | Rank | Model | AUROC | Accuracy | F1-Score |
 |:---:|:---|:---:|:---:|:---:|
-| 🥇 📈 | dummy_classifier | **0.5597** | 0.5750 | 0.5732 |
+| 🥇 📈 | Baseline (Random/Majority) | **0.5597** | 0.5750 | 0.5732 |
 
 !!! tip "Legend"
     📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
@@ -580,7 +667,7 @@ Expand sections below to see how models perform across different conditions:
 
 
 <details>
-<summary>🔬 <strong>dummy_classifier</strong> by Scanner</summary>
+<summary>🔬 <strong>Baseline (Random/Majority)</strong> by Scanner</summary>
 
 | Scanner | AUROC | Accuracy | F1-Score | N |
 |---|---|---|---|---|
@@ -591,7 +678,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 <details>
-<summary>🏥 <strong>dummy_classifier</strong> by Site</summary>
+<summary>🏥 <strong>Baseline (Random/Majority)</strong> by Site</summary>
 
 | Site | AUROC | Accuracy | F1-Score | N |
 |---|---|---|---|---|
@@ -602,7 +689,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 <details>
-<summary>🩺 <strong>dummy_classifier</strong> by Disease Stage</summary>
+<summary>🩺 <strong>Baseline (Random/Majority)</strong> by Disease Stage</summary>
 
 | Disease Stage | AUROC | Accuracy | F1-Score | N |
 |---|---|---|---|---|
@@ -613,7 +700,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 <details>
-<summary>👤 <strong>dummy_classifier</strong> by Sex</summary>
+<summary>👤 <strong>Baseline (Random/Majority)</strong> by Sex</summary>
 
 | Sex | AUROC | Accuracy | F1-Score | N |
 |---|---|---|---|---|
@@ -623,7 +710,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 <details>
-<summary>📅 <strong>dummy_classifier</strong> by Age Group</summary>
+<summary>📅 <strong>Baseline (Random/Majority)</strong> by Age Group</summary>
 
 | Age Group | AUROC | Accuracy | F1-Score | N |
 |---|---|---|---|---|
@@ -649,30 +736,32 @@ Expand sections below to see how models perform across different conditions:
 
 ```
          🥇          
-     [BrainLM]    
+     [Brain-JEPA]    
     ┌─────────┐     
  🥈 │         │ 🥉  
-[BrainBERT]│         │[NeuroCLIP]
+[BrainLM]│         │[BrainBERT]
 ────┴─────────┴────
 ```
 
-**All 3 models ranked by AUROC:**
+**All 5 models ranked by AUROC:**
 
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **BrainLM** 👑 | 0.9100 | ⭐ Excellent | hcp_1200 | 2024-01-15 |
-| 🥈 | **BrainBERT** 🌟 | 0.8700 | ✅ Good | hcp_1200 | 2024-01-10 |
-| 🥉 | **NeuroCLIP** ✨ | 0.8300 | ✅ Good | hcp_1200 | 2024-01-05 |
+| 🥇 | **Brain-JEPA** 👑 | 0.9250 | ⭐ Excellent | hcp_1200 | 2024-01-22 |
+| 🥈 | **BrainLM** 🌟 | 0.9100 | ⭐ Excellent | hcp_1200 | 2024-01-15 |
+| 🥉 | **BrainBERT** ✨ | 0.8700 | ✅ Good | hcp_1200 | 2024-01-10 |
+| 🏅 | BrainMT | 0.8500 | ✅ Good | hcp_1200 | 2024-01-18 |
+| 🏅 | NeuroCLIP | 0.8300 | ✅ Good | hcp_1200 | 2024-01-05 |
 
 
 #### 📖 Ranking Explanation
 
 !!! abstract "Why These Rankings?"
-    **🥇 BrainLM** leads with AUROC=0.9100
+    **🥇 Brain-JEPA** leads with AUROC=0.9250
 
-    - Gap to 🥈 **BrainBERT**: +0.0400 (4.6% better)
-    - Score range across all models: 0.0800
-    - Performance distribution: ⭐ 1 excellent, ✅ 2 good
+    - Gap to 🥈 **BrainLM**: +0.0150 (1.6% better)
+    - Score range across all models: 0.0950
+    - Performance distribution: ⭐ 2 excellent, ✅ 3 good
 
 
 #### 📐 Scoring Methodology
@@ -733,9 +822,11 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 | Rank | Model | AUROC | Accuracy | F1-Score | Correlation | MSE |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|
-| 🥇 ⭐ | BrainLM | **0.9100** | 0.8700 | 0.8600 | 0.8100 | 0.4200 |
-| 🥈 ✅ | BrainBERT | **0.8700** | 0.8200 | 0.8100 | 0.7600 | 0.5100 |
-| 🥉 ✅ | NeuroCLIP | **0.8300** | 0.7900 | 0.7800 | 0.7200 | 0.5800 |
+| 🥇 ⭐ | Brain-JEPA | **0.9250** | 0.8900 | 0.8800 | 0.8300 | 0.3900 |
+| 🥈 ⭐ | BrainLM | **0.9100** | 0.8700 | 0.8600 | 0.8100 | 0.4200 |
+| 🥉 ✅ | BrainBERT | **0.8700** | 0.8200 | 0.8100 | 0.7600 | 0.5100 |
+| 🏅 ✅ | BrainMT | **0.8500** | 0.8100 | 0.8000 | 0.7400 | 0.5500 |
+| 🏅 ✅ | NeuroCLIP | **0.8300** | 0.7900 | 0.7800 | 0.7200 | 0.5800 |
 
 !!! tip "Legend"
     📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
@@ -744,6 +835,27 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 
 Expand sections below to see how models perform across different conditions:
 
+
+<details>
+<summary>🔬 <strong>Brain-JEPA</strong> by Scanner</summary>
+
+| Scanner | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 Siemens | 0.9400 | 0.9100 | 0.9000 | 450 |
+| 🥈 Philips | 0.9200 | 0.8800 | 0.8700 | 370 |
+| GE | 0.9100 | 0.8700 | 0.8600 | 380 |
+
+</details>
+
+<details>
+<summary>📡 <strong>Brain-JEPA</strong> by Acquisition Type</summary>
+
+| Acquisition Type | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 resting_state | 0.9350 | 0.9000 | 0.8900 | 600 |
+| task_based | 0.9100 | 0.8700 | 0.8600 | 400 |
+
+</details>
 
 <details>
 <summary>🔬 <strong>BrainLM</strong> by Scanner</summary>
@@ -825,6 +937,17 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 <details>
+<summary>🔬 <strong>BrainMT</strong> by Scanner</summary>
+
+| Scanner | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 Siemens | 0.8700 | 0.8300 | 0.8200 | 450 |
+| 🥈 GE | 0.8400 | 0.8000 | 0.7900 | 380 |
+| Philips | 0.8300 | 0.7900 | 0.7800 | 370 |
+
+</details>
+
+<details>
 <summary>🔬 <strong>NeuroCLIP</strong> by Scanner</summary>
 
 | Scanner | AUROC | Accuracy | F1-Score | N |
@@ -836,7 +959,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 ---
-*Ranked by **AUROC** (higher is better). Last updated from 3 evaluation(s).*
+*Ranked by **AUROC** (higher is better). Last updated from 5 evaluation(s).*
 
 ---
 

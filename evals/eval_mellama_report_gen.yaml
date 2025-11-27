@@ -1,0 +1,32 @@
+# ME-LLaMA evaluation for Report Generation
+eval_id: eval_mellama_report_gen_001
+benchmark_id: BM-REPORT-GEN
+
+model_ids:
+  candidate: me_llama
+
+dataset_id: mimic_cxr_reports
+
+run_metadata:
+  date: "2024-02-05"
+  runner: "fmbench"
+  hardware: "8x NVIDIA A100"
+
+metrics:
+  report_quality_score: 0.8750
+  clinical_accuracy: 0.9200
+  finding_recall: 0.8800
+  finding_precision: 0.9300
+  hallucination_rate: 0.0400
+  omission_rate: 0.0650
+  bertscore: 0.9000
+  bleu: 43.5
+  meteor: 0.5800
+  rouge_l: 0.6600
+  flesch_kincaid: 9.5
+  structure_score: 0.9100
+  harmful_content: 0.0005
+  uncertainty_calibration: 0.8600
+
+status: Completed
+

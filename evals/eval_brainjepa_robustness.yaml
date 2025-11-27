@@ -1,0 +1,24 @@
+# Brain-JEPA evaluation for Robustness
+eval_id: eval_brainjepa_robustness_001
+benchmark_id: robustness_testing
+
+model_ids:
+  candidate: brainjepa
+
+dataset_id: DS-TOY-NEURO-ROBUSTNESS
+
+run_metadata:
+  date: "2024-01-20"
+  runner: "fmbench"
+  hardware: "NVIDIA A100 80GB"
+
+metrics:
+  robustness_score: 0.8650
+  dropout_rAUC: 0.8800
+  noise_rAUC: 0.8500
+  line_noise_rAUC: 0.8400
+  perm_equivariance: 0.8900
+  shift_rAUC: 0.8650
+
+status: Completed
+

@@ -1,0 +1,20 @@
+# Brain-JEPA evaluation for AD Classification
+eval_id: eval_brainjepa_ad_001
+benchmark_id: "BM-001"
+
+model_ids:
+  candidate: brainjepa
+
+dataset_id: "ADNI"
+
+run_metadata:
+  date: "2024-01-20"
+  runner: "fmbench"
+  hardware: "NVIDIA A100 80GB"
+
+metrics:
+  AUROC: 0.9350
+  Accuracy: 0.8950
+
+status: Completed
+

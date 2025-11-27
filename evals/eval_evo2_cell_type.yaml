@@ -1,0 +1,20 @@
+# Evo 2 (7B) evaluation for Cell Type Annotation
+eval_id: eval_evo2_cell_type_001
+benchmark_id: "BM-002"
+
+model_ids:
+  candidate: evo2
+
+dataset_id: "PBMC 68k"
+
+run_metadata:
+  date: "2024-02-01"
+  runner: "fmbench"
+  hardware: "8x NVIDIA A100 80GB"
+
+metrics:
+  Accuracy: 0.9250
+  F1-Score: 0.8900
+
+status: Completed
+

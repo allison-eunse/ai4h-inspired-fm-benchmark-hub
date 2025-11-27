@@ -1,0 +1,20 @@
+# DNABERT-2 evaluation for Cell Type Annotation
+eval_id: eval_dnabert2_cell_type_001
+benchmark_id: "BM-002"
+
+model_ids:
+  candidate: dnabert2
+
+dataset_id: "PBMC 68k"
+
+run_metadata:
+  date: "2024-01-05"
+  runner: "fmbench"
+  hardware: "NVIDIA A100 80GB"
+
+metrics:
+  Accuracy: 0.8500
+  F1-Score: 0.8000
+
+status: Completed
+
