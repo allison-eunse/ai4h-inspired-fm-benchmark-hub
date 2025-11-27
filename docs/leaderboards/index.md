@@ -396,12 +396,17 @@ Expand sections below to see how models perform across different conditions:
 
 ---
 
-## 🚀 Submit Your Model
+## 🚀 Get Your Model on the Leaderboard
 
-Want to see your Foundation Model on these leaderboards?
+Want to see your Foundation Model ranked here?
 
-1. 📥 **Download** the benchmark suite: `pip install -e .`
-2. 🧪 **Run** evaluations: `python -m fmbench run-robustness --help`
-3. 📤 **Submit** via Pull Request - see [Submission Guide](../contributing/submission_guide.md)
+1. 📥 **Download** the benchmark suite and run locally
+2. 🧪 **Evaluate** your model: `python -m fmbench run --help`
+3. 📤 **Submit** your results via [GitHub Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)
+
+💡 **Propose new evaluation protocols** via [Discussions](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions)
+
+!!! note "Curated Benchmark Hub"
+    All submissions are reviewed before being added. See [Submission Guide](../contributing/submission_guide.md) for details.
 
 *Aligned with [ITU/WHO FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards for healthcare AI evaluation.*

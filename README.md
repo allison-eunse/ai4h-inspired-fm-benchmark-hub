@@ -103,6 +103,23 @@ The robustness evaluation produces:
 - **Similarity curves** showing output stability vs perturbation strength  
 - **Aggregate robustness score** for overall comparison
 
+## 📤 Submit Your Model for Benchmarking
+
+Want your Foundation Model evaluated and ranked on our leaderboards?
+
+### Option 1: Run Locally & Submit Results
+1. Run the benchmark suite on your model locally
+2. Open an [Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md) with your results
+3. We'll review and add your model to the leaderboard
+
+### Option 2: Propose New Evaluation Protocols
+Have ideas for new benchmarks or metrics? Open a [Discussion](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions) to propose:
+- New evaluation tasks or datasets
+- Additional robustness probes
+- Domain-specific metrics
+
+> **Note**: This is a curated benchmark hub. All submissions are reviewed before being added to the leaderboards.
+
 ## Credits & Attribution
 
 The methodology and framework of this benchmark suite are derived from the public deliverables of the **ITU/WHO Focus Group on Artificial Intelligence for Health (FG-AI4H)**.

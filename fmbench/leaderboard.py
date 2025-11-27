@@ -476,13 +476,16 @@ def build_leaderboard(
 
             content += generate_markdown_table(bm, bm_evals, models, datasets)
 
-    # Footer with contribution info
+    # Footer with submission info
     content += "---\n\n"
-    content += "## 🚀 Submit Your Model\n\n"
-    content += "Want to see your Foundation Model on these leaderboards?\n\n"
-    content += "1. 📥 **Download** the benchmark suite: `pip install -e .`\n"
-    content += "2. 🧪 **Run** evaluations: `python -m fmbench run-robustness --help`\n"
-    content += "3. 📤 **Submit** via Pull Request - see [Submission Guide](../contributing/submission_guide.md)\n\n"
+    content += "## 🚀 Get Your Model on the Leaderboard\n\n"
+    content += "Want to see your Foundation Model ranked here?\n\n"
+    content += "1. 📥 **Download** the benchmark suite and run locally\n"
+    content += "2. 🧪 **Evaluate** your model: `python -m fmbench run --help`\n"
+    content += "3. 📤 **Submit** your results via [GitHub Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)\n\n"
+    content += "💡 **Propose new evaluation protocols** via [Discussions](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions)\n\n"
+    content += "!!! note \"Curated Benchmark Hub\"\n"
+    content += "    All submissions are reviewed before being added. See [Submission Guide](../contributing/submission_guide.md) for details.\n\n"
     content += "*Aligned with [ITU/WHO FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards for healthcare AI evaluation.*\n"
 
     # Write to file

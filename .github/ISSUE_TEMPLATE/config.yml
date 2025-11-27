@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub/
+    about: Check our documentation for guides and FAQs
+  - name: 💬 Discussions
+    url: https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions
+    about: For general questions or protocol proposals
+

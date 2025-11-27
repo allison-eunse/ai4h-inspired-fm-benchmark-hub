@@ -1,10 +1,20 @@
 # FM Benchmark Submission Guide
 
-Welcome! This guide explains how to submit your Foundation Model's evaluation results to the leaderboard.
+Welcome! This guide explains how to get your Foundation Model evaluated and added to our leaderboards.
 
-## Quick Start
+!!! note "Curated Benchmark Hub"
+    This is a **curated benchmark hub**. All submissions are reviewed before being added to the leaderboards. We do not accept direct code contributions - only benchmark result submissions and protocol proposals.
 
-### Option 1: Use the CLI (Recommended)
+## Submission Process
+
+```mermaid
+graph LR
+    A[Run Benchmarks Locally] --> B[Open Issue with Results]
+    B --> C[Review by Maintainer]
+    C --> D[Added to Leaderboard]
+```
+
+## Step 1: Run Benchmarks Locally
 
 ```bash
 # 1. Clone and install
@@ -20,13 +30,22 @@ python -m fmbench run \
     --suite SUITE-TOY-CLASS \
     --model path/to/your_model_config.yaml \
     --out results/my_model_run
-
-# 4. Submit via Pull Request (see below)
 ```
 
-### Option 2: Manual YAML Submission
+## Step 2: Submit via Issue
 
-Create evaluation YAML files manually and submit via PR.
+**Do NOT open a Pull Request.** Instead:
+
+1. Go to [**New Issue → 📊 Benchmark Submission**](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)
+2. Fill out the template with your results
+3. Wait for review
+
+## Step 3: Review & Addition
+
+We will review your submission and:
+- Verify the results format
+- Add your model to the leaderboard
+- Notify you when it's live
 
 ---
 
