@@ -1,12 +1,13 @@
 model_id: neuroclip
-name: "NeuroCLIP"
+name: "NeuroClips"
 version: "1.0.0"
-modality: ["fMRI", "images"]
-upstream_repo: "https://github.com/desa-lab/NeuroCLIP"
-paper: "https://arxiv.org/abs/2310.05737"
+modality: ["fMRI", "video"]
+upstream_repo: "https://github.com/gongzix/NeuroClips"
+paper: "https://arxiv.org/abs/2405.19049"
 notes: >
-  Contrastive learning model aligning brain activity (fMRI) with visual stimuli.
-  Enables brain-to-image retrieval and visual decoding from neural recordings.
-arch: "Dual-encoder CLIP-style architecture"
-params: "~150M"
+  High-fidelity fMRI-to-video reconstruction framework (NeurIPS 2024 Oral). 
+  Uses semantic and perceptual reconstructors to decode brain activity into 
+  smooth video sequences. Trained on CC2017 naturalistic viewing dataset.
+arch: "Semantic Reconstructor + Perceptual Reconstructor + AnimateDiff"
+params: "~500M"
 license: "MIT"
