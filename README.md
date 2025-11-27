@@ -54,6 +54,75 @@ This project explicitly references and adapts the following ITU-T Focus Group de
 *   **[DEL0.1: Common Unified Terms](https://www.itu.int/dms_pub/itu-t/opb/fg/T-FG-AI4H-2022-1-PDF-E.pdf)**: We utilize the standard terminology (e.g., "AI Solution", "Benchmarking Run") to ensure consistency across the healthcare AI domain.
 *   **[DEL10.8: Topic Description Document for Neurology](https://www.itu.int/dms_pub/itu-t/opb/fg/T-FG-AI4H-2023-20-PDF-E.pdf)**: Our Neurology benchmarks are structured according to the TDD template, defining the health topic, scope, input data, and evaluation metrics (e.g., for TG-Neuro).
 
+## 🔒 Privacy-Preserving Evaluation (AI4H DEL3 Aligned)
+
+**You don't need to share your model to appear on our leaderboard!**
+
+Our framework follows the [ITU/WHO FG-AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) principle of **local evaluation with standardized result reporting**:
+
+```
+┌─────────────────────────────────────────┐
+│  YOUR MACHINE (Private)                 │
+│                                         │
+│  1. Download fmbench toolkit            │
+│  2. Wrap your model (simple interface)  │
+│  3. Run benchmarks locally              │
+│  4. Submit ONLY metrics (eval.yaml)     │
+│                                         │
+└────────────────┬────────────────────────┘
+                 │  Submit metrics only
+                 ▼
+┌─────────────────────────────────────────┐
+│  LEADERBOARD (Public)                   │
+│                                         │
+│  ✅ Receives: metrics, metadata         │
+│  ❌ NOT received: weights, code, data   │
+│                                         │
+└─────────────────────────────────────────┘
+```
+
+### Quick Start for Researchers
+
+```bash
+# 1. Install toolkit
+pip install -e .
+
+# 2. Generate test data
+python -m fmbench generate-toy-data
+
+# 3. Create a simple wrapper for your model
+cat > my_model.py << 'EOF'
+import numpy as np
+
+class MyModelWrapper:
+    def __init__(self):
+        # Load YOUR model here (stays private)
+        pass
+    
+    def predict(self, X):
+        # Your inference code
+        return predictions
+    
+    def predict_proba(self, X):
+        # Your probability predictions
+        return probabilities
+EOF
+
+# 4. Create config
+cat > my_config.yaml << 'EOF'
+model_id: my_awesome_model
+type: python_class
+import_path: "my_model:MyModelWrapper"
+EOF
+
+# 5. Run benchmark locally
+python -m fmbench run --suite SUITE-TOY-CLASS --model my_config.yaml --out results/
+
+# 6. Submit results/eval.yaml via GitHub Issue
+```
+
+**Your model weights and code NEVER leave your machine!**
+
 ## Getting Started
 
 For full documentation, including installation instructions, benchmark definitions, and current leaderboards, please visit our [Documentation Site](https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub).
