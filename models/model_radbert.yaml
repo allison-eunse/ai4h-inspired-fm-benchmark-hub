@@ -2,12 +2,13 @@ model_id: radbert
 name: "RadBERT"
 version: "1.0.0"
 modality: "radiology_text"
-upstream_repo: "https://github.com/zzxslp/RadBERT"
-paper: "https://arxiv.org/abs/2201.07795"
+upstream_repo: "https://huggingface.co/zzxslp/RadBERT-RoBERTa-4m"
+code_repo: "https://github.com/zzxslp/RadBERT"
+paper: "https://pubs.rsna.org/doi/10.1148/ryai.210258"
 notes: >
-  BERT model pretrained on radiology reports from MIMIC-CXR for medical NLP tasks.
-  Achieves strong performance on radiology report classification, NER, and 
-  relation extraction. Fine-tuned from PubMedBERT.
-arch: "BERT-base (12 layers, 768 hidden)"
-params: "~110M"
-license: "MIT"
+  RoBERTa model pretrained on 4 million deidentified radiology reports from US VA hospitals.
+  Outperforms BioBERT, Clinical-BERT, BLUE-BERT on radiology NLP tasks including 
+  abnormal sentence classification, report coding, and report summarization.
+arch: "RoBERTa-base"
+params: "~125M"
+license: "Apache 2.0"
