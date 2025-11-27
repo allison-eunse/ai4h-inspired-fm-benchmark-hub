@@ -483,7 +483,7 @@ def build_leaderboard(
     content += "1. 📥 **Download** the benchmark suite and run locally\n"
     content += "2. 🧪 **Evaluate** your model: `python -m fmbench run --help`\n"
     content += "3. 📤 **Submit** your results via [GitHub Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)\n\n"
-    content += "💡 **Propose new evaluation protocols** via [Discussions](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions)\n\n"
+    content += "💡 **Propose new evaluation protocols** via [Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=protocol_proposal.md)\n\n"
     content += "!!! note \"Curated Benchmark Hub\"\n"
     content += "    All submissions are reviewed before being added. See [Submission Guide](../contributing/submission_guide.md) for details.\n\n"
     content += "*Aligned with [ITU/WHO FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards for healthcare AI evaluation.*\n"

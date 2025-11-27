@@ -404,7 +404,7 @@ Want to see your Foundation Model ranked here?
 2. 🧪 **Evaluate** your model: `python -m fmbench run --help`
 3. 📤 **Submit** your results via [GitHub Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)
 
-💡 **Propose new evaluation protocols** via [Discussions](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions)
+💡 **Propose new evaluation protocols** via [Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=protocol_proposal.md)
 
 !!! note "Curated Benchmark Hub"
     All submissions are reviewed before being added. See [Submission Guide](../contributing/submission_guide.md) for details.
