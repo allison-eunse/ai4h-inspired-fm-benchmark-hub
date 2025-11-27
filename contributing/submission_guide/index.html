@@ -586,41 +586,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
+  <a href="#submission-process" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Start
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#option-1-use-the-cli-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option 1: Use the CLI (Recommended)
+        Submission Process
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#option-2-manual-yaml-submission" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#step-1-run-benchmarks-locally" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Option 2: Manual YAML Submission
+        Step 1: Run Benchmarks Locally
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-submit-via-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Submit via Issue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-review-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Review &amp; Addition
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1321,41 +1326,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
+  <a href="#submission-process" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Start
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#option-1-use-the-cli-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option 1: Use the CLI (Recommended)
+        Submission Process
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#option-2-manual-yaml-submission" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#step-1-run-benchmarks-locally" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Option 2: Manual YAML Submission
+        Step 1: Run Benchmarks Locally
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-submit-via-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Submit via Issue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-review-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Review &amp; Addition
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1574,9 +1584,18 @@
 
 
 <h1 id="fm-benchmark-submission-guide">FM Benchmark Submission Guide</h1>
-<p>Welcome! This guide explains how to submit your Foundation Model's evaluation results to the leaderboard.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="option-1-use-the-cli-recommended">Option 1: Use the CLI (Recommended)</h3>
+<p>Welcome! This guide explains how to get your Foundation Model evaluated and added to our leaderboards.</p>
+<div class="admonition note">
+<p class="admonition-title">Curated Benchmark Hub</p>
+<p>This is a <strong>curated benchmark hub</strong>. All submissions are reviewed before being added to the leaderboards. We do not accept direct code contributions - only benchmark result submissions and protocol proposals.</p>
+</div>
+<h2 id="submission-process">Submission Process</h2>
+<div class="highlight"><pre><span></span><code>graph LR
+    A[Run Benchmarks Locally] --&gt; B[Open Issue with Results]
+    B --&gt; C[Review by Maintainer]
+    C --&gt; D[Added to Leaderboard]
+</code></pre></div>
+<h2 id="step-1-run-benchmarks-locally">Step 1: Run Benchmarks Locally</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 1. Clone and install</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
 <span class="nb">cd</span><span class="w"> </span>ai4h-inspired-fm-benchmark-hub
@@ -1590,11 +1609,19 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 <span class="w">    </span>--suite<span class="w"> </span>SUITE-TOY-CLASS<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--model<span class="w"> </span>path/to/your_model_config.yaml<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--out<span class="w"> </span>results/my_model_run
-
-<span class="c1"># 4. Submit via Pull Request (see below)</span>
 </code></pre></div>
-<h3 id="option-2-manual-yaml-submission">Option 2: Manual YAML Submission</h3>
-<p>Create evaluation YAML files manually and submit via PR.</p>
+<h2 id="step-2-submit-via-issue">Step 2: Submit via Issue</h2>
+<p><strong>Do NOT open a Pull Request.</strong> Instead:</p>
+<ol>
+<li>Go to <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md"><strong>New Issue → 📊 Benchmark Submission</strong></a></li>
+<li>Fill out the template with your results</li>
+<li>Wait for review</li>
+</ol>
+<h2 id="step-3-review-addition">Step 3: Review &amp; Addition</h2>
+<p>We will review your submission and:
+- Verify the results format
+- Add your model to the leaderboard
+- Notify you when it's live</p>
 <hr />
 <h2 id="step-by-step-guide">Step-by-Step Guide</h2>
 <h3 id="1-create-your-model-configuration">1. Create Your Model Configuration</h3>
