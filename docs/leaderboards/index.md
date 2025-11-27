@@ -55,56 +55,19 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
     - Score range across all models: 0.1850
 
 
-#### 📐 Scoring Methodology
-
 <details>
-<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>
+<summary>📐 <strong>How are models scored?</strong></summary>
 
-!!! note "ITU/WHO FG-AI4H Alignment"
-    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:
+**Ranking by:** `report_quality_score`
 
-    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)
-    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)
-    - **DEL10.x**: Topic Description Documents for health domains
+| Score | Rating | Meaning |
+|:---:|:---:|:---|
+| ≥0.90 | ⭐ Excellent | Clinical-ready |
+| 0.80-0.89 | ✅ Good | Needs validation |
+| 0.70-0.79 | 🔶 Fair | Research only |
+| <0.70 | 📈 Developing | Not recommended |
 
-**Primary Ranking Metric: `report_quality_score`**
-
-> Composite score of linguistic fluency + clinical accuracy (0.0-1.0)
-
-**How is the primary metric chosen?** *(per DEL3 Section 6)*
-
-For **generation tasks**, we prioritize:
-1. `report_quality_score` – composite clinical + linguistic quality
-2. `clinical_accuracy` – correctness of medical content
-3. `bertscore` – semantic similarity
-4. `hallucination_rate` – safety-critical (lower is better)
-
-**Score Interpretation** *(Clinical Deployment Readiness)*
-
-| Range | Tier | DEL3 Deployment Level | Clinical Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |
-| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |
-| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |
-| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |
-
-**Generalizability Analysis** *(DEL3 Section 4.3)*
-
-Models are evaluated across demographic and technical strata:
-
-- 👤 **Demographics**: Age groups, sex, ethnicity
-- 🔬 **Technical**: Scanner manufacturer, acquisition parameters
-- 🏥 **Clinical**: Disease stage, comorbidities, site
-
-Sub-group performance gaps > 10% are flagged for fairness review.
-
-**Ranking Rules**
-
-1. Models ranked by **primary metric** (descending, higher = better)
-2. Ties broken by secondary metrics in priority order
-3. Each model's **best evaluation run** is used
-4. Scores reported to 4 decimal places for precision
-5. Statistical significance assessed via bootstrap CI (when available)
+*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
 
 </details>
 
@@ -205,55 +168,19 @@ Expand sections below to see how models perform across different conditions:
     - Performance distribution: ✅ 4 good, 🔶 2 fair
 
 
-#### 📐 Scoring Methodology
-
 <details>
-<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>
+<summary>📐 <strong>How are models scored?</strong></summary>
 
-!!! note "ITU/WHO FG-AI4H Alignment"
-    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:
+**Ranking by:** `robustness_score`
 
-    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)
-    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)
-    - **DEL10.x**: Topic Description Documents for health domains
+| Score | Rating | Meaning |
+|:---:|:---:|:---|
+| ≥0.90 | ⭐ Excellent | Clinical-ready |
+| 0.80-0.89 | ✅ Good | Needs validation |
+| 0.70-0.79 | 🔶 Fair | Research only |
+| <0.70 | 📈 Developing | Not recommended |
 
-**Primary Ranking Metric: `robustness_score`**
-
-> Average performance retention under data perturbations (0.0-1.0)
-
-**How is the primary metric chosen?** *(per DEL3 Section 6)*
-
-For **robustness testing**, we prioritize:
-1. `robustness_score` – overall perturbation resilience
-2. Individual probe scores (dropout, noise, shift, etc.)
-3. `perm_equivariance` – consistency under input reordering
-
-**Score Interpretation** *(Clinical Deployment Readiness)*
-
-| Range | Tier | DEL3 Deployment Level | Clinical Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |
-| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |
-| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |
-| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |
-
-**Generalizability Analysis** *(DEL3 Section 4.3)*
-
-Models are evaluated across demographic and technical strata:
-
-- 👤 **Demographics**: Age groups, sex, ethnicity
-- 🔬 **Technical**: Scanner manufacturer, acquisition parameters
-- 🏥 **Clinical**: Disease stage, comorbidities, site
-
-Sub-group performance gaps > 10% are flagged for fairness review.
-
-**Ranking Rules**
-
-1. Models ranked by **primary metric** (descending, higher = better)
-2. Ties broken by secondary metrics in priority order
-3. Each model's **best evaluation run** is used
-4. Scores reported to 4 decimal places for precision
-5. Statistical significance assessed via bootstrap CI (when available)
+*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
 
 </details>
 
@@ -319,56 +246,19 @@ Sub-group performance gaps > 10% are flagged for fairness review.
     - Performance distribution: ⭐ 2 excellent, ✅ 4 good
 
 
-#### 📐 Scoring Methodology
-
 <details>
-<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>
+<summary>📐 <strong>How are models scored?</strong></summary>
 
-!!! note "ITU/WHO FG-AI4H Alignment"
-    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:
+**Ranking by:** `Accuracy`
 
-    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)
-    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)
-    - **DEL10.x**: Topic Description Documents for health domains
+| Score | Rating | Meaning |
+|:---:|:---:|:---|
+| ≥0.90 | ⭐ Excellent | Clinical-ready |
+| 0.80-0.89 | ✅ Good | Needs validation |
+| 0.70-0.79 | 🔶 Fair | Research only |
+| <0.70 | 📈 Developing | Not recommended |
 
-**Primary Ranking Metric: `Accuracy`**
-
-> Proportion of correct predictions (0.0-1.0)
-
-**How is the primary metric chosen?** *(per DEL3 Section 6)*
-
-For **classification/regression tasks**, we prioritize:
-1. `AUROC` – best for imbalanced medical data (DEL3 recommended)
-2. `Accuracy` – overall correctness rate
-3. `F1-Score` – precision-recall balance
-4. `Sensitivity/Specificity` – for diagnostic screening
-
-**Score Interpretation** *(Clinical Deployment Readiness)*
-
-| Range | Tier | DEL3 Deployment Level | Clinical Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |
-| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |
-| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |
-| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |
-
-**Generalizability Analysis** *(DEL3 Section 4.3)*
-
-Models are evaluated across demographic and technical strata:
-
-- 👤 **Demographics**: Age groups, sex, ethnicity
-- 🔬 **Technical**: Scanner manufacturer, acquisition parameters
-- 🏥 **Clinical**: Disease stage, comorbidities, site
-
-Sub-group performance gaps > 10% are flagged for fairness review.
-
-**Ranking Rules**
-
-1. Models ranked by **primary metric** (descending, higher = better)
-2. Ties broken by secondary metrics in priority order
-3. Each model's **best evaluation run** is used
-4. Scores reported to 4 decimal places for precision
-5. Statistical significance assessed via bootstrap CI (when available)
+*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
 
 </details>
 
@@ -431,56 +321,19 @@ Sub-group performance gaps > 10% are flagged for fairness review.
     - Performance distribution: ⭐ 3 excellent
 
 
-#### 📐 Scoring Methodology
-
 <details>
-<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>
+<summary>📐 <strong>How are models scored?</strong></summary>
 
-!!! note "ITU/WHO FG-AI4H Alignment"
-    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:
+**Ranking by:** `AUROC`
 
-    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)
-    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)
-    - **DEL10.x**: Topic Description Documents for health domains
+| Score | Rating | Meaning |
+|:---:|:---:|:---|
+| ≥0.90 | ⭐ Excellent | Clinical-ready |
+| 0.80-0.89 | ✅ Good | Needs validation |
+| 0.70-0.79 | 🔶 Fair | Research only |
+| <0.70 | 📈 Developing | Not recommended |
 
-**Primary Ranking Metric: `AUROC`**
-
-> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
-
-**How is the primary metric chosen?** *(per DEL3 Section 6)*
-
-For **classification/regression tasks**, we prioritize:
-1. `AUROC` – best for imbalanced medical data (DEL3 recommended)
-2. `Accuracy` – overall correctness rate
-3. `F1-Score` – precision-recall balance
-4. `Sensitivity/Specificity` – for diagnostic screening
-
-**Score Interpretation** *(Clinical Deployment Readiness)*
-
-| Range | Tier | DEL3 Deployment Level | Clinical Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |
-| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |
-| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |
-| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |
-
-**Generalizability Analysis** *(DEL3 Section 4.3)*
-
-Models are evaluated across demographic and technical strata:
-
-- 👤 **Demographics**: Age groups, sex, ethnicity
-- 🔬 **Technical**: Scanner manufacturer, acquisition parameters
-- 🏥 **Clinical**: Disease stage, comorbidities, site
-
-Sub-group performance gaps > 10% are flagged for fairness review.
-
-**Ranking Rules**
-
-1. Models ranked by **primary metric** (descending, higher = better)
-2. Ties broken by secondary metrics in priority order
-3. Each model's **best evaluation run** is used
-4. Scores reported to 4 decimal places for precision
-5. Statistical significance assessed via bootstrap CI (when available)
+*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
 
 </details>
 
@@ -517,56 +370,19 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 | 🥇 | **BrainLM** 👑 | 0.7800 |  | UK Biobank fMRI tensors | 2025-11-15 |
 
 
-#### 📐 Scoring Methodology
-
 <details>
-<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>
+<summary>📐 <strong>How are models scored?</strong></summary>
 
-!!! note "ITU/WHO FG-AI4H Alignment"
-    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:
+**Ranking by:** `Correlation`
 
-    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)
-    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)
-    - **DEL10.x**: Topic Description Documents for health domains
+| Score | Rating | Meaning |
+|:---:|:---:|:---|
+| ≥0.90 | ⭐ Excellent | Clinical-ready |
+| 0.80-0.89 | ✅ Good | Needs validation |
+| 0.70-0.79 | 🔶 Fair | Research only |
+| <0.70 | 📈 Developing | Not recommended |
 
-**Primary Ranking Metric: `Correlation`**
-
-> Pearson correlation between predicted and actual values (-1 to 1)
-
-**How is the primary metric chosen?** *(per DEL3 Section 6)*
-
-For **classification/regression tasks**, we prioritize:
-1. `AUROC` – best for imbalanced medical data (DEL3 recommended)
-2. `Accuracy` – overall correctness rate
-3. `F1-Score` – precision-recall balance
-4. `Sensitivity/Specificity` – for diagnostic screening
-
-**Score Interpretation** *(Clinical Deployment Readiness)*
-
-| Range | Tier | DEL3 Deployment Level | Clinical Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |
-| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |
-| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |
-| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |
-
-**Generalizability Analysis** *(DEL3 Section 4.3)*
-
-Models are evaluated across demographic and technical strata:
-
-- 👤 **Demographics**: Age groups, sex, ethnicity
-- 🔬 **Technical**: Scanner manufacturer, acquisition parameters
-- 🏥 **Clinical**: Disease stage, comorbidities, site
-
-Sub-group performance gaps > 10% are flagged for fairness review.
-
-**Ranking Rules**
-
-1. Models ranked by **primary metric** (descending, higher = better)
-2. Ties broken by secondary metrics in priority order
-3. Each model's **best evaluation run** is used
-4. Scores reported to 4 decimal places for precision
-5. Statistical significance assessed via bootstrap CI (when available)
+*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
 
 </details>
 
@@ -598,56 +414,19 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 | 🥇 | **Baseline (Random/Majority)** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
 
 
-#### 📐 Scoring Methodology
-
 <details>
-<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>
+<summary>📐 <strong>How are models scored?</strong></summary>
 
-!!! note "ITU/WHO FG-AI4H Alignment"
-    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:
+**Ranking by:** `AUROC`
 
-    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)
-    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)
-    - **DEL10.x**: Topic Description Documents for health domains
+| Score | Rating | Meaning |
+|:---:|:---:|:---|
+| ≥0.90 | ⭐ Excellent | Clinical-ready |
+| 0.80-0.89 | ✅ Good | Needs validation |
+| 0.70-0.79 | 🔶 Fair | Research only |
+| <0.70 | 📈 Developing | Not recommended |
 
-**Primary Ranking Metric: `AUROC`**
-
-> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
-
-**How is the primary metric chosen?** *(per DEL3 Section 6)*
-
-For **classification/regression tasks**, we prioritize:
-1. `AUROC` – best for imbalanced medical data (DEL3 recommended)
-2. `Accuracy` – overall correctness rate
-3. `F1-Score` – precision-recall balance
-4. `Sensitivity/Specificity` – for diagnostic screening
-
-**Score Interpretation** *(Clinical Deployment Readiness)*
-
-| Range | Tier | DEL3 Deployment Level | Clinical Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |
-| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |
-| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |
-| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |
-
-**Generalizability Analysis** *(DEL3 Section 4.3)*
-
-Models are evaluated across demographic and technical strata:
-
-- 👤 **Demographics**: Age groups, sex, ethnicity
-- 🔬 **Technical**: Scanner manufacturer, acquisition parameters
-- 🏥 **Clinical**: Disease stage, comorbidities, site
-
-Sub-group performance gaps > 10% are flagged for fairness review.
-
-**Ranking Rules**
-
-1. Models ranked by **primary metric** (descending, higher = better)
-2. Ties broken by secondary metrics in priority order
-3. Each model's **best evaluation run** is used
-4. Scores reported to 4 decimal places for precision
-5. Statistical significance assessed via bootstrap CI (when available)
+*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
 
 </details>
 
@@ -764,56 +543,19 @@ Expand sections below to see how models perform across different conditions:
     - Performance distribution: ⭐ 2 excellent, ✅ 3 good
 
 
-#### 📐 Scoring Methodology
-
 <details>
-<summary>🔍 <strong>How are models scored? (ITU/WHO AI4H Aligned)</strong></summary>
+<summary>📐 <strong>How are models scored?</strong></summary>
 
-!!! note "ITU/WHO FG-AI4H Alignment"
-    This evaluation framework follows [ITU-T FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards:
+**Ranking by:** `AUROC`
 
-    - **DEL3**: Performance metrics per System Requirement Specifications (SyRS)
-    - **DEL0.1**: Standardized terminology (AI Solution, Benchmarking Run)
-    - **DEL10.x**: Topic Description Documents for health domains
+| Score | Rating | Meaning |
+|:---:|:---:|:---|
+| ≥0.90 | ⭐ Excellent | Clinical-ready |
+| 0.80-0.89 | ✅ Good | Needs validation |
+| 0.70-0.79 | 🔶 Fair | Research only |
+| <0.70 | 📈 Developing | Not recommended |
 
-**Primary Ranking Metric: `AUROC`**
-
-> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
-
-**How is the primary metric chosen?** *(per DEL3 Section 6)*
-
-For **classification/regression tasks**, we prioritize:
-1. `AUROC` – best for imbalanced medical data (DEL3 recommended)
-2. `Accuracy` – overall correctness rate
-3. `F1-Score` – precision-recall balance
-4. `Sensitivity/Specificity` – for diagnostic screening
-
-**Score Interpretation** *(Clinical Deployment Readiness)*
-
-| Range | Tier | DEL3 Deployment Level | Clinical Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | **Production Ready** | Suitable for clinical decision support with monitoring |
-| 0.80-0.89 | ✅ Good | **Pilot/Validation** | Promising; requires prospective validation study |
-| 0.70-0.79 | 🔶 Fair | **Research Only** | Research use; not for patient-facing applications |
-| < 0.70 | 📈 Developing | **Development** | Requires significant improvement before deployment |
-
-**Generalizability Analysis** *(DEL3 Section 4.3)*
-
-Models are evaluated across demographic and technical strata:
-
-- 👤 **Demographics**: Age groups, sex, ethnicity
-- 🔬 **Technical**: Scanner manufacturer, acquisition parameters
-- 🏥 **Clinical**: Disease stage, comorbidities, site
-
-Sub-group performance gaps > 10% are flagged for fairness review.
-
-**Ranking Rules**
-
-1. Models ranked by **primary metric** (descending, higher = better)
-2. Ties broken by secondary metrics in priority order
-3. Each model's **best evaluation run** is used
-4. Scores reported to 4 decimal places for precision
-5. Statistical significance assessed via bootstrap CI (when available)
+*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
 
 </details>
 
