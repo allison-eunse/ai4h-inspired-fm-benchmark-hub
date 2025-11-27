@@ -3,6 +3,7 @@ name: "UNI"
 version: "1.0.0"
 modality: "histopathology"
 upstream_repo: "https://github.com/mahmoodlab/UNI"
+local_path: "external/uni"
 paper: "https://www.nature.com/articles/s41591-024-02857-3"
 notes: >
   Self-supervised Vision Transformer pretrained on over 100 million histopathology 

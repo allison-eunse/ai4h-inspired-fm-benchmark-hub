@@ -3,6 +3,7 @@ name: "Geneformer"
 version: "1.0.0"
 modality: "scRNA-seq"
 upstream_repo: "https://huggingface.co/ctheodoris/Geneformer"
+local_path: "external/geneformer"
 paper: "https://www.nature.com/articles/s41586-023-06139-9"
 notes: >
   Transformer model pretrained on ~30 million single-cell transcriptomes from 

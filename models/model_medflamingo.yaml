@@ -3,6 +3,7 @@ name: "Med-Flamingo"
 version: "1.0.0"
 modality: ["medical_images", "text"]
 upstream_repo: "https://github.com/snap-stanford/med-flamingo"
+local_path: "external/med-flamingo"
 paper: "https://arxiv.org/abs/2307.15189"
 notes: >
   Medical adaptation of OpenFlamingo for multimodal medical image understanding

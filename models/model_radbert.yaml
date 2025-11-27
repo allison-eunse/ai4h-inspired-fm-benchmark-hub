@@ -4,6 +4,7 @@ version: "1.0.0"
 modality: "radiology_text"
 upstream_repo: "https://huggingface.co/zzxslp/RadBERT-RoBERTa-4m"
 code_repo: "https://github.com/zzxslp/RadBERT"
+local_path: "external/radbert"
 paper: "https://pubs.rsna.org/doi/10.1148/ryai.210258"
 notes: >
   RoBERTa model pretrained on 4 million deidentified radiology reports from US VA hospitals.
