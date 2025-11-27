@@ -1,0 +1,45 @@
+# DEL7.2: Technical Test Specification (Benchmark Suite)
+
+suite_id: "SUITE-NEURO-CLASS-001"
+name: "Neurology Classification Benchmark Suite (MRI)"
+benchmark_id: "BM-001" # Links to DEL10 TDD
+
+# Execution Environment
+runner: "python scripts/runners/image_classification_runner.py"
+environment:
+  python: ">=3.9"
+  gpu_required: true
+
+# Input Configuration
+inputs:
+  dataset:
+    key: "dataset_id"
+    default: "DS-ADNI" # Toy/Subset
+  model:
+    key: "model_id"
+
+# Evaluation Protocol
+protocol:
+  cross_validation:
+    folds: 5
+    strategy: "GroupKFold" # Group by subject ID to prevent leakage
+    group_col: "subject_id"
+  
+  metrics:
+    - name: "AUROC"
+      func: "sklearn.metrics.roc_auc_score"
+    - name: "Accuracy"
+      func: "sklearn.metrics.accuracy_score"
+    - name: "Sensitivity"
+      func: "imblearn.metrics.sensitivity_score"
+  
+  efficiency_checks:
+    - "inference_time_per_volume"
+
+# Output Specification
+outputs:
+  report_template: "templates/neuro_report.md"
+  artifacts:
+    - "roc_curve.png"
+    - "saliency_map_sample.png"
+

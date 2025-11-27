@@ -1,0 +1,12 @@
+model_id: evo2
+name: Evo 2
+modality: genetics
+upstream_repo: https://github.com/ArcInstitute/evo2
+notes: "StripedHyena-2 based autoregressive DNA model (1B\u201340B params) trained\
+  \ on the 8.8T-token OpenGenome2 corpus with FP8-enabled inference, supporting scoring,\
+  \ embeddings, and generation across 1Mbp contexts."
+arch: StripedHyena 2 (mixer-based decoder)
+params:
+- 1B
+- 7B
+- 40B

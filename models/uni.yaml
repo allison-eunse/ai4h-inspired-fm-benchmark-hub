@@ -1,0 +1,6 @@
+model_id: "MOD-UNI"
+name: "UNI"
+modality: "MRI"
+upstream_repo: "https://github.com/insitro/uni"
+notes: "Vision Transformer trained on massive MRI datasets."
+

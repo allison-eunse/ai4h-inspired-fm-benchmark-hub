@@ -1,0 +1,4 @@
+# @package task
+
+name: "regression"
+loss_fn: "mse"

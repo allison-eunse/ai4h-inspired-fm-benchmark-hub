@@ -1,0 +1,8 @@
+dataset_id: multi_species_corpus
+name: DNABERT-2 multi-species pretraining corpus
+source: External/Restricted
+n_subjects: Unknown
+modalities:
+- dna
+notes: Aggregated genomes spanning human, mouse, zebrafish, and microbial species
+  used for DNABERT-2 MLM pretraining.

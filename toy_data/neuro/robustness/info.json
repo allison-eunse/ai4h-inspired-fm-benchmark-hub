@@ -1,0 +1,8 @@
+{
+  "n_samples": 100,
+  "n_channels": 16,
+  "n_timepoints": 500,
+  "n_classes": 2,
+  "sampling_freq": 200,
+  "seed": 42
+}

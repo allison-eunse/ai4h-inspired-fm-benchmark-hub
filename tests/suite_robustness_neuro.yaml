@@ -1,0 +1,74 @@
+# Robustness Evaluation Suite for Neurology Foundation Models
+# Tests model resilience to EEG/fMRI perturbations
+
+suite_id: SUITE-ROBUSTNESS-NEURO
+name: "Neurology FM Robustness Suite"
+description: >
+  Evaluates foundation model robustness against realistic perturbations
+  commonly encountered in neuroimaging data: sensor noise, powerline
+  interference, channel dropout, and temporal alignment issues.
+
+benchmark_id: robustness_testing
+
+# Input specification
+inputs:
+  dataset:
+    default: toy_neuro_robustness
+    description: "Neuroimaging data formatted as (N, C, T) tensors"
+  
+  sampling_freq:
+    default: 200
+    description: "Sampling frequency in Hz"
+
+# Probes to run (subset of available probes)
+probes:
+  - dropout
+  - noise
+  - line_noise
+  - permutation
+  - shift
+
+# Probe-specific configurations
+probe_config:
+  dropout:
+    grid: [0.0, 0.05, 0.1, 0.2, 0.3, 0.5]
+  
+  noise:
+    snr_grid: [40, 30, 20, 10, 5, 0]
+  
+  line_noise:
+    mains: [50, 60]
+    snr_grid: [40, 30, 20, 10, 5]
+  
+  permutation:
+    num_perms: 10
+  
+  shift:
+    shifts: [0, 10, 20, 40, 80]
+
+# Expected output metrics
+expected_metrics:
+  - robustness_score
+  - dropout_rAUC
+  - noise_rAUC
+  - line_noise_rAUC
+  - perm_equivariance
+  - shift_sensitivity
+
+# Pass/fail thresholds (optional, for CI)
+thresholds:
+  robustness_score:
+    min: 0.5
+    description: "Minimum acceptable robustness score"
+  
+  perm_equivariance:
+    min: 0.8
+    description: "Minimum channel permutation invariance"
+
+# Metadata
+version: "1.0.0"
+created: "2024-01-01"
+references:
+  - "brainaug-lab robustness probes"
+  - "ITU FG-AI4H DEL3 generalizability requirements"
+

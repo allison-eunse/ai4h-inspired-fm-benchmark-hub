@@ -1,0 +1,21 @@
+model_id: titan
+name: TITAN (Transformer-based pathology Image & Text Alignment Network)
+modality: multimodal
+upstream_repo: https://github.com/mahmoodlab/TITAN
+notes: 'Whole-slide foundation model that aggregates CONCH v1.5 patch embeddings into
+  slide-level
+
+  transformers, aligned with paired pathology reports and synthetic captions through
+  a CoCa-style
+
+  objective. Public release includes slide/text encoders (decoder removed), Hugging
+  Face weights,
+
+  and scripts for finetuning, linear probing, zero-shot slide retrieval, and pathology
+  report
+
+  generation across TCGA-OT/UT datasets.
+
+  '
+arch: Slide transformer with multimodal alignment (CoCa-inspired)
+params: "\u2248768-d slide encoder (size undisclosed)"

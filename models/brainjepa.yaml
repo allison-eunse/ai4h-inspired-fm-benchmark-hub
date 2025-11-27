@@ -1,0 +1,10 @@
+model_id: brainjepa
+name: Brain-JEPA
+modality: brain
+upstream_repo: external_repos/brainjepa
+notes: Brain dynamics foundation model based on a Joint-Embedding Predictive Architecture
+  (JEPA). Uses functional gradient positioning and spatiotemporal masking to learn
+  latent representations that outperform MAE baselines on age, sex, and cognition
+  prediction.
+arch: JEPA-style transformer encoder + predictor
+params: TBD

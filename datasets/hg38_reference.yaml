@@ -1,0 +1,8 @@
+dataset_id: hg38_reference
+name: HG38 masked language corpus
+source: Public
+n_subjects: Unknown
+modalities:
+- dna
+notes: Human reference genome windows used for HyenaDNA/Caduceus masked language model
+  pretraining.

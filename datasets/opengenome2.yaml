@@ -1,0 +1,8 @@
+dataset_id: opengenome2
+name: OpenGenome2
+source: Public
+n_subjects: Unknown
+modalities:
+- dna
+notes: "8.8-trillion\u2013base-pair multi-domain genome dataset used to train the\
+  \ Evo 2 models."

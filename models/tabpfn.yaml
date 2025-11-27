@@ -1,0 +1,9 @@
+model_id: tabpfn
+name: TabPFN
+modality: tabular
+upstream_repo: https://github.com/PriorLabs/TabPFN
+notes: Tabular foundation model released by H. Kossen et al. (Nature 2024). Uses a
+  Transformer trained on 100M synthetic SCM-based datasets to emulate Bayesian inference
+  for small/medium tabular problems in a single forward pass.
+arch: decoder-only Transformer
+params: 11M

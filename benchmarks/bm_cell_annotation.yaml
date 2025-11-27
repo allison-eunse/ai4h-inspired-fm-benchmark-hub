@@ -1,0 +1,37 @@
+benchmark_id: "BM-002"
+name: "Cell Type Annotation"
+version: "1.0.0"
+
+# DEL10: Health Topic Definition
+health_domain: "Genomics"
+health_topic: "Single-cell Transcriptomics"
+clinical_relevance: "Automated characterization of immune cell populations."
+
+# DEL10: AI Task Specification
+ai_task: "Classification"
+input_modality: "scRNA-seq"
+output_type: "Label"
+
+# DEL3: Data Requirements
+dataset_id: "DS-PBMC"
+data_spec:
+  input_format: "Count Matrix (h5ad)"
+  normalization: "Log1p"
+
+# DEL3: Performance Metrics
+metrics:
+  primary: "F1-Score (Macro)"
+  secondary:
+    - "Accuracy"
+    - "MedIAN F1"
+
+  # DEL3: Sub-group Analysis
+  stratification:
+    - "Cell Type Rarity"
+    - "Sequencing Depth"
+
+requirements:
+  explainability: "Gene importance scores required"
+
+description: "Predicting cell types from single-cell RNA-seq data."
+status: "Active"

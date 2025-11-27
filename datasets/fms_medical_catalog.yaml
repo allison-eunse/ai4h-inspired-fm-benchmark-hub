@@ -1,0 +1,21 @@
+dataset_id: fms_medical_catalog
+name: Awesome Foundation Models for Advancing Healthcare
+source: Public
+n_subjects: Unknown
+modalities:
+- text
+- image
+- genomics
+- multimodal
+notes: 'Community-maintained catalog of foundation-model research artifacts (LFMs,
+  VFMs, BFMs, MFMs),
+
+  datasets, tutorials, and references curated by Yuting He et al. Includes bilingual
+  coverage
+
+  (English README + Chinese PDF) with per-entry paper/code links and modality tags,
+  making it a
+
+  convenient seed for new KB cards or benchmarking pipelines.
+
+  '

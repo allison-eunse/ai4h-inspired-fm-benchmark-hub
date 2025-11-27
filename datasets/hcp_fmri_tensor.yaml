@@ -1,0 +1,8 @@
+dataset_id: hcp_fmri_tensor
+name: HCP-YA fMRI tensors
+source: External/Restricted
+n_subjects: 1200
+modalities:
+- fmri
+notes: Human Connectome Project Young Adult dataset converted into SwiFT/BrainMT-compatible
+  tensor tiles.

@@ -1,0 +1,57 @@
+# AI4H-Inspired Benchmark Definition Template
+# Based on ITU FG-AI4H Topic Description Document (TDD) Structure
+# References: DEL10.x (TDD) and DEL3 (Requirements)
+
+benchmark_id: unique_benchmark_id_here
+name: "Human-Readable Benchmark Name"
+version: "1.0.0"
+
+# DEL10: Health Topic Definition
+health_domain: "Neurology" # e.g., Neurology, Genomics, Ophthalmology
+health_topic: "Alzheimer's Disease Classification" # Specific condition
+clinical_relevance: "Early detection of AD allows for timely intervention..."
+
+# DEL10: AI Task Specification
+ai_task: "Classification" # Classification, Segmentation, Regression, Generation
+input_modality: "MRI" # MRI, Genomic Sequence, Histopathology
+output_type: "Label" # Label, Mask, Report, Sequence
+
+# DEL3: Data Requirements & Input Specifications
+data_spec:
+  input_format: "NIfTI (.nii.gz)"
+  min_resolution: "1mm isotropic"
+  required_metadata:
+    - age
+    - sex
+    - scanner_manufacturer
+  
+# DEL3: Performance Metrics
+metrics:
+  primary: "AUROC"
+  secondary:
+    - "Accuracy"
+    - "Sensitivity"
+    - "Specificity"
+    - "F1-Score"
+  
+  # DEL3: Generalizability & Sub-group Analysis (Granular Metrics)
+  # Use these to define "leaderboard parameters"
+  stratification:
+    - "Scanner Manufacturer" # Test performance per scanner (GE, Siemens, Philips)
+    - "Disease Stage" # MCI vs AD vs CN
+    - "Demographics" # Age groups, Sex
+
+# DEL3: Non-Functional Requirements
+requirements:
+  explainability: "Required (Saliency Maps)"
+  inference_time_limit: "10s per volume" # Operational constraint
+  privacy: "No PHI in output"
+
+# Reference to Standard/Gold Standard
+gold_standard: "Clinical diagnosis confirmed by amyloid PET or CSF"
+
+# Source/Attribution
+references:
+  - "ITU-T FG-AI4H DEL10.8 (TG-Neuro)"
+  - "ADNI Protocol"
+

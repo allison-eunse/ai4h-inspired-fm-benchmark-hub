@@ -1,0 +1,9 @@
+model_id: swift
+name: SwiFT
+modality: brain
+upstream_repo: https://github.com/Transconnectome/SwiFT
+notes: "Swin Transformer for 4D fMRI (3D spatial \xD7 temporal) with Lightning training\
+  \ loops, contrastive/self-supervised options, and datamodule utilities for UKB,\
+  \ HCP, and ABCD cohorts."
+arch: Swin Transformer 4D
+params: 80M (default config)

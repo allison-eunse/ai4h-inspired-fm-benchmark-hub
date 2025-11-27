@@ -1,0 +1,7 @@
+dataset_id: gue_benchmark
+name: Genome Understanding Evaluation (GUE)
+source: External/Restricted
+n_subjects: Unknown
+modalities:
+- dna
+notes: 28-task multi-species benchmark distributed with DNABERT-2.

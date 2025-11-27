@@ -1,0 +1,16 @@
+model_id: vlm_dev_clinical
+name: Developmental clinical VLM (placeholder)
+modality: multimodal
+upstream_repo: TBD (developmental clinical VLM stack)
+notes: 'Documentation-only card for future vision(-language) models that link developmental
+  clinical images and videos
+
+  (e.g., MRI-derived images, clinic interaction videos, drawings) to textual descriptions
+  and ratings.
+
+  Captures candidate architectures, datasets, and tasks for developmental phenotyping
+  and scoring assistance.
+
+  '
+arch: Vision or vision-language transformer
+params: TBD

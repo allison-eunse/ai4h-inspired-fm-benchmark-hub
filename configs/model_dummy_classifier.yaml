@@ -1,0 +1,6 @@
+model_id: dummy_classifier
+type: python_class
+import_path: "fmbench.dummy_model:DummyClassifier"
+init_kwargs:
+  random_seed: 123
+

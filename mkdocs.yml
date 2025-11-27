@@ -1,0 +1,73 @@
+site_name: AI4H-Inspired FM Benchmarks
+site_description: "Benchmarking Hub for Genetics & Brain Foundation Models"
+site_url: "https://CHANGE_ME.github.io/ai4h-inspired-fm-benchmarks"
+repo_url: "https://github.com/CHANGE_ME/ai4h-inspired-fm-benchmarks"
+repo_name: "ai4h-inspired-fm-benchmarks"
+
+theme:
+  name: material
+  # Professional color scheme
+  palette: 
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+  font:
+    text: Inter # Clean, modern sans-serif
+    code: JetBrains Mono
+  
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - toc.follow
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/brain # Placeholder logo
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Leaderboards: leaderboards/index.md
+  - Protocols (Recipes):
+    - CCA & Permutation: integration/analysis_recipes/cca_permutation.md
+    - Prediction Baselines: integration/analysis_recipes/prediction_baselines.md
+    - Partial Correlations: integration/analysis_recipes/partial_correlations.md
+  - Data Specs:
+    - fMRI: integration/modality_features/fmri.md
+    - sMRI: integration/modality_features/smri.md
+    - Genomics: integration/modality_features/genomics.md
+  - Models: 
+    - Overview: models/index.md # We will create this
+  - Design:
+    - AI4H Alignment: design/ai4h_alignment.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg

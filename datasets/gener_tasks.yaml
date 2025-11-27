@@ -1,0 +1,8 @@
+dataset_id: gener_tasks
+name: Gener task suite
+source: Public
+n_subjects: Unknown
+modalities:
+- dna
+notes: Classification datasets released alongside GENERator (gene-type and taxonomic
+  classification).

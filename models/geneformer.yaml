@@ -1,0 +1,6 @@
+model_id: "MOD-GENEFORMER"
+name: "Geneformer"
+modality: "scRNA-seq"
+upstream_repo: "https://huggingface.co/ctheodoris/Geneformer"
+notes: "Transformer model pretrained on 30 million single cell transcriptomes."
+

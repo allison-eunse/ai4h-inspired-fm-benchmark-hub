@@ -1,0 +1,65 @@
+eval_id: SUITE-TOY-CLASS-dummy_classifier-20251127-064428
+benchmark_id: BM-TOY-CLASS
+model_ids:
+  candidate: dummy_classifier
+dataset_id: DS-TOY-FMRI-CLASS
+run_metadata:
+  date: '2025-11-27'
+  runner: fmbench
+  suite_id: SUITE-TOY-CLASS
+  model_config: configs/model_dummy_classifier.yaml
+  output_dir: results/stratified_run
+metrics:
+  AUROC: 0.5597
+  Accuracy: 0.575
+  F1-Score: 0.5732
+  stratified:
+    site:
+      SiteC:
+        AUROC: 0.5107
+        Accuracy: 0.5224
+        F1-Score: 0.5214
+        N: 67
+      SiteB:
+        AUROC: 0.578
+        Accuracy: 0.6286
+        F1-Score: 0.6081
+        N: 70
+      SiteA:
+        AUROC: 0.5663
+        Accuracy: 0.5714
+        F1-Score: 0.5675
+        N: 63
+    sex:
+      F:
+        AUROC: 0.5487
+        Accuracy: 0.5577
+        F1-Score: 0.5562
+        N: 104
+      M:
+        AUROC: 0.5545
+        Accuracy: 0.5938
+        F1-Score: 0.5772
+        N: 96
+    age_group:
+      age_20-40:
+        AUROC: 0.5679
+        Accuracy: 0.5862
+        F1-Score: 0.5735
+        N: 58
+      age_40-60:
+        AUROC: 0.5209
+        Accuracy: 0.5172
+        F1-Score: 0.5149
+        N: 58
+      age_60-80:
+        AUROC: 0.5846
+        Accuracy: 0.6094
+        F1-Score: 0.6093
+        N: 64
+      age_80-100:
+        AUROC: 0.61
+        Accuracy: 0.6
+        F1-Score: 0.596
+        N: 20
+status: Completed

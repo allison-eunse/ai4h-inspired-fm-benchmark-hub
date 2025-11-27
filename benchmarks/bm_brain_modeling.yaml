@@ -1,0 +1,37 @@
+benchmark_id: "BM-BRAIN-MAE"
+name: "Brain Time-Series Modeling"
+version: "1.0.0"
+
+# DEL10: Health Topic Definition
+health_domain: "Neurology"
+health_topic: "Functional Brain Connectivity"
+clinical_relevance: "Foundation for understanding functional connectivity patterns."
+
+# DEL10: AI Task Specification
+ai_task: "Reconstruction"
+input_modality: "fMRI"
+output_type: "Sequence"
+
+# DEL3: Data Requirements
+dataset_id: "ukb_fmri_tensor"
+data_spec:
+  input_format: "fMRI Time-series Tensor"
+  sampling_rate: "TR=0.735s"
+
+# DEL3: Performance Metrics
+metrics:
+  primary: "MSE"
+  secondary:
+    - "Pearson Correlation"
+    - "SSIM"
+
+  # DEL3: Sub-group Analysis
+  stratification:
+    - "Brain Region (ROI)"
+    - "Subject Age Group"
+
+requirements:
+  inference_time_limit: "Real-time processing preferred"
+
+description: "Evaluating ability to reconstruct masked fMRI voxel time-series."
+status: "Active"

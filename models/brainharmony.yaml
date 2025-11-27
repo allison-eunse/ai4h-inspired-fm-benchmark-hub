@@ -1,0 +1,9 @@
+model_id: brainharmony
+name: Brain Harmony
+modality: brain
+upstream_repo: external_repos/brainharmony
+notes: Multimodal brain foundation model that unifies structural MRI (morphology)
+  and fMRI (function) using Temporal Adaptive Patch Embedding (TAPE) and hub tokens
+  to handle heterogeneous TRs and fuse modalities into a shared latent space.
+arch: Transformer with TAPE + hub-token fusion
+params: TBD

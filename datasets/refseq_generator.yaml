@@ -1,0 +1,7 @@
+dataset_id: refseq_generator
+name: RefSeq GENERator corpus
+source: Public
+n_subjects: Unknown
+modalities:
+- dna
+notes: RefSeq-derived multi-kingdom dataset used for GENERator pretraining.

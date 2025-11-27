@@ -1,0 +1,10 @@
+dataset_id: ukb_manifest_stub
+name: UKB Multimodal Manifest
+source: Public
+n_subjects: Unknown
+modalities:
+- genetics
+- smri
+- fmri
+notes: Subject-level manifest linking genetics (WES), sMRI, and fMRI data with covariates
+  and splits.

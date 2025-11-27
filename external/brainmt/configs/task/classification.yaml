@@ -1,0 +1,4 @@
+# @package task
+
+name: "classification"
+loss_fn: "bce_with_logits"

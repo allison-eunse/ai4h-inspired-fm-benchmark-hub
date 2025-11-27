@@ -1,0 +1,11 @@
+# DEL5.4: Test Data Specification
+dataset_id: "DS-ADNI"
+name: "Alzheimer's Disease Neuroimaging Initiative (ADNI)"
+source: "https://adni.loni.usc.edu/"
+n_subjects: 2000
+modalities: 
+  - "MRI"
+  - "PET"
+  - "Genetics"
+notes: "Standard benchmark dataset for AD."
+

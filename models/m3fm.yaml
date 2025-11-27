@@ -1,0 +1,18 @@
+model_id: m3fm
+name: M3FM (Multilingual Medical Model for Findings)
+modality: multimodal
+upstream_repo: https://github.com/ai-in-health/M3FM
+notes: 'Multilingual chest X-ray report generator that fuses multilingual CLIP text
+  embeddings with the
+
+  R2Gen relational-memory Transformer decoder to produce English and Chinese narratives
+  from
+
+  COVID-era CXR images. Ships training/inference scripts for the COV-CTR dataset plus
+  SPICE/BLEU
+
+  evaluation utilities and multilingual greedy/beam decoding.
+
+  '
+arch: Multilingual CLIP encoder + relational-memory Transformer decoder
+params: "\u224840\u201360M (d_model=512, 3 decoder layers, 8 heads)"

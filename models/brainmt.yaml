@@ -1,0 +1,9 @@
+model_id: brainmt
+name: BrainMT
+modality: brain
+upstream_repo: https://github.com/arunkumar-kannan/brainmt-fmri
+notes: Hybrid bidirectional Mamba + Transformer architecture for voxel-level fMRI,
+  combining temporal-first Mamba mixers with spatial self-attention blocks to capture
+  long-range dependencies on UKB/HCP data.
+arch: Hybrid Mamba + Transformer
+params: 120M (default)

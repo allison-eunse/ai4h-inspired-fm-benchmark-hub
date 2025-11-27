@@ -1,0 +1,9 @@
+# DEL5.4: Test Data Specification
+dataset_id: ukb_fmri_tensor
+name: UK Biobank fMRI tensors
+source: External/Restricted
+n_subjects: 45000
+modalities:
+- fmri
+notes: UKB minimally preprocessed resting-state/task fMRI converted to fp16 voxel
+  tensors for BrainLM/SwiFT/BrainMT.

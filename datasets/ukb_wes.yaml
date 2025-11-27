@@ -1,0 +1,16 @@
+dataset_id: ukb_wes
+name: UK Biobank Whole-Exome Sequencing (WES) cohort
+source: External/Restricted
+n_subjects: TBD
+modalities:
+- genetics
+notes: 'UK Biobank WES-derived variant and gene-level features used in gene-embedding
+  and polygenic analyses.
+
+  This card describes the cohort and feature table layout for downstream genetics
+  FMs (e.g., Caduceus, Evo2,
+
+  DNABERT-2) and subject-level gene embeddings (e.g., genetics_gene_fm_pca512_v1,
+  genetics_joo_mdd_cog_v1).
+
+  '

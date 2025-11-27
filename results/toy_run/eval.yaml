@@ -1,0 +1,16 @@
+eval_id: SUITE-TOY-CLASS-dummy_classifier-20251127-064058
+benchmark_id: BM-TOY-CLASS
+model_ids:
+  candidate: dummy_classifier
+dataset_id: DS-TOY-FMRI-CLASS
+run_metadata:
+  date: '2025-11-27'
+  runner: fmbench
+  suite_id: SUITE-TOY-CLASS
+  model_config: configs/model_dummy_classifier.yaml
+  output_dir: results/toy_run
+metrics:
+  AUROC: 0.5597
+  Accuracy: 0.575
+  F1-Score: 0.5732
+status: Completed

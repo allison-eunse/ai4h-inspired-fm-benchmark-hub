@@ -1,0 +1,16 @@
+dataset_id: ukb_genetics_pgs
+name: UK Biobank Polygenic Scores (PGS) table
+source: External/Restricted
+n_subjects: TBD
+modalities:
+- genetics
+notes: 'Curated polygenic scores and ancestry PCs for UK Biobank participants, used
+  for
+
+  tabular genetics baselines and fusion with sMRI ROI features.
+
+  This card documents the subject-level PGS table referenced by
+
+  `configs/experiments/03_prediction_baselines_tabular.yaml`.
+
+  '

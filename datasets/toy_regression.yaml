@@ -1,0 +1,5 @@
+dataset_id: DS-TOY-REGRESSION
+name: Toy Regression
+path: toy_data/neuro/regression
+description: Synthetic regression data for testing.
+

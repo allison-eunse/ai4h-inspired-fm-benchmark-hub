@@ -1,0 +1,16 @@
+dataset_id: cha_dev_longitudinal_v1
+name: Cha Hospital Longitudinal Neurodevelopmental Cohort
+source: External/Restricted
+n_subjects: null
+modalities:
+- mri
+- eeg
+- behaviour
+- clinical
+- genetics_omics_optional
+notes: "Longitudinal multimodal pediatric neurodevelopmental cohort collected at Cha\
+  \ Hospital (exact site(s) TBD).\nDesigned for early prediction and characterization\
+  \ of neurodevelopmental disorders (e.g., ASD, ADHD, developmental delay)\nand trajectories\
+  \ of cognitive / behavioural development, aligned with ARPA-H\u2013style Brain-Omics\
+  \ Model (BOM) documentation.\nAll numeric values and institutional codes are placeholders\
+  \ and should be updated once DRB/IRB-approved summaries are available.\n"

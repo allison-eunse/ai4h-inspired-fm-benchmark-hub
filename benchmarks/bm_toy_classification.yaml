@@ -1,0 +1,6 @@
+benchmark_id: BM-TOY-CLASS
+name: Toy Classification Benchmark
+health_domain: Neurology
+ai_task: Classification
+description: A toy benchmark for testing the pipeline.
+

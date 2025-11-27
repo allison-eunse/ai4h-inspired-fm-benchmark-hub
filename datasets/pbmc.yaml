@@ -1,0 +1,9 @@
+# DEL5.4: Test Data Specification
+dataset_id: "DS-PBMC"
+name: "PBMC 68k"
+source: "10x Genomics"
+n_subjects: 1
+modalities: 
+  - "scRNA-seq"
+notes: "Peripheral Blood Mononuclear Cells."
+

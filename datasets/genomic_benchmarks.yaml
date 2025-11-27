@@ -1,0 +1,8 @@
+dataset_id: genomic_benchmarks
+name: GenomicBenchmarks downstream suite
+source: Public
+n_subjects: Unknown
+modalities:
+- dna
+notes: "Nine supervised genomic sequence classification tasks from Gre\u0161ov\xE1\
+  \ et al. (2022), used for model evaluation."

@@ -1,0 +1,8 @@
+dataset_id: nucleotide_transformer_tasks
+name: Nucleotide Transformer downstream tasks
+source: Public
+n_subjects: Unknown
+modalities:
+- dna
+notes: InstaDeep sequence understanding benchmark (18 tasks) reused by Caduceus and
+  GENERator.

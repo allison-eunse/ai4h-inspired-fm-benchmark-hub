@@ -1,0 +1,45 @@
+# DEL7.2: Technical Test Specification (Benchmark Suite)
+# This defines how to RUN a benchmark for a specific task.
+
+suite_id: "SUITE-GEN-CLASS-001"
+name: "Genomics Classification Benchmark Suite"
+benchmark_id: "BM-002" # Links to DEL10 TDD
+
+# Execution Environment
+runner: "python scripts/runners/classification_runner.py"
+environment:
+  python: ">=3.9"
+  gpu_required: true
+
+# Input Configuration
+inputs:
+  dataset: 
+    key: "dataset_id" # passed at runtime
+    default: "DS-PBMC" # Toy dataset
+  model:
+    key: "model_id" # passed at runtime
+
+# Evaluation Protocol (DEL7.x)
+protocol:
+  cross_validation:
+    folds: 5
+    strategy: "StratifiedKFold"
+  
+  metrics:
+    - name: "F1-Score"
+      func: "sklearn.metrics.f1_score"
+      kwargs: {average: "macro"}
+    - name: "Accuracy"
+      func: "sklearn.metrics.accuracy_score"
+  
+  efficiency_checks:
+    - "inference_time_per_sample"
+    - "peak_memory_usage"
+
+# Output Specification
+outputs:
+  report_template: "templates/classification_report.md"
+  artifacts:
+    - "predictions.csv"
+    - "confusion_matrix.png"
+

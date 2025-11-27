@@ -1,0 +1,104 @@
+# AI4H-Inspired Robustness Benchmark Definition
+# Tests foundation model resilience to realistic perturbations
+# References: DEL3 (Generalizability Requirements), DEL10.x (TDD)
+
+benchmark_id: robustness_testing
+name: "Foundation Model Robustness Evaluation"
+version: "1.0.0"
+
+# DEL10: Health Topic Definition
+health_domain: "Cross-Domain" # Applies to Neurology, Genomics, etc.
+health_topic: "Model Reliability and Artifact Resilience"
+clinical_relevance: >
+  Clinical deployment of AI models requires robustness to real-world data
+  variability including sensor noise, signal artifacts, and acquisition
+  differences. This benchmark evaluates model stability under controlled
+  perturbations that simulate common data quality issues.
+
+# DEL10: AI Task Specification
+ai_task: "Robustness Assessment"
+input_modality: "Time-Series/Signal" # EEG, fMRI, genomic sequences
+output_type: "Robustness Profile"
+
+# DEL3: Test Categories (based on brainaug-lab probes)
+robustness_probes:
+  # Signal degradation probes
+  dropout:
+    description: "Channel dropout simulating sensor failures"
+    grid: [0.0, 0.05, 0.1, 0.2, 0.3, 0.5]
+    unit: "probability"
+    clinical_relevance: "Simulates faulty electrodes or missing channels"
+    
+  gaussian_noise:
+    description: "Additive Gaussian noise at various SNR levels"
+    grid: [40, 30, 20, 10, 5, 0]
+    unit: "dB (SNR)"
+    clinical_relevance: "Simulates environmental/physiological noise"
+    
+  line_noise:
+    description: "Powerline interference (50/60 Hz)"
+    frequencies: [50, 60]
+    grid: [40, 30, 20, 10, 5]
+    unit: "dB (SNR)"
+    clinical_relevance: "Common artifact in clinical recordings"
+
+  # Equivariance probes  
+  channel_permutation:
+    description: "Tests invariance to channel ordering"
+    num_permutations: 10
+    clinical_relevance: "Electrode placement variability across sessions"
+    
+  temporal_shift:
+    description: "Tests sensitivity to time alignment"
+    shifts: [0, 10, 20, 40, 80]
+    unit: "samples"
+    clinical_relevance: "Timing jitter and synchronization issues"
+
+# DEL3: Performance Metrics
+metrics:
+  primary: "robustness_score"
+  secondary:
+    - "dropout_rAUC"
+    - "noise_rAUC"
+    - "line_noise_rAUC"
+    - "perm_equivariance"
+    - "shift_sensitivity"
+  
+  # Metric definitions
+  definitions:
+    rAUC: >
+      Reverse Area Under Curve - measures the area under the similarity
+      vs perturbation strength curve. Higher rAUC indicates better
+      robustness (output stability under increasing perturbation).
+    
+    robustness_score: >
+      Mean rAUC across all robustness probes. Provides single aggregate
+      score for model comparison. Range: [0, 1], higher is better.
+    
+    equivariance: >
+      Mean cosine similarity between outputs for original and permuted
+      inputs. 1.0 indicates perfect channel permutation invariance.
+
+# DEL3: Stratification (for detailed analysis)
+stratification:
+  - "Probe Type" # Breakdown by each perturbation type
+  - "Perturbation Strength" # Performance at each grid point
+  - "Data Modality" # EEG vs fMRI vs genomics
+
+# DEL3: Non-Functional Requirements
+requirements:
+  reproducibility: "Seeded random perturbations required"
+  reporting: "Full perturbation curves and rAUC scores"
+  brainaug_lab: "Optional - fallback implementations provided"
+
+# Source/Attribution
+references:
+  - "ITU-T FG-AI4H DEL3 (Requirement Specifications)"
+  - "brainaug-lab: https://github.com/YOUR_REPO/brainaug-lab-project"
+  - "ERIB-CRIS Research Integrity Score Framework"
+
+# Integration notes
+integration:
+  brainaug_lab_path: "../brainaug-lab-project"
+  fallback_mode: true # Use built-in implementations if brainaug-lab unavailable
+

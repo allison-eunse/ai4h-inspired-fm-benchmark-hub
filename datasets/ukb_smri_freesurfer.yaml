@@ -1,0 +1,9 @@
+dataset_id: ukb_smri_freesurfer
+name: UK Biobank sMRI FreeSurfer-derived ROIs
+source: External/Restricted
+n_subjects: TBD
+modalities:
+- smri
+notes: "Structural MRI ROI features extracted with FreeSurfer (aparc/aseg) for UK\
+  \ Biobank subjects.\nUsed as the primary sMRI input for CCA and prediction baselines\
+  \ in adult gene\u2013brain and gene\u2013brain\u2013behaviour analyses.\n"

@@ -1,0 +1,15 @@
+# DEL7.2: Technical Test Specification / Benchmarking Run
+eval_id: "EVAL-002"
+benchmark_id: "BM-002"
+model_ids:
+  genetics_fm: "MOD-GENEFORMER"
+dataset_id: "DS-PBMC"
+run_metadata:
+  date: "2023-11-01"
+  runner: "Team"
+metrics:
+  F1-Score: 0.85
+  Accuracy: 0.91
+status: "Completed"
+notes: "Zero-shot evaluation."
+

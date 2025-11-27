@@ -1,0 +1,8 @@
+model_id: caduceus
+name: Caduceus
+modality: genetics
+upstream_repo: https://github.com/kuleshov-group/caduceus
+notes: Bidirectional RC-equivariant long-range DNA language model adapted from HyenaDNA
+  infrastructure with RC parameter sharing (RCPS) and Hyena-style long convolutions.
+arch: RC-equivariant Hyena + Transformer
+params: ~150M (d_model=256, n_layer=16)

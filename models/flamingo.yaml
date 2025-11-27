@@ -1,0 +1,18 @@
+model_id: flamingo
+name: Flamingo
+modality: multimodal
+upstream_repo: https://github.com/mlfoundations/open_flamingo
+notes: 'Visual language model that bridges pretrained vision encoders and language
+  models via a Perceiver
+
+  Resampler and gated cross-attention layers, enabling few-shot image and video understanding
+  from
+
+  in-context examples alone. Implemented in the OpenFlamingo codebase as a flexible
+  framework for
+
+  training and evaluating Flamingo-style VLMs.
+
+  '
+arch: Perceiver-augmented VLM (vision encoder + LM + gated cross-attention)
+params: 3B / 4B / 9B checkpoints (OpenFlamingo variants)

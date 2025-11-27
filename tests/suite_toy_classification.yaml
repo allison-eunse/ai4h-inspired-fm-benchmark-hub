@@ -1,0 +1,7 @@
+suite_id: SUITE-TOY-CLASS
+benchmark_id: BM-TOY-CLASS
+name: Toy Classification Suite
+inputs:
+  dataset:
+    default: DS-TOY-FMRI-CLASS
+
