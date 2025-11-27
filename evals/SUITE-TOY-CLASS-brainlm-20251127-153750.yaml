@@ -1,0 +1,123 @@
+eval_id: SUITE-TOY-CLASS-brainlm-20251127-153750
+benchmark_id: BM-TOY-CLASS
+model_ids:
+  candidate: brainlm
+dataset_id: DS-TOY-FMRI-CLASS
+run_metadata:
+  date: '2025-11-27'
+  runner: fmbench
+  suite_id: SUITE-TOY-CLASS
+  model_config: configs/model_brainlm.yaml
+  output_dir: results/brainlm_test
+metrics:
+  AUROC: 0.5193
+  Accuracy: 0.51
+  F1-Score: 0.51
+  stratified:
+    site:
+      SiteC:
+        AUROC: 0.4944
+        Accuracy: 0.507
+        F1-Score: 0.5035
+        N: 71
+      SiteA:
+        AUROC: 0.5791
+        Accuracy: 0.5417
+        F1-Score: 0.5394
+        N: 72
+      SiteB:
+        AUROC: 0.4643
+        Accuracy: 0.4737
+        F1-Score: 0.4722
+        N: 57
+    sex:
+      M:
+        AUROC: 0.4881
+        Accuracy: 0.5
+        F1-Score: 0.4985
+        N: 108
+      F:
+        AUROC: 0.5513
+        Accuracy: 0.5217
+        F1-Score: 0.5208
+        N: 92
+    scanner:
+      GE:
+        AUROC: 0.4087
+        Accuracy: 0.4714
+        F1-Score: 0.4687
+        N: 70
+      Philips:
+        AUROC: 0.6226
+        Accuracy: 0.5479
+        F1-Score: 0.5476
+        N: 73
+      Siemens:
+        AUROC: 0.5099
+        Accuracy: 0.5088
+        F1-Score: 0.5086
+        N: 57
+    disease_stage:
+      CN:
+        AUROC: 0.4286
+        Accuracy: 0.4571
+        F1-Score: 0.4571
+        N: 70
+      MCI:
+        AUROC: 0.6372
+        Accuracy: 0.6143
+        F1-Score: 0.6136
+        N: 70
+      AD:
+        AUROC: 0.4649
+        Accuracy: 0.45
+        F1-Score: 0.4462
+        N: 60
+    ethnicity:
+      Asian:
+        AUROC: 0.6667
+        Accuracy: 0.5862
+        F1-Score: 0.5817
+        N: 29
+      Hispanic:
+        AUROC: 0.463
+        Accuracy: 0.5116
+        F1-Score: 0.5106
+        N: 43
+      Black:
+        AUROC: 0.6165
+        Accuracy: 0.6316
+        F1-Score: 0.6306
+        N: 38
+      White:
+        AUROC: 0.4717
+        Accuracy: 0.4545
+        F1-Score: 0.4522
+        N: 77
+      Other:
+        AUROC: 0.2857
+        Accuracy: 0.3077
+        F1-Score: 0.3077
+        N: 13
+    age_group:
+      age_20-40:
+        AUROC: 0.4528
+        Accuracy: 0.4444
+        F1-Score: 0.4444
+        N: 54
+      age_60-80:
+        AUROC: 0.5357
+        Accuracy: 0.5286
+        F1-Score: 0.5238
+        N: 70
+      age_40-60:
+        AUROC: 0.573
+        Accuracy: 0.5538
+        F1-Score: 0.543
+        N: 65
+      age_80-100:
+        AUROC: 0.5667
+        Accuracy: 0.4545
+        F1-Score: 0.45
+        N: 11
+status: Completed
