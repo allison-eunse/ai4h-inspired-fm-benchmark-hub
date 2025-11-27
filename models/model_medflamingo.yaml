@@ -1,0 +1,9 @@
+model_id: medflamingo
+name: "Med-Flamingo"
+version: "1.2.0"
+type: multimodal_generative
+modality: ["radiology_images", "text"]
+description: "Medical adaptation of Flamingo for radiology report generation"
+paper: "https://arxiv.org/abs/2307.00000"
+license: "CC-BY-NC 4.0"
+

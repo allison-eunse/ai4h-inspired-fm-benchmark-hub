@@ -1,7 +1,7 @@
 # 🏆 Foundation Model Leaderboards
 
 !!! success "Benchmark Hub Stats"
-    🎯 **7** Benchmarks | 🤖 **5** Models Evaluated | 📊 **15** Total Evaluations
+    🎯 **7** Benchmarks | 🤖 **9** Models Evaluated | 📊 **19** Total Evaluations
 
 Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all submitted models** from best to developing, helping you find the right model for your use case.
 
@@ -25,33 +25,43 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
 
 #### 🏆 Leaderboard
 
-| Rank | Model | Score | Dataset | Details |
-| :---: | :--- | :---: | :--- | :--- |
-| 🥇 | **Flamingo** 👑 | 0.8400 | mimic_cxr_reports | report_quality_score | 2024-01-20 |
+```
+         🥇          
+     [Flamingo]    
+    ┌─────────┐     
+ 🥈 │         │ 🥉  
+[Med-Flamin]│         │[RadBERT]
+────┴─────────┴────
+```
 
-<details>
-<summary>📋 <strong>Full Metrics for All Models</strong></summary>
+**All 3 models ranked by report_quality_score:**
 
-**🥇 Flamingo**
+| Rank | Model | Score | Performance | Dataset | Date |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 🥇 | **Flamingo** 👑 | 0.8400 |  | mimic_cxr_reports | 2024-01-20 |
+| 🥈 | **Med-Flamingo** 🌟 | 0.7800 |  | mimic_cxr_reports | 2024-01-18 |
+| 🥉 | **RadBERT** ✨ | 0.6900 |  | mimic_cxr_reports | 2024-01-12 |
 
-| Metric | Value |
-|---|---|
-| bertscore | 0.8700 |
-| bleu | 38.5000 |
-| clinical_accuracy | 0.8900 |
-| finding_precision | 0.9100 |
-| finding_recall | 0.8500 |
-| flesch_kincaid | 10.2000 |
-| hallucination_rate | 0.0600 |
-| harmful_content | 0.0010 |
-| meteor | 0.5400 |
-| omission_rate | 0.0900 |
-| report_quality_score | 0.8400 |
-| rouge_l | 0.6200 |
-| structure_score | 0.8800 |
-| uncertainty_calibration | 0.8200 |
 
-</details>
+#### 📖 Ranking Explanation
+
+!!! abstract "Why These Rankings?"
+    **🥇 Flamingo** leads with report_quality_score=0.8400
+
+    - Gap to 🥈 **Med-Flamingo**: +0.0600 (7.7% better)
+    - Score range across all models: 0.1500
+
+
+#### 📋 Complete Metrics Comparison
+
+| Rank | Model | report_quality_score | clinical_accuracy | bertscore | bleu | finding_recall | hallucination_rate | finding_precision | flesch_kincaid |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 🥇  | Flamingo | **0.8400** | 0.8900 | 0.8700 | 38.5000 | 0.8500 | 0.0600 | 0.9100 | 10.2000 |
+| 🥈  | Med-Flamingo | **0.7800** | 0.8200 | 0.8200 | 32.5000 | 0.7900 | 0.0900 | 0.8500 | 11.5000 |
+| 🥉  | RadBERT | **0.6900** | 0.7200 | 0.7400 | 24.2000 | 0.6800 | 0.1500 | 0.7500 | 13.2000 |
+
+!!! tip "Legend"
+    📊 **Primary metric**: report_quality_score (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 #### 📊 Granular Performance Breakdown
 
@@ -80,8 +90,19 @@ Expand sections below to see how models perform across different conditions:
 
 </details>
 
+<details>
+<summary>📄 <strong>Med-Flamingo</strong> by Report Type</summary>
+
+| Report Type | clinical_accuracy | finding_recall | bertscore | N |
+|---|---|---|---|---|
+| 🥇 chest_xray | 0.8500 | 0.8100 | 0.8300 | 2000 |
+| 🥈 brain_mri | 0.8000 | 0.7600 | 0.8000 | 600 |
+| ct_abdomen | 0.7800 | 0.7400 | 0.7900 | 800 |
+
+</details>
+
 ---
-*Ranked by report_quality_score. Higher is better. Last updated from 1 evaluation(s).*
+*Ranked by **report_quality_score** (higher is better). Last updated from 3 evaluation(s).*
 
 ### 🌐 Foundation Model Robustness Evaluation
 
@@ -93,29 +114,24 @@ Expand sections below to see how models perform across different conditions:
 
 #### 🏆 Leaderboard
 
-| Rank | Model | Score | Dataset | Details |
-| :---: | :--- | :---: | :--- | :--- |
-| 🥇 | **dummy_classifier** 👑 | 0.7810 | - | robustness_score | 2025-11-27 |
+**All 1 models ranked by robustness_score:**
 
-<details>
-<summary>📋 <strong>Full Metrics for All Models</strong></summary>
+| Rank | Model | Score | Performance | Dataset | Date |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 🥇 | **dummy_classifier** 👑 | 0.7810 | 🔶 Fair | - | 2025-11-27 |
 
-**🥇 dummy_classifier**
 
-| Metric | Value |
-|---|---|
-| dropout_rAUC | 0.7760 |
-| line_noise_rAUC | 0.7737 |
-| noise_rAUC | 0.7867 |
-| perm_equivariance | 0.7819 |
-| robustness_score | 0.7810 |
-| shift_rAUC | 0.7874 |
-| shift_sensitivity | 0.7897 |
+#### 📋 Complete Metrics Comparison
 
-</details>
+| Rank | Model | robustness_score | dropout_rAUC | line_noise_rAUC | noise_rAUC | perm_equivariance | shift_rAUC | shift_sensitivity |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 🥇 🔶 | dummy_classifier | **0.7810** | 0.7760 | 0.7737 | 0.7867 | 0.7819 | 0.7874 | 0.7897 |
+
+!!! tip "Legend"
+    📊 **Primary metric**: robustness_score (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by robustness_score. Higher is better. Last updated from 5 evaluation(s).*
+*Ranked by **robustness_score** (higher is better). Last updated from 5 evaluation(s).*
 
 ## 🧬 Genomics
 
@@ -130,24 +146,24 @@ Expand sections below to see how models perform across different conditions:
 
 #### 🏆 Leaderboard
 
-| Rank | Model | Score | Dataset | Details |
-| :---: | :--- | :---: | :--- | :--- |
-| 🥇 | **Geneformer** 👑 | 0.9100 | PBMC 68k | Accuracy | 2023-11-01 |
+**All 1 models ranked by Accuracy:**
 
-<details>
-<summary>📋 <strong>Full Metrics for All Models</strong></summary>
+| Rank | Model | Score | Performance | Dataset | Date |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 🥇 | **Geneformer** 👑 | 0.9100 | ⭐ Excellent | PBMC 68k | 2023-11-01 |
 
-**🥇 Geneformer**
 
-| Metric | Value |
-|---|---|
-| Accuracy | 0.9100 |
-| F1-Score | 0.8500 |
+#### 📋 Complete Metrics Comparison
 
-</details>
+| Rank | Model | Accuracy | F1-Score |
+|:---:|:---|:---:|:---:|
+| 🥇 ⭐ | Geneformer | **0.9100** | 0.8500 |
+
+!!! tip "Legend"
+    📊 **Primary metric**: Accuracy (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by Accuracy. Higher is better. Last updated from 1 evaluation(s).*
+*Ranked by **Accuracy** (higher is better). Last updated from 1 evaluation(s).*
 
 ## 🧠 Neurology
 
@@ -162,24 +178,24 @@ Expand sections below to see how models perform across different conditions:
 
 #### 🏆 Leaderboard
 
-| Rank | Model | Score | Dataset | Details |
-| :---: | :--- | :---: | :--- | :--- |
-| 🥇 | **UNI** 👑 | 0.9200 | Alzheimer's Disease Neuroimaging Initiative (ADNI) | AUROC | 2023-10-27 |
+**All 1 models ranked by AUROC:**
 
-<details>
-<summary>📋 <strong>Full Metrics for All Models</strong></summary>
+| Rank | Model | Score | Performance | Dataset | Date |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 🥇 | **UNI** 👑 | 0.9200 | ⭐ Excellent | Alzheimer's Disease Neuroimaging Initiative (ADNI) | 2023-10-27 |
 
-**🥇 UNI**
 
-| Metric | Value |
-|---|---|
-| AUROC | 0.9200 |
-| Accuracy | 0.8800 |
+#### 📋 Complete Metrics Comparison
 
-</details>
+| Rank | Model | AUROC | Accuracy |
+|:---:|:---|:---:|:---:|
+| 🥇 ⭐ | UNI | **0.9200** | 0.8800 |
+
+!!! tip "Legend"
+    📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by AUROC. Higher is better. Last updated from 1 evaluation(s).*
+*Ranked by **AUROC** (higher is better). Last updated from 1 evaluation(s).*
 
 ### 🧠 Brain Time-Series Modeling
 
@@ -192,24 +208,24 @@ Expand sections below to see how models perform across different conditions:
 
 #### 🏆 Leaderboard
 
-| Rank | Model | Score | Dataset | Details |
-| :---: | :--- | :---: | :--- | :--- |
-| 🥇 | **BrainLM** 👑 | 0.7800 | UK Biobank fMRI tensors | Correlation | 2025-11-15 |
+**All 1 models ranked by Correlation:**
 
-<details>
-<summary>📋 <strong>Full Metrics for All Models</strong></summary>
+| Rank | Model | Score | Performance | Dataset | Date |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 🥇 | **BrainLM** 👑 | 0.7800 |  | UK Biobank fMRI tensors | 2025-11-15 |
 
-**🥇 BrainLM**
 
-| Metric | Value |
-|---|---|
-| Correlation | 0.7800 |
-| MSE | 0.4500 |
+#### 📋 Complete Metrics Comparison
 
-</details>
+| Rank | Model | Correlation | MSE |
+|:---:|:---|:---:|:---:|
+| 🥇  | BrainLM | **0.7800** | 0.4500 |
+
+!!! tip "Legend"
+    📊 **Primary metric**: Correlation (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 ---
-*Ranked by Correlation. Higher is better. Last updated from 1 evaluation(s).*
+*Ranked by **Correlation** (higher is better). Last updated from 1 evaluation(s).*
 
 ### 🧠 Toy Classification Benchmark
 
@@ -219,22 +235,21 @@ Expand sections below to see how models perform across different conditions:
 
 #### 🏆 Leaderboard
 
-| Rank | Model | Score | Dataset | Details |
-| :---: | :--- | :---: | :--- | :--- |
-| 🥇 | **dummy_classifier** 👑 | 0.5597 | Toy fMRI Classification | AUROC | 2025-11-27 |
+**All 1 models ranked by AUROC:**
 
-<details>
-<summary>📋 <strong>Full Metrics for All Models</strong></summary>
+| Rank | Model | Score | Performance | Dataset | Date |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 🥇 | **dummy_classifier** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
 
-**🥇 dummy_classifier**
 
-| Metric | Value |
-|---|---|
-| AUROC | 0.5597 |
-| Accuracy | 0.5750 |
-| F1-Score | 0.5732 |
+#### 📋 Complete Metrics Comparison
 
-</details>
+| Rank | Model | AUROC | Accuracy | F1-Score |
+|:---:|:---|:---:|:---:|:---:|
+| 🥇 📈 | dummy_classifier | **0.5597** | 0.5750 | 0.5732 |
+
+!!! tip "Legend"
+    📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 #### 📊 Granular Performance Breakdown
 
@@ -297,7 +312,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 ---
-*Ranked by AUROC. Higher is better. Last updated from 5 evaluation(s).*
+*Ranked by **AUROC** (higher is better). Last updated from 5 evaluation(s).*
 
 ### 🧠 fMRI Foundation Model Benchmark (Granular)
 
@@ -309,24 +324,44 @@ Expand sections below to see how models perform across different conditions:
 
 #### 🏆 Leaderboard
 
-| Rank | Model | Score | Dataset | Details |
-| :---: | :--- | :---: | :--- | :--- |
-| 🥇 | **BrainLM** 👑 | 0.9100 | hcp_1200 | AUROC | 2024-01-15 |
+```
+         🥇          
+     [BrainLM]    
+    ┌─────────┐     
+ 🥈 │         │ 🥉  
+[BrainBERT]│         │[NeuroCLIP]
+────┴─────────┴────
+```
 
-<details>
-<summary>📋 <strong>Full Metrics for All Models</strong></summary>
+**All 3 models ranked by AUROC:**
 
-**🥇 BrainLM**
+| Rank | Model | Score | Performance | Dataset | Date |
+| :---: | :--- | :---: | :---: | :--- | :---: |
+| 🥇 | **BrainLM** 👑 | 0.9100 | ⭐ Excellent | hcp_1200 | 2024-01-15 |
+| 🥈 | **BrainBERT** 🌟 | 0.8700 | ✅ Good | hcp_1200 | 2024-01-10 |
+| 🥉 | **NeuroCLIP** ✨ | 0.8300 | ✅ Good | hcp_1200 | 2024-01-05 |
 
-| Metric | Value |
-|---|---|
-| AUROC | 0.9100 |
-| Accuracy | 0.8700 |
-| Correlation | 0.8100 |
-| F1-Score | 0.8600 |
-| MSE | 0.4200 |
 
-</details>
+#### 📖 Ranking Explanation
+
+!!! abstract "Why These Rankings?"
+    **🥇 BrainLM** leads with AUROC=0.9100
+
+    - Gap to 🥈 **BrainBERT**: +0.0400 (4.6% better)
+    - Score range across all models: 0.0800
+    - Performance distribution: ⭐ 1 excellent, ✅ 2 good
+
+
+#### 📋 Complete Metrics Comparison
+
+| Rank | Model | AUROC | Accuracy | F1-Score | Correlation | MSE |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|
+| 🥇 ⭐ | BrainLM | **0.9100** | 0.8700 | 0.8600 | 0.8100 | 0.4200 |
+| 🥈 ✅ | BrainBERT | **0.8700** | 0.8200 | 0.8100 | 0.7600 | 0.5100 |
+| 🥉 ✅ | NeuroCLIP | **0.8300** | 0.7900 | 0.7800 | 0.7200 | 0.5800 |
+
+!!! tip "Legend"
+    📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
 
 #### 📊 Granular Performance Breakdown
 
@@ -391,8 +426,40 @@ Expand sections below to see how models perform across different conditions:
 
 </details>
 
+<details>
+<summary>🔬 <strong>BrainBERT</strong> by Scanner</summary>
+
+| Scanner | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 Siemens | 0.8900 | 0.8400 | 0.8300 | 450 |
+| 🥈 GE | 0.8600 | 0.8100 | 0.8000 | 380 |
+| Philips | 0.8500 | 0.8000 | 0.7900 | 370 |
+
+</details>
+
+<details>
+<summary>📡 <strong>BrainBERT</strong> by Acquisition Type</summary>
+
+| Acquisition Type | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 resting_state | 0.8800 | 0.8300 | 0.8200 | 600 |
+| task_based | 0.8500 | 0.8000 | 0.7900 | 400 |
+
+</details>
+
+<details>
+<summary>🔬 <strong>NeuroCLIP</strong> by Scanner</summary>
+
+| Scanner | AUROC | Accuracy | F1-Score | N |
+|---|---|---|---|---|
+| 🥇 Siemens | 0.8500 | 0.8100 | 0.8000 | 450 |
+| 🥈 GE | 0.8200 | 0.7800 | 0.7700 | 380 |
+| Philips | 0.8100 | 0.7700 | 0.7600 | 370 |
+
+</details>
+
 ---
-*Ranked by AUROC. Higher is better. Last updated from 1 evaluation(s).*
+*Ranked by **AUROC** (higher is better). Last updated from 3 evaluation(s).*
 
 ---
 

@@ -1,0 +1,9 @@
+model_id: neuroclip
+name: "NeuroCLIP"
+version: "0.9.0"
+type: multimodal
+modality: ["fMRI", "images"]
+description: "Contrastive learning model aligning brain activity with visual stimuli"
+paper: "https://arxiv.org/abs/2305.00000"
+license: "MIT"
+

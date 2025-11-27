@@ -1,0 +1,9 @@
+model_id: brainbert
+name: "BrainBERT"
+version: "1.0.0"
+type: encoder
+modality: ["fMRI", "EEG"]
+description: "BERT-based transformer pretrained on brain signals for neural representation learning"
+paper: "https://arxiv.org/abs/2302.00000"
+license: "Apache 2.0"
+

@@ -229,10 +229,137 @@ def get_primary_score(metrics: Dict, ai_task: str = "") -> Tuple[float, str]:
     return 0.0, "unknown"
 
 
+def generate_ranking_explanation(
+    ranked_evals: List[Tuple],
+    models: List[Dict],
+    primary_metric: str,
+    ai_task: str
+) -> str:
+    """Generate a detailed explanation of why models are ranked the way they are."""
+    if len(ranked_evals) < 2:
+        return ""
+    
+    md = "\n#### 📖 Ranking Explanation\n\n"
+    md += "!!! abstract \"Why These Rankings?\"\n"
+    
+    # Top performer analysis
+    top_score, top_metric, top_ev = ranked_evals[0]
+    top_model_id = list(top_ev.get("model_ids", {}).values())[0] if top_ev.get("model_ids") else "Unknown"
+    top_model = get_by_id(models, "model_id", top_model_id)
+    top_name = top_model.get("name", top_model_id) if top_model else top_model_id
+    
+    md += f"    **🥇 {top_name}** leads with {primary_metric}={top_score:.4f}\n\n"
+    
+    # Comparison with runner-up
+    if len(ranked_evals) >= 2:
+        second_score, _, second_ev = ranked_evals[1]
+        second_model_id = list(second_ev.get("model_ids", {}).values())[0] if second_ev.get("model_ids") else "Unknown"
+        second_model = get_by_id(models, "model_id", second_model_id)
+        second_name = second_model.get("name", second_model_id) if second_model else second_model_id
+        
+        diff = top_score - second_score
+        diff_pct = (diff / second_score * 100) if second_score != 0 else 0
+        
+        md += f"    - Gap to 🥈 **{second_name}**: +{diff:.4f} ({diff_pct:.1f}% better)\n"
+    
+    # Range analysis
+    if len(ranked_evals) >= 3:
+        last_score, _, last_ev = ranked_evals[-1]
+        range_val = top_score - last_score
+        md += f"    - Score range across all models: {range_val:.4f}\n"
+    
+    # Performance tier breakdown
+    tiers = {"excellent": 0, "good": 0, "fair": 0, "needs_improvement": 0}
+    for score, _, _ in ranked_evals:
+        tier, _ = get_performance_tier(score, primary_metric)
+        if tier in tiers:
+            tiers[tier] += 1
+    
+    tier_summary = []
+    if tiers["excellent"]: tier_summary.append(f"⭐ {tiers['excellent']} excellent")
+    if tiers["good"]: tier_summary.append(f"✅ {tiers['good']} good")
+    if tiers["fair"]: tier_summary.append(f"🔶 {tiers['fair']} fair")
+    if tiers["needs_improvement"]: tier_summary.append(f"📈 {tiers['needs_improvement']} developing")
+    
+    if tier_summary:
+        md += f"    - Performance distribution: {', '.join(tier_summary)}\n"
+    
+    md += "\n"
+    return md
+
+
+def generate_full_metrics_table(
+    ranked_evals: List[Tuple],
+    models: List[Dict],
+    primary_metric: str
+) -> str:
+    """Generate an expanded full metrics comparison table."""
+    if not ranked_evals:
+        return ""
+    
+    md = "\n#### 📋 Complete Metrics Comparison\n\n"
+    
+    # Collect all metric keys across all evals
+    all_metric_keys = set()
+    for _, _, ev in ranked_evals:
+        metrics = ev.get("metrics", {})
+        for k, v in metrics.items():
+            if not isinstance(v, dict) and not k.startswith("_"):
+                all_metric_keys.add(k)
+    
+    # Priority ordering
+    priority = ["AUROC", "Accuracy", "F1-Score", "robustness_score", "report_quality_score",
+                "clinical_accuracy", "Correlation", "MSE", "bertscore", "bleu",
+                "finding_recall", "hallucination_rate"]
+    sorted_metrics = sorted(all_metric_keys, 
+                           key=lambda x: (priority.index(x) if x in priority else 100, x))
+    
+    # Build comparison table
+    md += "| Rank | Model | " + " | ".join(sorted_metrics[:8]) + " |\n"
+    md += "|:---:|:---|" + "|".join([":---:"] * min(len(sorted_metrics), 8)) + "|\n"
+    
+    for rank, (score, metric_name, ev) in enumerate(ranked_evals, 1):
+        # Model name
+        model_id = list(ev.get("model_ids", {}).values())[0] if ev.get("model_ids") else "Unknown"
+        model_data = get_by_id(models, "model_id", model_id)
+        model_name = model_data.get("name", model_id) if model_data else model_id
+        
+        # Rank display
+        rank_badge = get_rank_badge(rank)
+        
+        # Performance tier indicator
+        tier, tier_label = get_performance_tier(score, primary_metric)
+        tier_emoji = {"excellent": "⭐", "good": "✅", "fair": "🔶", "needs_improvement": "📈"}.get(tier, "")
+        
+        # Metric values
+        metrics = ev.get("metrics", {})
+        vals = []
+        for m in sorted_metrics[:8]:
+            v = metrics.get(m, "-")
+            if isinstance(v, float):
+                # Highlight if this is primary metric
+                if m == primary_metric:
+                    vals.append(f"**{v:.4f}**")
+                else:
+                    vals.append(f"{v:.4f}")
+            else:
+                vals.append(str(v))
+        
+        md += f"| {rank_badge} {tier_emoji} | {model_name} | " + " | ".join(vals) + " |\n"
+    
+    # Legend
+    md += "\n"
+    md += "!!! tip \"Legend\"\n"
+    md += f"    📊 **Primary metric**: {primary_metric} (bold) | "
+    md += "⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)\n\n"
+    
+    return md
+
+
 def generate_markdown_table(
     benchmark: Dict, evals: List[Dict], models: List[Dict], datasets: List[Dict]
 ) -> str:
-    """Generate a gamified Markdown leaderboard with full rankings."""
+    """Generate a gamified Markdown leaderboard with full rankings and explanations."""
     
     ai_task = benchmark.get("ai_task", "")
     
@@ -291,13 +418,39 @@ def generate_markdown_table(
             seen_models.add(model_key)
             unique_ranked.append((score, metric_name, ev))
     
-    # Trophy case for top 3
-    if len(unique_ranked) >= 1:
-        md += "#### 🏆 Leaderboard\n\n"
+    # Get primary metric name from top eval
+    primary_metric = unique_ranked[0][1] if unique_ranked else "score"
     
-    # Main ranking table
-    md += "| Rank | Model | Score | Dataset | Details |\n"
-    md += "| :---: | :--- | :---: | :--- | :--- |\n"
+    # Trophy header
+    md += "#### 🏆 Leaderboard\n\n"
+    
+    # Podium for top 3 if we have multiple models
+    if len(unique_ranked) >= 3:
+        md += "```\n"
+        md += "         🥇          \n"
+        top_name = list(unique_ranked[0][2].get("model_ids", {}).values())[0] if unique_ranked[0][2].get("model_ids") else "?"
+        top_model = get_by_id(models, "model_id", top_name)
+        top_display = (top_model.get("name", top_name) if top_model else top_name)[:12]
+        md += f"     [{top_display}]    \n"
+        md += "    ┌─────────┐     \n"
+        
+        second_name = list(unique_ranked[1][2].get("model_ids", {}).values())[0] if unique_ranked[1][2].get("model_ids") else "?"
+        second_model = get_by_id(models, "model_id", second_name)
+        second_display = (second_model.get("name", second_name) if second_model else second_name)[:10]
+        
+        third_name = list(unique_ranked[2][2].get("model_ids", {}).values())[0] if unique_ranked[2][2].get("model_ids") else "?"
+        third_model = get_by_id(models, "model_id", third_name)
+        third_display = (third_model.get("name", third_name) if third_model else third_name)[:10]
+        
+        md += f" 🥈 │         │ 🥉  \n"
+        md += f"[{second_display}]│         │[{third_display}]\n"
+        md += "────┴─────────┴────\n"
+        md += "```\n\n"
+    
+    # Main ranking table - ALL models
+    md += f"**All {len(unique_ranked)} models ranked by {primary_metric}:**\n\n"
+    md += "| Rank | Model | Score | Performance | Dataset | Date |\n"
+    md += "| :---: | :--- | :---: | :---: | :--- | :---: |\n"
     
     for rank, (score, metric_name, ev) in enumerate(unique_ranked, 1):
         # Rank badge
@@ -311,57 +464,37 @@ def generate_markdown_table(
             model_names.append(name)
         model_str = ", ".join(model_names) if model_names else "Unknown"
         
-        # Add trophy styling for top 3
+        # Add styling for top 3
         if rank == 1:
             model_str = f"**{model_str}** 👑"
         elif rank == 2:
-            model_str = f"**{model_str}**"
+            model_str = f"**{model_str}** 🌟"
         elif rank == 3:
-            model_str = f"**{model_str}**"
+            model_str = f"**{model_str}** ✨"
         
-        # Score with tier indicator
-        tier, tier_label = get_performance_tier(score, metric_name)
+        # Score display
         score_display = f"{score:.4f}" if isinstance(score, float) else str(score)
+        
+        # Performance tier
+        tier, tier_label = get_performance_tier(score, primary_metric)
         
         # Dataset
         did = ev.get("dataset_id")
         dataset_data = get_by_id(datasets, "dataset_id", did)
         dataset_name = dataset_data.get("name", did) if dataset_data else (did or "-")
         
-        # Compact details
+        # Date
         date = ev.get("run_metadata", {}).get("date", "-")
-        details = f"{metric_name} | {date}"
         
-        md += f"| {rank_display} | {model_str} | {score_display} | {dataset_name} | {details} |\n"
+        md += f"| {rank_display} | {model_str} | {score_display} | {tier_label} | {dataset_name} | {date} |\n"
     
     md += "\n"
     
-    # Full metrics expansion for each model
-    md += "<details>\n<summary>📋 <strong>Full Metrics for All Models</strong></summary>\n\n"
+    # Add ranking explanation
+    md += generate_ranking_explanation(unique_ranked, models, primary_metric, ai_task)
     
-    for rank, (score, metric_name, ev) in enumerate(unique_ranked, 1):
-        model_names = []
-        for role, mid in ev.get("model_ids", {}).items():
-            model_data = get_by_id(models, "model_id", mid)
-            name = model_data.get("name", mid) if model_data else mid
-            model_names.append(name)
-        model_str = ", ".join(model_names) if model_names else "Unknown"
-        
-        md += f"**{get_rank_badge(rank)} {model_str}**\n\n"
-        
-        metrics = ev.get("metrics", {})
-        # Filter to non-dict metrics
-        display_metrics = {k: v for k, v in metrics.items() 
-                         if not isinstance(v, dict) and not k.startswith("_")}
-        
-        if display_metrics:
-            md += "| Metric | Value |\n|---|---|\n"
-            for k, v in sorted(display_metrics.items()):
-                val = f"{v:.4f}" if isinstance(v, float) else str(v)
-                md += f"| {k} | {val} |\n"
-            md += "\n"
-    
-    md += "</details>\n\n"
+    # Full metrics comparison table (visible by default)
+    md += generate_full_metrics_table(unique_ranked, models, primary_metric)
     
     # Add stratified sub-tables if available
     stratify_dimensions = ["scanner", "site", "acquisition_type", "preprocessing", 
@@ -376,7 +509,7 @@ def generate_markdown_table(
     
     # Methodology note
     md += "---\n"
-    md += f"*Ranked by {metric_name}. Higher is better. "
+    md += f"*Ranked by **{primary_metric}** (higher is better). "
     md += f"Last updated from {len(evals)} evaluation(s).*\n\n"
     
     return md

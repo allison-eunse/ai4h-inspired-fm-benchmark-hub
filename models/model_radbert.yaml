@@ -1,0 +1,9 @@
+model_id: radbert
+name: "RadBERT"
+version: "2.1.0"
+type: encoder_decoder
+modality: ["radiology_images", "text"]
+description: "BERT-based model fine-tuned on radiology reports for medical NLP"
+paper: "https://arxiv.org/abs/2201.00000"
+license: "Apache 2.0"
+

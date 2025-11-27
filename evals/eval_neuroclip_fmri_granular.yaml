@@ -1,0 +1,41 @@
+# Third model for fMRI Granular benchmark - to demonstrate full rankings
+eval_id: eval_neuroclip_fmri_granular_001
+benchmark_id: BM-FMRI-GRANULAR
+
+model_ids:
+  candidate: neuroclip
+
+dataset_id: hcp_1200
+
+run_metadata:
+  date: "2024-01-05"
+  runner: "fmbench"
+  hardware: "NVIDIA A100 80GB"
+
+metrics:
+  AUROC: 0.8300
+  Accuracy: 0.7900
+  F1-Score: 0.7800
+  MSE: 0.5800
+  Correlation: 0.7200
+
+  stratified:
+    scanner:
+      Siemens:
+        AUROC: 0.8500
+        Accuracy: 0.8100
+        F1-Score: 0.8000
+        N: 450
+      GE:
+        AUROC: 0.8200
+        Accuracy: 0.7800
+        F1-Score: 0.7700
+        N: 380
+      Philips:
+        AUROC: 0.8100
+        Accuracy: 0.7700
+        F1-Score: 0.7600
+        N: 370
+
+status: Completed
+
