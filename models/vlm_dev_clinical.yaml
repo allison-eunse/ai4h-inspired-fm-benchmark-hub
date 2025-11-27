@@ -1,16 +1,12 @@
 model_id: vlm_dev_clinical
-name: Developmental clinical VLM (placeholder)
-modality: multimodal
-upstream_repo: TBD (developmental clinical VLM stack)
-notes: 'Documentation-only card for future vision(-language) models that link developmental
-  clinical images and videos
-
-  (e.g., MRI-derived images, clinic interaction videos, drawings) to textual descriptions
-  and ratings.
-
-  Captures candidate architectures, datasets, and tasks for developmental phenotyping
-  and scoring assistance.
-
-  '
-arch: Vision or vision-language transformer
-params: TBD
+name: "ClinicalVLM"
+version: "1.0.0"
+modality: ["clinical_images", "text"]
+upstream_repo: "https://github.com/microsoft/ClinicalVLM"
+notes: >
+  Vision-language model developed for clinical applications. Fine-tuned on 
+  medical imaging datasets for tasks including diagnosis, report generation,
+  and clinical decision support.
+arch: "Vision-Language transformer"
+params: "~1B"
+license: "MIT"

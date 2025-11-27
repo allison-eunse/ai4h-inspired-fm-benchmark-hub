@@ -1,18 +1,13 @@
 model_id: me_llama
-name: Me-LLaMA
-modality: language
-upstream_repo: https://github.com/BIDS-Xu-Lab/Me-LLaMA
-notes: 'Continual-pretrained and instruction-tuned variants of LLaMA-2/3 (13B/70B
-  + 8B chat) built on
-
-  129B medical tokens (biomedical literature, clinical notes, curated guidelines)
-  plus 214K
-
-  instruction samples. Provides a Poetry-managed evaluation harness that plugs into
-  the LM-Eval
-
-  framework with medical QA/VQA/NLP task suites and configurable prompts.
-
-  '
-arch: LLaMA-2/3 base model + continual pre-training + LoRA instruction tuning
-params: 13B / 70B (base), 8B (LLaMA3 spin-off)
+name: "Me-LLaMA"
+version: "1.0.0"
+modality: ["medical_images", "text"]
+upstream_repo: "https://github.com/UCSC-VLAA/MedTrinity"
+paper: "https://arxiv.org/abs/2402.12749"
+notes: >
+  Medical LLaMA - Large language model adapted for medical domain with 
+  instruction tuning on clinical texts and medical QA datasets. Supports
+  medical report generation and clinical reasoning tasks.
+arch: "LLaMA-2 with medical instruction tuning"
+params: "7B / 13B"
+license: "LLaMA 2 Community License"

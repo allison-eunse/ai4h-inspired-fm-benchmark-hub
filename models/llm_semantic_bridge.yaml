@@ -1,11 +1,13 @@
 model_id: llm_semantic_bridge
-name: LLM semantic bridge (multimodal hub)
-modality: multimodal
-upstream_repo: TBD (ARPA-H Brain-Omics Model hub LLM)
-notes: "Documentation-only card describing an ARPA-H\u2013style large language model\
-  \ (LLM) used as a common semantic hub\nfor brain, EEG/EPhys, and multi-omics foundation\
-  \ model embeddings. The LLM receives subject-level embeddings\nfrom Brain FMs, EPhys/EEG\
-  \ FMs, and Multi-Omics FMs via adapters or cross-attention, and produces textual\n\
-  explanations, reasoning chains, and structured reports.\n"
-arch: Decoder-only LLM + cross-modal adapters
-params: "TBD (e.g., 7B\u2013155B)"
+name: "LLM-Semantic-Bridge"
+version: "1.0.0"
+modality: ["brain_signals", "text"]
+upstream_repo: "https://github.com/YeZiyi1998/Brain-Coder"
+paper: "https://arxiv.org/abs/2312.09100"
+notes: >
+  Model that bridges brain activity signals with language model representations.
+  Enables neural-to-text decoding and semantic alignment between brain recordings
+  and natural language.
+arch: "Brain encoder + LLM decoder"
+params: "~500M"
+license: "MIT"

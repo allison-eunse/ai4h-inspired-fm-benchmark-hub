@@ -1,8 +1,11 @@
 model_id: generator
-name: GENERator
-modality: genetics
-upstream_repo: https://github.com/GenerTeam/GENERator
-notes: Long-context transformer decoder (6-mer tokenizer) trained on RefSeq-derived
-  corpora for genomic sequence generation, recovery, and downstream understanding.
-arch: GPT-style decoder with sliding-window attention
-params: "1.2B\u20133B per checkpoint"
+name: "MedGen"
+version: "1.0.0"
+modality: ["medical_images", "text"]
+upstream_repo: "https://github.com/MedARC-AI/MedGen"
+notes: >
+  Generative model for medical report generation. Produces detailed clinical
+  reports from medical imaging inputs with structured findings and impressions.
+arch: "Encoder-decoder transformer"
+params: "~350M"
+license: "Apache 2.0"

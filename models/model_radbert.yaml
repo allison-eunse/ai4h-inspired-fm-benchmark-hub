@@ -1,9 +1,13 @@
 model_id: radbert
 name: "RadBERT"
-version: "2.1.0"
-type: encoder_decoder
-modality: ["radiology_images", "text"]
-description: "BERT-based model fine-tuned on radiology reports for medical NLP"
-paper: "https://arxiv.org/abs/2201.00000"
-license: "Apache 2.0"
-
+version: "1.0.0"
+modality: "radiology_text"
+upstream_repo: "https://github.com/zzxslp/RadBERT"
+paper: "https://arxiv.org/abs/2201.07795"
+notes: >
+  BERT model pretrained on radiology reports from MIMIC-CXR for medical NLP tasks.
+  Achieves strong performance on radiology report classification, NER, and 
+  relation extraction. Fine-tuned from PubMedBERT.
+arch: "BERT-base (12 layers, 768 hidden)"
+params: "~110M"
+license: "MIT"

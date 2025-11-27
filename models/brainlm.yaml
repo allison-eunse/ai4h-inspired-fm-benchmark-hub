@@ -1,9 +1,13 @@
 model_id: brainlm
-name: BrainLM
-modality: brain
-upstream_repo: https://github.com/vandijklab/BrainLM
-notes: Masked autoencoding language model for fMRI voxel time-series. Uses ViT-MAE
-  scaffolding with custom BrainLM embeddings that mix voxel coordinates and patched
-  time windows to learn denoised cortical dynamics.
-arch: ViT-MAE + Nystromformer encoder/decoder
-params: 111M / 650M
+name: "BrainLM"
+version: "1.0.0"
+modality: "fMRI"
+upstream_repo: "https://github.com/vandijklab/BrainLM"
+paper: "https://www.biorxiv.org/content/10.1101/2023.09.12.557460"
+notes: >
+  Masked autoencoding language model for fMRI voxel time-series. Uses ViT-MAE 
+  scaffolding with custom BrainLM embeddings that mix voxel coordinates and 
+  patched time windows to learn denoised cortical dynamics. From Van Dijk Lab at Yale.
+arch: "ViT-MAE + Nystromformer encoder/decoder"
+params: "111M / 650M"
+license: "MIT"

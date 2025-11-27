@@ -30,7 +30,7 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
      [Me-LLaMA]    
     ┌─────────┐     
  🥈 │         │ 🥉  
-[M3FM (Mult]│         │[Flamingo]
+[M3FM]│         │[OpenFlamin]
 ────┴─────────┴────
 ```
 
@@ -39,9 +39,9 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
 | 🥇 | **Me-LLaMA** 👑 | 0.8750 |  | mimic_cxr_reports | 2024-02-05 |
-| 🥈 | **M3FM (Multilingual Medical Model for Findings)** 🌟 | 0.8600 |  | mimic_cxr_reports | 2024-01-28 |
-| 🥉 | **Flamingo** ✨ | 0.8400 |  | mimic_cxr_reports | 2024-01-20 |
-| 🏅 | TITAN (Transformer-based pathology Image & Text Alignment Network) | 0.8100 |  | mimic_cxr_reports | 2024-01-25 |
+| 🥈 | **M3FM** 🌟 | 0.8600 |  | mimic_cxr_reports | 2024-01-28 |
+| 🥉 | **OpenFlamingo** ✨ | 0.8400 |  | mimic_cxr_reports | 2024-01-20 |
+| 🏅 | TITAN | 0.8100 |  | mimic_cxr_reports | 2024-01-25 |
 | 🏅 | Med-Flamingo | 0.7800 |  | mimic_cxr_reports | 2024-01-18 |
 | 🎖️ | RadBERT | 0.6900 |  | mimic_cxr_reports | 2024-01-12 |
 
@@ -51,7 +51,7 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
 !!! abstract "Why These Rankings?"
     **🥇 Me-LLaMA** leads with report_quality_score=0.8750
 
-    - Gap to 🥈 **M3FM (Multilingual Medical Model for Findings)**: +0.0150 (1.7% better)
+    - Gap to 🥈 **M3FM**: +0.0150 (1.7% better)
     - Score range across all models: 0.1850
 
 
@@ -114,9 +114,9 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 | Rank | Model | report_quality_score | clinical_accuracy | bertscore | bleu | finding_recall | hallucination_rate | finding_precision | flesch_kincaid |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 🥇  | Me-LLaMA | **0.8750** | 0.9200 | 0.9000 | 43.5000 | 0.8800 | 0.0400 | 0.9300 | 9.5000 |
-| 🥈  | M3FM (Multilingual Medical Model for Findings) | **0.8600** | 0.9100 | 0.8900 | 41.2000 | 0.8700 | 0.0450 | 0.9200 | 9.8000 |
-| 🥉  | Flamingo | **0.8400** | 0.8900 | 0.8700 | 38.5000 | 0.8500 | 0.0600 | 0.9100 | 10.2000 |
-| 🏅  | TITAN (Transformer-based pathology Image & Text Alignment Network) | **0.8100** | 0.8600 | 0.8500 | 35.2000 | 0.8200 | 0.0700 | 0.8800 | 10.8000 |
+| 🥈  | M3FM | **0.8600** | 0.9100 | 0.8900 | 41.2000 | 0.8700 | 0.0450 | 0.9200 | 9.8000 |
+| 🥉  | OpenFlamingo | **0.8400** | 0.8900 | 0.8700 | 38.5000 | 0.8500 | 0.0600 | 0.9100 | 10.2000 |
+| 🏅  | TITAN | **0.8100** | 0.8600 | 0.8500 | 35.2000 | 0.8200 | 0.0700 | 0.8800 | 10.8000 |
 | 🏅  | Med-Flamingo | **0.7800** | 0.8200 | 0.8200 | 32.5000 | 0.7900 | 0.0900 | 0.8500 | 11.5000 |
 | 🎖️  | RadBERT | **0.6900** | 0.7200 | 0.7400 | 24.2000 | 0.6800 | 0.1500 | 0.7500 | 13.2000 |
 
@@ -129,7 +129,7 @@ Expand sections below to see how models perform across different conditions:
 
 
 <details>
-<summary>📄 <strong>Flamingo</strong> by Report Type</summary>
+<summary>📄 <strong>OpenFlamingo</strong> by Report Type</summary>
 
 | Report Type | clinical_accuracy | finding_recall | bertscore | N |
 |---|---|---|---|---|
@@ -140,7 +140,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 <details>
-<summary>📊 <strong>Flamingo</strong> by Complexity</summary>
+<summary>📊 <strong>OpenFlamingo</strong> by Complexity</summary>
 
 | Complexity | clinical_accuracy | hallucination_rate | N |
 |---|---|---|---|
@@ -179,7 +179,7 @@ Expand sections below to see how models perform across different conditions:
      [Brain-JEPA]    
     ┌─────────┐     
  🥈 │         │ 🥉  
-[Brain Harm]│         │[Geneformer]
+[BrainHarmo]│         │[Geneformer]
 ────┴─────────┴────
 ```
 
@@ -188,7 +188,7 @@ Expand sections below to see how models perform across different conditions:
 | Rank | Model | Score | Performance | Dataset | Date |
 | :---: | :--- | :---: | :---: | :--- | :---: |
 | 🥇 | **Brain-JEPA** 👑 | 0.8650 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-20 |
-| 🥈 | **Brain Harmony** 🌟 | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-18 |
+| 🥈 | **BrainHarmony** 🌟 | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-18 |
 | 🥉 | **Geneformer** ✨ | 0.8350 | ✅ Good | DS-TOY-GENOMICS | 2024-01-10 |
 | 🏅 | BrainLM | 0.8250 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-16 |
 | 🏅 | HyenaDNA | 0.7950 | 🔶 Fair | DS-TOY-GENOMICS | 2024-01-12 |
@@ -200,7 +200,7 @@ Expand sections below to see how models perform across different conditions:
 !!! abstract "Why These Rankings?"
     **🥇 Brain-JEPA** leads with robustness_score=0.8650
 
-    - Gap to 🥈 **Brain Harmony**: +0.0200 (2.4% better)
+    - Gap to 🥈 **BrainHarmony**: +0.0200 (2.4% better)
     - Score range across all models: 0.0840
     - Performance distribution: ✅ 4 good, 🔶 2 fair
 
@@ -263,7 +263,7 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 | Rank | Model | robustness_score | dropout_rAUC | expression_rAUC | line_noise_rAUC | masking_rAUC | noise_rAUC | perm_equivariance | shift_rAUC |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 🥇 ✅ | Brain-JEPA | **0.8650** | 0.8800 | - | 0.8400 | - | 0.8500 | 0.8900 | 0.8650 |
-| 🥈 ✅ | Brain Harmony | **0.8450** | 0.8600 | - | 0.8200 | - | 0.8300 | 0.8700 | 0.8450 |
+| 🥈 ✅ | BrainHarmony | **0.8450** | 0.8600 | - | 0.8200 | - | 0.8300 | 0.8700 | 0.8450 |
 | 🥉 ✅ | Geneformer | **0.8350** | 0.8500 | 0.8100 | - | 0.8600 | 0.8200 | 0.8350 | - |
 | 🏅 ✅ | BrainLM | **0.8250** | 0.8400 | - | 0.8000 | - | 0.8100 | 0.8500 | 0.8250 |
 | 🏅 🔶 | HyenaDNA | **0.7950** | 0.8100 | 0.7700 | - | 0.8200 | 0.7800 | 0.8000 | - |
@@ -293,7 +293,7 @@ Sub-group performance gaps > 10% are flagged for fairness review.
      [Evo 2]    
     ┌─────────┐     
  🥈 │         │ 🥉  
-[Geneformer]│         │[SwiFT]
+[Geneformer]│         │[SWIFT]
 ────┴─────────┴────
 ```
 
@@ -303,7 +303,7 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 | :---: | :--- | :---: | :---: | :--- | :---: |
 | 🥇 | **Evo 2** 👑 | 0.9250 | ⭐ Excellent | PBMC 68k | 2024-02-01 |
 | 🥈 | **Geneformer** 🌟 | 0.9100 | ⭐ Excellent | PBMC 68k | 2023-11-01 |
-| 🥉 | **SwiFT** ✨ | 0.8950 | ✅ Good | PBMC 68k | 2024-01-15 |
+| 🥉 | **SWIFT** ✨ | 0.8950 | ✅ Good | PBMC 68k | 2024-01-15 |
 | 🏅 | Caduceus | 0.8850 | ✅ Good | PBMC 68k | 2024-01-12 |
 | 🏅 | HyenaDNA | 0.8700 | ✅ Good | PBMC 68k | 2024-01-08 |
 | 🎖️ | DNABERT-2 | 0.8500 | ✅ Good | PBMC 68k | 2024-01-05 |
@@ -379,7 +379,7 @@ Sub-group performance gaps > 10% are flagged for fairness review.
 |:---:|:---|:---:|:---:|
 | 🥇 ⭐ | Evo 2 | **0.9250** | 0.8900 |
 | 🥈 ⭐ | Geneformer | **0.9100** | 0.8500 |
-| 🥉 ✅ | SwiFT | **0.8950** | 0.8550 |
+| 🥉 ✅ | SWIFT | **0.8950** | 0.8550 |
 | 🏅 ✅ | Caduceus | **0.8850** | 0.8400 |
 | 🏅 ✅ | HyenaDNA | **0.8700** | 0.8200 |
 | 🎖️ ✅ | DNABERT-2 | **0.8500** | 0.8000 |

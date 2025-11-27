@@ -1,6 +1,13 @@
 model_id: "MOD-GENEFORMER"
 name: "Geneformer"
+version: "1.0.0"
 modality: "scRNA-seq"
 upstream_repo: "https://huggingface.co/ctheodoris/Geneformer"
-notes: "Transformer model pretrained on 30 million single cell transcriptomes."
-
+paper: "https://www.nature.com/articles/s41586-023-06139-9"
+notes: >
+  Transformer model pretrained on ~30 million single-cell transcriptomes from 
+  Genecorpus-30M. Uses rank-value encoding of gene expression for context-aware
+  cell state prediction. From Christina Theodoris at Harvard/Broad.
+arch: "BERT-style transformer encoder"
+params: "~10M"
+license: "Apache 2.0"

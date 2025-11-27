@@ -1,9 +1,13 @@
 model_id: dnabert2
-name: DNABERT-2
-modality: genetics
-upstream_repo: https://github.com/Zhihan1996/DNABERT2
-notes: 117M-parameter BERT encoder with byte-pair tokenization and ALiBi positional
-  bias, pretrained on multi-species genomes and paired with the Genome Understanding
-  Evaluation (GUE) benchmark.
-arch: BERT encoder with ALiBi and BPE tokenizer
-params: 117M
+name: "DNABERT-2"
+version: "1.0.0"
+modality: "DNA_sequence"
+upstream_repo: "https://github.com/MAGICS-LAB/DNABERT_2"
+paper: "https://arxiv.org/abs/2306.15006"
+notes: >
+  117M-parameter BERT encoder with byte-pair tokenization (BPE) and ALiBi 
+  positional bias. Pretrained on multi-species genomes. Comes with the 
+  Genome Understanding Evaluation (GUE) benchmark suite.
+arch: "BERT encoder with ALiBi and BPE tokenizer"
+params: "117M"
+license: "MIT"

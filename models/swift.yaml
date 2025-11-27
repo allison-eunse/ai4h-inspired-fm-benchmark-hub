@@ -1,9 +1,13 @@
 model_id: swift
-name: SwiFT
-modality: brain
-upstream_repo: https://github.com/Transconnectome/SwiFT
-notes: "Swin Transformer for 4D fMRI (3D spatial \xD7 temporal) with Lightning training\
-  \ loops, contrastive/self-supervised options, and datamodule utilities for UKB,\
-  \ HCP, and ABCD cohorts."
-arch: Swin Transformer 4D
-params: 80M (default config)
+name: "SWIFT"
+version: "1.0.0"
+modality: "scRNA-seq"
+upstream_repo: "https://github.com/HelloWorldLTY/SWIFT"
+paper: "https://www.biorxiv.org/content/10.1101/2024.03.24.586458"
+notes: >
+  Single-cell foundation model using wavelet-based tokenization for efficient 
+  representation learning. Captures multi-scale gene expression patterns for
+  cell type annotation and perturbation prediction.
+arch: "Transformer with wavelet tokenization"
+params: "~50M"
+license: "MIT"

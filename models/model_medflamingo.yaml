@@ -1,9 +1,13 @@
 model_id: medflamingo
 name: "Med-Flamingo"
-version: "1.2.0"
-type: multimodal_generative
-modality: ["radiology_images", "text"]
-description: "Medical adaptation of Flamingo for radiology report generation"
-paper: "https://arxiv.org/abs/2307.00000"
+version: "1.0.0"
+modality: ["medical_images", "text"]
+upstream_repo: "https://github.com/snap-stanford/med-flamingo"
+paper: "https://arxiv.org/abs/2307.15189"
+notes: >
+  Medical adaptation of OpenFlamingo for multimodal medical image understanding
+  and report generation. Trained on paired medical image-text data including
+  radiology, pathology, and dermatology. From Stanford SNAP Lab.
+arch: "Flamingo architecture with medical domain adaptation"
+params: "~3B"
 license: "CC-BY-NC 4.0"
-

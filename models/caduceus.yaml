@@ -1,8 +1,13 @@
 model_id: caduceus
-name: Caduceus
-modality: genetics
-upstream_repo: https://github.com/kuleshov-group/caduceus
-notes: Bidirectional RC-equivariant long-range DNA language model adapted from HyenaDNA
-  infrastructure with RC parameter sharing (RCPS) and Hyena-style long convolutions.
-arch: RC-equivariant Hyena + Transformer
-params: ~150M (d_model=256, n_layer=16)
+name: "Caduceus"
+version: "1.0.0"
+modality: "DNA_sequence"
+upstream_repo: "https://github.com/kuleshov-group/caduceus"
+paper: "https://arxiv.org/abs/2403.03234"
+notes: >
+  Bidirectional RC-equivariant long-range DNA language model. Combines 
+  reverse-complement parameter sharing (RCPS) with Mamba-style state space 
+  models for efficient long-context DNA modeling. From Kuleshov Lab at Cornell.
+arch: "RC-equivariant Mamba + Transformer"
+params: "~150M (d_model=256, n_layer=16)"
+license: "Apache 2.0"

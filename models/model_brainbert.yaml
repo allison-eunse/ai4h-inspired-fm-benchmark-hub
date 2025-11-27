@@ -1,9 +1,13 @@
 model_id: brainbert
 name: "BrainBERT"
 version: "1.0.0"
-type: encoder
 modality: ["fMRI", "EEG"]
-description: "BERT-based transformer pretrained on brain signals for neural representation learning"
-paper: "https://arxiv.org/abs/2302.00000"
+upstream_repo: "https://github.com/czlwang/BrainBERT"
+paper: "https://arxiv.org/abs/2302.14367"
+notes: >
+  BERT-based transformer pretrained on brain signals for neural representation 
+  learning. Uses masked autoencoding on EEG/fMRI data to learn generalizable
+  brain activity representations.
+arch: "BERT-style transformer encoder"
+params: "~110M"
 license: "Apache 2.0"
-

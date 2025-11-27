@@ -1,19 +1,13 @@
 model_id: hyenadna
-name: HyenaDNA
-modality: genetics
-upstream_repo: TBD (see HyenaDNA / Hyena project links in the original paper)
-notes: 'Genomic foundation model that uses Hyena implicit-convolution operators to
-  model DNA sequences at
-
-  single-nucleotide resolution with context lengths up to 1M tokens. Pretrained as
-  a decoder-only
-
-  language model on the human reference genome, HyenaDNA achieves strong performance
-  on regulatory
-
-  element benchmarks while using far fewer parameters and less data than attention-based
-  DNA LMs.
-
-  '
-arch: Decoder-only Hyena operator stack (implicit long convolutions)
-params: "\u22481.6M (reported baseline configuration)"
+name: "HyenaDNA"
+version: "1.0.0"
+modality: "DNA_sequence"
+upstream_repo: "https://github.com/HazyResearch/hyena-dna"
+paper: "https://arxiv.org/abs/2306.15794"
+notes: >
+  Genomic foundation model using Hyena implicit-convolution operators to model 
+  DNA sequences at single-nucleotide resolution with context lengths up to 1M tokens. 
+  Pretrained on the human reference genome. From Hazy Research at Stanford.
+arch: "Decoder-only Hyena operator stack (implicit long convolutions)"
+params: "~1.6M - 7B variants"
+license: "Apache 2.0"

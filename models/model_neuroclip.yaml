@@ -1,9 +1,12 @@
 model_id: neuroclip
 name: "NeuroCLIP"
-version: "0.9.0"
-type: multimodal
+version: "1.0.0"
 modality: ["fMRI", "images"]
-description: "Contrastive learning model aligning brain activity with visual stimuli"
-paper: "https://arxiv.org/abs/2305.00000"
+upstream_repo: "https://github.com/desa-lab/NeuroCLIP"
+paper: "https://arxiv.org/abs/2310.05737"
+notes: >
+  Contrastive learning model aligning brain activity (fMRI) with visual stimuli.
+  Enables brain-to-image retrieval and visual decoding from neural recordings.
+arch: "Dual-encoder CLIP-style architecture"
+params: "~150M"
 license: "MIT"
-

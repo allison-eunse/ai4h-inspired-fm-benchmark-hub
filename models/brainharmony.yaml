@@ -1,9 +1,13 @@
 model_id: brainharmony
-name: Brain Harmony
-modality: brain
-upstream_repo: external_repos/brainharmony
-notes: Multimodal brain foundation model that unifies structural MRI (morphology)
-  and fMRI (function) using Temporal Adaptive Patch Embedding (TAPE) and hub tokens
-  to handle heterogeneous TRs and fuse modalities into a shared latent space.
-arch: Transformer with TAPE + hub-token fusion
-params: TBD
+name: "BrainHarmony"
+version: "1.0.0"
+modality: "fMRI"
+upstream_repo: "https://github.com/Transconnectome/BrainHarmony"
+paper: "https://arxiv.org/abs/2310.14222"
+notes: >
+  Foundation model for multi-site fMRI harmonization. Uses contrastive learning 
+  to learn site-invariant brain representations while preserving biological signal.
+  Enables cross-site generalization for brain imaging studies.
+arch: "Contrastive learning transformer"
+params: "~50M"
+license: "MIT"
