@@ -1585,16 +1585,28 @@
 
 <h1 id="fm-benchmark-submission-guide">FM Benchmark Submission Guide</h1>
 <p>Welcome! This guide explains how to get your Foundation Model evaluated and added to our leaderboards.</p>
+<div class="admonition success">
+<p class="admonition-title">🔒 Privacy-Preserving Evaluation — AI4H Aligned</p>
+<p><strong>Your model code and weights stay on YOUR machine!</strong></p>
+<p>This submission process follows <a href="https://www.itu.int/pub/T-FG-AI4H">ITU/WHO FG-AI4H DEL3</a> principles:</p>
+<ul>
+<li>✅ You download the benchmark toolkit</li>
+<li>✅ You run evaluations locally  </li>
+<li>✅ You submit <strong>only metrics</strong> (eval.yaml)</li>
+<li>❌ You do NOT share model weights</li>
+<li>❌ You do NOT share model code</li>
+<li>❌ You do NOT share training data</li>
+</ul>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Curated Benchmark Hub</p>
 <p>This is a <strong>curated benchmark hub</strong>. All submissions are reviewed before being added to the leaderboards. We do not accept direct code contributions - only benchmark result submissions and protocol proposals.</p>
 </div>
 <h2 id="submission-process">Submission Process</h2>
-<div class="highlight"><pre><span></span><code>graph LR
+<pre class="mermaid"><code>graph LR
     A[Run Benchmarks Locally] --&gt; B[Open Issue with Results]
     B --&gt; C[Review by Maintainer]
-    C --&gt; D[Added to Leaderboard]
-</code></pre></div>
+    C --&gt; D[Added to Leaderboard]</code></pre>
 <h2 id="step-1-run-benchmarks-locally">Step 1: Run Benchmarks Locally</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 1. Clone and install</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git

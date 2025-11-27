@@ -484,6 +484,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#privacy-preserving-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 Privacy-Preserving Evaluation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Privacy-Preserving Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-gets-shared-vs-stays-private" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Gets Shared vs Stays Private
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#researcher-workflow-5-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Researcher Workflow (5 Minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#domain-focus" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1330,6 +1369,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#privacy-preserving-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 Privacy-Preserving Evaluation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Privacy-Preserving Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-gets-shared-vs-stays-private" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Gets Shared vs Stays Private
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#researcher-workflow-5-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Researcher Workflow (5 Minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#domain-focus" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1587,6 +1665,109 @@
 <li><strong>Robustness testing</strong> to assess model resilience to real-world perturbations</li>
 <li><strong>Downloadable evaluation tools</strong> for local testing and validation</li>
 </ul>
+<hr />
+<h2 id="privacy-preserving-evaluation">🔒 Privacy-Preserving Evaluation</h2>
+<div class="admonition success">
+<p class="admonition-title">Your Model Stays Private — AI4H DEL3 Aligned</p>
+<p><strong>You don't need to share your model to appear on our leaderboard!</strong></p>
+<p>Our framework follows the <a href="https://www.itu.int/pub/T-FG-AI4H">ITU/WHO FG-AI4H DEL3</a> principle of <strong>local evaluation with standardized result reporting</strong>.</p>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    subgraph YOUR_MACHINE["🔒 Your Machine (Private)"]
+        A[Download fmbench toolkit] --&gt; B[Wrap your model]
+        B --&gt; C[Run benchmarks locally]
+        C --&gt; D[Generate eval.yaml]
+    end
+
+    subgraph LEADERBOARD["🌐 Public Leaderboard"]
+        E[Review submission]
+        F[Add to rankings]
+    end
+
+    D --&gt;|"Submit metrics only&lt;br/&gt;❌ No weights&lt;br/&gt;❌ No code"| E
+    E --&gt; F</code></pre>
+<h3 id="what-gets-shared-vs-stays-private">What Gets Shared vs Stays Private</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Item</th>
+<th style="text-align: center;">Shared?</th>
+<th style="text-align: left;">Where it Lives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">📦 Benchmark toolkit</td>
+<td style="text-align: center;">✅ Public</td>
+<td style="text-align: left;">This GitHub repo</td>
+</tr>
+<tr>
+<td style="text-align: left;">📊 Test datasets</td>
+<td style="text-align: center;">✅ Public</td>
+<td style="text-align: left;"><code>toy_data/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">📈 Your metrics</td>
+<td style="text-align: center;">✅ Public</td>
+<td style="text-align: left;">Submitted <code>eval.yaml</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">🔐 <strong>Model weights</strong></td>
+<td style="text-align: center;">❌ <strong>Private</strong></td>
+<td style="text-align: left;">Your machine only</td>
+</tr>
+<tr>
+<td style="text-align: left;">💻 <strong>Model code</strong></td>
+<td style="text-align: center;">❌ <strong>Private</strong></td>
+<td style="text-align: left;">Your machine only</td>
+</tr>
+<tr>
+<td style="text-align: left;">🗃️ <strong>Training data</strong></td>
+<td style="text-align: center;">❌ <strong>Private</strong></td>
+<td style="text-align: left;">Your machine only</td>
+</tr>
+</tbody>
+</table>
+<h3 id="researcher-workflow-5-minutes">Researcher Workflow (5 Minutes)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Install the toolkit</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
+<span class="nb">cd</span><span class="w"> </span>ai4h-inspired-fm-benchmark-hub<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+
+<span class="c1"># 2. Generate test data</span>
+python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>generate-toy-data
+
+<span class="c1"># 3. Create a simple wrapper for YOUR model (stays on your machine!)</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>my_model.py<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">import numpy as np</span>
+
+<span class="s">class MyModelWrapper:</span>
+<span class="s">    def __init__(self):</span>
+<span class="s">        # Load YOUR private model here</span>
+<span class="s">        self.model = load_my_checkpoint(&quot;path/to/my/weights&quot;)</span>
+
+<span class="s">    def predict(self, X: np.ndarray) -&gt; np.ndarray:</span>
+<span class="s">        return self.model.predict(X)</span>
+
+<span class="s">    def predict_proba(self, X: np.ndarray) -&gt; np.ndarray:</span>
+<span class="s">        return self.model.predict_proba(X)</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 4. Create a config file</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>my_config.yaml<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">model_id: my_awesome_model</span>
+<span class="s">type: python_class</span>
+<span class="s">import_path: &quot;my_model:MyModelWrapper&quot;</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 5. Run benchmark LOCALLY</span>
+python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>run<span class="w"> </span>--suite<span class="w"> </span>SUITE-TOY-CLASS<span class="w"> </span>--model<span class="w"> </span>my_config.yaml<span class="w"> </span>--out<span class="w"> </span>results/
+
+<span class="c1"># 6. Submit ONLY the metrics via GitHub Issue</span>
+<span class="c1"># Your weights and code NEVER leave your machine!</span>
+</code></pre></div>
+<p><a class="md-button md-button--primary" href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md">📤 Submit Your Results</a>
+<a class="md-button" href="contributing/submission_guide/">📖 Full Submission Guide</a></p>
+<hr />
 <h2 id="domain-focus">🧬🧠 Domain Focus</h2>
 <h3 id="genomics">Genomics</h3>
 <ul>
