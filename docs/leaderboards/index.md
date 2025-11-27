@@ -58,16 +58,60 @@ Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all sub
 <details>
 <summary>📐 <strong>How are models scored?</strong></summary>
 
-**Ranking by:** `report_quality_score`
+---
 
-| Score | Rating | Meaning |
-|:---:|:---:|:---|
-| ≥0.90 | ⭐ Excellent | Clinical-ready |
-| 0.80-0.89 | ✅ Good | Needs validation |
-| 0.70-0.79 | 🔶 Fair | Research only |
-| <0.70 | 📈 Developing | Not recommended |
+### 🎯 Primary Metric: `report_quality_score`
 
-*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
+> Composite score of linguistic fluency + clinical accuracy (0.0-1.0)
+
+---
+
+### 📊 Metric Priority
+
+| Priority | Metric | What it measures |
+|:---:|:---|:---|
+| 1 | `report_quality_score` | Composite clinical + linguistic quality |
+| 2 | `clinical_accuracy` | Correctness of medical content |
+| 3 | `bertscore` | Semantic similarity |
+| 4 | `hallucination_rate` | Safety (lower = better) |
+
+---
+
+### 🏥 Clinical Readiness Tiers
+
+| Score | Tier | Deployment | Guidance |
+|:---:|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
+| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
+| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
+| < 0.70 | 📈 Developing | Development | Significant improvement needed |
+
+---
+
+### 📏 Ranking Rules
+
+1. Ranked by **primary metric** (higher = better)
+2. Ties broken by secondary metrics
+3. Best run per model used
+4. 4 decimal precision
+
+---
+
+### ⚖️ Fairness Analysis
+
+Models evaluated across:
+
+| Category | Strata |
+|:---|:---|
+| 👤 Demographics | Age, sex, ethnicity |
+| 🔬 Technical | Scanner, acquisition |
+| 🏥 Clinical | Disease stage, site |
+
+> ⚠️ Gaps >10% flagged for review
+
+---
+
+*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
 
 </details>
 
@@ -171,16 +215,60 @@ Expand sections below to see how models perform across different conditions:
 <details>
 <summary>📐 <strong>How are models scored?</strong></summary>
 
-**Ranking by:** `robustness_score`
+---
 
-| Score | Rating | Meaning |
-|:---:|:---:|:---|
-| ≥0.90 | ⭐ Excellent | Clinical-ready |
-| 0.80-0.89 | ✅ Good | Needs validation |
-| 0.70-0.79 | 🔶 Fair | Research only |
-| <0.70 | 📈 Developing | Not recommended |
+### 🎯 Primary Metric: `robustness_score`
 
-*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
+> Average performance retention under data perturbations (0.0-1.0)
+
+---
+
+### 📊 Metric Priority
+
+| Priority | Metric | What it measures |
+|:---:|:---|:---|
+| 1 | `robustness_score` | Overall perturbation resilience |
+| 2 | `dropout_rAUC` | Performance under missing data |
+| 3 | `noise_rAUC` | Performance under noise |
+| 4 | `perm_equivariance` | Input reordering consistency |
+
+---
+
+### 🏥 Clinical Readiness Tiers
+
+| Score | Tier | Deployment | Guidance |
+|:---:|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
+| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
+| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
+| < 0.70 | 📈 Developing | Development | Significant improvement needed |
+
+---
+
+### 📏 Ranking Rules
+
+1. Ranked by **primary metric** (higher = better)
+2. Ties broken by secondary metrics
+3. Best run per model used
+4. 4 decimal precision
+
+---
+
+### ⚖️ Fairness Analysis
+
+Models evaluated across:
+
+| Category | Strata |
+|:---|:---|
+| 👤 Demographics | Age, sex, ethnicity |
+| 🔬 Technical | Scanner, acquisition |
+| 🏥 Clinical | Disease stage, site |
+
+> ⚠️ Gaps >10% flagged for review
+
+---
+
+*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
 
 </details>
 
@@ -249,16 +337,60 @@ Expand sections below to see how models perform across different conditions:
 <details>
 <summary>📐 <strong>How are models scored?</strong></summary>
 
-**Ranking by:** `Accuracy`
+---
 
-| Score | Rating | Meaning |
-|:---:|:---:|:---|
-| ≥0.90 | ⭐ Excellent | Clinical-ready |
-| 0.80-0.89 | ✅ Good | Needs validation |
-| 0.70-0.79 | 🔶 Fair | Research only |
-| <0.70 | 📈 Developing | Not recommended |
+### 🎯 Primary Metric: `Accuracy`
 
-*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
+> Proportion of correct predictions (0.0-1.0)
+
+---
+
+### 📊 Metric Priority
+
+| Priority | Metric | What it measures |
+|:---:|:---|:---|
+| 1 | `AUROC` | Discrimination (best for imbalanced data) |
+| 2 | `Accuracy` | Overall correctness |
+| 3 | `F1-Score` | Precision-recall balance |
+| 4 | `Sensitivity` | True positive rate |
+
+---
+
+### 🏥 Clinical Readiness Tiers
+
+| Score | Tier | Deployment | Guidance |
+|:---:|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
+| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
+| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
+| < 0.70 | 📈 Developing | Development | Significant improvement needed |
+
+---
+
+### 📏 Ranking Rules
+
+1. Ranked by **primary metric** (higher = better)
+2. Ties broken by secondary metrics
+3. Best run per model used
+4. 4 decimal precision
+
+---
+
+### ⚖️ Fairness Analysis
+
+Models evaluated across:
+
+| Category | Strata |
+|:---|:---|
+| 👤 Demographics | Age, sex, ethnicity |
+| 🔬 Technical | Scanner, acquisition |
+| 🏥 Clinical | Disease stage, site |
+
+> ⚠️ Gaps >10% flagged for review
+
+---
+
+*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
 
 </details>
 
@@ -324,16 +456,60 @@ Expand sections below to see how models perform across different conditions:
 <details>
 <summary>📐 <strong>How are models scored?</strong></summary>
 
-**Ranking by:** `AUROC`
+---
 
-| Score | Rating | Meaning |
-|:---:|:---:|:---|
-| ≥0.90 | ⭐ Excellent | Clinical-ready |
-| 0.80-0.89 | ✅ Good | Needs validation |
-| 0.70-0.79 | 🔶 Fair | Research only |
-| <0.70 | 📈 Developing | Not recommended |
+### 🎯 Primary Metric: `AUROC`
 
-*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
+> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
+
+---
+
+### 📊 Metric Priority
+
+| Priority | Metric | What it measures |
+|:---:|:---|:---|
+| 1 | `AUROC` | Discrimination (best for imbalanced data) |
+| 2 | `Accuracy` | Overall correctness |
+| 3 | `F1-Score` | Precision-recall balance |
+| 4 | `Sensitivity` | True positive rate |
+
+---
+
+### 🏥 Clinical Readiness Tiers
+
+| Score | Tier | Deployment | Guidance |
+|:---:|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
+| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
+| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
+| < 0.70 | 📈 Developing | Development | Significant improvement needed |
+
+---
+
+### 📏 Ranking Rules
+
+1. Ranked by **primary metric** (higher = better)
+2. Ties broken by secondary metrics
+3. Best run per model used
+4. 4 decimal precision
+
+---
+
+### ⚖️ Fairness Analysis
+
+Models evaluated across:
+
+| Category | Strata |
+|:---|:---|
+| 👤 Demographics | Age, sex, ethnicity |
+| 🔬 Technical | Scanner, acquisition |
+| 🏥 Clinical | Disease stage, site |
+
+> ⚠️ Gaps >10% flagged for review
+
+---
+
+*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
 
 </details>
 
@@ -373,16 +549,60 @@ Expand sections below to see how models perform across different conditions:
 <details>
 <summary>📐 <strong>How are models scored?</strong></summary>
 
-**Ranking by:** `Correlation`
+---
 
-| Score | Rating | Meaning |
-|:---:|:---:|:---|
-| ≥0.90 | ⭐ Excellent | Clinical-ready |
-| 0.80-0.89 | ✅ Good | Needs validation |
-| 0.70-0.79 | 🔶 Fair | Research only |
-| <0.70 | 📈 Developing | Not recommended |
+### 🎯 Primary Metric: `Correlation`
 
-*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
+> Pearson correlation between predicted and actual values (-1 to 1)
+
+---
+
+### 📊 Metric Priority
+
+| Priority | Metric | What it measures |
+|:---:|:---|:---|
+| 1 | `AUROC` | Discrimination (best for imbalanced data) |
+| 2 | `Accuracy` | Overall correctness |
+| 3 | `F1-Score` | Precision-recall balance |
+| 4 | `Sensitivity` | True positive rate |
+
+---
+
+### 🏥 Clinical Readiness Tiers
+
+| Score | Tier | Deployment | Guidance |
+|:---:|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
+| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
+| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
+| < 0.70 | 📈 Developing | Development | Significant improvement needed |
+
+---
+
+### 📏 Ranking Rules
+
+1. Ranked by **primary metric** (higher = better)
+2. Ties broken by secondary metrics
+3. Best run per model used
+4. 4 decimal precision
+
+---
+
+### ⚖️ Fairness Analysis
+
+Models evaluated across:
+
+| Category | Strata |
+|:---|:---|
+| 👤 Demographics | Age, sex, ethnicity |
+| 🔬 Technical | Scanner, acquisition |
+| 🏥 Clinical | Disease stage, site |
+
+> ⚠️ Gaps >10% flagged for review
+
+---
+
+*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
 
 </details>
 
@@ -417,16 +637,60 @@ Expand sections below to see how models perform across different conditions:
 <details>
 <summary>📐 <strong>How are models scored?</strong></summary>
 
-**Ranking by:** `AUROC`
+---
 
-| Score | Rating | Meaning |
-|:---:|:---:|:---|
-| ≥0.90 | ⭐ Excellent | Clinical-ready |
-| 0.80-0.89 | ✅ Good | Needs validation |
-| 0.70-0.79 | 🔶 Fair | Research only |
-| <0.70 | 📈 Developing | Not recommended |
+### 🎯 Primary Metric: `AUROC`
 
-*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
+> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
+
+---
+
+### 📊 Metric Priority
+
+| Priority | Metric | What it measures |
+|:---:|:---|:---|
+| 1 | `AUROC` | Discrimination (best for imbalanced data) |
+| 2 | `Accuracy` | Overall correctness |
+| 3 | `F1-Score` | Precision-recall balance |
+| 4 | `Sensitivity` | True positive rate |
+
+---
+
+### 🏥 Clinical Readiness Tiers
+
+| Score | Tier | Deployment | Guidance |
+|:---:|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
+| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
+| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
+| < 0.70 | 📈 Developing | Development | Significant improvement needed |
+
+---
+
+### 📏 Ranking Rules
+
+1. Ranked by **primary metric** (higher = better)
+2. Ties broken by secondary metrics
+3. Best run per model used
+4. 4 decimal precision
+
+---
+
+### ⚖️ Fairness Analysis
+
+Models evaluated across:
+
+| Category | Strata |
+|:---|:---|
+| 👤 Demographics | Age, sex, ethnicity |
+| 🔬 Technical | Scanner, acquisition |
+| 🏥 Clinical | Disease stage, site |
+
+> ⚠️ Gaps >10% flagged for review
+
+---
+
+*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
 
 </details>
 
@@ -530,7 +794,7 @@ Expand sections below to see how models perform across different conditions:
 | 🥈 | **BrainLM** 🌟 | 0.9100 | ⭐ Excellent | hcp_1200 | 2024-01-15 |
 | 🥉 | **BrainBERT** ✨ | 0.8700 | ✅ Good | hcp_1200 | 2024-01-10 |
 | 🏅 | BrainMT | 0.8500 | ✅ Good | hcp_1200 | 2024-01-18 |
-| 🏅 | NeuroCLIP | 0.8300 | ✅ Good | hcp_1200 | 2024-01-05 |
+| 🏅 | NeuroClips | 0.8300 | ✅ Good | hcp_1200 | 2024-01-05 |
 
 
 #### 📖 Ranking Explanation
@@ -546,16 +810,60 @@ Expand sections below to see how models perform across different conditions:
 <details>
 <summary>📐 <strong>How are models scored?</strong></summary>
 
-**Ranking by:** `AUROC`
+---
 
-| Score | Rating | Meaning |
-|:---:|:---:|:---|
-| ≥0.90 | ⭐ Excellent | Clinical-ready |
-| 0.80-0.89 | ✅ Good | Needs validation |
-| 0.70-0.79 | 🔶 Fair | Research only |
-| <0.70 | 📈 Developing | Not recommended |
+### 🎯 Primary Metric: `AUROC`
 
-*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*
+> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
+
+---
+
+### 📊 Metric Priority
+
+| Priority | Metric | What it measures |
+|:---:|:---|:---|
+| 1 | `AUROC` | Discrimination (best for imbalanced data) |
+| 2 | `Accuracy` | Overall correctness |
+| 3 | `F1-Score` | Precision-recall balance |
+| 4 | `Sensitivity` | True positive rate |
+
+---
+
+### 🏥 Clinical Readiness Tiers
+
+| Score | Tier | Deployment | Guidance |
+|:---:|:---:|:---:|:---|
+| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
+| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
+| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
+| < 0.70 | 📈 Developing | Development | Significant improvement needed |
+
+---
+
+### 📏 Ranking Rules
+
+1. Ranked by **primary metric** (higher = better)
+2. Ties broken by secondary metrics
+3. Best run per model used
+4. 4 decimal precision
+
+---
+
+### ⚖️ Fairness Analysis
+
+Models evaluated across:
+
+| Category | Strata |
+|:---|:---|
+| 👤 Demographics | Age, sex, ethnicity |
+| 🔬 Technical | Scanner, acquisition |
+| 🏥 Clinical | Disease stage, site |
+
+> ⚠️ Gaps >10% flagged for review
+
+---
+
+*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
 
 </details>
 
@@ -568,7 +876,7 @@ Expand sections below to see how models perform across different conditions:
 | 🥈 ⭐ | BrainLM | **0.9100** | 0.8700 | 0.8600 | 0.8100 | 0.4200 |
 | 🥉 ✅ | BrainBERT | **0.8700** | 0.8200 | 0.8100 | 0.7600 | 0.5100 |
 | 🏅 ✅ | BrainMT | **0.8500** | 0.8100 | 0.8000 | 0.7400 | 0.5500 |
-| 🏅 ✅ | NeuroCLIP | **0.8300** | 0.7900 | 0.7800 | 0.7200 | 0.5800 |
+| 🏅 ✅ | NeuroClips | **0.8300** | 0.7900 | 0.7800 | 0.7200 | 0.5800 |
 
 !!! tip "Legend"
     📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
@@ -690,7 +998,7 @@ Expand sections below to see how models perform across different conditions:
 </details>
 
 <details>
-<summary>🔬 <strong>NeuroCLIP</strong> by Scanner</summary>
+<summary>🔬 <strong>NeuroClips</strong> by Scanner</summary>
 
 | Scanner | AUROC | Accuracy | F1-Score | N |
 |---|---|---|---|---|

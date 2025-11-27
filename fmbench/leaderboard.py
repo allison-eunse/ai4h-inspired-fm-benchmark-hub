@@ -253,22 +253,71 @@ def get_metric_explanation(metric: str) -> str:
 
 
 def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
-    """Generate a clean, readable explanation of scoring."""
+    """Generate comprehensive but well-organized scoring explanation."""
     md = "\n<details>\n<summary>📐 <strong>How are models scored?</strong></summary>\n\n"
     
-    # Simple metric explanation
-    md += f"**Ranking by:** `{primary_metric}`\n\n"
+    # Section 1: Primary Metric
+    md += "---\n\n"
+    md += f"### 🎯 Primary Metric: `{primary_metric}`\n\n"
+    md += f"> {get_metric_explanation(primary_metric)}\n\n"
     
-    # Score tiers - simple visual table
-    md += "| Score | Rating | Meaning |\n"
-    md += "|:---:|:---:|:---|\n"
-    md += "| ≥0.90 | ⭐ Excellent | Clinical-ready |\n"
-    md += "| 0.80-0.89 | ✅ Good | Needs validation |\n"
-    md += "| 0.70-0.79 | 🔶 Fair | Research only |\n"
-    md += "| <0.70 | 📈 Developing | Not recommended |\n\n"
+    # Section 2: Metric Priority (task-specific)
+    md += "---\n\n"
+    md += "### 📊 Metric Priority\n\n"
+    if "generation" in ai_task.lower():
+        md += "| Priority | Metric | What it measures |\n"
+        md += "|:---:|:---|:---|\n"
+        md += "| 1 | `report_quality_score` | Composite clinical + linguistic quality |\n"
+        md += "| 2 | `clinical_accuracy` | Correctness of medical content |\n"
+        md += "| 3 | `bertscore` | Semantic similarity |\n"
+        md += "| 4 | `hallucination_rate` | Safety (lower = better) |\n\n"
+    elif "robustness" in ai_task.lower():
+        md += "| Priority | Metric | What it measures |\n"
+        md += "|:---:|:---|:---|\n"
+        md += "| 1 | `robustness_score` | Overall perturbation resilience |\n"
+        md += "| 2 | `dropout_rAUC` | Performance under missing data |\n"
+        md += "| 3 | `noise_rAUC` | Performance under noise |\n"
+        md += "| 4 | `perm_equivariance` | Input reordering consistency |\n\n"
+    else:
+        md += "| Priority | Metric | What it measures |\n"
+        md += "|:---:|:---|:---|\n"
+        md += "| 1 | `AUROC` | Discrimination (best for imbalanced data) |\n"
+        md += "| 2 | `Accuracy` | Overall correctness |\n"
+        md += "| 3 | `F1-Score` | Precision-recall balance |\n"
+        md += "| 4 | `Sensitivity` | True positive rate |\n\n"
     
-    # Brief rules
-    md += "*Aligned with [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) standards (DEL3).*\n\n"
+    # Section 3: Score Interpretation
+    md += "---\n\n"
+    md += "### 🏥 Clinical Readiness Tiers\n\n"
+    md += "| Score | Tier | Deployment | Guidance |\n"
+    md += "|:---:|:---:|:---:|:---|\n"
+    md += "| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |\n"
+    md += "| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |\n"
+    md += "| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |\n"
+    md += "| < 0.70 | 📈 Developing | Development | Significant improvement needed |\n\n"
+    
+    # Section 4: Ranking Rules
+    md += "---\n\n"
+    md += "### 📏 Ranking Rules\n\n"
+    md += "1. Ranked by **primary metric** (higher = better)\n"
+    md += "2. Ties broken by secondary metrics\n"
+    md += "3. Best run per model used\n"
+    md += "4. 4 decimal precision\n\n"
+    
+    # Section 5: Fairness
+    md += "---\n\n"
+    md += "### ⚖️ Fairness Analysis\n\n"
+    md += "Models evaluated across:\n\n"
+    md += "| Category | Strata |\n"
+    md += "|:---|:---|\n"
+    md += "| 👤 Demographics | Age, sex, ethnicity |\n"
+    md += "| 🔬 Technical | Scanner, acquisition |\n"
+    md += "| 🏥 Clinical | Disease stage, site |\n\n"
+    md += "> ⚠️ Gaps >10% flagged for review\n\n"
+    
+    # Footer
+    md += "---\n\n"
+    md += "*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*\n\n"
     
     md += "</details>\n\n"
     
