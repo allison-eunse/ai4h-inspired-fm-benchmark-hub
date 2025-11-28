@@ -32,11 +32,11 @@ theme:
     - navigation.top
     - navigation.tracking
     - navigation.instant
-    - navigation.indexes
+    - navigation.expand
+    - toc.integrate    # Move TOC to left sidebar
     - content.code.copy
     - search.suggest
     - search.highlight
-    - toc.integrate  # Integrate TOC into left nav instead of separate right panel
 
   icon:
     repo: fontawesome/brands/github
