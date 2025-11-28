@@ -1,5 +1,62 @@
 /* Extra CSS for AI4H-Inspired FM Benchmarks Documentation */
 
+/* ============================================
+   LAYOUT: Navigation on RIGHT, Content WIDER
+   ============================================ */
+
+/* Hide the right-side TOC completely (we use tabs for navigation) */
+.md-sidebar--secondary {
+    display: none !important;
+}
+
+/* Move left navigation to right side */
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        left: auto !important;
+        right: 0 !important;
+        order: 2;
+    }
+    
+    /* Expand main content to take full width minus nav */
+    .md-content {
+        margin-left: 0 !important;
+        margin-right: 12.1rem;
+        max-width: none;
+    }
+    
+    /* Adjust main container */
+    .md-main__inner {
+        flex-direction: row-reverse;
+    }
+    
+    /* Make content area wider */
+    .md-content__inner {
+        max-width: 65rem;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+}
+
+/* Tablet: Stack normally but hide TOC */
+@media screen and (min-width: 60em) and (max-width: 76.25em) {
+    .md-content__inner {
+        max-width: 55rem;
+        margin: 0 auto;
+    }
+}
+
+/* Mobile: Full width content */
+@media screen and (max-width: 60em) {
+    .md-content__inner {
+        padding: 0 1rem;
+        max-width: 100%;
+    }
+}
+
+/* ============================================
+   END LAYOUT CHANGES
+   ============================================ */
+
 /* Enhance code blocks */
 .highlight {
     border-radius: 4px;
