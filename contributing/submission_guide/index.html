@@ -588,46 +588,41 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#submission-process" class="md-nav__link">
+  <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Submission Process
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-use-the-cli-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Use the CLI (Recommended)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-run-benchmarks-locally" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#option-2-manual-yaml-submission" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Run Benchmarks Locally
+        Option 2: Manual YAML Submission
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-submit-via-issue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Submit via Issue
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-review-addition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3: Review &amp; Addition
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -705,10 +700,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-submit-via-issue" class="md-nav__link">
+  <a href="#4-submit-via-pull-request" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Submit via Issue
+        4. Submit via Pull Request
       
     </span>
   </a>
@@ -804,10 +799,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#submission-checklist" class="md-nav__link">
+  <a href="#pr-checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Submission Checklist
+        PR Checklist
       
     </span>
   </a>
@@ -1330,30 +1325,9 @@
 
 
 <h1 id="fm-benchmark-submission-guide">FM Benchmark Submission Guide</h1>
-<p>Welcome! This guide explains how to get your Foundation Model evaluated and added to our leaderboards.</p>
-<div class="admonition success">
-<p class="admonition-title">🔒 Privacy-Preserving Evaluation — AI4H Aligned</p>
-<p><strong>Your model code and weights stay on YOUR machine!</strong></p>
-<p>This submission process follows <a href="https://www.itu.int/pub/T-FG-AI4H">ITU/WHO FG-AI4H DEL3</a> principles:</p>
-<ul>
-<li>✅ You download the benchmark toolkit</li>
-<li>✅ You run evaluations locally  </li>
-<li>✅ You submit <strong>only metrics</strong> (eval.yaml)</li>
-<li>❌ You do NOT share model weights</li>
-<li>❌ You do NOT share model code</li>
-<li>❌ You do NOT share training data</li>
-</ul>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Curated Benchmark Hub</p>
-<p>This is a <strong>curated benchmark hub</strong>. All submissions are reviewed before being added to the leaderboards. We do not accept direct code contributions - only benchmark result submissions and protocol proposals.</p>
-</div>
-<h2 id="submission-process">Submission Process</h2>
-<pre class="mermaid"><code>graph LR
-    A[Run Benchmarks Locally] --&gt; B[Open Issue with Results]
-    B --&gt; C[Review by Maintainer]
-    C --&gt; D[Added to Leaderboard]</code></pre>
-<h2 id="step-1-run-benchmarks-locally">Step 1: Run Benchmarks Locally</h2>
+<p>Welcome! This guide explains how to submit your Foundation Model's evaluation results to the leaderboard.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="option-1-use-the-cli-recommended">Option 1: Use the CLI (Recommended)</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 1. Clone and install</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
 <span class="nb">cd</span><span class="w"> </span>ai4h-inspired-fm-benchmark-hub
@@ -1367,19 +1341,11 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 <span class="w">    </span>--suite<span class="w"> </span>SUITE-TOY-CLASS<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--model<span class="w"> </span>path/to/your_model_config.yaml<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--out<span class="w"> </span>results/my_model_run
+
+<span class="c1"># 4. Submit via Pull Request (see below)</span>
 </code></pre></div>
-<h2 id="step-2-submit-via-issue">Step 2: Submit via Issue</h2>
-<p><strong>Do NOT open a Pull Request.</strong> Instead:</p>
-<ol>
-<li>Go to <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md"><strong>New Issue → 📊 Benchmark Submission</strong></a></li>
-<li>Fill out the template with your results</li>
-<li>Wait for review</li>
-</ol>
-<h2 id="step-3-review-addition">Step 3: Review &amp; Addition</h2>
-<p>We will review your submission and:
-- Verify the results format
-- Add your model to the leaderboard
-- Notify you when it's live</p>
+<h3 id="option-2-manual-yaml-submission">Option 2: Manual YAML Submission</h3>
+<p>Create evaluation YAML files manually and submit via PR.</p>
 <hr />
 <h2 id="step-by-step-guide">Step-by-Step Guide</h2>
 <h3 id="1-create-your-model-configuration">1. Create Your Model Configuration</h3>
@@ -1420,12 +1386,14 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 ├── eval.yaml      # Evaluation record (submit this!)
 └── report.md      # Human-readable report
 </code></pre></div>
-<h3 id="4-submit-via-issue">4. Submit via Issue</h3>
+<h3 id="4-submit-via-pull-request">4. Submit via Pull Request</h3>
 <ol>
-<li>Go to <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md"><strong>Issues → New Issue → 📊 Benchmark Submission</strong></a></li>
-<li>Paste your <code>eval.yaml</code> contents in the issue</li>
-<li>Attach any supporting files (model config, etc.)</li>
-<li>The maintainer will review and add your results to the leaderboard</li>
+<li><strong>Fork</strong> the repository</li>
+<li><strong>Add</strong> your files:</li>
+<li><code>configs/model_your_model.yaml</code> - Model configuration</li>
+<li><code>evals/YOUR_EVAL_ID.yaml</code> - Evaluation results</li>
+<li>(Optional) <code>models/your_model.yaml</code> - Detailed model metadata</li>
+<li><strong>Create PR</strong> with title: <code>[Submission] Your Model Name - Benchmark Name</code></li>
 </ol>
 <hr />
 <h2 id="evaluation-yaml-format">Evaluation YAML Format</h2>
@@ -1606,8 +1574,8 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 <span class="w">  </span><span class="nt">expression_rAUC</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.81</span>
 </code></pre></div>
 <hr />
-<h2 id="submission-checklist">Submission Checklist</h2>
-<p>Before submitting your issue, ensure:</p>
+<h2 id="pr-checklist">PR Checklist</h2>
+<p>Before submitting, ensure:</p>
 <ul>
 <li>[ ] Model config YAML is valid</li>
 <li>[ ] Eval YAML has correct <code>benchmark_id</code></li>
@@ -1617,8 +1585,11 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 </ul>
 <hr />
 <h2 id="questions">Questions?</h2>
-<p>Open an <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new">Issue</a> with your question.</p>
-<p>Thank you for your interest in FM benchmarking! 🎉</p>
+<ul>
+<li>Open an <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues">Issue</a></li>
+<li>Check existing <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions">Discussions</a></li>
+</ul>
+<p>Thank you for contributing to open FM benchmarking! 🎉</p>
 
 
 
