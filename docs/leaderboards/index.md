@@ -1,1110 +1,528 @@
 # 🏆 Foundation Model Leaderboards
 
-!!! success "Benchmark Hub Stats"
-    🎯 **7** Benchmarks | 🤖 **21** Models Evaluated | 📊 **38** Total Evaluations
+!!! success "Benchmark Hub Overview"
+    📊 **7** Benchmarks | 🤖 **21** Models | 📈 **38** Evaluations
 
-Welcome to the **AI4H-Inspired FM Benchmark Hub**! Rankings below show **all submitted models** from best to developing, helping you find the right model for your use case.
 
-## 🧭 Quick Navigation
+> **What is this?** This page ranks AI models for healthcare applications. 
+> Higher-ranked models perform better on standardized tests.
+> 
+> **How to read it:** Each table shows models from best (🥇) to developing (📈).
+> Click "How are scores calculated?" for details on what the numbers mean.
 
-- [🌐 Cross-Domain](#cross-domain)
+## 🧭 Jump To
+
+- [🌐 Overall Rankings](#-overall-rankings-all-modalities) — Best across all categories
 - [🧬 Genomics](#genomics)
-- [🧠 Neurology](#neurology)
+- [🧠 Brain Imaging (MRI/fMRI)](#brain-imaging-mrifmri)
 
 ---
 
-## 🌐 Cross-Domain
+## 🌐 Overall Rankings (All Modalities)
 
-### 🌐 Clinical Report Generation Quality
+*Best score per model across all benchmarks*
 
-✍️ **Task**: Generation | 🏥 **Health Topic**: Automated Clinical Reporting
+| Rank | Model | Best Score | Benchmark | Modality |
+|:---:|:---|:---:|:---|:---|
+| 🥇 | **geneformer** 👑 | 0.9995 | Foundation Model Robustne | 📊 Other |
+| 🥈 | **Brain-JEPA** | 0.9350 | Alzheimer's Disease Class | 🧠 Brain Imaging ( |
+| 🥉 | **Evo 2** | 0.9250 | Cell Type Annotation | 🧬 Genomics |
+| 🏅 | UNI | 0.9200 | Alzheimer's Disease Class | 🧠 Brain Imaging ( |
+| 🏅 | Geneformer | 0.9100 | Cell Type Annotation | 🧬 Genomics |
+| 🎖️ | BrainLM | 0.9100 | fMRI Foundation Model Ben | 🧠 Brain Imaging ( |
+| 🎖️ | SWIFT | 0.8950 | Cell Type Annotation | 🧬 Genomics |
+| 🎖️ | Caduceus | 0.8850 | Cell Type Annotation | 🧬 Genomics |
+| 🎖️ | Me-LLaMA | 0.8750 | Clinical Report Generatio | 🧬 Genomics |
+| 🎖️ | BrainBERT | 0.8700 | fMRI Foundation Model Ben | 🧠 Brain Imaging ( |
+| #11 | HyenaDNA | 0.8700 | Cell Type Annotation | 🧬 Genomics |
+| #12 | M3FM | 0.8600 | Clinical Report Generatio | 🧬 Genomics |
+| #13 | DNABERT-2 | 0.8500 | Cell Type Annotation | 🧬 Genomics |
+| #14 | BrainMT | 0.8500 | fMRI Foundation Model Ben | 🧠 Brain Imaging ( |
+| #15 | BrainHarmony | 0.8450 | Foundation Model Robustne | 📊 Other |
+| #16 | OpenFlamingo | 0.8400 | Clinical Report Generatio | 🧬 Genomics |
+| #17 | NeuroClips | 0.8300 | fMRI Foundation Model Ben | 🧠 Brain Imaging ( |
+| #18 | TITAN | 0.8100 | Clinical Report Generatio | 🧬 Genomics |
+| #19 | Baseline (Random/Majority) | 0.7810 | Foundation Model Robustne | 📊 Other |
+| #20 | Med-Flamingo | 0.7800 | Clinical Report Generatio | 🧬 Genomics |
+| #21 | RadBERT | 0.6900 | Clinical Report Generatio | 🧬 Genomics |
 
-!!! info "Clinical Relevance"
-    Foundation models increasingly generate clinical reports, radiology  interpretations, and patient summaries. Quality metrics must capture both linguistic fluency and clinical accuracy/safety.
-
-
-#### 🏆 Leaderboard
-
-```
-         🥇          
-     [Me-LLaMA]    
-    ┌─────────┐     
- 🥈 │         │ 🥉  
-[M3FM]│         │[OpenFlamin]
-────┴─────────┴────
-```
-
-**All 6 models ranked by report_quality_score:**
-
-| Rank | Model | Score | Performance | Dataset | Date |
-| :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Me-LLaMA** 👑 | 0.8750 |  | mimic_cxr_reports | 2024-02-05 |
-| 🥈 | **M3FM** 🌟 | 0.8600 |  | mimic_cxr_reports | 2024-01-28 |
-| 🥉 | **OpenFlamingo** ✨ | 0.8400 |  | mimic_cxr_reports | 2024-01-20 |
-| 🏅 | TITAN | 0.8100 |  | mimic_cxr_reports | 2024-01-25 |
-| 🏅 | Med-Flamingo | 0.7800 |  | mimic_cxr_reports | 2024-01-18 |
-| 🎖️ | RadBERT | 0.6900 |  | mimic_cxr_reports | 2024-01-12 |
-
-
-#### 📖 Ranking Explanation
-
-!!! abstract "Why These Rankings?"
-    **🥇 Me-LLaMA** leads with report_quality_score=0.8750
-
-    - Gap to 🥈 **M3FM**: +0.0150 (1.7% better)
-    - Score range across all models: 0.1850
-
-
-<details>
-<summary>📐 <strong>How are models scored?</strong></summary>
+!!! abstract "Performance Distribution"
+    ⭐ 6 Excellent | ✅ 12 Good | 🔶 2 Fair | 📈 1 Developing
 
 ---
-
-### 🎯 Primary Metric: `report_quality_score`
-
-> Composite score of linguistic fluency + clinical accuracy (0.0-1.0)
-
----
-
-### 📊 Metric Priority
-
-| Priority | Metric | What it measures |
-|:---:|:---|:---|
-| 1 | `report_quality_score` | Composite clinical + linguistic quality |
-| 2 | `clinical_accuracy` | Correctness of medical content |
-| 3 | `bertscore` | Semantic similarity |
-| 4 | `hallucination_rate` | Safety (lower = better) |
-
----
-
-### 🏥 Clinical Readiness Tiers
-
-| Score | Tier | Deployment | Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
-| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
-| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
-| < 0.70 | 📈 Developing | Development | Significant improvement needed |
-
----
-
-### 📏 Ranking Rules
-
-1. Ranked by **primary metric** (higher = better)
-2. Ties broken by secondary metrics
-3. Best run per model used
-4. 4 decimal precision
-
----
-
-### ⚖️ Fairness Analysis
-
-Models evaluated across:
-
-| Category | Strata |
-|:---|:---|
-| 👤 Demographics | Age, sex, ethnicity |
-| 🔬 Technical | Scanner, acquisition |
-| 🏥 Clinical | Disease stage, site |
-
-> ⚠️ Gaps >10% flagged for review
-
----
-
-*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
-
-</details>
-
-
-#### 📋 Complete Metrics Comparison
-
-| Rank | Model | report_quality_score | clinical_accuracy | bertscore | bleu | finding_recall | hallucination_rate | finding_precision | flesch_kincaid |
-|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 🥇  | Me-LLaMA | **0.8750** | 0.9200 | 0.9000 | 43.5000 | 0.8800 | 0.0400 | 0.9300 | 9.5000 |
-| 🥈  | M3FM | **0.8600** | 0.9100 | 0.8900 | 41.2000 | 0.8700 | 0.0450 | 0.9200 | 9.8000 |
-| 🥉  | OpenFlamingo | **0.8400** | 0.8900 | 0.8700 | 38.5000 | 0.8500 | 0.0600 | 0.9100 | 10.2000 |
-| 🏅  | TITAN | **0.8100** | 0.8600 | 0.8500 | 35.2000 | 0.8200 | 0.0700 | 0.8800 | 10.8000 |
-| 🏅  | Med-Flamingo | **0.7800** | 0.8200 | 0.8200 | 32.5000 | 0.7900 | 0.0900 | 0.8500 | 11.5000 |
-| 🎖️  | RadBERT | **0.6900** | 0.7200 | 0.7400 | 24.2000 | 0.6800 | 0.1500 | 0.7500 | 13.2000 |
-
-!!! tip "Legend"
-    📊 **Primary metric**: report_quality_score (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
-
-#### 📊 Granular Performance Breakdown
-
-Expand sections below to see how models perform across different conditions:
-
-
-<details>
-<summary>📄 <strong>OpenFlamingo</strong> by Report Type</summary>
-
-| Report Type | clinical_accuracy | finding_recall | bertscore | N |
-|---|---|---|---|---|
-| 🥇 chest_xray | 0.9100 | 0.8700 | 0.8800 | 2000 |
-| 🥈 brain_mri | 0.8800 | 0.8400 | 0.8600 | 600 |
-| ct_abdomen | 0.8600 | 0.8200 | 0.8500 | 800 |
-
-</details>
-
-<details>
-<summary>📊 <strong>OpenFlamingo</strong> by Complexity</summary>
-
-| Complexity | clinical_accuracy | hallucination_rate | N |
-|---|---|---|---|
-| 🥇 simple | 0.9400 | 0.0300 | 1500 |
-| 🥈 moderate | 0.8800 | 0.0600 | 1200 |
-| complex | 0.8200 | 0.1000 | 700 |
-
-</details>
-
-<details>
-<summary>📄 <strong>Med-Flamingo</strong> by Report Type</summary>
-
-| Report Type | clinical_accuracy | finding_recall | bertscore | N |
-|---|---|---|---|---|
-| 🥇 chest_xray | 0.8500 | 0.8100 | 0.8300 | 2000 |
-| 🥈 brain_mri | 0.8000 | 0.7600 | 0.8000 | 600 |
-| ct_abdomen | 0.7800 | 0.7400 | 0.7900 | 800 |
-
-</details>
-
----
-*Ranked by **report_quality_score** (higher is better). Last updated from 6 evaluation(s).*
-
-### 🌐 Foundation Model Robustness Evaluation
-
-🛡️ **Task**: Robustness Assessment | 🏥 **Health Topic**: Model Reliability and Artifact Resilience
-
-!!! info "Clinical Relevance"
-    Clinical deployment of AI models requires robustness to real-world data variability including sensor noise, signal artifacts, and acquisition differences. This benchmark evaluates model stability under controlled perturbations that simulate common data quality issues.
-
-
-#### 🏆 Leaderboard
-
-```
-         🥇          
-     [geneformer]    
-    ┌─────────┐     
- 🥈 │         │ 🥉  
-[Brain-JEPA]│         │[BrainHarmo]
-────┴─────────┴────
-```
-
-**All 7 models ranked by robustness_score:**
-
-| Rank | Model | Score | Performance | Dataset | Date |
-| :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **geneformer** 👑 | 0.9995 | ⭐ Excellent | - | 2025-11-27 |
-| 🥈 | **Brain-JEPA** 🌟 | 0.8650 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-20 |
-| 🥉 | **BrainHarmony** ✨ | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-18 |
-| 🏅 | Geneformer | 0.8350 | ✅ Good | DS-TOY-GENOMICS | 2024-01-10 |
-| 🏅 | BrainLM | 0.8250 | ✅ Good | DS-TOY-NEURO-ROBUSTNESS | 2024-01-16 |
-| 🎖️ | HyenaDNA | 0.7950 | 🔶 Fair | DS-TOY-GENOMICS | 2024-01-12 |
-| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | - | 2025-11-27 |
-
-
-#### 📖 Ranking Explanation
-
-!!! abstract "Why These Rankings?"
-    **🥇 geneformer** leads with robustness_score=0.9995
-
-    - Gap to 🥈 **Brain-JEPA**: +0.1345 (15.5% better)
-    - Score range across all models: 0.2185
-    - Performance distribution: ⭐ 1 excellent, ✅ 4 good, 🔶 2 fair
-
-
-<details>
-<summary>📐 <strong>How are models scored?</strong></summary>
-
----
-
-### 🎯 Primary Metric: `robustness_score`
-
-> Average performance retention under data perturbations (0.0-1.0)
-
----
-
-### 📊 Metric Priority
-
-| Priority | Metric | What it measures |
-|:---:|:---|:---|
-| 1 | `robustness_score` | Overall perturbation resilience |
-| 2 | `dropout_rAUC` | Performance under missing data |
-| 3 | `noise_rAUC` | Performance under noise |
-| 4 | `perm_equivariance` | Input reordering consistency |
-
----
-
-### 🏥 Clinical Readiness Tiers
-
-| Score | Tier | Deployment | Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
-| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
-| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
-| < 0.70 | 📈 Developing | Development | Significant improvement needed |
-
----
-
-### 📏 Ranking Rules
-
-1. Ranked by **primary metric** (higher = better)
-2. Ties broken by secondary metrics
-3. Best run per model used
-4. 4 decimal precision
-
----
-
-### ⚖️ Fairness Analysis
-
-Models evaluated across:
-
-| Category | Strata |
-|:---|:---|
-| 👤 Demographics | Age, sex, ethnicity |
-| 🔬 Technical | Scanner, acquisition |
-| 🏥 Clinical | Disease stage, site |
-
-> ⚠️ Gaps >10% flagged for review
-
----
-
-*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
-
-</details>
-
-
-#### 📋 Complete Metrics Comparison
-
-| Rank | Model | robustness_score | dropout_rAUC | expression_rAUC | line_noise_rAUC | masking_rAUC | noise_rAUC | perm_equivariance | shift_rAUC |
-|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 🥇 ⭐ | geneformer | **0.9995** | 0.9995 | - | 0.9995 | - | 0.9995 | 0.9995 | 0.9995 |
-| 🥈 ✅ | Brain-JEPA | **0.8650** | 0.8800 | - | 0.8400 | - | 0.8500 | 0.8900 | 0.8650 |
-| 🥉 ✅ | BrainHarmony | **0.8450** | 0.8600 | - | 0.8200 | - | 0.8300 | 0.8700 | 0.8450 |
-| 🏅 ✅ | Geneformer | **0.8350** | 0.8500 | 0.8100 | - | 0.8600 | 0.8200 | 0.8350 | - |
-| 🏅 ✅ | BrainLM | **0.8250** | 0.8400 | - | 0.8000 | - | 0.8100 | 0.8500 | 0.8250 |
-| 🎖️ 🔶 | HyenaDNA | **0.7950** | 0.8100 | 0.7700 | - | 0.8200 | 0.7800 | 0.8000 | - |
-| 🎖️ 🔶 | Baseline (Random/Majority) | **0.7810** | 0.7760 | - | 0.7737 | - | 0.7867 | 0.7819 | 0.7874 |
-
-!!! tip "Legend"
-    📊 **Primary metric**: robustness_score (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
-
----
-*Ranked by **robustness_score** (higher is better). Last updated from 11 evaluation(s).*
 
 ## 🧬 Genomics
 
-### 🧬 Cell Type Annotation
+### 🎯 Classification
 
-🎯 **Task**: Classification | 🏥 **Health Topic**: Single-cell Transcriptomics
+#### Cell Type Annotation
 
 *Predicting cell types from single-cell RNA-seq data.*
 
-!!! info "Clinical Relevance"
-    Automated characterization of immune cell populations.
 
-#### 🏆 Leaderboard
+<div align="center">
 
 ```
-         🥇          
-     [Evo 2]    
-    ┌─────────┐     
- 🥈 │         │ 🥉  
-[Geneformer]│         │[SWIFT]
-────┴─────────┴────
+                    🏆                    
+                                          
+              🥇   Evo 2                 
+                 (0.925)                 
+             ╔═══════════════╗             
+             ║               ║             
+   🥈 Geneformer   ║               ║   🥉   SWIFT      
+      (0.910)      ║               ║      (0.895)      
+  ╔═══════════╝               ╚═══════════╗  
+  ║                                       ║  
+══╩═══════════════════════════════════════╩══
 ```
 
-**All 6 models ranked by Accuracy:**
+</div>
 
-| Rank | Model | Score | Performance | Dataset | Date |
-| :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Evo 2** 👑 | 0.9250 | ⭐ Excellent | PBMC 68k | 2024-02-01 |
-| 🥈 | **Geneformer** 🌟 | 0.9100 | ⭐ Excellent | PBMC 68k | 2023-11-01 |
-| 🥉 | **SWIFT** ✨ | 0.8950 | ✅ Good | PBMC 68k | 2024-01-15 |
-| 🏅 | Caduceus | 0.8850 | ✅ Good | PBMC 68k | 2024-01-12 |
-| 🏅 | HyenaDNA | 0.8700 | ✅ Good | PBMC 68k | 2024-01-08 |
-| 🎖️ | DNABERT-2 | 0.8500 | ✅ Good | PBMC 68k | 2024-01-05 |
+**6 models ranked by `Accuracy`:**
 
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **Evo 2** 👑 | 0.9250 | ⭐ Excellent | PBMC 68k, 2024-02-01 |
+| 🥈 | **Geneformer** | 0.9100 | ⭐ Excellent | PBMC 68k, 2023-11-01 |
+| 🥉 | **SWIFT** | 0.8950 | ✅ Good | PBMC 68k, 2024-01-15 |
+| 🏅 | Caduceus | 0.8850 | ✅ Good | PBMC 68k, 2024-01-12 |
+| 🏅 | HyenaDNA | 0.8700 | ✅ Good | PBMC 68k, 2024-01-08 |
+| 🎖️ | DNABERT-2 | 0.8500 | ✅ Good | PBMC 68k, 2024-01-05 |
 
-#### 📖 Ranking Explanation
+!!! tip "Quick Comparison"
+    **🥇 Evo 2** leads with Accuracy = **0.9250**
 
-!!! abstract "Why These Rankings?"
-    **🥇 Evo 2** leads with Accuracy=0.9250
-
-    - Gap to 🥈 **Geneformer**: +0.0150 (1.6% better)
-    - Score range across all models: 0.0750
-    - Performance distribution: ⭐ 2 excellent, ✅ 4 good
+    - Gap to 🥈 Geneformer: +0.0150
+    - Score spread (best to worst): 0.0750
 
 
 <details>
-<summary>📐 <strong>How are models scored?</strong></summary>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
 
 ---
 
-### 🎯 Primary Metric: `Accuracy`
+### 🎯 What We Measure: `Accuracy`
 
-> Proportion of correct predictions (0.0-1.0)
-
----
-
-### 📊 Metric Priority
-
-| Priority | Metric | What it measures |
-|:---:|:---|:---|
-| 1 | `AUROC` | Discrimination (best for imbalanced data) |
-| 2 | `Accuracy` | Overall correctness |
-| 3 | `F1-Score` | Precision-recall balance |
-| 4 | `Sensitivity` | True positive rate |
+> **Accuracy**
+>
+> Percentage of correct predictions
+>
+> 📏 Range: 0% → 100% (or 0.0 → 1.0)
 
 ---
 
-### 🏥 Clinical Readiness Tiers
+### 📊 What Do Scores Mean?
 
-| Score | Tier | Deployment | Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
-| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
-| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
-| < 0.70 | 📈 Developing | Development | Significant improvement needed |
-
----
-
-### 📏 Ranking Rules
-
-1. Ranked by **primary metric** (higher = better)
-2. Ties broken by secondary metrics
-3. Best run per model used
-4. 4 decimal precision
+| Score | Rating | What It Means |
+|:---:|:---:|:---|
+| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
+| **0.80-0.89** | ✅ Good | Promising, needs more testing |
+| **0.70-0.79** | 🔶 Fair | Research use only |
+| **< 0.70** | 📈 Developing | Needs more work |
 
 ---
 
-### ⚖️ Fairness Analysis
+### 📏 How We Rank
 
-Models evaluated across:
-
-| Category | Strata |
-|:---|:---|
-| 👤 Demographics | Age, sex, ethnicity |
-| 🔬 Technical | Scanner, acquisition |
-| 🏥 Clinical | Disease stage, site |
-
-> ⚠️ Gaps >10% flagged for review
+1. **Higher score = Better ranking** (except for error metrics)
+2. If scores tie, we look at secondary metrics
+3. Only the best run from each model counts
 
 ---
 
-*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
+!!! info "Standards Alignment"
+    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
 
 </details>
 
-
-#### 📋 Complete Metrics Comparison
-
-| Rank | Model | Accuracy | F1-Score |
-|:---:|:---|:---:|:---:|
-| 🥇 ⭐ | Evo 2 | **0.9250** | 0.8900 |
-| 🥈 ⭐ | Geneformer | **0.9100** | 0.8500 |
-| 🥉 ✅ | SWIFT | **0.8950** | 0.8550 |
-| 🏅 ✅ | Caduceus | **0.8850** | 0.8400 |
-| 🏅 ✅ | HyenaDNA | **0.8700** | 0.8200 |
-| 🎖️ ✅ | DNABERT-2 | **0.8500** | 0.8000 |
-
-!!! tip "Legend"
-    📊 **Primary metric**: Accuracy (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
-
 ---
-*Ranked by **Accuracy** (higher is better). Last updated from 6 evaluation(s).*
 
-## 🧠 Neurology
+### ✍️ Generation
 
-### 🧠 Alzheimer's Disease Classification using Brain MRI
+#### Clinical Report Generation Quality
 
-🎯 **Task**: Classification | 🏥 **Health Topic**: Alzheimer's Disease
 
-*Binary classification of AD vs CN using structural MRI data.*
-
-!!! info "Clinical Relevance"
-    Automated screening for AD to assist radiological workflow.
-
-#### 🏆 Leaderboard
+<div align="center">
 
 ```
-         🥇          
-     [Brain-JEPA]    
-    ┌─────────┐     
- 🥈 │         │ 🥉  
-[UNI]│         │[BrainLM]
-────┴─────────┴────
+                    🏆                    
+                                          
+              🥇   Me-LLaMA                
+                 (0.875)                 
+             ╔═══════════════╗             
+             ║               ║             
+   🥈     M3FM       ║               ║   🥉 OpenFlamingo   
+      (0.860)      ║               ║      (0.840)      
+  ╔═══════════╝               ╚═══════════╗  
+  ║                                       ║  
+══╩═══════════════════════════════════════╩══
 ```
 
-**All 3 models ranked by AUROC:**
+</div>
 
-| Rank | Model | Score | Performance | Dataset | Date |
-| :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Brain-JEPA** 👑 | 0.9350 | ⭐ Excellent | ADNI | 2024-01-20 |
-| 🥈 | **UNI** 🌟 | 0.9200 | ⭐ Excellent | Alzheimer's Disease Neuroimaging Initiative (ADNI) | 2023-10-27 |
-| 🥉 | **BrainLM** ✨ | 0.9100 | ⭐ Excellent | ADNI | 2024-01-15 |
+**6 models ranked by `report_quality_score`:**
 
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **Me-LLaMA** 👑 | 0.8750 | ✅ Good | mimic_cxr_reports, 2024-02-05 |
+| 🥈 | **M3FM** | 0.8600 | ✅ Good | mimic_cxr_reports, 2024-01-28 |
+| 🥉 | **OpenFlamingo** | 0.8400 | ✅ Good | mimic_cxr_reports, 2024-01-20 |
+| 🏅 | TITAN | 0.8100 | ✅ Good | mimic_cxr_reports, 2024-01-25 |
+| 🏅 | Med-Flamingo | 0.7800 | 🔶 Fair | mimic_cxr_reports, 2024-01-18 |
+| 🎖️ | RadBERT | 0.6900 | 📈 Developing | mimic_cxr_reports, 2024-01-12 |
 
-#### 📖 Ranking Explanation
+!!! tip "Quick Comparison"
+    **🥇 Me-LLaMA** leads with report_quality_score = **0.8750**
 
-!!! abstract "Why These Rankings?"
-    **🥇 Brain-JEPA** leads with AUROC=0.9350
-
-    - Gap to 🥈 **UNI**: +0.0150 (1.6% better)
-    - Score range across all models: 0.0250
-    - Performance distribution: ⭐ 3 excellent
+    - Gap to 🥈 M3FM: +0.0150
+    - Score spread (best to worst): 0.1850
 
 
 <details>
-<summary>📐 <strong>How are models scored?</strong></summary>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
 
 ---
 
-### 🎯 Primary Metric: `AUROC`
+### 🎯 What We Measure: `report_quality_score`
 
-> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
-
----
-
-### 📊 Metric Priority
-
-| Priority | Metric | What it measures |
-|:---:|:---|:---|
-| 1 | `AUROC` | Discrimination (best for imbalanced data) |
-| 2 | `Accuracy` | Overall correctness |
-| 3 | `F1-Score` | Precision-recall balance |
-| 4 | `Sensitivity` | True positive rate |
+> **Report Quality Score**
+>
+> Overall quality of generated medical reports
+>
+> 📏 Range: 0.0 (poor) → 1.0 (excellent)
 
 ---
 
-### 🏥 Clinical Readiness Tiers
+### 📊 What Do Scores Mean?
 
-| Score | Tier | Deployment | Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
-| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
-| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
-| < 0.70 | 📈 Developing | Development | Significant improvement needed |
-
----
-
-### 📏 Ranking Rules
-
-1. Ranked by **primary metric** (higher = better)
-2. Ties broken by secondary metrics
-3. Best run per model used
-4. 4 decimal precision
+| Score | Rating | What It Means |
+|:---:|:---:|:---|
+| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
+| **0.80-0.89** | ✅ Good | Promising, needs more testing |
+| **0.70-0.79** | 🔶 Fair | Research use only |
+| **< 0.70** | 📈 Developing | Needs more work |
 
 ---
 
-### ⚖️ Fairness Analysis
+### 📏 How We Rank
 
-Models evaluated across:
-
-| Category | Strata |
-|:---|:---|
-| 👤 Demographics | Age, sex, ethnicity |
-| 🔬 Technical | Scanner, acquisition |
-| 🏥 Clinical | Disease stage, site |
-
-> ⚠️ Gaps >10% flagged for review
+1. **Higher score = Better ranking** (except for error metrics)
+2. If scores tie, we look at secondary metrics
+3. Only the best run from each model counts
 
 ---
 
-*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
+!!! info "Standards Alignment"
+    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
 
 </details>
 
-
-#### 📋 Complete Metrics Comparison
-
-| Rank | Model | AUROC | Accuracy |
-|:---:|:---|:---:|:---:|
-| 🥇 ⭐ | Brain-JEPA | **0.9350** | 0.8950 |
-| 🥈 ⭐ | UNI | **0.9200** | 0.8800 |
-| 🥉 ⭐ | BrainLM | **0.9100** | 0.8700 |
-
-!!! tip "Legend"
-    📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
-
----
-*Ranked by **AUROC** (higher is better). Last updated from 3 evaluation(s).*
-
-### 🧠 Brain Time-Series Modeling
-
-🔄 **Task**: Reconstruction | 🏥 **Health Topic**: Functional Brain Connectivity
-
-*Evaluating ability to reconstruct masked fMRI voxel time-series.*
-
-!!! info "Clinical Relevance"
-    Foundation for understanding functional connectivity patterns.
-
-#### 🏆 Leaderboard
-
-**All 1 models ranked by Correlation:**
-
-| Rank | Model | Score | Performance | Dataset | Date |
-| :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **BrainLM** 👑 | 0.7800 |  | UK Biobank fMRI tensors | 2025-11-15 |
-
-
-<details>
-<summary>📐 <strong>How are models scored?</strong></summary>
-
 ---
 
-### 🎯 Primary Metric: `Correlation`
+## 🧠 Brain Imaging (MRI/fMRI)
 
-> Pearson correlation between predicted and actual values (-1 to 1)
+### 🎯 Classification
 
----
-
-### 📊 Metric Priority
-
-| Priority | Metric | What it measures |
-|:---:|:---|:---|
-| 1 | `AUROC` | Discrimination (best for imbalanced data) |
-| 2 | `Accuracy` | Overall correctness |
-| 3 | `F1-Score` | Precision-recall balance |
-| 4 | `Sensitivity` | True positive rate |
-
----
-
-### 🏥 Clinical Readiness Tiers
-
-| Score | Tier | Deployment | Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
-| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
-| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
-| < 0.70 | 📈 Developing | Development | Significant improvement needed |
-
----
-
-### 📏 Ranking Rules
-
-1. Ranked by **primary metric** (higher = better)
-2. Ties broken by secondary metrics
-3. Best run per model used
-4. 4 decimal precision
-
----
-
-### ⚖️ Fairness Analysis
-
-Models evaluated across:
-
-| Category | Strata |
-|:---|:---|
-| 👤 Demographics | Age, sex, ethnicity |
-| 🔬 Technical | Scanner, acquisition |
-| 🏥 Clinical | Disease stage, site |
-
-> ⚠️ Gaps >10% flagged for review
-
----
-
-*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
-
-</details>
-
-
-#### 📋 Complete Metrics Comparison
-
-| Rank | Model | Correlation | MSE |
-|:---:|:---|:---:|:---:|
-| 🥇  | BrainLM | **0.7800** | 0.4500 |
-
-!!! tip "Legend"
-    📊 **Primary metric**: Correlation (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
-
----
-*Ranked by **Correlation** (higher is better). Last updated from 1 evaluation(s).*
-
-### 🧠 Toy Classification Benchmark
-
-🎯 **Task**: Classification | 🏥 **Health Topic**: N/A
+#### Toy Classification Benchmark
 
 *A toy benchmark for testing the pipeline.*
 
-#### 🏆 Leaderboard
+**2 models ranked by `AUROC`:**
 
-**All 2 models ranked by AUROC:**
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **Baseline (Random/Majority)** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classificat, 2025-11-27 |
+| 🥈 | **BrainLM** | 0.5193 | 📈 Developing | Toy fMRI Classificat, 2025-11-27 |
 
-| Rank | Model | Score | Performance | Dataset | Date |
-| :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Baseline (Random/Majority)** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
-| 🥈 | **BrainLM** 🌟 | 0.5193 | 📈 Developing | Toy fMRI Classification | 2025-11-27 |
+!!! tip "Quick Comparison"
+    **🥇 Baseline (Random/Majority)** leads with AUROC = **0.5597**
 
-
-#### 📖 Ranking Explanation
-
-!!! abstract "Why These Rankings?"
-    **🥇 Baseline (Random/Majority)** leads with AUROC=0.5597
-
-    - Gap to 🥈 **BrainLM**: +0.0404 (7.8% better)
-    - Performance distribution: 📈 2 developing
+    - Gap to 🥈 BrainLM: +0.0404
 
 
 <details>
-<summary>📐 <strong>How are models scored?</strong></summary>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
 
 ---
 
-### 🎯 Primary Metric: `AUROC`
+### 🎯 What We Measure: `AUROC`
 
-> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
-
----
-
-### 📊 Metric Priority
-
-| Priority | Metric | What it measures |
-|:---:|:---|:---|
-| 1 | `AUROC` | Discrimination (best for imbalanced data) |
-| 2 | `Accuracy` | Overall correctness |
-| 3 | `F1-Score` | Precision-recall balance |
-| 4 | `Sensitivity` | True positive rate |
+> **Area Under ROC Curve**
+>
+> How well the model distinguishes between classes
+>
+> 📏 Range: 0.5 (random guess) → 1.0 (perfect)
 
 ---
 
-### 🏥 Clinical Readiness Tiers
+### 📊 What Do Scores Mean?
 
-| Score | Tier | Deployment | Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
-| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
-| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
-| < 0.70 | 📈 Developing | Development | Significant improvement needed |
-
----
-
-### 📏 Ranking Rules
-
-1. Ranked by **primary metric** (higher = better)
-2. Ties broken by secondary metrics
-3. Best run per model used
-4. 4 decimal precision
+| Score | Rating | What It Means |
+|:---:|:---:|:---|
+| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
+| **0.80-0.89** | ✅ Good | Promising, needs more testing |
+| **0.70-0.79** | 🔶 Fair | Research use only |
+| **< 0.70** | 📈 Developing | Needs more work |
 
 ---
 
-### ⚖️ Fairness Analysis
+### 📏 How We Rank
 
-Models evaluated across:
-
-| Category | Strata |
-|:---|:---|
-| 👤 Demographics | Age, sex, ethnicity |
-| 🔬 Technical | Scanner, acquisition |
-| 🏥 Clinical | Disease stage, site |
-
-> ⚠️ Gaps >10% flagged for review
+1. **Higher score = Better ranking** (except for error metrics)
+2. If scores tie, we look at secondary metrics
+3. Only the best run from each model counts
 
 ---
 
-*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
-
-</details>
-
-
-#### 📋 Complete Metrics Comparison
-
-| Rank | Model | AUROC | Accuracy | F1-Score |
-|:---:|:---|:---:|:---:|:---:|
-| 🥇 📈 | Baseline (Random/Majority) | **0.5597** | 0.5750 | 0.5732 |
-| 🥈 📈 | BrainLM | **0.5193** | 0.5100 | 0.5100 |
-
-!!! tip "Legend"
-    📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
-
-#### 📊 Granular Performance Breakdown
-
-Expand sections below to see how models perform across different conditions:
-
-
-<details>
-<summary>🔬 <strong>Baseline (Random/Majority)</strong> by Scanner</summary>
-
-| Scanner | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 GE | 0.6373 | 0.6286 | 0.6274 | 70 |
-| 🥈 Siemens | 0.5844 | 0.5789 | 0.5788 | 57 |
-| Philips | 0.4662 | 0.5205 | 0.5147 | 73 |
-
-</details>
-
-<details>
-<summary>🏥 <strong>Baseline (Random/Majority)</strong> by Site</summary>
-
-| Site | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 SiteC | 0.6348 | 0.5915 | 0.5912 | 71 |
-| 🥈 SiteB | 0.6305 | 0.6316 | 0.6298 | 57 |
-| SiteA | 0.4201 | 0.5139 | 0.5093 | 72 |
-
-</details>
-
-<details>
-<summary>🩺 <strong>Baseline (Random/Majority)</strong> by Disease Stage</summary>
-
-| Disease Stage | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 MCI | 0.6085 | 0.6000 | 0.5987 | 70 |
-| 🥈 CN | 0.5559 | 0.5429 | 0.5414 | 70 |
-| AD | 0.4955 | 0.5833 | 0.5804 | 60 |
-
-</details>
-
-<details>
-<summary>👤 <strong>Baseline (Random/Majority)</strong> by Sex</summary>
-
-| Sex | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 M | 0.6061 | 0.6111 | 0.6045 | 108 |
-| F | 0.5021 | 0.5326 | 0.5326 | 92 |
-
-</details>
-
-<details>
-<summary>📅 <strong>Baseline (Random/Majority)</strong> by Age Group</summary>
-
-| Age Group | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 age_80-100 | 0.6000 | 0.5455 | 0.5299 | 11 |
-| 🥈 age_60-80 | 0.5943 | 0.5857 | 0.5788 | 70 |
-| 🥉 age_20-40 | 0.5819 | 0.5741 | 0.5668 | 54 |
-| age_40-60 | 0.4810 | 0.5692 | 0.5513 | 65 |
-
-</details>
-
-<details>
-<summary>🔬 <strong>BrainLM</strong> by Scanner</summary>
-
-| Scanner | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 Philips | 0.6226 | 0.5479 | 0.5476 | 73 |
-| 🥈 Siemens | 0.5099 | 0.5088 | 0.5086 | 57 |
-| GE | 0.4087 | 0.4714 | 0.4687 | 70 |
-
-</details>
-
-<details>
-<summary>🏥 <strong>BrainLM</strong> by Site</summary>
-
-| Site | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 SiteA | 0.5791 | 0.5417 | 0.5394 | 72 |
-| 🥈 SiteC | 0.4944 | 0.5070 | 0.5035 | 71 |
-| SiteB | 0.4643 | 0.4737 | 0.4722 | 57 |
-
-</details>
-
-<details>
-<summary>🩺 <strong>BrainLM</strong> by Disease Stage</summary>
-
-| Disease Stage | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 MCI | 0.6372 | 0.6143 | 0.6136 | 70 |
-| 🥈 AD | 0.4649 | 0.4500 | 0.4462 | 60 |
-| CN | 0.4286 | 0.4571 | 0.4571 | 70 |
-
-</details>
-
-<details>
-<summary>👤 <strong>BrainLM</strong> by Sex</summary>
-
-| Sex | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 F | 0.5513 | 0.5217 | 0.5208 | 92 |
-| M | 0.4881 | 0.5000 | 0.4985 | 108 |
-
-</details>
-
-<details>
-<summary>📅 <strong>BrainLM</strong> by Age Group</summary>
-
-| Age Group | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 age_40-60 | 0.5730 | 0.5538 | 0.5430 | 65 |
-| 🥈 age_80-100 | 0.5667 | 0.4545 | 0.4500 | 11 |
-| 🥉 age_60-80 | 0.5357 | 0.5286 | 0.5238 | 70 |
-| age_20-40 | 0.4528 | 0.4444 | 0.4444 | 54 |
-
-</details>
-
-<details>
-<summary>🌍 <strong>BrainLM</strong> by Ethnicity</summary>
-
-| Ethnicity | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 Asian | 0.6667 | 0.5862 | 0.5817 | 29 |
-| 🥈 Black | 0.6165 | 0.6316 | 0.6306 | 38 |
-| 🥉 White | 0.4717 | 0.4545 | 0.4522 | 77 |
-| Hispanic | 0.4630 | 0.5116 | 0.5106 | 43 |
-| Other | 0.2857 | 0.3077 | 0.3077 | 13 |
+!!! info "Standards Alignment"
+    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
 
 </details>
 
 ---
-*Ranked by **AUROC** (higher is better). Last updated from 6 evaluation(s).*
 
-### 🧠 fMRI Foundation Model Benchmark (Granular)
+#### Alzheimer's Disease Classification using Brain MRI
 
-📋 **Task**: Classification/Reconstruction | 🏥 **Health Topic**: Functional Brain Imaging Analysis
-
-!!! info "Clinical Relevance"
-    Foundation models for fMRI must generalize across diverse acquisition  parameters, scanner manufacturers, and preprocessing pipelines. This benchmark provides granular rankings to identify optimal model-data matches.
+*Binary classification of AD vs CN using structural MRI data.*
 
 
-#### 🏆 Leaderboard
+<div align="center">
 
 ```
-         🥇          
-     [Brain-JEPA]    
-    ┌─────────┐     
- 🥈 │         │ 🥉  
-[BrainLM]│         │[BrainBERT]
-────┴─────────┴────
+                    🏆                    
+                                          
+              🥇 Brain-JEPA              
+                 (0.935)                 
+             ╔═══════════════╗             
+             ║               ║             
+   🥈    UNI       ║               ║   🥉  BrainLM     
+      (0.920)      ║               ║      (0.910)      
+  ╔═══════════╝               ╚═══════════╗  
+  ║                                       ║  
+══╩═══════════════════════════════════════╩══
 ```
 
-**All 5 models ranked by AUROC:**
+</div>
 
-| Rank | Model | Score | Performance | Dataset | Date |
-| :---: | :--- | :---: | :---: | :--- | :---: |
-| 🥇 | **Brain-JEPA** 👑 | 0.9250 | ⭐ Excellent | hcp_1200 | 2024-01-22 |
-| 🥈 | **BrainLM** 🌟 | 0.9100 | ⭐ Excellent | hcp_1200 | 2024-01-15 |
-| 🥉 | **BrainBERT** ✨ | 0.8700 | ✅ Good | hcp_1200 | 2024-01-10 |
-| 🏅 | BrainMT | 0.8500 | ✅ Good | hcp_1200 | 2024-01-18 |
-| 🏅 | NeuroClips | 0.8300 | ✅ Good | hcp_1200 | 2024-01-05 |
+**3 models ranked by `AUROC`:**
 
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **Brain-JEPA** 👑 | 0.9350 | ⭐ Excellent | ADNI, 2024-01-20 |
+| 🥈 | **UNI** | 0.9200 | ⭐ Excellent | Alzheimer's Disease , 2023-10-27 |
+| 🥉 | **BrainLM** | 0.9100 | ⭐ Excellent | ADNI, 2024-01-15 |
 
-#### 📖 Ranking Explanation
+!!! tip "Quick Comparison"
+    **🥇 Brain-JEPA** leads with AUROC = **0.9350**
 
-!!! abstract "Why These Rankings?"
-    **🥇 Brain-JEPA** leads with AUROC=0.9250
-
-    - Gap to 🥈 **BrainLM**: +0.0150 (1.6% better)
-    - Score range across all models: 0.0950
-    - Performance distribution: ⭐ 2 excellent, ✅ 3 good
+    - Gap to 🥈 UNI: +0.0150
+    - Score spread (best to worst): 0.0250
 
 
 <details>
-<summary>📐 <strong>How are models scored?</strong></summary>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
 
 ---
 
-### 🎯 Primary Metric: `AUROC`
+### 🎯 What We Measure: `AUROC`
 
-> Area Under ROC Curve - measures discrimination ability (0.5 = random, 1.0 = perfect)
-
----
-
-### 📊 Metric Priority
-
-| Priority | Metric | What it measures |
-|:---:|:---|:---|
-| 1 | `AUROC` | Discrimination (best for imbalanced data) |
-| 2 | `Accuracy` | Overall correctness |
-| 3 | `F1-Score` | Precision-recall balance |
-| 4 | `Sensitivity` | True positive rate |
+> **Area Under ROC Curve**
+>
+> How well the model distinguishes between classes
+>
+> 📏 Range: 0.5 (random guess) → 1.0 (perfect)
 
 ---
 
-### 🏥 Clinical Readiness Tiers
+### 📊 What Do Scores Mean?
 
-| Score | Tier | Deployment | Guidance |
-|:---:|:---:|:---:|:---|
-| ≥ 0.90 | ⭐ Excellent | Production | Clinical decision support ready |
-| 0.80-0.89 | ✅ Good | Pilot | Needs prospective validation |
-| 0.70-0.79 | 🔶 Fair | Research | Not for patient-facing use |
-| < 0.70 | 📈 Developing | Development | Significant improvement needed |
-
----
-
-### 📏 Ranking Rules
-
-1. Ranked by **primary metric** (higher = better)
-2. Ties broken by secondary metrics
-3. Best run per model used
-4. 4 decimal precision
+| Score | Rating | What It Means |
+|:---:|:---:|:---|
+| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
+| **0.80-0.89** | ✅ Good | Promising, needs more testing |
+| **0.70-0.79** | 🔶 Fair | Research use only |
+| **< 0.70** | 📈 Developing | Needs more work |
 
 ---
 
-### ⚖️ Fairness Analysis
+### 📏 How We Rank
 
-Models evaluated across:
-
-| Category | Strata |
-|:---|:---|
-| 👤 Demographics | Age, sex, ethnicity |
-| 🔬 Technical | Scanner, acquisition |
-| 🏥 Clinical | Disease stage, site |
-
-> ⚠️ Gaps >10% flagged for review
+1. **Higher score = Better ranking** (except for error metrics)
+2. If scores tie, we look at secondary metrics
+3. Only the best run from each model counts
 
 ---
 
-*Aligned with [ITU/WHO AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) standards.*
-
-</details>
-
-
-#### 📋 Complete Metrics Comparison
-
-| Rank | Model | AUROC | Accuracy | F1-Score | Correlation | MSE |
-|:---:|:---|:---:|:---:|:---:|:---:|:---:|
-| 🥇 ⭐ | Brain-JEPA | **0.9250** | 0.8900 | 0.8800 | 0.8300 | 0.3900 |
-| 🥈 ⭐ | BrainLM | **0.9100** | 0.8700 | 0.8600 | 0.8100 | 0.4200 |
-| 🥉 ✅ | BrainBERT | **0.8700** | 0.8200 | 0.8100 | 0.7600 | 0.5100 |
-| 🏅 ✅ | BrainMT | **0.8500** | 0.8100 | 0.8000 | 0.7400 | 0.5500 |
-| 🏅 ✅ | NeuroClips | **0.8300** | 0.7900 | 0.7800 | 0.7200 | 0.5800 |
-
-!!! tip "Legend"
-    📊 **Primary metric**: AUROC (bold) | ⭐ Excellent (≥0.9) | ✅ Good (≥0.8) | 🔶 Fair (≥0.7) | 📈 Developing (<0.7)
-
-#### 📊 Granular Performance Breakdown
-
-Expand sections below to see how models perform across different conditions:
-
-
-<details>
-<summary>🔬 <strong>Brain-JEPA</strong> by Scanner</summary>
-
-| Scanner | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 Siemens | 0.9400 | 0.9100 | 0.9000 | 450 |
-| 🥈 Philips | 0.9200 | 0.8800 | 0.8700 | 370 |
-| GE | 0.9100 | 0.8700 | 0.8600 | 380 |
-
-</details>
-
-<details>
-<summary>📡 <strong>Brain-JEPA</strong> by Acquisition Type</summary>
-
-| Acquisition Type | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 resting_state | 0.9350 | 0.9000 | 0.8900 | 600 |
-| task_based | 0.9100 | 0.8700 | 0.8600 | 400 |
-
-</details>
-
-<details>
-<summary>🔬 <strong>BrainLM</strong> by Scanner</summary>
-
-| Scanner | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 Siemens | 0.9300 | 0.8900 | 0.8800 | 450 |
-| 🥈 Philips | 0.9000 | 0.8600 | 0.8500 | 370 |
-| GE | 0.8800 | 0.8400 | 0.8300 | 380 |
-
-</details>
-
-<details>
-<summary>🏥 <strong>BrainLM</strong> by Site</summary>
-
-| Site | AUROC | Accuracy | N |
-|---|---|---|---|
-| 🥇 WashU | 0.9300 | 0.8900 | 220 |
-| 🥈 MGH | 0.9200 | 0.8800 | 200 |
-| 🥉 Oxford | 0.9100 | 0.8700 | 200 |
-| UCLA | 0.9000 | 0.8600 | 180 |
-| UMinn | 0.8900 | 0.8500 | 200 |
-
-</details>
-
-<details>
-<summary>📡 <strong>BrainLM</strong> by Acquisition Type</summary>
-
-| Acquisition Type | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 resting_state | 0.9200 | 0.8800 | 0.8700 | 600 |
-| 🥈 language | 0.9100 | 0.8700 | - | 100 |
-| 🥉 working_memory | 0.9000 | 0.8600 | - | 150 |
-| task_based | 0.8900 | 0.8500 | 0.8400 | 400 |
-| motor | 0.8800 | 0.8400 | - | 150 |
-
-</details>
-
-<details>
-<summary>⚙️ <strong>BrainLM</strong> by Preprocessing</summary>
-
-| Preprocessing | AUROC | Accuracy | N |
-|---|---|---|---|
-| 🥇 fmriprep | 0.9200 | 0.8800 | 500 |
-| 🥈 hcp | 0.9100 | 0.8700 | 400 |
-| minimal | 0.8500 | 0.8100 | 300 |
-
-</details>
-
-<details>
-<summary>🧲 <strong>BrainLM</strong> by Field Strength</summary>
-
-| Field Strength | AUROC | Accuracy | N |
-|---|---|---|---|
-| 🥇 7T | 0.9400 | 0.9100 | 100 |
-| 3T | 0.9100 | 0.8700 | 900 |
-
-</details>
-
-<details>
-<summary>🔬 <strong>BrainBERT</strong> by Scanner</summary>
-
-| Scanner | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 Siemens | 0.8900 | 0.8400 | 0.8300 | 450 |
-| 🥈 GE | 0.8600 | 0.8100 | 0.8000 | 380 |
-| Philips | 0.8500 | 0.8000 | 0.7900 | 370 |
-
-</details>
-
-<details>
-<summary>📡 <strong>BrainBERT</strong> by Acquisition Type</summary>
-
-| Acquisition Type | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 resting_state | 0.8800 | 0.8300 | 0.8200 | 600 |
-| task_based | 0.8500 | 0.8000 | 0.7900 | 400 |
-
-</details>
-
-<details>
-<summary>🔬 <strong>BrainMT</strong> by Scanner</summary>
-
-| Scanner | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 Siemens | 0.8700 | 0.8300 | 0.8200 | 450 |
-| 🥈 GE | 0.8400 | 0.8000 | 0.7900 | 380 |
-| Philips | 0.8300 | 0.7900 | 0.7800 | 370 |
-
-</details>
-
-<details>
-<summary>🔬 <strong>NeuroClips</strong> by Scanner</summary>
-
-| Scanner | AUROC | Accuracy | F1-Score | N |
-|---|---|---|---|---|
-| 🥇 Siemens | 0.8500 | 0.8100 | 0.8000 | 450 |
-| 🥈 GE | 0.8200 | 0.7800 | 0.7700 | 380 |
-| Philips | 0.8100 | 0.7700 | 0.7600 | 370 |
+!!! info "Standards Alignment"
+    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
 
 </details>
 
 ---
-*Ranked by **AUROC** (higher is better). Last updated from 5 evaluation(s).*
+
+### 📋 Classification/Reconstruction
+
+#### fMRI Foundation Model Benchmark (Granular)
+
+
+<div align="center">
+
+```
+                    🏆                    
+                                          
+              🥇 Brain-JEPA              
+                 (0.925)                 
+             ╔═══════════════╗             
+             ║               ║             
+   🥈  BrainLM     ║               ║   🥉 BrainBERT    
+      (0.910)      ║               ║      (0.870)      
+  ╔═══════════╝               ╚═══════════╗  
+  ║                                       ║  
+══╩═══════════════════════════════════════╩══
+```
+
+</div>
+
+**5 models ranked by `AUROC`:**
+
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **Brain-JEPA** 👑 | 0.9250 | ⭐ Excellent | hcp_1200, 2024-01-22 |
+| 🥈 | **BrainLM** | 0.9100 | ⭐ Excellent | hcp_1200, 2024-01-15 |
+| 🥉 | **BrainBERT** | 0.8700 | ✅ Good | hcp_1200, 2024-01-10 |
+| 🏅 | BrainMT | 0.8500 | ✅ Good | hcp_1200, 2024-01-18 |
+| 🏅 | NeuroClips | 0.8300 | ✅ Good | hcp_1200, 2024-01-05 |
+
+!!! tip "Quick Comparison"
+    **🥇 Brain-JEPA** leads with AUROC = **0.9250**
+
+    - Gap to 🥈 BrainLM: +0.0150
+    - Score spread (best to worst): 0.0950
+
+
+<details>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
 
 ---
 
-## 🚀 Get Your Model on the Leaderboard
+### 🎯 What We Measure: `AUROC`
 
-Want to see your Foundation Model ranked here?
+> **Area Under ROC Curve**
+>
+> How well the model distinguishes between classes
+>
+> 📏 Range: 0.5 (random guess) → 1.0 (perfect)
 
-1. 📥 **Download** the benchmark suite and run locally
-2. 🧪 **Evaluate** your model: `python -m fmbench run --help`
-3. 📤 **Submit** your results via [GitHub Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)
+---
 
-💡 **Propose new evaluation protocols** via [Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=protocol_proposal.md)
+### 📊 What Do Scores Mean?
 
-!!! note "Curated Benchmark Hub"
-    All submissions are reviewed before being added. See [Submission Guide](../contributing/submission_guide.md) for details.
+| Score | Rating | What It Means |
+|:---:|:---:|:---|
+| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
+| **0.80-0.89** | ✅ Good | Promising, needs more testing |
+| **0.70-0.79** | 🔶 Fair | Research use only |
+| **< 0.70** | 📈 Developing | Needs more work |
+
+---
+
+### 📏 How We Rank
+
+1. **Higher score = Better ranking** (except for error metrics)
+2. If scores tie, we look at secondary metrics
+3. Only the best run from each model counts
+
+---
+
+!!! info "Standards Alignment"
+    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+
+</details>
+
+---
+
+### 🔄 Reconstruction
+
+#### Brain Time-Series Modeling
+
+*Evaluating ability to reconstruct masked fMRI voxel time-series.*
+
+**1 models ranked by `Correlation`:**
+
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **BrainLM** 👑 | 0.7800 | 🔶 Fair | UK Biobank fMRI tens, 2025-11-15 |
+
+
+<details>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
+
+---
+
+### 🎯 What We Measure: `Correlation`
+
+> **Correlation**: Performance measure
+
+---
+
+### 📊 What Do Scores Mean?
+
+| Score | Rating | What It Means |
+|:---:|:---:|:---|
+| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
+| **0.80-0.89** | ✅ Good | Promising, needs more testing |
+| **0.70-0.79** | 🔶 Fair | Research use only |
+| **< 0.70** | 📈 Developing | Needs more work |
+
+---
+
+### 📏 How We Rank
+
+1. **Higher score = Better ranking** (except for error metrics)
+2. If scores tie, we look at secondary metrics
+3. Only the best run from each model counts
+
+---
+
+!!! info "Standards Alignment"
+    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+
+</details>
+
+---
+
+## 📋 Other Benchmarks
+
+### Foundation Model Robustness Evaluation
+
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **geneformer** 👑 | 0.9995 | ⭐ Excellent | -, 2025-11-27 |
+| 🥈 | **Brain-JEPA** | 0.8650 | ✅ Good | DS-TOY-NEURO-ROBUSTN, 2024-01-20 |
+| 🥉 | **BrainHarmony** | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTN, 2024-01-18 |
+| 🏅 | Geneformer | 0.8350 | ✅ Good | DS-TOY-GENOMICS, 2024-01-10 |
+| 🏅 | BrainLM | 0.8250 | ✅ Good | DS-TOY-NEURO-ROBUSTN, 2024-01-16 |
+| 🎖️ | HyenaDNA | 0.7950 | 🔶 Fair | DS-TOY-GENOMICS, 2024-01-12 |
+| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | -, 2025-11-27 |
+| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | -, 2025-11-27 |
+| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | -, 2025-11-27 |
+| 🎖️ | Baseline (Random/Majority) | 0.7749 | 🔶 Fair | -, 2025-11-27 |
+| #11 | Baseline (Random/Majority) | 0.4554 | 📈 Developing | -, 2025-11-27 |
+
+---
+
+
+## 🚀 Add Your Model
+
+Want your model on this leaderboard?
+
+1. **Download** the benchmark toolkit
+2. **Run locally** on your model (your code stays private!)
+3. **Submit results** via [GitHub Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)
+
+[📥 Get Started](../index.md){ .md-button .md-button--primary }
+[📖 Submission Guide](../contributing/submission_guide.md){ .md-button }
+
+---
 
 *Aligned with [ITU/WHO FG-AI4H](https://www.itu.int/pub/T-FG-AI4H) standards for healthcare AI evaluation.*

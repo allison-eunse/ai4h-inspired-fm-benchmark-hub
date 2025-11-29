@@ -1,32 +1,10 @@
 # FM Benchmark Submission Guide
 
-Welcome! This guide explains how to get your Foundation Model evaluated and added to our leaderboards.
+Welcome! This guide explains how to submit your Foundation Model's evaluation results to the leaderboard.
 
-!!! success "🔒 Privacy-Preserving Evaluation — AI4H Aligned"
-    **Your model code and weights stay on YOUR machine!**
-    
-    This submission process follows [ITU/WHO FG-AI4H DEL3](https://www.itu.int/pub/T-FG-AI4H) principles:
-    
-    - ✅ You download the benchmark toolkit
-    - ✅ You run evaluations locally  
-    - ✅ You submit **only metrics** (eval.yaml)
-    - ❌ You do NOT share model weights
-    - ❌ You do NOT share model code
-    - ❌ You do NOT share training data
+## Quick Start
 
-!!! note "Curated Benchmark Hub"
-    This is a **curated benchmark hub**. All submissions are reviewed before being added to the leaderboards. We do not accept direct code contributions - only benchmark result submissions and protocol proposals.
-
-## Submission Process
-
-```mermaid
-graph LR
-    A[Run Benchmarks Locally] --> B[Open Issue with Results]
-    B --> C[Review by Maintainer]
-    C --> D[Added to Leaderboard]
-```
-
-## Step 1: Run Benchmarks Locally
+### Option 1: Use the CLI (Recommended)
 
 ```bash
 # 1. Clone and install
@@ -42,22 +20,13 @@ python -m fmbench run \
     --suite SUITE-TOY-CLASS \
     --model path/to/your_model_config.yaml \
     --out results/my_model_run
+
+# 4. Submit via Pull Request (see below)
 ```
 
-## Step 2: Submit via Issue
+### Option 2: Manual YAML Submission
 
-**Do NOT open a Pull Request.** Instead:
-
-1. Go to [**New Issue → 📊 Benchmark Submission**](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)
-2. Fill out the template with your results
-3. Wait for review
-
-## Step 3: Review & Addition
-
-We will review your submission and:
-- Verify the results format
-- Add your model to the leaderboard
-- Notify you when it's live
+Create evaluation YAML files manually and submit via PR.
 
 ---
 
@@ -116,12 +85,14 @@ results/my_fm_neuro/
 └── report.md      # Human-readable report
 ```
 
-### 4. Submit via Issue
+### 4. Submit via Pull Request
 
-1. Go to [**Issues → New Issue → 📊 Benchmark Submission**](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md)
-2. Paste your `eval.yaml` contents in the issue
-3. Attach any supporting files (model config, etc.)
-4. The maintainer will review and add your results to the leaderboard
+1. **Fork** the repository
+2. **Add** your files:
+   - `configs/model_your_model.yaml` - Model configuration
+   - `evals/YOUR_EVAL_ID.yaml` - Evaluation results
+   - (Optional) `models/your_model.yaml` - Detailed model metadata
+3. **Create PR** with title: `[Submission] Your Model Name - Benchmark Name`
 
 ---
 
@@ -267,9 +238,9 @@ metrics:
 
 ---
 
-## Submission Checklist
+## PR Checklist
 
-Before submitting your issue, ensure:
+Before submitting, ensure:
 
 - [ ] Model config YAML is valid
 - [ ] Eval YAML has correct `benchmark_id`
@@ -281,6 +252,8 @@ Before submitting your issue, ensure:
 
 ## Questions?
 
-Open an [Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new) with your question.
+- Open an [Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues)
+- Check existing [Discussions](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions)
 
-Thank you for your interest in FM benchmarking! 🎉
+Thank you for contributing to open FM benchmarking! 🎉
+
