@@ -619,7 +619,7 @@ def build_leaderboard(
 
     # Quick navigation
     content += "## 🧭 Jump To\n\n"
-    content += "- [🌐 Overall Rankings](#-overall-rankings-all-modalities) — Best across all categories\n"
+    content += "- [🌐 Overall Rankings](#overall-rankings-all-modalities) — Best across all categories\n"
     for mod_key, mod_info in MODALITIES.items():
         if mod_key in benchmarks_by_modality:
             anchor = mod_info["name"].lower().replace(" ", "-").replace("/", "").replace("(", "").replace(")", "")

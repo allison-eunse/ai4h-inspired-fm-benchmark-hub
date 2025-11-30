@@ -12,7 +12,7 @@
 
 ## 🧭 Jump To
 
-- [🌐 Overall Rankings](#-overall-rankings-all-modalities) — Best across all categories
+- [🌐 Overall Rankings](#overall-rankings-all-modalities) — Best across all categories
 - [🧬 Genomics](#genomics)
 - [🧠 Brain Imaging (MRI/fMRI)](#brain-imaging-mrifmri)
 
