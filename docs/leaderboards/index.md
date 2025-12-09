@@ -101,37 +101,85 @@
 
 ---
 
-### 🎯 What We Measure: `Accuracy`
+### 📖 Understanding This Leaderboard
 
-> **Accuracy**
->
-> Percentage of correct predictions
->
-> 📏 Range: 0% → 100% (or 0.0 → 1.0)
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
 
 ---
 
-### 📊 What Do Scores Mean?
+### 🎯 The Main Metric: `Accuracy`
 
-| Score | Rating | What It Means |
-|:---:|:---:|:---|
-| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
-| **0.80-0.89** | ✅ Good | Promising, needs more testing |
-| **0.70-0.79** | 🔶 Fair | Research use only |
-| **< 0.70** | 📈 Developing | Needs more work |
+**Accuracy**
 
----
+**In simple terms:** The percentage of predictions the model got right
 
-### 📏 How We Rank
+**How it works:** This is the most intuitive metric: out of all the predictions the model made, how many were correct? For example, if a model makes 100 predictions and 90 are correct, the accuracy is 90% (or 0.90). While easy to understand, accuracy can be misleading when classes are imbalanced (e.g., if 95% of cases are healthy, a model that always predicts 'healthy' would have 95% accuracy but miss all diseases).
 
-1. **Higher score = Better ranking** (except for error metrics)
-2. If scores tie, we look at secondary metrics
-3. Only the best run from each model counts
+**Score range:** 0.0 (all wrong) → 1.0 (all correct)
+
+💡 **Example:** An accuracy of 0.92 means the model correctly classified 92 out of every 100 samples.
 
 ---
 
-!!! info "Standards Alignment"
-    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
+  how reliably the model separates different outcome groups. In addition to raw accuracy,
+  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
+  imbalanced (for example, when positive cases are rare).
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
 
 </details>
 
@@ -183,37 +231,85 @@
 
 ---
 
-### 🎯 What We Measure: `report_quality_score`
+### 📖 Understanding This Leaderboard
 
-> **Report Quality Score**
->
-> Overall quality of generated medical reports
->
-> 📏 Range: 0.0 (poor) → 1.0 (excellent)
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
 
 ---
 
-### 📊 What Do Scores Mean?
+### 🎯 The Main Metric: `report_quality_score`
 
-| Score | Rating | What It Means |
-|:---:|:---:|:---|
-| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
-| **0.80-0.89** | ✅ Good | Promising, needs more testing |
-| **0.70-0.79** | 🔶 Fair | Research use only |
-| **< 0.70** | 📈 Developing | Needs more work |
+**Report Quality Score**
 
----
+**In simple terms:** An overall measure of how good the AI-generated medical reports are
 
-### 📏 How We Rank
+**How it works:** This composite score combines multiple aspects of report quality: clinical accuracy (are the findings correct?), completeness (are important findings mentioned?), language quality (is it well-written?), and safety (no harmful content). It provides a single number to compare models, though looking at individual components gives more insight into specific strengths and weaknesses.
 
-1. **Higher score = Better ranking** (except for error metrics)
-2. If scores tie, we look at secondary metrics
-3. Only the best run from each model counts
+**Score range:** 0.0 (poor quality) → 1.0 (excellent quality)
+
+💡 **Example:** A score of 0.85 indicates the model generates reports that are mostly accurate, complete, and well-structured.
 
 ---
 
-!!! info "Standards Alignment"
-    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **report generation**, we care not only about language quality but also clinical safety.
+  This metric is usually combined with others (e.g., clinical accuracy, hallucination rate,
+  and completeness of findings) to judge whether the generated report is both readable **and**
+  medically reliable.
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
 
 </details>
 
@@ -245,37 +341,85 @@
 
 ---
 
-### 🎯 What We Measure: `AUROC`
+### 📖 Understanding This Leaderboard
 
-> **Area Under ROC Curve**
->
-> How well the model distinguishes between classes
->
-> 📏 Range: 0.5 (random guess) → 1.0 (perfect)
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
 
 ---
 
-### 📊 What Do Scores Mean?
+### 🎯 The Main Metric: `AUROC`
 
-| Score | Rating | What It Means |
-|:---:|:---:|:---|
-| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
-| **0.80-0.89** | ✅ Good | Promising, needs more testing |
-| **0.70-0.79** | 🔶 Fair | Research use only |
-| **< 0.70** | 📈 Developing | Needs more work |
+**Area Under ROC Curve (AUROC)**
 
----
+**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
 
-### 📏 How We Rank
+**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
 
-1. **Higher score = Better ranking** (except for error metrics)
-2. If scores tie, we look at secondary metrics
-3. Only the best run from each model counts
+**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
+
+💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
 
 ---
 
-!!! info "Standards Alignment"
-    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
+  how reliably the model separates different outcome groups. In addition to raw accuracy,
+  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
+  imbalanced (for example, when positive cases are rare).
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
 
 </details>
 
@@ -324,37 +468,85 @@
 
 ---
 
-### 🎯 What We Measure: `AUROC`
+### 📖 Understanding This Leaderboard
 
-> **Area Under ROC Curve**
->
-> How well the model distinguishes between classes
->
-> 📏 Range: 0.5 (random guess) → 1.0 (perfect)
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
 
 ---
 
-### 📊 What Do Scores Mean?
+### 🎯 The Main Metric: `AUROC`
 
-| Score | Rating | What It Means |
-|:---:|:---:|:---|
-| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
-| **0.80-0.89** | ✅ Good | Promising, needs more testing |
-| **0.70-0.79** | 🔶 Fair | Research use only |
-| **< 0.70** | 📈 Developing | Needs more work |
+**Area Under ROC Curve (AUROC)**
 
----
+**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
 
-### 📏 How We Rank
+**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
 
-1. **Higher score = Better ranking** (except for error metrics)
-2. If scores tie, we look at secondary metrics
-3. Only the best run from each model counts
+**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
+
+💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
 
 ---
 
-!!! info "Standards Alignment"
-    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
+  how reliably the model separates different outcome groups. In addition to raw accuracy,
+  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
+  imbalanced (for example, when positive cases are rare).
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
 
 </details>
 
@@ -405,37 +597,85 @@
 
 ---
 
-### 🎯 What We Measure: `AUROC`
+### 📖 Understanding This Leaderboard
 
-> **Area Under ROC Curve**
->
-> How well the model distinguishes between classes
->
-> 📏 Range: 0.5 (random guess) → 1.0 (perfect)
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
 
 ---
 
-### 📊 What Do Scores Mean?
+### 🎯 The Main Metric: `AUROC`
 
-| Score | Rating | What It Means |
-|:---:|:---:|:---|
-| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
-| **0.80-0.89** | ✅ Good | Promising, needs more testing |
-| **0.70-0.79** | 🔶 Fair | Research use only |
-| **< 0.70** | 📈 Developing | Needs more work |
+**Area Under ROC Curve (AUROC)**
 
----
+**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
 
-### 📏 How We Rank
+**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
 
-1. **Higher score = Better ranking** (except for error metrics)
-2. If scores tie, we look at secondary metrics
-3. Only the best run from each model counts
+**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
+
+💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
 
 ---
 
-!!! info "Standards Alignment"
-    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
+  how reliably the model separates different outcome groups. In addition to raw accuracy,
+  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
+  imbalanced (for example, when positive cases are rare).
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
 
 </details>
 
@@ -459,33 +699,84 @@
 
 ---
 
-### 🎯 What We Measure: `Correlation`
+### 📖 Understanding This Leaderboard
 
-> **Correlation**: Performance measure
-
----
-
-### 📊 What Do Scores Mean?
-
-| Score | Rating | What It Means |
-|:---:|:---:|:---|
-| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |
-| **0.80-0.89** | ✅ Good | Promising, needs more testing |
-| **0.70-0.79** | 🔶 Fair | Research use only |
-| **< 0.70** | 📈 Developing | Needs more work |
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
 
 ---
 
-### 📏 How We Rank
+### 🎯 The Main Metric: `Correlation`
 
-1. **Higher score = Better ranking** (except for error metrics)
-2. If scores tie, we look at secondary metrics
-3. Only the best run from each model counts
+**Correlation**
+
+**In simple terms:** How closely the model's predictions match the actual values
+
+**How it works:** Correlation measures the strength and direction of the relationship between predicted and actual values. A correlation of 1.0 means perfect positive agreement (when actual goes up, prediction goes up proportionally), while 0 means no relationship at all. This is commonly used for reconstruction tasks where we want to see how well the model can recreate the original signal.
+
+**Score range:** -1.0 (perfect inverse) → 0 (no relationship) → 1.0 (perfect match)
+
+💡 **Example:** A correlation of 0.78 means the model's outputs track reasonably well with the true values.
 
 ---
 
-!!! info "Standards Alignment"
-    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **regression / continuous prediction** tasks, this metric captures how closely the model's
+  predicted values track the true values over a range (e.g., symptom severity, signal amplitude).
+  We are usually interested in both overall fit (correlation) and error magnitude.
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
 
 </details>
 
@@ -497,17 +788,13 @@
 
 | Rank | Model | Score | Level | Details |
 |:---:|:---|:---:|:---:|:---|
-| 🥇 | **geneformer** 👑 | 0.9995 | ⭐ Excellent | -, 2025-11-27 |
+| 🥇 | **geneformer** 👑 | 0.9995 | ⭐ Excellent | neuro/robustness, 2025-11-27 |
 | 🥈 | **Brain-JEPA** | 0.8650 | ✅ Good | DS-TOY-NEURO-ROBUSTN, 2024-01-20 |
 | 🥉 | **BrainHarmony** | 0.8450 | ✅ Good | DS-TOY-NEURO-ROBUSTN, 2024-01-18 |
 | 🏅 | Geneformer | 0.8350 | ✅ Good | DS-TOY-GENOMICS, 2024-01-10 |
 | 🏅 | BrainLM | 0.8250 | ✅ Good | DS-TOY-NEURO-ROBUSTN, 2024-01-16 |
 | 🎖️ | HyenaDNA | 0.7950 | 🔶 Fair | DS-TOY-GENOMICS, 2024-01-12 |
-| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | -, 2025-11-27 |
-| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | -, 2025-11-27 |
-| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | -, 2025-11-27 |
-| 🎖️ | Baseline (Random/Majority) | 0.7749 | 🔶 Fair | -, 2025-11-27 |
-| #11 | Baseline (Random/Majority) | 0.4554 | 📈 Developing | -, 2025-11-27 |
+| 🎖️ | Baseline (Random/Majority) | 0.7810 | 🔶 Fair | neuro/robustness, 2025-11-27 |
 
 ---
 

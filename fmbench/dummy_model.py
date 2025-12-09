@@ -22,3 +22,5 @@ class DummyRegressor:
         # Assuming single target for simplicity, or matching input length if X is (N, D)
         return self.rng.standard_normal(size=X.shape[0])
 
+
+

@@ -129,62 +129,136 @@ def get_primary_score(metrics: Dict, ai_task: str = "") -> Tuple[float, str]:
 
 
 # =============================================================================
-# METRIC EXPLANATIONS (Human-readable)
+# METRIC EXPLANATIONS (Human-readable, beginner-friendly)
 # =============================================================================
 
 METRIC_EXPLANATIONS = {
     # Classification metrics
     "AUROC": {
-        "name": "Area Under ROC Curve",
-        "simple": "How well the model distinguishes between classes",
-        "range": "0.5 (random guess) → 1.0 (perfect)",
+        "name": "Area Under ROC Curve (AUROC)",
+        "simple": "Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)",
+        "detailed": (
+            "Think of it like this: if you randomly pick one positive case and one negative case, "
+            "AUROC tells you the probability that the model correctly identifies which is which. "
+            "A score of 0.5 means the model is just guessing randomly (like flipping a coin), "
+            "while 1.0 means it perfectly separates all cases."
+        ),
+        "range": "0.5 (random guessing) → 1.0 (perfect separation)",
+        "example": "An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.",
         "good_threshold": 0.85,
     },
     "Accuracy": {
         "name": "Accuracy",
-        "simple": "Percentage of correct predictions",
-        "range": "0% → 100% (or 0.0 → 1.0)",
+        "simple": "The percentage of predictions the model got right",
+        "detailed": (
+            "This is the most intuitive metric: out of all the predictions the model made, "
+            "how many were correct? For example, if a model makes 100 predictions and 90 are correct, "
+            "the accuracy is 90% (or 0.90). While easy to understand, accuracy can be misleading "
+            "when classes are imbalanced (e.g., if 95% of cases are healthy, a model that always "
+            "predicts 'healthy' would have 95% accuracy but miss all diseases)."
+        ),
+        "range": "0.0 (all wrong) → 1.0 (all correct)",
+        "example": "An accuracy of 0.92 means the model correctly classified 92 out of every 100 samples.",
         "good_threshold": 0.85,
     },
     "F1-Score": {
         "name": "F1 Score",
-        "simple": "Balance between precision (avoiding false alarms) and recall (catching all cases)",
-        "range": "0.0 (poor) → 1.0 (perfect)",
+        "simple": "A balanced measure that considers both false alarms and missed cases",
+        "detailed": (
+            "F1 Score balances two important aspects: (1) Precision — when the model says 'positive', "
+            "how often is it right? (2) Recall — out of all actual positives, how many did the model find? "
+            "F1 is the harmonic mean of these two, so it's high only when both are good. "
+            "This is especially useful in healthcare where both false alarms (unnecessary worry/treatment) "
+            "and missed cases (delayed diagnosis) have real consequences."
+        ),
+        "range": "0.0 (poor) → 1.0 (perfect balance of precision and recall)",
+        "example": "An F1 of 0.85 indicates the model has a good balance between catching real cases and avoiding false alarms.",
         "good_threshold": 0.80,
+    },
+    "Correlation": {
+        "name": "Correlation",
+        "simple": "How closely the model's predictions match the actual values",
+        "detailed": (
+            "Correlation measures the strength and direction of the relationship between predicted "
+            "and actual values. A correlation of 1.0 means perfect positive agreement (when actual "
+            "goes up, prediction goes up proportionally), while 0 means no relationship at all. "
+            "This is commonly used for reconstruction tasks where we want to see how well the model "
+            "can recreate the original signal."
+        ),
+        "range": "-1.0 (perfect inverse) → 0 (no relationship) → 1.0 (perfect match)",
+        "example": "A correlation of 0.78 means the model's outputs track reasonably well with the true values.",
+        "good_threshold": 0.70,
     },
     
     # Robustness metrics
     "robustness_score": {
         "name": "Robustness Score",
-        "simple": "How stable the model is when data has noise or missing values",
-        "range": "0.0 (breaks easily) → 1.0 (very stable)",
+        "simple": "How stable and reliable the model is when data quality isn't perfect",
+        "detailed": (
+            "Real-world data is messy: sensors fail, signals have noise, and recordings have artifacts. "
+            "The robustness score measures how well a model maintains its performance when we "
+            "deliberately add these imperfections. A highly robust model gives consistent results "
+            "even with noisy or incomplete data, which is critical for clinical deployment where "
+            "data quality varies between hospitals and equipment."
+        ),
+        "range": "0.0 (performance collapses with any noise) → 1.0 (completely stable)",
+        "example": "A robustness score of 0.82 means the model maintains most of its accuracy even when data has noise or missing values.",
         "good_threshold": 0.75,
     },
     
     # Report generation metrics
     "report_quality_score": {
         "name": "Report Quality Score",
-        "simple": "Overall quality of generated medical reports",
-        "range": "0.0 (poor) → 1.0 (excellent)",
+        "simple": "An overall measure of how good the AI-generated medical reports are",
+        "detailed": (
+            "This composite score combines multiple aspects of report quality: clinical accuracy "
+            "(are the findings correct?), completeness (are important findings mentioned?), "
+            "language quality (is it well-written?), and safety (no harmful content). "
+            "It provides a single number to compare models, though looking at individual components "
+            "gives more insight into specific strengths and weaknesses."
+        ),
+        "range": "0.0 (poor quality) → 1.0 (excellent quality)",
+        "example": "A score of 0.85 indicates the model generates reports that are mostly accurate, complete, and well-structured.",
         "good_threshold": 0.80,
     },
     "clinical_accuracy": {
         "name": "Clinical Accuracy", 
-        "simple": "Are the medical findings in the report correct?",
-        "range": "0% → 100% correct findings",
+        "simple": "Are the medical findings in the generated report actually correct?",
+        "detailed": (
+            "This measures the factual correctness of medical statements in AI-generated reports. "
+            "Expert clinicians review the reports and check whether each finding matches the ground truth. "
+            "In healthcare, this is perhaps the most critical metric — an inaccurate finding could lead "
+            "to wrong diagnoses or treatment decisions."
+        ),
+        "range": "0.0 (all findings wrong) → 1.0 (all findings correct)",
+        "example": "A clinical accuracy of 0.92 means 92% of the medical findings in the report are verified as correct.",
         "good_threshold": 0.90,
     },
     "hallucination_rate": {
         "name": "Hallucination Rate",
-        "simple": "Percentage of made-up content (lower is better!)",
-        "range": "0% (no hallucinations) → 100% (all made up)",
+        "simple": "How often the AI makes up information that isn't supported by the input data",
+        "detailed": (
+            "AI models can sometimes generate plausible-sounding but completely fabricated content — "
+            "called 'hallucinations'. In medical reports, this is dangerous: the AI might mention "
+            "a finding that doesn't exist in the image. This metric measures how often this happens. "
+            "Unlike most metrics, LOWER is better here — we want as few hallucinations as possible."
+        ),
+        "range": "0.0 (no hallucinations — ideal) → 1.0 (everything is made up)",
+        "example": "A hallucination rate of 0.05 means only 5% of generated content is unsupported by the input — quite good!",
         "good_threshold": 0.05,
         "lower_is_better": True,
     },
     "bertscore": {
         "name": "BERTScore",
-        "simple": "Semantic similarity to reference text",
-        "range": "0.0 → 1.0",
+        "simple": "How similar the generated text is to the reference text in meaning (not just exact words)",
+        "detailed": (
+            "BERTScore uses AI to compare the meaning of generated reports against reference reports "
+            "written by experts. Unlike simple word-matching, it understands that 'cardiac enlargement' "
+            "and 'enlarged heart' mean the same thing. This makes it better at evaluating whether "
+            "the AI captured the right medical concepts, even if it used different phrasing."
+        ),
+        "range": "0.0 (completely different meaning) → 1.0 (semantically identical)",
+        "example": "A BERTScore of 0.87 indicates the generated report conveys very similar clinical meaning to the expert reference.",
         "good_threshold": 0.85,
     },
 }
@@ -246,41 +320,125 @@ def generate_podium(ranked_evals: List[Tuple], models: List[Dict]) -> str:
 # =============================================================================
 
 def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
-    """Generate clean, readable scoring methodology."""
+    """Generate clean, readable scoring methodology with beginner-friendly explanations."""
     md = "\n<details>\n<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>\n\n"
     
-    # Primary metric card
+    # Introduction for beginners
+    md += "---\n\n"
+    md += "### 📖 Understanding This Leaderboard\n\n"
+    md += "This section explains how we measure and compare AI models. "
+    md += "Don't worry if you're new to AI metrics — we'll break it down step by step.\n\n"
+    
+    # Primary metric card with detailed explanation
     metric_info = METRIC_EXPLANATIONS.get(primary_metric, {})
     md += "---\n\n"
-    md += f"### 🎯 What We Measure: `{primary_metric}`\n\n"
+    md += f"### 🎯 The Main Metric: `{primary_metric}`\n\n"
+    
     if metric_info:
-        md += f"> **{metric_info.get('name', primary_metric)}**\n>\n"
-        md += f"> {metric_info.get('simple', 'Performance measure')}\n>\n"
-        md += f"> 📏 Range: {metric_info.get('range', '0-1')}\n\n"
+        md += f"**{metric_info.get('name', primary_metric)}**\n\n"
+        md += f"**In simple terms:** {metric_info.get('simple', 'A performance measure')}\n\n"
+        
+        # Add detailed explanation if available
+        if metric_info.get('detailed'):
+            md += f"**How it works:** {metric_info.get('detailed')}\n\n"
+        
+        md += f"**Score range:** {metric_info.get('range', '0 to 1')}\n\n"
+        
+        # Add example if available
+        if metric_info.get('example'):
+            md += f"💡 **Example:** {metric_info.get('example')}\n\n"
     else:
-        md += f"> {explain_metric(primary_metric)}\n\n"
+        md += f"This metric measures model performance. Higher values generally indicate better performance.\n\n"
     
-    # Performance tiers - simple visual
+    # Task-specific context
     md += "---\n\n"
-    md += "### 📊 What Do Scores Mean?\n\n"
-    md += "| Score | Rating | What It Means |\n"
-    md += "|:---:|:---:|:---|\n"
-    md += "| **≥ 0.90** | ⭐ Excellent | Ready for real-world use with monitoring |\n"
-    md += "| **0.80-0.89** | ✅ Good | Promising, needs more testing |\n"
-    md += "| **0.70-0.79** | 🔶 Fair | Research use only |\n"
-    md += "| **< 0.70** | 📈 Developing | Needs more work |\n\n"
+    md += "### 🧠 How This Metric Fits This Task\n\n"
+    md += "Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:\n\n"
+    lower_ai_task = (ai_task or "").lower()
+    if "generation" in lower_ai_task:
+        md += (
+            "- For **report generation**, we care not only about language quality but also clinical safety.\n"
+            "  This metric is usually combined with others (e.g., clinical accuracy, hallucination rate,\n"
+            "  and completeness of findings) to judge whether the generated report is both readable **and**\n"
+            "  medically reliable.\n\n"
+        )
+    elif "robustness" in lower_ai_task:
+        md += (
+            "- For **robustness assessment**, this metric summarizes how much the model's outputs change\n"
+            "  when we add realistic perturbations (e.g., noise, signal dropout, channel permutations,\n"
+            "  or temporal shifts). A higher score means the model is more stable under these stress tests.\n"
+            "  In this benchmark, we probe robustness using:\n"
+            "  - **Dropout**: randomly masking channels or features to mimic sensor failure or missing data\n"
+            "  - **Gaussian noise**: adding noise at different signal-to-noise ratios (SNR) to simulate\n"
+            "    electrical or physiological noise\n"
+            "  - **Line noise**: injecting 50/60 Hz interference similar to mains power artifacts\n"
+            "  - **Channel permutation**: shuffling channels to test invariance to channel ordering\n"
+            "  - **Temporal shifts**: misaligning signals in time to simulate timing jitter\n"
+            "  This reflects real-world variability between scanners, hospitals, and acquisition protocols.\n\n"
+        )
+    elif "reconstruction" in lower_ai_task and "classification" not in lower_ai_task or "regression" in lower_ai_task:
+        md += (
+            "- For **regression / continuous prediction** tasks, this metric captures how closely the model's\n"
+            "  predicted values track the true values over a range (e.g., symptom severity, signal amplitude).\n"
+            "  We are usually interested in both overall fit (correlation) and error magnitude.\n\n"
+        )
+    else:
+        md += (
+            "- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand\n"
+            "  how reliably the model separates different outcome groups. In addition to raw accuracy,\n"
+            "  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are\n"
+            "  imbalanced (for example, when positive cases are rare).\n\n"
+        )
     
-    # Simple ranking rules
+    # Performance tiers - with more context
     md += "---\n\n"
-    md += "### 📏 How We Rank\n\n"
-    md += "1. **Higher score = Better ranking** (except for error metrics)\n"
-    md += "2. If scores tie, we look at secondary metrics\n"
-    md += "3. Only the best run from each model counts\n\n"
+    md += "### 📊 Performance Tiers: What Do the Scores Mean?\n\n"
+    md += "We group models into performance tiers to help you quickly understand how ready they are for different uses:\n\n"
+    md += "| Score Range | Rating | Interpretation | Suitable For |\n"
+    md += "|:---:|:---:|:---|:---|\n"
+    md += "| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |\n"
+    md += "| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |\n"
+    md += "| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |\n"
+    md += "| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |\n\n"
+    
+    md += "!!! tip \"Important Context\"\n"
+    md += "    These thresholds are general guidelines. The acceptable score depends on the specific "
+    md += "clinical application, risk level, and whether the AI assists or replaces human judgment. "
+    md += "Always consult domain experts when evaluating fitness for a particular use case.\n\n"
+    
+    # Ranking rules - more detailed
+    md += "---\n\n"
+    md += "### 📏 How We Determine Rankings\n\n"
+    md += "Models are ranked following these principles:\n\n"
+    md += "1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. "
+    md += "For metrics where lower is better (like error rates), the lowest score wins.\n\n"
+    md += "2. **Ties are broken by secondary metrics** — If two models have identical primary scores, "
+    md += "we look at other relevant metrics to determine which performs better overall.\n\n"
+    md += "3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), "
+    md += "only its best result appears on the leaderboard. This ensures fair comparison.\n\n"
+    md += "4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, "
+    md += "dataset used, and configuration to ensure transparency.\n\n"
+    
+    # Why this matters
+    md += "---\n\n"
+    md += "### 🏥 Why This Matters for Healthcare AI\n\n"
+    md += "Healthcare AI has higher stakes than many other AI applications. A model that works "
+    md += "95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. "
+    md += "That's why we:\n\n"
+    md += "- Use **multiple metrics** to capture different aspects of performance\n"
+    md += "- Test **robustness** to real-world data quality issues\n"
+    md += "- Require **transparency** about evaluation conditions\n"
+    md += "- Follow **international standards** for healthcare AI assessment\n\n"
     
     # AI4H note
     md += "---\n\n"
-    md += "!!! info \"Standards Alignment\"\n"
-    md += "    This follows [ITU/WHO AI4H](https://www.itu.int/pub/T-FG-AI4H) guidelines for healthcare AI evaluation.\n\n"
+    md += "### 🌍 Standards Alignment\n\n"
+    md += "This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) "
+    md += "framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. "
+    md += "This ensures our evaluations are:\n\n"
+    md += "- **Rigorous** — Following established scientific methodology\n"
+    md += "- **Comparable** — Using standardized metrics across different models\n"
+    md += "- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI\n\n"
     
     md += "</details>\n\n"
     return md
@@ -333,9 +491,22 @@ def generate_ranking_table(
         tier_display = f"{tier_emoji} {tier_short}"
         
         # Details (dataset, date)
-        dataset_id = ev.get("dataset_id", "-")
-        dataset_data = get_by_id(datasets, "dataset_id", dataset_id)
-        dataset_name = (dataset_data.get("name", dataset_id) if dataset_data else dataset_id) or "-"
+        dataset_id = ev.get("dataset_id")
+        if dataset_id:
+            dataset_data = get_by_id(datasets, "dataset_id", dataset_id)
+            dataset_name = (dataset_data.get("name", dataset_id) if dataset_data else dataset_id)
+        else:
+            # Fallback: derive a short label from data_dir if no dataset_id
+            data_dir = ev.get("data_dir", "")
+            if data_dir:
+                # Extract a meaningful short name from the path
+                # e.g., "toy_data/neuro/robustness" -> "neuro/robustness"
+                parts = data_dir.replace("\\", "/").split("/")
+                # Skip common prefixes like "toy_data"
+                parts = [p for p in parts if p and p not in ("toy_data", "data")]
+                dataset_name = "/".join(parts[-2:]) if len(parts) >= 2 else (parts[-1] if parts else "N/A")
+            else:
+                dataset_name = "N/A"
         date = ev.get("run_metadata", {}).get("date", "-")
         details = f"{dataset_name[:20]}, {date}"
         
@@ -645,7 +816,6 @@ def build_leaderboard(
         for bm in other_benchmarks:
             bid = bm.get("benchmark_id")
             bm_evals = evals_by_benchmark.get(bid, [])
-            # ... similar processing
             content += f"### {bm.get('name', 'Unnamed')}\n\n"
             if not bm_evals:
                 content += "*No submissions yet.*\n\n"
@@ -656,8 +826,18 @@ def build_leaderboard(
                     score, metric = get_primary_score(ev.get("metrics", {}), ai_task)
                     ranked.append((score, metric, ev))
                 ranked.sort(key=lambda x: x[0], reverse=True)
-                if ranked:
-                    content += generate_ranking_table(ranked, models, datasets, ranked[0][1])
+                
+                # Deduplicate by model (keep best score per model)
+                seen = set()
+                unique_ranked = []
+                for item in ranked:
+                    mid = list(item[2].get("model_ids", {}).values())[0] if item[2].get("model_ids") else ""
+                    if mid not in seen:
+                        seen.add(mid)
+                        unique_ranked.append(item)
+                
+                if unique_ranked:
+                    content += generate_ranking_table(unique_ranked, models, datasets, unique_ranked[0][1])
         content += "---\n\n"
 
     # Footer: How to submit
