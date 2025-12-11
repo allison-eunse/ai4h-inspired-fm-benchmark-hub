@@ -191,12 +191,13 @@ This protocol aligns with:
 
 1. Hotelling, H. (1936). Relations between two sets of variates. *Biometrika*, 28(3/4), 321-377.
 2. Witten, D. M., Tibshirani, R., & Hastie, T. (2009). A penalized matrix decomposition. *Biostatistics*, 10(3), 515-534.
-3. Wang, C. et al. (2020). Variational CCA for multimodal representation learning. *ICML*.
+3. Wang, W., Yan, X., Lee, H., & Livescu, K. (2016). Deep Variational Canonical Correlation Analysis. *arXiv preprint arXiv:1610.03454*.
 
 ## Related Protocols
 
 - [Prediction Baselines](prediction_baselines.md)
 - [Partial Correlations](partial_correlations.md)
+
 
 
 
