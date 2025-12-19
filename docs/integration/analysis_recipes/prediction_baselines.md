@@ -272,7 +272,7 @@ print(results_df.to_markdown(index=False, floatfmt='.3f'))
 
 ## Expected Baseline Performance
 
-### Neuroimaging Classification (e.g., AD vs CN)
+### Neuroimaging Classification (e.g., fMRI Task Classification)
 
 | Baseline | Typical Accuracy | Typical AUC |
 |----------|------------------|-------------|

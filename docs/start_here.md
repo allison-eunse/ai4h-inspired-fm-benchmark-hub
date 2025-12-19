@@ -120,11 +120,13 @@ python -m fmbench list-suites
 
 ---
 
-### Scenario D (optional): Neurology MRI classification (`SUITE-NEURO-CLASS-001`)
+### Scenario D (optional): Neurology fMRI classification (`SUITE-NEURO-CLASS-001`)
 
-This suite exists and is listed by `fmbench list-suites`, but it expects an MRI dataset (default `DS-ADNI` in `tests/suite_neurology_classification.yaml`).
+This suite evaluates fMRI foundation models on classification tasks using toy data.
 
 ```bash
-python -m fmbench run --suite SUITE-NEURO-CLASS-001 --model my_model_config.yaml --out results/my_mri_run
+python -m fmbench run --suite SUITE-NEURO-CLASS-001 --model my_model_config.yaml --out results/my_fmri_run
 ```
+
+For full benchmarking, point to your own institutional data (UK Biobank, HCP, etc.).
 

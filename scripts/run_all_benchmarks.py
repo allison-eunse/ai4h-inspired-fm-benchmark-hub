@@ -31,12 +31,13 @@ from fmbench.leaderboard import build_leaderboard
 
 # Map models to their appropriate benchmarks
 MODEL_BENCHMARK_MAP = {
-    # Neurology models → Neuro benchmarks
-    "brainlm": ["BM-001", "BM-BRAIN-MAE", "BM-FMRI-GRANULAR", "robustness_testing"],
-    "brainjepa": ["BM-001", "BM-FMRI-GRANULAR", "robustness_testing"],
+    # Neurology models → Neuro benchmarks (focus: robustness & representation quality)
+    "brainlm": ["BM-BRAIN-MAE", "BM-FMRI-GRANULAR", "robustness_testing"],
+    "brainjepa": ["BM-FMRI-GRANULAR", "robustness_testing"],
     "brainharmony": ["robustness_testing"],
     "brainmt": ["BM-FMRI-GRANULAR"],
     "neuroclip": ["BM-FMRI-GRANULAR"],
+    "swift": ["BM-FMRI-GRANULAR", "robustness_testing"],  # SwiFT is an fMRI model
     
     # Genomics models → Genomics benchmarks  
     "geneformer": ["BM-002", "robustness_testing"],
@@ -44,13 +45,12 @@ MODEL_BENCHMARK_MAP = {
     "caduceus": ["BM-002", "robustness_testing"],
     "dnabert2": ["BM-002"],
     "evo2": ["BM-002"],
-    "swift": ["BM-002"],
     
     # Vision-Language models → Report generation
     "openflamingo": ["BM-REPORT-GEN"],
     "medflamingo": ["BM-REPORT-GEN"],
     "titan": ["BM-REPORT-GEN"],
-    "uni": ["BM-001"],  # Pathology classification
+    "uni": ["BM-FMRI-GRANULAR"],  # Pathology/image classification
     "radbert": ["BM-REPORT-GEN"],
     "m3fm": ["BM-REPORT-GEN"],
     "me_llama": ["BM-REPORT-GEN"],
@@ -58,11 +58,6 @@ MODEL_BENCHMARK_MAP = {
 
 # Benchmark metadata for explanations
 BENCHMARK_INFO = {
-    "BM-001": {
-        "name": "AD Classification",
-        "primary_metric": "AUROC",
-        "description": "Alzheimer's Disease classification from brain MRI"
-    },
     "BM-002": {
         "name": "Cell Type Annotation", 
         "primary_metric": "Accuracy",

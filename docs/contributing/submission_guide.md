@@ -188,12 +188,12 @@ Your `evals/*.yaml` file should follow this format:
 ```yaml
 # evals/SUITE-NEURO-CLASS-my_fm-20240101-120000.yaml
 eval_id: SUITE-NEURO-CLASS-my_fm-20240101-120000
-benchmark_id: BM-001  # Must match existing benchmark
+benchmark_id: BM-FMRI-GRANULAR  # Must match existing benchmark
 
 model_ids:
   candidate: my_awesome_fm
 
-dataset_id: DS-ADNI  # Or your dataset
+dataset_id: DS-TOY-FMRI-CLASS  # Or your dataset
 
 run_metadata:
   date: "2024-01-01"
@@ -274,7 +274,7 @@ To appear in granular sub-leaderboards, include these stratified metrics:
 |----------|--------|
 | `sex` | M, F |
 | `age_group` | age_20-40, age_40-60, age_60-80, age_80-100 |
-| `disease_stage` | CN, MCI, AD, etc. |
+| `condition` | Healthy, Clinical, etc. |
 | `ethnicity` | Your categories |
 
 ---

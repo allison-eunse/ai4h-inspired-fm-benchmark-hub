@@ -1,0 +1,20 @@
+eval_id: DNA-regulatory_ensembl-kmer_baseline-20251219-023248
+benchmark_id: dna_classification
+model_ids:
+  candidate: kmer_baseline
+dataset_id: DS-DNA-REGULATORY_ENSEMBL
+run_metadata:
+  date: '2025-12-19T02:32:48'
+  runner: fmbench
+  suite_id: SUITE-DNA-CLASS
+  hardware: CPU
+  encoding: kmer
+  k: 6
+  n_train: 1500
+  n_test: 57713
+metrics:
+  AUROC: 0.6956
+  Accuracy: 0.5044
+  F1-Score: 0.5007
+  N: 57713
+status: Completed

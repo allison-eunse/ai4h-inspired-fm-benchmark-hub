@@ -1,20 +1,28 @@
 # DEL7.2: Technical Test Specification (Benchmark Suite)
+# Neurology FM Evaluation - Focus: Robustness & Representation Quality
 
 suite_id: "SUITE-NEURO-CLASS-001"
-name: "Neurology Classification Benchmark Suite (MRI)"
-benchmark_id: "BM-001" # Links to DEL10 TDD
+name: "Neurology fMRI Classification Benchmark Suite"
+benchmark_id: "BM-FMRI-GRANULAR"
+
+description: |
+  Benchmark suite for evaluating fMRI foundation models on classification tasks.
+  Focus: representation quality, robustness, and generalization.
+  
+  NOTE: This suite uses toy/synthetic data for testing. For full benchmarking,
+  users should provide their own institutional data (UK Biobank, HCP, etc.).
 
 # Execution Environment
-runner: "python scripts/runners/image_classification_runner.py"
+runner: "python -m fmbench run"
 environment:
   python: ">=3.9"
-  gpu_required: true
+  gpu_required: false  # Can run on CPU for toy data
 
 # Input Configuration
 inputs:
   dataset:
     key: "dataset_id"
-    default: "DS-ADNI" # Toy/Subset
+    default: "DS-TOY-FMRI-CLASS"  # Toy fMRI data included in repo
   model:
     key: "model_id"
 
@@ -22,31 +30,32 @@ inputs:
 protocol:
   cross_validation:
     folds: 5
-    strategy: "GroupKFold" # Group by subject ID to prevent leakage
-    group_col: "subject_id"
+    strategy: "StratifiedKFold"
   
   metrics:
     - name: "AUROC"
       func: "sklearn.metrics.roc_auc_score"
     - name: "Accuracy"
       func: "sklearn.metrics.accuracy_score"
-    - name: "Sensitivity"
-      func: "imblearn.metrics.sensitivity_score"
+    - name: "F1-Score"
+      func: "sklearn.metrics.f1_score"
   
-  efficiency_checks:
-    - "inference_time_per_volume"
+  robustness_probes:
+    - "dropout"
+    - "noise"
+    - "line_noise"
+    - "permutation"
+    - "shift"
 
 # Output Specification
 outputs:
   report_template: "templates/neuro_report.md"
   artifacts:
-    - "roc_curve.png"
-    - "saliency_map_sample.png"
+    - "eval.yaml"
+    - "report.md"
 
-
-
-
-
-
-
-
+# Usage
+usage: |
+  python -m fmbench run --suite SUITE-NEURO-CLASS-001 \
+    --model configs/model_brainlm.yaml \
+    --out results/brainlm_eval

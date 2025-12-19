@@ -98,17 +98,16 @@ vbm_gm = nib.load('subject_001_VBM_GM.nii.gz').get_fdata()
 ## Metadata Requirements
 
 ```yaml
-dataset_id: adni_smri
-name: ADNI Structural MRI
+dataset_id: ukb_smri
+name: UK Biobank Structural MRI
 modality: sMRI
 sequence: T1-weighted
-n_subjects: 1200
+n_subjects: 40000
 resolution: [1.0, 1.0, 1.0]  # mm (x, y, z)
-field_strength: 3T  # or 1.5T, 7T
-manufacturer: Siemens  # or GE, Philips
-preprocessing: FreeSurfer 7.2.0  # or CAT12, FSL, ANTs
+field_strength: 3T
+manufacturer: Siemens
+preprocessing: UK Biobank Pipeline
 standard_space: MNI152NLin2009cAsym
-segmentation_method: FreeSurfer
 atlas: Desikan-Killiany  # or Destrieux, AAL, etc.
 ```
 
@@ -270,16 +269,15 @@ augmented_data = augmented.t1.data  # Shape: (1, x, y, z)
 ### 1. Classification
 
 **Typical tasks**:
-- Alzheimer's Disease (AD) vs. Cognitively Normal (CN)
-- Brain tumor classification
-- Age group classification
 - Sex classification
+- Age group classification
+- Site/scanner classification (for robustness testing)
 
 **Input**: T1w images `(x, y, z)` or derived features  
 **Output**: Class labels
 
 ```python
-# Example: Binary classification (AD vs CN)
+# Example: Binary classification
 X_train = load_t1w_images(train_ids)  # (n_train, x, y, z)
 y_train = load_labels(train_ids)  # (n_train,) - {0, 1}
 ```
@@ -288,8 +286,8 @@ y_train = load_labels(train_ids)  # (n_train,) - {0, 1}
 
 **Typical tasks**:
 - Age prediction (brain age)
-- Cognitive score prediction (MMSE, MoCA)
-- Disease severity prediction
+- Phenotype prediction
+- Continuous score prediction
 
 **Input**: T1w images  
 **Output**: Continuous values

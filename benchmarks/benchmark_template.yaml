@@ -7,51 +7,48 @@ name: "Human-Readable Benchmark Name"
 version: "1.0.0"
 
 # DEL10: Health Topic Definition
-health_domain: "Neurology" # e.g., Neurology, Genomics, Ophthalmology
-health_topic: "Alzheimer's Disease Classification" # Specific condition
-clinical_relevance: "Early detection of AD allows for timely intervention..."
+health_domain: "Neurology" # e.g., Neurology, Genomics
+health_topic: "fMRI Analysis / Robustness Testing" # Specific focus
+clinical_relevance: "Evaluating FM robustness and representation quality..."
 
 # DEL10: AI Task Specification
 ai_task: "Classification" # Classification, Segmentation, Regression, Generation
-input_modality: "MRI" # MRI, Genomic Sequence, Histopathology
-output_type: "Label" # Label, Mask, Report, Sequence
+input_modality: "fMRI" # fMRI, scRNA-seq, DNA sequence
+output_type: "Label" # Label, Mask, Report, Embedding
 
 # DEL3: Data Requirements & Input Specifications
 data_spec:
-  input_format: "NIfTI (.nii.gz)"
-  min_resolution: "1mm isotropic"
+  input_format: "NIfTI (.nii.gz) or NumPy (.npy)"
+  min_resolution: "Standard preprocessing (fMRIPrep or similar)"
   required_metadata:
-    - age
-    - sex
-    - scanner_manufacturer
+    - subject_id
+    - scanner
+    - preprocessing_pipeline
   
 # DEL3: Performance Metrics
 metrics:
   primary: "AUROC"
   secondary:
     - "Accuracy"
-    - "Sensitivity"
-    - "Specificity"
     - "F1-Score"
+    - "Robustness rAUC"
   
   # DEL3: Generalizability & Sub-group Analysis (Granular Metrics)
-  # Use these to define "leaderboard parameters"
   stratification:
     - "Scanner Manufacturer" # Test performance per scanner (GE, Siemens, Philips)
-    - "Disease Stage" # MCI vs AD vs CN
-    - "Demographics" # Age groups, Sex
+    - "Preprocessing Pipeline" # fMRIPrep, HCP, minimal
+    - "Site" # Multi-site robustness
 
 # DEL3: Non-Functional Requirements
 requirements:
-  explainability: "Required (Saliency Maps)"
-  inference_time_limit: "10s per volume" # Operational constraint
+  explainability: "Optional (Attention Maps)"
+  inference_time_limit: "10s per sample"
   privacy: "No PHI in output"
 
 # Reference to Standard/Gold Standard
-gold_standard: "Clinical diagnosis confirmed by amyloid PET or CSF"
+gold_standard: "Task labels or synthetic ground truth for robustness"
 
 # Source/Attribution
 references:
   - "ITU-T FG-AI4H DEL10.8 (TG-Neuro)"
-  - "ADNI Protocol"
-
+  - "brainaug-lab methodology"

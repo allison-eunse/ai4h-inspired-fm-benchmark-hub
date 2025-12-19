@@ -1612,7 +1612,7 @@
 </tr>
 <tr>
 <td><strong>Health Topic</strong></td>
-<td>Domain area (e.g., "Alzheimer's Disease")</td>
+<td>Domain area (e.g., "Functional Brain Imaging", "Genomics")</td>
 </tr>
 <tr>
 <td><strong>AI Task</strong></td>
@@ -1620,15 +1620,15 @@
 </tr>
 <tr>
 <td><strong>Test Dataset</strong></td>
-<td>Standardized evaluation data (e.g., PBMC 68k, ADNI)</td>
+<td>Standardized evaluation data (e.g., PBMC 3k, HCP fMRI)</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Example from our schema</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># From benchmarks/bm_ad_classification.yaml</span>
-<span class="nt">benchmark_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AD-CLASSIFICATION</span>
-<span class="nt">health_topic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Alzheimer&#39;s Disease</span>
-<span class="nt">ai_task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># From benchmarks/bm_fmri_granular.yaml</span>
+<span class="nt">benchmark_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BM-FMRI-GRANULAR</span>
+<span class="nt">health_topic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Functional Brain Imaging Analysis</span>
+<span class="nt">ai_task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification/Reconstruction</span>
 </code></pre></div>
 <hr />
 <h3 id="del3-ai4h-requirement-specifications">DEL3: AI4H Requirement Specifications</h3>
@@ -1697,50 +1697,42 @@
 <p><strong>Our Implementation</strong>:</p>
 <h4 id="benchmark-structure-following-tdd-template">Benchmark Structure (Following TDD Template)</h4>
 <p>Each neurology benchmark follows the TDD structure:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Example: bm_ad_classification.yaml</span>
-<span class="nt">benchmark_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AD-CLASSIFICATION</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Alzheimer&#39;s Disease Classification using Brain MRI</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example: bm_fmri_granular.yaml</span>
+<span class="nt">benchmark_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BM-FMRI-GRANULAR</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fMRI Foundation Model Benchmark (Granular)</span>
 
 <span class="c1"># 1. Health Topic (TDD Section 2)</span>
-<span class="nt">health_topic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Alzheimer&#39;s Disease</span>
+<span class="nt">health_topic</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Functional Brain Imaging Analysis</span>
 <span class="nt">health_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Neurology</span>
 
 <span class="c1"># 2. Scope (TDD Section 3)</span>
 <span class="nt">scope</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">clinical_context</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Automated</span><span class="nv"> </span><span class="s">screening</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">AD</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">assist</span><span class="nv"> </span><span class="s">radiological</span><span class="nv"> </span><span class="s">workflow&quot;</span>
-<span class="w">  </span><span class="nt">population</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Adults age 55+</span>
-<span class="w">  </span><span class="nt">inclusion_criteria</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Confirmed AD diagnosis (NINCDS-ADRDA criteria) OR cognitively normal</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">T1-weighted MRI available</span>
-<span class="w">  </span><span class="nt">exclusion_criteria</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other neurological disorders</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MRI contraindications</span>
+<span class="w">  </span><span class="nt">clinical_context</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Evaluating</span><span class="nv"> </span><span class="s">FM</span><span class="nv"> </span><span class="s">robustness</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">representation</span><span class="nv"> </span><span class="s">quality&quot;</span>
+<span class="w">  </span><span class="nt">population</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">General population</span>
 
 <span class="c1"># 3. Input Data (TDD Section 4)</span>
 <span class="nt">inputs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">dataset</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sMRI</span>
-<span class="w">    </span><span class="nt">sequence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">T1-weighted</span>
-<span class="w">    </span><span class="nt">resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1mm isotropic</span>
-<span class="w">    </span><span class="nt">preprocessing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FreeSurfer 7.x</span>
+<span class="w">    </span><span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fMRI</span>
+<span class="w">    </span><span class="nt">sequence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BOLD</span>
+<span class="w">    </span><span class="nt">preprocessing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fMRIPrep or HCP Pipelines</span>
 
 <span class="c1"># 4. Evaluation Metrics (TDD Section 5)</span>
 <span class="nt">metrics</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AUROC</span>
 <span class="w">  </span><span class="nt">secondary</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Accuracy</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sensitivity (recall)</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Specificity</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Positive Predictive Value</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">F1-Score</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Robustness rAUC</span>
 <span class="w">  </span><span class="nt">stratification</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">age_group</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sex</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apoe_genotype</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scanner</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">preprocessing_pipeline</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acquisition_type</span>
 
 <span class="c1"># 5. Clinical Relevance (TDD Section 6)</span>
 <span class="nt">clinical_relevance</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">use_case</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Radiological decision support</span>
-<span class="w">  </span><span class="nt">impact</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Early detection, treatment planning</span>
+<span class="w">  </span><span class="nt">use_case</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FM robustness and generalization testing</span>
+<span class="w">  </span><span class="nt">impact</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reliable brain imaging AI systems</span>
 </code></pre></div>
 <h4 id="stratified-evaluation">Stratified Evaluation</h4>
 <p>DEL10.8 emphasizes evaluation across patient subgroups. Our framework automatically computes stratified metrics:</p>

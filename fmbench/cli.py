@@ -507,6 +507,155 @@ def _generate_robustness_report(
     return report
 
 
+def cmd_run_dna(args: argparse.Namespace) -> None:
+    """
+    Run DNA sequence classification benchmark.
+    
+    Reads TSV files with (sequence, label) format, encodes sequences,
+    and computes AUROC/Accuracy/F1-Score.
+    """
+    from .dna_runner import DNASequenceRunner
+    
+    data_dir = args.data_dir
+    out_dir = args.out
+    evals_dir = args.evals_dir
+    reports_dir = args.reports_dir
+    encoding = args.encoding
+    k = args.k
+    
+    # Check data directory
+    if not os.path.exists(data_dir):
+        print(f"Error: data directory {data_dir!r} does not exist.", file=sys.stderr)
+        sys.exit(1)
+    
+    train_path = os.path.join(data_dir, "train.tsv")
+    if not os.path.exists(train_path):
+        print(f"Error: train.tsv not found in {data_dir!r}.", file=sys.stderr)
+        sys.exit(1)
+    
+    # Load model if specified
+    model = None
+    model_id = "kmer_baseline"
+    
+    if args.model:
+        if not os.path.exists(args.model):
+            print(f"Error: model config {args.model!r} does not exist.", file=sys.stderr)
+            sys.exit(1)
+        
+        with open(args.model, "r") as f:
+            model_cfg = yaml.safe_load(f) or {}
+        model_id = model_cfg.get("model_id", "custom_model")
+        
+        print(f"Loading model from {args.model}...")
+        try:
+            model = load_model_from_config(model_cfg)
+        except Exception as e:
+            print(f"Error loading model: {e}", file=sys.stderr)
+            sys.exit(1)
+    
+    # Run DNA benchmark
+    print(f"Running DNA classification benchmark...")
+    print(f"  Data: {data_dir}")
+    print(f"  Encoding: {encoding} (k={k})")
+    print(f"  Model: {model_id}")
+    
+    try:
+        runner = DNASequenceRunner(
+            model=model,
+            data_dir=data_dir,
+            encoding=encoding,
+            k=k,
+            use_baseline=(model is None),
+        )
+        metrics = runner.run()
+    except Exception as e:
+        print(f"Error during DNA benchmark: {e}", file=sys.stderr)
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
+    
+    # Write outputs
+    os.makedirs(evals_dir, exist_ok=True)
+    os.makedirs(reports_dir, exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
+    
+    timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
+    dataset_name = os.path.basename(data_dir)
+    eval_id = f"DNA-{dataset_name}-{model_id}-{timestamp}"
+    
+    eval_record: Dict[str, Any] = {
+        "eval_id": eval_id,
+        "benchmark_id": "dna_classification",
+        "model_ids": {"candidate": model_id},
+        "dataset_id": f"DS-DNA-{dataset_name.upper()}",
+        "run_metadata": {
+            "date": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S"),
+            "runner": "fmbench",
+            "suite_id": "SUITE-DNA-CLASS",
+            "hardware": "CPU",
+            "encoding": encoding,
+            "k": k if encoding == "kmer" else None,
+            "n_train": runner.X_train.shape[0] if runner.X_train is not None else 0,
+            "n_test": runner.X_test.shape[0] if runner.X_test is not None else 0,
+        },
+        "metrics": metrics,
+        "status": "Completed",
+    }
+    
+    eval_filename = f"{eval_id}.yaml"
+    eval_path = os.path.join(evals_dir, eval_filename)
+    with open(eval_path, "w") as f:
+        yaml.safe_dump(eval_record, f, sort_keys=False)
+    
+    # Generate report
+    report_content = f"""# DNA Classification Report: {eval_id}
+
+## Overview
+
+- **Dataset**: {dataset_name}
+- **Model**: {model_id}
+- **Encoding**: {encoding}{f" (k={k})" if encoding == "kmer" else ""}
+- **Date**: {eval_record['run_metadata']['date']}
+
+## Performance Metrics
+
+| Metric | Score |
+|--------|-------|
+| **AUROC** | {metrics.get('AUROC', 0):.4f} |
+| **Accuracy** | {metrics.get('Accuracy', 0):.4f} |
+| **F1-Score** | {metrics.get('F1-Score', 0):.4f} |
+
+## Dataset Info
+
+- **Training samples**: {eval_record['run_metadata']['n_train']}
+- **Test samples**: {eval_record['run_metadata']['n_test']}
+
+## Method
+
+DNA sequences were encoded using **{encoding}** encoding{f" with k={k}" if encoding == "kmer" else ""}.
+{"A logistic regression classifier was trained on the encoded features." if model is None else f"The {model_id} model was used for classification."}
+
+## References
+
+- Genomic Benchmarks: https://huggingface.co/datasets/katielink/genomic-benchmarks
+- Nucleotide Transformer: https://huggingface.co/InstaDeepAI
+"""
+    
+    report_filename = f"{eval_id}.md"
+    report_path = os.path.join(reports_dir, report_filename)
+    with open(report_path, "w") as f:
+        f.write(report_content)
+    
+    # Mirror outputs
+    shutil.copy2(eval_path, os.path.join(out_dir, "eval.yaml"))
+    shutil.copy2(report_path, os.path.join(out_dir, "report.md"))
+    
+    print("\nResults written:")
+    print(f"  Eval YAML: {eval_path}")
+    print(f"  Report:    {report_path}")
+    print(f"  Out dir:   {out_dir}")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="fmbench",
@@ -687,6 +836,53 @@ def build_parser() -> argparse.ArgumentParser:
         help="Directory for Markdown reports (default: reports).",
     )
     p_rob.set_defaults(func=cmd_run_robustness)
+
+    # run-dna
+    p_dna = subparsers.add_parser(
+        "run-dna",
+        help=(
+            "Run DNA sequence classification benchmark. "
+            "Reads TSV files with (sequence, label) format."
+        ),
+    )
+    p_dna.add_argument(
+        "--data-dir",
+        required=True,
+        help="Directory containing train.tsv and optionally test.tsv.",
+    )
+    p_dna.add_argument(
+        "--out",
+        required=True,
+        help="Output directory for evaluation artifacts.",
+    )
+    p_dna.add_argument(
+        "--model",
+        default=None,
+        help="Optional path to model configuration YAML. Uses k-mer baseline if not provided.",
+    )
+    p_dna.add_argument(
+        "--encoding",
+        default="kmer",
+        choices=["kmer", "one_hot", "character"],
+        help="DNA encoding method (default: kmer).",
+    )
+    p_dna.add_argument(
+        "--k",
+        type=int,
+        default=6,
+        help="K-mer size for k-mer encoding (default: 6).",
+    )
+    p_dna.add_argument(
+        "--evals-dir",
+        default="evals",
+        help="Directory for evaluation YAML files (default: evals).",
+    )
+    p_dna.add_argument(
+        "--reports-dir",
+        default="reports",
+        help="Directory for Markdown reports (default: reports).",
+    )
+    p_dna.set_defaults(func=cmd_run_dna)
 
     return parser
 

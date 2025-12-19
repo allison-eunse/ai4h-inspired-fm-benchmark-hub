@@ -1728,17 +1728,16 @@
 <span class="c1"># Typically smoothed with 8mm FWHM Gaussian kernel</span>
 </code></pre></div>
 <h2 id="metadata-requirements">Metadata Requirements</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">dataset_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">adni_smri</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ADNI Structural MRI</span>
+<div class="highlight"><pre><span></span><code><span class="nt">dataset_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ukb_smri</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UK Biobank Structural MRI</span>
 <span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sMRI</span>
 <span class="nt">sequence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">T1-weighted</span>
-<span class="nt">n_subjects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1200</span>
+<span class="nt">n_subjects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40000</span>
 <span class="nt">resolution</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># mm (x, y, z)</span>
-<span class="nt">field_strength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3T</span><span class="w">  </span><span class="c1"># or 1.5T, 7T</span>
-<span class="nt">manufacturer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Siemens</span><span class="w">  </span><span class="c1"># or GE, Philips</span>
-<span class="nt">preprocessing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FreeSurfer 7.2.0</span><span class="w">  </span><span class="c1"># or CAT12, FSL, ANTs</span>
+<span class="nt">field_strength</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3T</span>
+<span class="nt">manufacturer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Siemens</span>
+<span class="nt">preprocessing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UK Biobank Pipeline</span>
 <span class="nt">standard_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MNI152NLin2009cAsym</span>
-<span class="nt">segmentation_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FreeSurfer</span>
 <span class="nt">atlas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Desikan-Killiany</span><span class="w">  </span><span class="c1"># or Destrieux, AAL, etc.</span>
 </code></pre></div>
 <h2 id="quality-control-metrics">Quality Control Metrics</h2>
@@ -1876,21 +1875,20 @@
 <h2 id="benchmark-tasks">Benchmark Tasks</h2>
 <h3 id="1-classification">1. Classification</h3>
 <p><strong>Typical tasks</strong>:
-- Alzheimer's Disease (AD) vs. Cognitively Normal (CN)
-- Brain tumor classification
+- Sex classification
 - Age group classification
-- Sex classification</p>
+- Site/scanner classification (for robustness testing)</p>
 <p><strong>Input</strong>: T1w images <code>(x, y, z)</code> or derived features<br />
 <strong>Output</strong>: Class labels</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Example: Binary classification (AD vs CN)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example: Binary classification</span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">load_t1w_images</span><span class="p">(</span><span class="n">train_ids</span><span class="p">)</span>  <span class="c1"># (n_train, x, y, z)</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">load_labels</span><span class="p">(</span><span class="n">train_ids</span><span class="p">)</span>  <span class="c1"># (n_train,) - {0, 1}</span>
 </code></pre></div>
 <h3 id="2-regression">2. Regression</h3>
 <p><strong>Typical tasks</strong>:
 - Age prediction (brain age)
-- Cognitive score prediction (MMSE, MoCA)
-- Disease severity prediction</p>
+- Phenotype prediction
+- Continuous score prediction</p>
 <p><strong>Input</strong>: T1w images<br />
 <strong>Output</strong>: Continuous values</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Example: Brain age prediction</span>

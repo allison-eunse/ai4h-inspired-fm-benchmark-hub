@@ -263,5 +263,9 @@ def get_runner(
         # Import here to avoid circular imports and make brainaug-lab optional
         from .robustness import RobustnessRunner
         return RobustnessRunner(model, data_dir, **kwargs)
+    elif runner_type == "dna" or runner_type == "dna_classification":
+        # DNA sequence classification runner
+        from .dna_runner import DNASequenceRunner
+        return DNASequenceRunner(model=model, data_dir=data_dir, **kwargs)
     else:
         raise ValueError(f"Unknown runner type: {runner_type}")

@@ -1,0 +1,20 @@
+eval_id: DNA-promoters_nontata-kmer_baseline-20251219-023228
+benchmark_id: dna_classification
+model_ids:
+  candidate: kmer_baseline
+dataset_id: DS-DNA-PROMOTERS_NONTATA
+run_metadata:
+  date: '2025-12-19T02:32:28'
+  runner: fmbench
+  suite_id: SUITE-DNA-CLASS
+  hardware: CPU
+  encoding: kmer
+  k: 6
+  n_train: 27097
+  n_test: 9034
+metrics:
+  AUROC: 0.8426
+  Accuracy: 0.773
+  F1-Score: 0.7728
+  N: 9034
+status: Completed

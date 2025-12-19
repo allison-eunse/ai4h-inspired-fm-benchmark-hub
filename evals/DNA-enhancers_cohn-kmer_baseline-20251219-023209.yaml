@@ -1,0 +1,20 @@
+eval_id: DNA-enhancers_cohn-kmer_baseline-20251219-023209
+benchmark_id: dna_classification
+model_ids:
+  candidate: kmer_baseline
+dataset_id: DS-DNA-ENHANCERS_COHN
+run_metadata:
+  date: '2025-12-19T02:32:09'
+  runner: fmbench
+  suite_id: SUITE-DNA-CLASS
+  hardware: CPU
+  encoding: kmer
+  k: 6
+  n_train: 20843
+  n_test: 6948
+metrics:
+  AUROC: 0.7433
+  Accuracy: 0.674
+  F1-Score: 0.6738
+  N: 6948
+status: Completed

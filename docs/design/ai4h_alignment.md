@@ -40,17 +40,17 @@ The [ITU/WHO Focus Group on AI for Health](https://www.itu.int/en/ITU-T/focusgro
 | **AI Solution** | Foundation models (e.g., BrainLM, Geneformer) |
 | **Benchmarking Run** | Evaluation instance (`eval_id` in results) |
 | **Reference Implementation** | Baseline models (logistic regression, random forest) |
-| **Health Topic** | Domain area (e.g., "Alzheimer's Disease") |
+| **Health Topic** | Domain area (e.g., "Functional Brain Imaging", "Genomics") |
 | **AI Task** | ML task type (classification, reconstruction, regression) |
-| **Test Dataset** | Standardized evaluation data (e.g., PBMC 68k, ADNI) |
+| **Test Dataset** | Standardized evaluation data (e.g., PBMC 3k, HCP fMRI) |
 
 **Example from our schema**:
 
 ```yaml
-# From benchmarks/bm_ad_classification.yaml
-benchmark_id: AD-CLASSIFICATION
-health_topic: Alzheimer's Disease
-ai_task: Classification
+# From benchmarks/bm_fmri_granular.yaml
+benchmark_id: BM-FMRI-GRANULAR
+health_topic: Functional Brain Imaging Analysis
+ai_task: Classification/Reconstruction
 ```
 
 ---
@@ -146,50 +146,42 @@ See our [analysis recipes](../integration/analysis_recipes/cca_permutation.md).
 Each neurology benchmark follows the TDD structure:
 
 ```yaml
-# Example: bm_ad_classification.yaml
-benchmark_id: AD-CLASSIFICATION
-name: Alzheimer's Disease Classification using Brain MRI
+# Example: bm_fmri_granular.yaml
+benchmark_id: BM-FMRI-GRANULAR
+name: fMRI Foundation Model Benchmark (Granular)
 
 # 1. Health Topic (TDD Section 2)
-health_topic: Alzheimer's Disease
+health_topic: Functional Brain Imaging Analysis
 health_domain: Neurology
 
 # 2. Scope (TDD Section 3)
 scope:
-  clinical_context: "Automated screening for AD to assist radiological workflow"
-  population: Adults age 55+
-  inclusion_criteria:
-    - Confirmed AD diagnosis (NINCDS-ADRDA criteria) OR cognitively normal
-    - T1-weighted MRI available
-  exclusion_criteria:
-    - Other neurological disorders
-    - MRI contraindications
-
+  clinical_context: "Evaluating FM robustness and representation quality"
+  population: General population
+  
 # 3. Input Data (TDD Section 4)
 inputs:
   dataset:
-    modality: sMRI
-    sequence: T1-weighted
-    resolution: 1mm isotropic
-    preprocessing: FreeSurfer 7.x
+    modality: fMRI
+    sequence: BOLD
+    preprocessing: fMRIPrep or HCP Pipelines
   
 # 4. Evaluation Metrics (TDD Section 5)
 metrics:
   primary: AUROC
   secondary:
     - Accuracy
-    - Sensitivity (recall)
-    - Specificity
-    - Positive Predictive Value
+    - F1-Score
+    - Robustness rAUC
   stratification:
-    - age_group
-    - sex
-    - apoe_genotype
+    - scanner
+    - preprocessing_pipeline
+    - acquisition_type
 
 # 5. Clinical Relevance (TDD Section 6)
 clinical_relevance:
-  use_case: Radiological decision support
-  impact: Early detection, treatment planning
+  use_case: FM robustness and generalization testing
+  impact: Reliable brain imaging AI systems
 ```
 
 #### Stratified Evaluation
