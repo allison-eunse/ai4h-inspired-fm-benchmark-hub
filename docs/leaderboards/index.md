@@ -51,7 +51,7 @@ TATA box and represent ~75% of human promoters.
                  (0.872)                 
              ╔═══════════════╗             
              ║               ║             
-   🥈  Evo 2     ║               ║   🥉 Caduceus   
+   🥈 Caduceus   ║               ║   🥉  Evo 2     
       (0.859)      ║               ║      (0.859)      
   ╔═══════════╝               ╚═══════════╗  
   ║                                       ║  
@@ -65,17 +65,123 @@ TATA box and represent ~75% of human promoters.
 | Rank | Model | Score | Level | Details |
 |:---:|:---|:---:|:---:|:---|
 | 🥇 | **HyenaDNA** 👑 | 0.8720 | ✅ Good | DS-DNA-PROMOTER, 2025-12-18T21:03:12.030852 |
-| 🥈 | **Evo 2** | 0.8594 | ✅ Good | Human Non-TATA Promo, 2025-12-19T12:00:13.671201 |
-| 🥉 | **Caduceus** | 0.8594 | ✅ Good | Human Non-TATA Promo, 2025-12-19T12:00:12.829913 |
+| 🥈 | **Caduceus** | 0.8594 | ✅ Good | Human Non-TATA Promo, 2025-12-19T12:00:12.829913 |
+| 🥉 | **Evo 2** | 0.8594 | ✅ Good | Human Non-TATA Promo, 2025-12-19T12:00:13.671201 |
+| 🏅 | kmer_k6 | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:10.847321 |
 | 🏅 | DNABERT-2 | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:27.391206 |
-| 🏅 | HyenaDNA | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:19.651418 |
-| 🎖️ | kmer_k6 | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:10.847321 |
+| 🎖️ | HyenaDNA | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:19.651418 |
 
 !!! tip "Quick Comparison"
     **🥇 HyenaDNA** leads with AUROC = **0.8720**
 
-    - Gap to 🥈 Evo 2: +0.0126
+    - Gap to 🥈 Caduceus: +0.0126
     - Score spread (best to worst): 0.0363
+
+
+<details>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
+
+---
+
+### 📖 Understanding This Leaderboard
+
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
+
+---
+
+### 🎯 The Main Metric: `AUROC`
+
+**Area Under ROC Curve (AUROC)**
+
+**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
+
+**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
+
+**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
+
+💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
+
+---
+
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
+  how reliably the model separates different outcome groups. In addition to raw accuracy,
+  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
+  imbalanced (for example, when positive cases are rare).
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
+
+</details>
+
+---
+
+#### Cell Type Annotation
+
+*Predicting cell types from single-cell RNA-seq data.*
+
+**2 models ranked by `AUROC`:**
+
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **Baseline (Random/Majority)** 👑 | 0.0000 | 📈 Developing | PBMC 3k (processed, , 2025-12-18 |
+| 🥈 | **geneformer** | 0.0000 | 📈 Developing | PBMC 3k (processed, , 2025-12-18 |
+
+!!! tip "Quick Comparison"
+    **🥇 Baseline (Random/Majority)** leads with AUROC = **0.0000**
+
+    - Gap to 🥈 geneformer: +0.0000
 
 
 <details>
@@ -185,7 +291,7 @@ and identifying disease-associated variants.
                  (0.788)                 
              ╔═══════════════╗             
              ║               ║             
-   🥈  Evo 2     ║               ║   🥉 Caduceus   
+   🥈 Caduceus   ║               ║   🥉  Evo 2     
       (0.745)      ║               ║      (0.745)      
   ╔═══════════╝               ╚═══════════╗  
   ║                                       ║  
@@ -199,123 +305,17 @@ and identifying disease-associated variants.
 | Rank | Model | Score | Level | Details |
 |:---:|:---|:---:|:---:|:---|
 | 🥇 | **HyenaDNA** 👑 | 0.7883 | 🔶 Fair | DS-DNA-ENHANCER, 2025-12-18T21:03:03.285801 |
-| 🥈 | **Evo 2** | 0.7453 | 🔶 Fair | Human Enhancers (Coh, 2025-12-19T12:00:13.160707 |
-| 🥉 | **Caduceus** | 0.7453 | 🔶 Fair | Human Enhancers (Coh, 2025-12-19T12:00:12.636691 |
+| 🥈 | **Caduceus** | 0.7453 | 🔶 Fair | Human Enhancers (Coh, 2025-12-19T12:00:12.636691 |
+| 🥉 | **Evo 2** | 0.7453 | 🔶 Fair | Human Enhancers (Coh, 2025-12-19T12:00:13.160707 |
+| 🏅 | kmer_k6 | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:08.075706 |
 | 🏅 | DNABERT-2 | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:24.678525 |
-| 🏅 | HyenaDNA | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:17.006557 |
-| 🎖️ | kmer_k6 | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:08.075706 |
+| 🎖️ | HyenaDNA | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:17.006557 |
 
 !!! tip "Quick Comparison"
     **🥇 HyenaDNA** leads with AUROC = **0.7883**
 
-    - Gap to 🥈 Evo 2: +0.0430
+    - Gap to 🥈 Caduceus: +0.0430
     - Score spread (best to worst): 0.0518
-
-
-<details>
-<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
-
----
-
-### 📖 Understanding This Leaderboard
-
-This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
-
----
-
-### 🎯 The Main Metric: `AUROC`
-
-**Area Under ROC Curve (AUROC)**
-
-**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
-
-**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
-
-**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
-
-💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
-
----
-
-### 🧠 How This Metric Fits This Task
-
-Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
-
-- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
-  how reliably the model separates different outcome groups. In addition to raw accuracy,
-  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
-  imbalanced (for example, when positive cases are rare).
-
----
-
-### 📊 Performance Tiers: What Do the Scores Mean?
-
-We group models into performance tiers to help you quickly understand how ready they are for different uses:
-
-| Score Range | Rating | Interpretation | Suitable For |
-|:---:|:---:|:---|:---|
-| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
-| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
-| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
-| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
-
-!!! tip "Important Context"
-    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
-
----
-
-### 📏 How We Determine Rankings
-
-Models are ranked following these principles:
-
-1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
-
-2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
-
-3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
-
-4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
-
----
-
-### 🏥 Why This Matters for Healthcare AI
-
-Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
-
-- Use **multiple metrics** to capture different aspects of performance
-- Test **robustness** to real-world data quality issues
-- Require **transparency** about evaluation conditions
-- Follow **international standards** for healthcare AI assessment
-
----
-
-### 🌍 Standards Alignment
-
-This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
-
-- **Rigorous** — Following established scientific methodology
-- **Comparable** — Using standardized metrics across different models
-- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
-
-</details>
-
----
-
-#### Cell Type Annotation
-
-*Predicting cell types from single-cell RNA-seq data.*
-
-**2 models ranked by `AUROC`:**
-
-| Rank | Model | Score | Level | Details |
-|:---:|:---|:---:|:---:|:---|
-| 🥇 | **geneformer** 👑 | 0.0000 | 📈 Developing | PBMC 3k (processed, , 2025-12-18 |
-| 🥈 | **Baseline (Random/Majority)** | 0.0000 | 📈 Developing | PBMC 3k (processed, , 2025-12-18 |
-
-!!! tip "Quick Comparison"
-    **🥇 geneformer** leads with AUROC = **0.0000**
-
-    - Gap to 🥈 Baseline (Random/Majority): +0.0000
 
 
 <details>
