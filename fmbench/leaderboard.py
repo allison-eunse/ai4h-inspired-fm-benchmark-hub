@@ -432,24 +432,81 @@ def generate_podium(ranked_evals: List[Tuple], models: List[Dict]) -> str:
 
 
 # =============================================================================
-# SCORING METHODOLOGY (Clean, card-based format)
+# SCORING METHODOLOGY (Benchmark-specific + general rules)
 # =============================================================================
 
-def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
-    """Generate clean, readable scoring methodology with beginner-friendly explanations."""
-    md = '\n<details class="score-details" markdown="1">\n<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>\n\n'
-    
-    # Introduction for beginners
+def generate_scoring_methodology(
+    primary_metric: str,
+    ai_task: str,
+    benchmark: Dict,
+    bm_evals: List[Dict],
+    datasets: List[Dict],
+) -> str:
+    """
+    Generate scoring explanation for a specific benchmark:
+    - What this leaderboard measures (data + task)
+    - How the primary metric works
+    - General ranking and AI4H alignment notes
+    """
+    md = '\n<details class="score-details" markdown="1">\n<summary>📐 <strong>How are scores calculated for this benchmark?</strong> (click to expand)</summary>\n\n'
+
+    # ------------------------------------------------------------------
+    # 1. Benchmark-specific context (data, task, metrics)
+    # ------------------------------------------------------------------
+    bm_id = benchmark.get("benchmark_id", "N/A")
+    bm_name = benchmark.get("name", "Unnamed benchmark")
+    ai_task_str = benchmark.get("ai_task", ai_task or "Unknown task")
+    health_domain = benchmark.get("health_domain")
+    health_topic = benchmark.get("health_topic")
+
+    # Datasets actually used in evals
+    dataset_ids = sorted(
+        {ev.get("dataset_id") for ev in bm_evals if ev.get("dataset_id")}
+    )
+    dataset_lines: List[str] = []
+    for ds_id in dataset_ids:
+        ds_data = get_by_id(datasets, "dataset_id", ds_id)
+        ds_name = (ds_data.get("name", ds_id) if ds_data else ds_id)
+        dataset_lines.append(f"- `{ds_id}` — {ds_name}")
+
+    # Rough sample size from the best eval (train + test if present)
+    approx_n = None
+    for ev in bm_evals:
+        meta = ev.get("run_metadata") or {}
+        n_train = meta.get("n_train")
+        n_test = meta.get("n_test")
+        if isinstance(n_train, (int, float)) or isinstance(n_test, (int, float)):
+            approx_n = (n_train or 0) + (n_test or 0)
+            if approx_n > 0:
+                break
+
+    md += "## 📂 What this leaderboard measures\n\n"
+    md += f"- **Benchmark:** `{bm_id}` — {bm_name}\n"
+    if health_domain or health_topic:
+        domain_bits = []
+        if health_domain:
+            domain_bits.append(health_domain)
+        if health_topic:
+            domain_bits.append(health_topic)
+        md += f"- **Domain:** {', '.join(domain_bits)}\n"
+    md += f"- **Task type:** {ai_task_str}\n"
+    if dataset_lines:
+        md += "- **Datasets used in the table above:**\n"
+        for line in dataset_lines:
+            md += f"  {line}\n"
+    if approx_n:
+        md += f"- **Typical sample size in these runs:** ~{int(approx_n)} samples (train + test combined)\n"
+    md += f"- **Primary ranking metric:** `{primary_metric}` (the score column in the table)\n\n"
+
     md += "<br>\n\n"
-    md += "## 📖 Understanding This Leaderboard\n\n"
-    md += "This section explains how we measure and compare AI models.\n\n"
-    md += "> 💡 **Don't worry if you're new to AI metrics** — we'll break it down step by step.\n\n"
-    md += "<br>\n\n"
+
+    # ------------------------------------------------------------------
+    # 2. Primary metric card with detailed explanation
+    # ------------------------------------------------------------------
     
-    # Primary metric card with detailed explanation
     metric_info = METRIC_EXPLANATIONS.get(primary_metric, {})
     md += "---\n\n"
-    md += f"## 🎯 The Main Metric: `{primary_metric}`\n\n"
+    md += f"## 🎯 How `{primary_metric}` works\n\n"
     
     if metric_info:
         md += f"### {metric_info.get('name', primary_metric)}\n\n"
@@ -476,7 +533,9 @@ def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     
     md += "<br>\n\n"
     
-    # Task-specific context
+    # ------------------------------------------------------------------
+    # 3. Task-specific context
+    # ------------------------------------------------------------------
     md += "---\n\n"
     md += "## 🧠 How This Metric Fits This Task\n\n"
     md += "Different tasks emphasize different aspects of performance.\n\n"
@@ -530,7 +589,9 @@ def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     
     md += "<br>\n\n"
     
-    # Performance tiers - with more context
+    # ------------------------------------------------------------------
+    # 4. Performance tiers - general guidance
+    # ------------------------------------------------------------------
     md += "---\n\n"
     md += "## 📊 Performance Tiers\n\n"
     md += "### What Do the Scores Mean?\n\n"
@@ -554,7 +615,9 @@ def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     
     md += "<br>\n\n"
     
-    # Ranking rules - more detailed
+    # ------------------------------------------------------------------
+    # 5. Ranking rules - how models are ordered
+    # ------------------------------------------------------------------
     md += "---\n\n"
     md += "## 📏 How We Determine Rankings\n\n"
     md += "Models are ranked following these principles:\n\n"
@@ -578,7 +641,9 @@ def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     
     md += "<br>\n\n"
     
-    # Why this matters
+    # ------------------------------------------------------------------
+    # 6. Why this matters for healthcare AI
+    # ------------------------------------------------------------------
     md += "---\n\n"
     md += "## 🏥 Why This Matters for Healthcare AI\n\n"
     md += "Healthcare AI has **higher stakes** than many other AI applications.\n\n"
@@ -593,7 +658,9 @@ def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     
     md += "<br>\n\n"
     
-    # AI4H note
+    # ------------------------------------------------------------------
+    # 7. AI4H / standards alignment
+    # ------------------------------------------------------------------
     md += "---\n\n"
     md += "## 🌍 Standards Alignment\n\n"
     md += "This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) "
@@ -796,8 +863,8 @@ def generate_modality_section(
             # Quick comparison
             md += generate_quick_comparison(unique_ranked, models, primary_metric)
             
-            # Scoring explanation
-            md += generate_scoring_methodology(primary_metric, ai_task)
+            # Scoring explanation (now benchmark- and dataset-aware)
+            md += generate_scoring_methodology(primary_metric, ai_task, bm, bm_evals, datasets)
             
             md += "---\n\n"
     
