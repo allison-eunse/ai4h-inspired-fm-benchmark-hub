@@ -637,17 +637,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#overall-rankings-all-modalities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🌐 Overall Rankings (All Modalities)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#genomics" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1525,7 +1514,7 @@
 <h1 id="foundation-model-leaderboards">🏆 Foundation Model Leaderboards</h1>
 <div class="admonition success">
 <p class="admonition-title">Benchmark Hub Overview</p>
-<p>📊 <strong>8</strong> Benchmarks | 🤖 <strong>24</strong> Models | 📈 <strong>59</strong> Evaluations</p>
+<p>📊 <strong>8</strong> Benchmarks | 🤖 <strong>12</strong> Models | 📈 <strong>35</strong> Evaluations</p>
 </div>
 <blockquote>
 <p><strong>What is this?</strong> This page ranks AI models for healthcare applications. 
@@ -1561,223 +1550,9 @@ Click "How are scores calculated?" for details on what the numbers mean.</p>
 <hr />
 <h2 id="jump-to">🧭 Jump To</h2>
 <ul>
-<li><a href="#overall-rankings-all-modalities">🌐 Overall Rankings</a> — Best across all categories</li>
 <li><a href="#genomics">🧬 Genomics</a></li>
 <li><a href="#brain-imaging-mrifmri">🧠 Brain Imaging (MRI/fMRI)</a></li>
 </ul>
-<hr />
-<h2 id="overall-rankings-all-modalities">🌐 Overall Rankings (All Modalities)</h2>
-<p><em>Best score per model across all benchmarks</em></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Rank</th>
-<th style="text-align: left;">Model</th>
-<th style="text-align: center;">Best Score</th>
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Benchmark</th>
-<th style="text-align: left;">Modality</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">🥇</td>
-<td style="text-align: left;"><strong>SWIFT</strong> 👑</td>
-<td style="text-align: center;">0.9999</td>
-<td style="text-align: left;"><code>dropout_rAUC</code></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">🥈</td>
-<td style="text-align: left;"><strong>BrainMT</strong></td>
-<td style="text-align: center;">0.9999</td>
-<td style="text-align: left;"><code>dropout_rAUC</code></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">🥉</td>
-<td style="text-align: left;"><strong>neuroclips</strong></td>
-<td style="text-align: center;">0.9999</td>
-<td style="text-align: left;"><code>dropout_rAUC</code></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">geneformer</td>
-<td style="text-align: center;">0.9995</td>
-<td style="text-align: left;"><code>robustness_score</code></td>
-<td style="text-align: left;">Foundation Model Robustness Evaluation</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">Evo 2</td>
-<td style="text-align: center;">0.9841</td>
-<td style="text-align: left;"><code>dropout_rAUC</code></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">Caduceus</td>
-<td style="text-align: center;">0.9841</td>
-<td style="text-align: left;"><code>dropout_rAUC</code></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">Brain-JEPA</td>
-<td style="text-align: center;">0.9250</td>
-<td style="text-align: left;"><code>AUROC</code></td>
-<td style="text-align: left;">fMRI Foundation Model Benchmark (Granular)</td>
-<td style="text-align: left;">🧠 Brain Imaging (MRI/fMRI)</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">BrainLM</td>
-<td style="text-align: center;">0.9100</td>
-<td style="text-align: left;"><code>AUROC</code></td>
-<td style="text-align: left;">fMRI Foundation Model Benchmark (Granular)</td>
-<td style="text-align: left;">🧠 Brain Imaging (MRI/fMRI)</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">Geneformer</td>
-<td style="text-align: center;">0.9100</td>
-<td style="text-align: left;"><code>Accuracy</code></td>
-<td style="text-align: left;">Cell Type Annotation</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">Me-LLaMA</td>
-<td style="text-align: center;">0.8750</td>
-<td style="text-align: left;"><code>report_quality_score</code></td>
-<td style="text-align: left;">Clinical Report Generation Quality</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#11</td>
-<td style="text-align: left;">HyenaDNA</td>
-<td style="text-align: center;">0.8720</td>
-<td style="text-align: left;"><code>AUROC</code></td>
-<td style="text-align: left;">DNA Promoter Classification</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#12</td>
-<td style="text-align: left;">HyenaDNA</td>
-<td style="text-align: center;">0.8700</td>
-<td style="text-align: left;"><code>Accuracy</code></td>
-<td style="text-align: left;">Cell Type Annotation</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#13</td>
-<td style="text-align: left;">BrainBERT</td>
-<td style="text-align: center;">0.8700</td>
-<td style="text-align: left;"><code>AUROC</code></td>
-<td style="text-align: left;">fMRI Foundation Model Benchmark (Granular)</td>
-<td style="text-align: left;">🧠 Brain Imaging (MRI/fMRI)</td>
-</tr>
-<tr>
-<td style="text-align: center;">#14</td>
-<td style="text-align: left;">M3FM</td>
-<td style="text-align: center;">0.8600</td>
-<td style="text-align: left;"><code>report_quality_score</code></td>
-<td style="text-align: left;">Clinical Report Generation Quality</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#15</td>
-<td style="text-align: left;">DNABERT-2</td>
-<td style="text-align: center;">0.8500</td>
-<td style="text-align: left;"><code>Accuracy</code></td>
-<td style="text-align: left;">Cell Type Annotation</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#16</td>
-<td style="text-align: left;">BrainHarmony</td>
-<td style="text-align: center;">0.8450</td>
-<td style="text-align: left;"><code>robustness_score</code></td>
-<td style="text-align: left;">Foundation Model Robustness Evaluation</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">#17</td>
-<td style="text-align: left;">kmer_baseline</td>
-<td style="text-align: center;">0.8426</td>
-<td style="text-align: left;"><code>AUROC</code></td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">#18</td>
-<td style="text-align: left;">OpenFlamingo</td>
-<td style="text-align: center;">0.8400</td>
-<td style="text-align: left;"><code>report_quality_score</code></td>
-<td style="text-align: left;">Clinical Report Generation Quality</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#19</td>
-<td style="text-align: left;">kmer_k6</td>
-<td style="text-align: center;">0.8357</td>
-<td style="text-align: left;"><code>AUROC</code></td>
-<td style="text-align: left;">DNA Promoter Classification</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#20</td>
-<td style="text-align: left;">NeuroClips</td>
-<td style="text-align: center;">0.8300</td>
-<td style="text-align: left;"><code>AUROC</code></td>
-<td style="text-align: left;">fMRI Foundation Model Benchmark (Granular)</td>
-<td style="text-align: left;">🧠 Brain Imaging (MRI/fMRI)</td>
-</tr>
-<tr>
-<td style="text-align: center;">#21</td>
-<td style="text-align: left;">TITAN</td>
-<td style="text-align: center;">0.8100</td>
-<td style="text-align: left;"><code>report_quality_score</code></td>
-<td style="text-align: left;">Clinical Report Generation Quality</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#22</td>
-<td style="text-align: left;">Baseline (Random/Majority)</td>
-<td style="text-align: center;">0.7810</td>
-<td style="text-align: left;"><code>robustness_score</code></td>
-<td style="text-align: left;">Foundation Model Robustness Evaluation</td>
-<td style="text-align: left;">📊 Other</td>
-</tr>
-<tr>
-<td style="text-align: center;">#23</td>
-<td style="text-align: left;">Med-Flamingo</td>
-<td style="text-align: center;">0.7800</td>
-<td style="text-align: left;"><code>report_quality_score</code></td>
-<td style="text-align: left;">Clinical Report Generation Quality</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-<tr>
-<td style="text-align: center;">#24</td>
-<td style="text-align: left;">RadBERT</td>
-<td style="text-align: center;">0.6900</td>
-<td style="text-align: left;"><code>report_quality_score</code></td>
-<td style="text-align: left;">Clinical Report Generation Quality</td>
-<td style="text-align: left;">🧬 Genomics</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition abstract">
-<p class="admonition-title">Performance Distribution</p>
-<p>⭐ 9 Excellent | ✅ 12 Good | 🔶 2 Fair | 📈 1 Developing</p>
-</div>
 <hr />
 <h2 id="genomics">🧬 Genomics</h2>
 <h3 id="classification">🎯 Classification</h3>
@@ -1791,12 +1566,12 @@ TATA box and represent ~75% of human promoters.
 
 <div class="highlight"><pre><span></span><code>                    🏆                    
 
-              🥇  HyenaDNA              
+              🥇 HyenaDNA              
                  (0.872)                 
              ╔═══════════════╗             
              ║               ║             
-   🥈  kmer_k6    ║               ║   🥉 DNABERT-2   
-      (0.836)      ║               ║      (0.836)      
+   🥈 Caduceus   ║               ║   🥉  Evo 2     
+      (0.859)      ║               ║      (0.859)      
   ╔═══════════╝               ╚═══════════╗  
   ║                                       ║  
 ══╩═══════════════════════════════════════╩══
@@ -1804,7 +1579,7 @@ TATA box and represent ~75% of human promoters.
 
 </div>
 
-<p><strong>4 models ranked by <code>AUROC</code>:</strong></p>
+<p><strong>6 models ranked by <code>AUROC</code>:</strong></p>
 <table>
 <thead>
 <tr>
@@ -1825,20 +1600,34 @@ TATA box and represent ~75% of human promoters.
 </tr>
 <tr>
 <td style="text-align: center;">🥈</td>
-<td style="text-align: left;"><strong>kmer_k6</strong></td>
+<td style="text-align: left;"><strong>Caduceus</strong></td>
+<td style="text-align: center;">0.8594</td>
+<td style="text-align: center;">✅ Good</td>
+<td style="text-align: left;">Human Non-TATA Promo, 2025-12-19T12:00:12.829913</td>
+</tr>
+<tr>
+<td style="text-align: center;">🥉</td>
+<td style="text-align: left;"><strong>Evo 2</strong></td>
+<td style="text-align: center;">0.8594</td>
+<td style="text-align: center;">✅ Good</td>
+<td style="text-align: left;">Human Non-TATA Promo, 2025-12-19T12:00:13.671201</td>
+</tr>
+<tr>
+<td style="text-align: center;">🏅</td>
+<td style="text-align: left;">kmer_k6</td>
 <td style="text-align: center;">0.8357</td>
 <td style="text-align: center;">✅ Good</td>
 <td style="text-align: left;">Human Non-TATA Promo, 2025-12-18T18:44:10.847321</td>
 </tr>
 <tr>
-<td style="text-align: center;">🥉</td>
-<td style="text-align: left;"><strong>DNABERT-2</strong></td>
+<td style="text-align: center;">🏅</td>
+<td style="text-align: left;">DNABERT-2</td>
 <td style="text-align: center;">0.8357</td>
 <td style="text-align: center;">✅ Good</td>
 <td style="text-align: left;">Human Non-TATA Promo, 2025-12-18T18:44:27.391206</td>
 </tr>
 <tr>
-<td style="text-align: center;">🏅</td>
+<td style="text-align: center;">🎖️</td>
 <td style="text-align: left;">HyenaDNA</td>
 <td style="text-align: center;">0.8357</td>
 <td style="text-align: center;">✅ Good</td>
@@ -1850,7 +1639,7 @@ TATA box and represent ~75% of human promoters.
 <p class="admonition-title">Quick Comparison</p>
 <p><strong>🥇 HyenaDNA</strong> leads with AUROC = <strong>0.8720</strong></p>
 <ul>
-<li>Gap to 🥈 kmer_k6: +0.0363</li>
+<li>Gap to 🥈 Caduceus: +0.0126</li>
 <li>Score spread (best to worst): 0.0363</li>
 </ul>
 </div>
@@ -1944,24 +1733,7 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 <hr />
 <h4 id="cell-type-annotation">Cell Type Annotation</h4>
 <p><em>Predicting cell types from single-cell RNA-seq data.</em></p>
-<div align="center">
-
-<div class="highlight"><pre><span></span><code>                    🏆                    
-
-              🥇   Evo 2                 
-                 (0.925)                 
-             ╔═══════════════╗             
-             ║               ║             
-   🥈 Geneformer   ║               ║   🥉   SWIFT      
-      (0.910)      ║               ║      (0.895)      
-  ╔═══════════╝               ╚═══════════╗  
-  ║                                       ║  
-══╩═══════════════════════════════════════╩══
-</code></pre></div>
-
-</div>
-
-<p><strong>8 models ranked by <code>Accuracy</code>:</strong></p>
+<p><strong>2 models ranked by <code>AUROC</code>:</strong></p>
 <table>
 <thead>
 <tr>
@@ -1975,56 +1747,14 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 <tbody>
 <tr>
 <td style="text-align: center;">🥇</td>
-<td style="text-align: left;"><strong>Evo 2</strong> 👑</td>
-<td style="text-align: center;">0.9250</td>
-<td style="text-align: center;">⭐ Excellent</td>
-<td style="text-align: left;">PBMC 68k, 2024-02-01</td>
-</tr>
-<tr>
-<td style="text-align: center;">🥈</td>
-<td style="text-align: left;"><strong>Geneformer</strong></td>
-<td style="text-align: center;">0.9100</td>
-<td style="text-align: center;">⭐ Excellent</td>
-<td style="text-align: left;">PBMC 3k (processed, , 2023-11-01</td>
-</tr>
-<tr>
-<td style="text-align: center;">🥉</td>
-<td style="text-align: left;"><strong>SWIFT</strong></td>
-<td style="text-align: center;">0.8950</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">PBMC 68k, 2024-01-15</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">Caduceus</td>
-<td style="text-align: center;">0.8850</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">PBMC 68k, 2024-01-12</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">HyenaDNA</td>
-<td style="text-align: center;">0.8700</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">PBMC 68k, 2024-01-08</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">DNABERT-2</td>
-<td style="text-align: center;">0.8500</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">PBMC 68k, 2024-01-05</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">Baseline (Random/Majority)</td>
+<td style="text-align: left;"><strong>Baseline (Random/Majority)</strong> 👑</td>
 <td style="text-align: center;">0.0000</td>
 <td style="text-align: center;">📈 Developing</td>
 <td style="text-align: left;">PBMC 3k (processed, , 2025-12-18</td>
 </tr>
 <tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">geneformer</td>
+<td style="text-align: center;">🥈</td>
+<td style="text-align: left;"><strong>geneformer</strong></td>
 <td style="text-align: center;">0.0000</td>
 <td style="text-align: center;">📈 Developing</td>
 <td style="text-align: left;">PBMC 3k (processed, , 2025-12-18</td>
@@ -2033,10 +1763,9 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 </table>
 <div class="admonition tip">
 <p class="admonition-title">Quick Comparison</p>
-<p><strong>🥇 Evo 2</strong> leads with Accuracy = <strong>0.9250</strong></p>
+<p><strong>🥇 Baseline (Random/Majority)</strong> leads with AUROC = <strong>0.0000</strong></p>
 <ul>
-<li>Gap to 🥈 Geneformer: +0.0150</li>
-<li>Score spread (best to worst): 0.9250</li>
+<li>Gap to 🥈 geneformer: +0.0000</li>
 </ul>
 </div>
 <details>
@@ -2050,17 +1779,17 @@ This section explains how we measure and compare AI models. Don't worry if you'r
 
 ---
 
-### 🎯 The Main Metric: `Accuracy`
+### 🎯 The Main Metric: `AUROC`
 
-**Accuracy**
+**Area Under ROC Curve (AUROC)**
 
-**In simple terms:** The percentage of predictions the model got right
+**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
 
-**How it works:** This is the most intuitive metric: out of all the predictions the model made, how many were correct? For example, if a model makes 100 predictions and 90 are correct, the accuracy is 90% (or 0.90). While easy to understand, accuracy can be misleading when classes are imbalanced (e.g., if 95% of cases are healthy, a model that always predicts 'healthy' would have 95% accuracy but miss all diseases).
+**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
 
-**Score range:** 0.0 (all wrong) → 1.0 (all correct)
+**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
 
-💡 **Example:** An accuracy of 0.92 means the model correctly classified 92 out of every 100 samples.
+💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
 
 ---
 
@@ -2137,12 +1866,12 @@ and identifying disease-associated variants.
 
 <div class="highlight"><pre><span></span><code>                    🏆                    
 
-              🥇  HyenaDNA              
+              🥇 HyenaDNA              
                  (0.788)                 
              ╔═══════════════╗             
              ║               ║             
-   🥈  kmer_k6    ║               ║   🥉 DNABERT-2   
-      (0.737)      ║               ║      (0.737)      
+   🥈 Caduceus   ║               ║   🥉  Evo 2     
+      (0.745)      ║               ║      (0.745)      
   ╔═══════════╝               ╚═══════════╗  
   ║                                       ║  
 ══╩═══════════════════════════════════════╩══
@@ -2150,7 +1879,7 @@ and identifying disease-associated variants.
 
 </div>
 
-<p><strong>4 models ranked by <code>AUROC</code>:</strong></p>
+<p><strong>6 models ranked by <code>AUROC</code>:</strong></p>
 <table>
 <thead>
 <tr>
@@ -2171,20 +1900,34 @@ and identifying disease-associated variants.
 </tr>
 <tr>
 <td style="text-align: center;">🥈</td>
-<td style="text-align: left;"><strong>kmer_k6</strong></td>
+<td style="text-align: left;"><strong>Caduceus</strong></td>
+<td style="text-align: center;">0.7453</td>
+<td style="text-align: center;">🔶 Fair</td>
+<td style="text-align: left;">Human Enhancers (Coh, 2025-12-19T12:00:12.636691</td>
+</tr>
+<tr>
+<td style="text-align: center;">🥉</td>
+<td style="text-align: left;"><strong>Evo 2</strong></td>
+<td style="text-align: center;">0.7453</td>
+<td style="text-align: center;">🔶 Fair</td>
+<td style="text-align: left;">Human Enhancers (Coh, 2025-12-19T12:00:13.160707</td>
+</tr>
+<tr>
+<td style="text-align: center;">🏅</td>
+<td style="text-align: left;">kmer_k6</td>
 <td style="text-align: center;">0.7365</td>
 <td style="text-align: center;">🔶 Fair</td>
 <td style="text-align: left;">Human Enhancers (Coh, 2025-12-18T18:44:08.075706</td>
 </tr>
 <tr>
-<td style="text-align: center;">🥉</td>
-<td style="text-align: left;"><strong>DNABERT-2</strong></td>
+<td style="text-align: center;">🏅</td>
+<td style="text-align: left;">DNABERT-2</td>
 <td style="text-align: center;">0.7365</td>
 <td style="text-align: center;">🔶 Fair</td>
 <td style="text-align: left;">Human Enhancers (Coh, 2025-12-18T18:44:24.678525</td>
 </tr>
 <tr>
-<td style="text-align: center;">🏅</td>
+<td style="text-align: center;">🎖️</td>
 <td style="text-align: left;">HyenaDNA</td>
 <td style="text-align: center;">0.7365</td>
 <td style="text-align: center;">🔶 Fair</td>
@@ -2196,7 +1939,7 @@ and identifying disease-associated variants.
 <p class="admonition-title">Quick Comparison</p>
 <p><strong>🥇 HyenaDNA</strong> leads with AUROC = <strong>0.7883</strong></p>
 <ul>
-<li>Gap to 🥈 kmer_k6: +0.0518</li>
+<li>Gap to 🥈 Caduceus: +0.0430</li>
 <li>Score spread (best to worst): 0.0518</li>
 </ul>
 </div>
@@ -2290,175 +2033,10 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 <hr />
 <h3 id="generation">✍️ Generation</h3>
 <h4 id="clinical-report-generation-quality">Clinical Report Generation Quality</h4>
-<div align="center">
-
-<div class="highlight"><pre><span></span><code>                    🏆                    
-
-              🥇   Me-LLaMA                
-                 (0.875)                 
-             ╔═══════════════╗             
-             ║               ║             
-   🥈     M3FM       ║               ║   🥉 OpenFlamingo   
-      (0.860)      ║               ║      (0.840)      
-  ╔═══════════╝               ╚═══════════╗  
-  ║                                       ║  
-══╩═══════════════════════════════════════╩══
-</code></pre></div>
-
+<div class="admonition warning">
+<p class="admonition-title">No submissions yet</p>
+<p>Be the first! See <a href="../contributing/submission_guide/">Submission Guide</a></p>
 </div>
-
-<p><strong>6 models ranked by <code>report_quality_score</code>:</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Rank</th>
-<th style="text-align: left;">Model</th>
-<th style="text-align: center;">Score</th>
-<th style="text-align: center;">Level</th>
-<th style="text-align: left;">Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">🥇</td>
-<td style="text-align: left;"><strong>Me-LLaMA</strong> 👑</td>
-<td style="text-align: center;">0.8750</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">mimic_cxr_reports, 2024-02-05</td>
-</tr>
-<tr>
-<td style="text-align: center;">🥈</td>
-<td style="text-align: left;"><strong>M3FM</strong></td>
-<td style="text-align: center;">0.8600</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">mimic_cxr_reports, 2024-01-28</td>
-</tr>
-<tr>
-<td style="text-align: center;">🥉</td>
-<td style="text-align: left;"><strong>OpenFlamingo</strong></td>
-<td style="text-align: center;">0.8400</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">mimic_cxr_reports, 2024-01-20</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">TITAN</td>
-<td style="text-align: center;">0.8100</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">mimic_cxr_reports, 2024-01-25</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">Med-Flamingo</td>
-<td style="text-align: center;">0.7800</td>
-<td style="text-align: center;">🔶 Fair</td>
-<td style="text-align: left;">mimic_cxr_reports, 2024-01-18</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">RadBERT</td>
-<td style="text-align: center;">0.6900</td>
-<td style="text-align: center;">📈 Developing</td>
-<td style="text-align: left;">mimic_cxr_reports, 2024-01-12</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition tip">
-<p class="admonition-title">Quick Comparison</p>
-<p><strong>🥇 Me-LLaMA</strong> leads with report_quality_score = <strong>0.8750</strong></p>
-<ul>
-<li>Gap to 🥈 M3FM: +0.0150</li>
-<li>Score spread (best to worst): 0.1850</li>
-</ul>
-</div>
-<details>
-<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
-
----
-
-### 📖 Understanding This Leaderboard
-
-This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
-
----
-
-### 🎯 The Main Metric: `report_quality_score`
-
-**Report Quality Score**
-
-**In simple terms:** An overall measure of how good the AI-generated medical reports are
-
-**How it works:** This composite score combines multiple aspects of report quality: clinical accuracy (are the findings correct?), completeness (are important findings mentioned?), language quality (is it well-written?), and safety (no harmful content). It provides a single number to compare models, though looking at individual components gives more insight into specific strengths and weaknesses.
-
-**Score range:** 0.0 (poor quality) → 1.0 (excellent quality)
-
-💡 **Example:** A score of 0.85 indicates the model generates reports that are mostly accurate, complete, and well-structured.
-
----
-
-### 🧠 How This Metric Fits This Task
-
-Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
-
-- For **report generation**, we care not only about language quality but also clinical safety.
-  This metric is usually combined with others (e.g., clinical accuracy, hallucination rate,
-  and completeness of findings) to judge whether the generated report is both readable **and**
-  medically reliable.
-
----
-
-### 📊 Performance Tiers: What Do the Scores Mean?
-
-We group models into performance tiers to help you quickly understand how ready they are for different uses:
-
-| Score Range | Rating | Interpretation | Suitable For |
-|:---:|:---:|:---|:---|
-| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
-| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
-| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
-| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
-
-!!! tip "Important Context"
-    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
-
----
-
-### 📏 How We Determine Rankings
-
-Models are ranked following these principles:
-
-1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
-
-2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
-
-3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
-
-4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
-
----
-
-### 🏥 Why This Matters for Healthcare AI
-
-Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
-
-- Use **multiple metrics** to capture different aspects of performance
-- Test **robustness** to real-world data quality issues
-- Require **transparency** about evaluation conditions
-- Follow **international standards** for healthcare AI assessment
-
----
-
-### 🌍 Standards Alignment
-
-This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
-
-- **Rigorous** — Following established scientific methodology
-- **Comparable** — Using standardized metrics across different models
-- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
-
-</details>
-
-<hr />
 <h2 id="brain-imaging-mrifmri">🧠 Brain Imaging (MRI/fMRI)</h2>
 <h3 id="classification_1">🎯 Classification</h3>
 <h4 id="toy-classification-benchmark">Toy Classification Benchmark</h4>
@@ -2588,24 +2166,7 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 <hr />
 <h3 id="classificationreconstruction">📋 Classification/Reconstruction</h3>
 <h4 id="fmri-foundation-model-benchmark-granular">fMRI Foundation Model Benchmark (Granular)</h4>
-<div align="center">
-
-<div class="highlight"><pre><span></span><code>                    🏆                    
-
-              🥇 Brain-JEPA              
-                 (0.925)                 
-             ╔═══════════════╗             
-             ║               ║             
-   🥈  BrainLM     ║               ║   🥉 BrainBERT    
-      (0.910)      ║               ║      (0.870)      
-  ╔═══════════╝               ╚═══════════╗  
-  ║                                       ║  
-══╩═══════════════════════════════════════╩══
-</code></pre></div>
-
-</div>
-
-<p><strong>5 models ranked by <code>AUROC</code>:</strong></p>
+<p><strong>2 models ranked by <code>AUROC</code>:</strong></p>
 <table>
 <thead>
 <tr>
@@ -2619,47 +2180,25 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 <tbody>
 <tr>
 <td style="text-align: center;">🥇</td>
-<td style="text-align: left;"><strong>Brain-JEPA</strong> 👑</td>
-<td style="text-align: center;">0.9250</td>
+<td style="text-align: left;"><strong>BrainLM</strong> 👑</td>
+<td style="text-align: center;">1.0000</td>
 <td style="text-align: center;">⭐ Excellent</td>
-<td style="text-align: left;">hcp_1200, 2024-01-22</td>
+<td style="text-align: left;">DS-TOY-FMRI, 2025-12-19T12:00:49.423857</td>
 </tr>
 <tr>
 <td style="text-align: center;">🥈</td>
-<td style="text-align: left;"><strong>BrainLM</strong></td>
-<td style="text-align: center;">0.9100</td>
+<td style="text-align: left;"><strong>Brain-JEPA</strong></td>
+<td style="text-align: center;">1.0000</td>
 <td style="text-align: center;">⭐ Excellent</td>
-<td style="text-align: left;">hcp_1200, 2024-01-15</td>
-</tr>
-<tr>
-<td style="text-align: center;">🥉</td>
-<td style="text-align: left;"><strong>BrainBERT</strong></td>
-<td style="text-align: center;">0.8700</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">hcp_1200, 2024-01-10</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">BrainMT</td>
-<td style="text-align: center;">0.8500</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">hcp_1200, 2024-01-18</td>
-</tr>
-<tr>
-<td style="text-align: center;">🏅</td>
-<td style="text-align: left;">NeuroClips</td>
-<td style="text-align: center;">0.8300</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">hcp_1200, 2024-01-05</td>
+<td style="text-align: left;">DS-TOY-FMRI, 2025-12-19T12:00:49.427678</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition tip">
 <p class="admonition-title">Quick Comparison</p>
-<p><strong>🥇 Brain-JEPA</strong> leads with AUROC = <strong>0.9250</strong></p>
+<p><strong>🥇 BrainLM</strong> leads with AUROC = <strong>1.0000</strong></p>
 <ul>
-<li>Gap to 🥈 BrainLM: +0.0150</li>
-<li>Score spread (best to worst): 0.0950</li>
+<li>Gap to 🥈 Brain-JEPA: +0.0000</li>
 </ul>
 </div>
 <details>
@@ -2753,114 +2292,10 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 <h3 id="reconstruction">🔄 Reconstruction</h3>
 <h4 id="brain-time-series-modeling">Brain Time-Series Modeling</h4>
 <p><em>Evaluating ability to reconstruct masked fMRI voxel time-series.</em></p>
-<p><strong>1 models ranked by <code>Correlation</code>:</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Rank</th>
-<th style="text-align: left;">Model</th>
-<th style="text-align: center;">Score</th>
-<th style="text-align: center;">Level</th>
-<th style="text-align: left;">Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">🥇</td>
-<td style="text-align: left;"><strong>BrainLM</strong> 👑</td>
-<td style="text-align: center;">0.7800</td>
-<td style="text-align: center;">🔶 Fair</td>
-<td style="text-align: left;">UK Biobank fMRI tens, 2025-11-15</td>
-</tr>
-</tbody>
-</table>
-<details>
-<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
-
----
-
-### 📖 Understanding This Leaderboard
-
-This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
-
----
-
-### 🎯 The Main Metric: `Correlation`
-
-**Correlation**
-
-**In simple terms:** How closely the model's predictions match the actual values
-
-**How it works:** Correlation measures the strength and direction of the relationship between predicted and actual values. A correlation of 1.0 means perfect positive agreement (when actual goes up, prediction goes up proportionally), while 0 means no relationship at all. This is commonly used for reconstruction tasks where we want to see how well the model can recreate the original signal.
-
-**Score range:** -1.0 (perfect inverse) → 0 (no relationship) → 1.0 (perfect match)
-
-💡 **Example:** A correlation of 0.78 means the model's outputs track reasonably well with the true values.
-
----
-
-### 🧠 How This Metric Fits This Task
-
-Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
-
-- For **regression / continuous prediction** tasks, this metric captures how closely the model's
-  predicted values track the true values over a range (e.g., symptom severity, signal amplitude).
-  We are usually interested in both overall fit (correlation) and error magnitude.
-
----
-
-### 📊 Performance Tiers: What Do the Scores Mean?
-
-We group models into performance tiers to help you quickly understand how ready they are for different uses:
-
-| Score Range | Rating | Interpretation | Suitable For |
-|:---:|:---:|:---|:---|
-| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
-| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
-| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
-| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
-
-!!! tip "Important Context"
-    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
-
----
-
-### 📏 How We Determine Rankings
-
-Models are ranked following these principles:
-
-1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
-
-2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
-
-3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
-
-4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
-
----
-
-### 🏥 Why This Matters for Healthcare AI
-
-Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
-
-- Use **multiple metrics** to capture different aspects of performance
-- Test **robustness** to real-world data quality issues
-- Require **transparency** about evaluation conditions
-- Follow **international standards** for healthcare AI assessment
-
----
-
-### 🌍 Standards Alignment
-
-This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
-
-- **Rigorous** — Following established scientific methodology
-- **Comparable** — Using standardized metrics across different models
-- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
-
-</details>
-
-<hr />
+<div class="admonition warning">
+<p class="admonition-title">No submissions yet</p>
+<p>Be the first! See <a href="../contributing/submission_guide/">Submission Guide</a></p>
+</div>
 <h2 id="other-benchmarks">📋 Other Benchmarks</h2>
 <h3 id="foundation-model-robustness-evaluation">Foundation Model Robustness Evaluation</h3>
 <table>
@@ -2883,41 +2318,27 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 </tr>
 <tr>
 <td style="text-align: center;">🥈</td>
-<td style="text-align: left;"><strong>Brain-JEPA</strong></td>
-<td style="text-align: center;">0.8650</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">DS-TOY-NEURO-ROBUSTN, 2024-01-20</td>
+<td style="text-align: left;"><strong>BrainLM</strong></td>
+<td style="text-align: center;">0.9451</td>
+<td style="text-align: center;">⭐ Excellent</td>
+<td style="text-align: left;">DS-TOY-FMRI-ROBUSTNE, 2025-12-19T12:01:52.781177</td>
 </tr>
 <tr>
 <td style="text-align: center;">🥉</td>
-<td style="text-align: left;"><strong>BrainHarmony</strong></td>
-<td style="text-align: center;">0.8450</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">DS-TOY-NEURO-ROBUSTN, 2024-01-18</td>
+<td style="text-align: left;"><strong>Brain-JEPA</strong></td>
+<td style="text-align: center;">0.9377</td>
+<td style="text-align: center;">⭐ Excellent</td>
+<td style="text-align: left;">DS-TOY-FMRI-ROBUSTNE, 2025-12-19T12:01:52.789369</td>
 </tr>
 <tr>
 <td style="text-align: center;">🏅</td>
-<td style="text-align: left;">Geneformer</td>
-<td style="text-align: center;">0.8350</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">DS-TOY-GENOMICS, 2024-01-10</td>
+<td style="text-align: left;">SWIFT</td>
+<td style="text-align: center;">0.9234</td>
+<td style="text-align: center;">⭐ Excellent</td>
+<td style="text-align: left;">DS-TOY-FMRI-ROBUSTNE, 2025-12-18T21:25:36.388271</td>
 </tr>
 <tr>
 <td style="text-align: center;">🏅</td>
-<td style="text-align: left;">BrainLM</td>
-<td style="text-align: center;">0.8250</td>
-<td style="text-align: center;">✅ Good</td>
-<td style="text-align: left;">DS-TOY-NEURO-ROBUSTN, 2024-01-16</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
-<td style="text-align: left;">HyenaDNA</td>
-<td style="text-align: center;">0.7950</td>
-<td style="text-align: center;">🔶 Fair</td>
-<td style="text-align: left;">DS-TOY-GENOMICS, 2024-01-12</td>
-</tr>
-<tr>
-<td style="text-align: center;">🎖️</td>
 <td style="text-align: left;">Baseline (Random/Majority)</td>
 <td style="text-align: center;">0.7810</td>
 <td style="text-align: center;">🔶 Fair</td>
