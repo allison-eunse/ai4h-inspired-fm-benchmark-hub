@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub/models/">
+        <link rel="canonical" href="https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub/data_sources/">
       
       
-        <link rel="prev" href="../integration/modality_features/genomics/">
+        <link rel="prev" href="../integration/analysis_recipes/partial_correlations/">
       
       
-        <link rel="next" href="../design/ai4h_alignment/">
+        <link rel="next" href="../integration/modality_features/fmri/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Overview - AI4H-Inspired FM Benchmarks</title>
+        <title>Free Data Sources - AI4H-Inspired FM Benchmarks</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#foundation-models-catalog" class="md-skip">
+        <a href="#free-data-sources-for-fm-benchmarking" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Free Data Sources
             
           </span>
         </div>
@@ -337,11 +337,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../data_sources/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -357,13 +359,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../models/" class="md-tabs__link">
           
   
   
@@ -813,28 +813,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -852,7 +855,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -867,10 +870,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../data_sources/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Free Data Sources
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -886,6 +916,292 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dna-sequence-data-genomic-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧬 DNA Sequence Data (Genomic Benchmarks)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧬 DNA Sequence Data (Genomic Benchmarks)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enhancer-classification-cohn-et-al" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancer Classification (Cohn et al.)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promoter-classification-epd-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promoter Classification (EPD Database)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regulatory-elements-ensembl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regulatory Elements (Ensembl)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nucleotide-transformer-benchmark-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nucleotide Transformer Benchmark Suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-this-data-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What makes this data "real"?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-cell-rna-seq-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧬 Single-Cell RNA-seq Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧬 Single-Cell RNA-seq Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pbmc-3k-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PBMC 3K Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Data Sources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Data Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-dna-sequence-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        More DNA Sequence Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-single-cell-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        More Single-Cell Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brain-imaging-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brain Imaging Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-more-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download More Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citations-acknowledgments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Citations &amp; Acknowledgments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Citations &amp; Acknowledgments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#genomic-benchmarks-dna-sequence-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genomic Benchmarks (DNA Sequence Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nucleotide-transformer-nt-benchmark-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nucleotide Transformer (NT Benchmark Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10x-genomics-pbmc-3k-single-cell-rna-seq-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10x Genomics PBMC 3K (Single-Cell RNA-seq Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scanpy-single-cell-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scanpy (Single-Cell Analysis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode-consortium-regulatory-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ENCODE Consortium (Regulatory Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadmap-epigenomics-regulatory-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap Epigenomics (Regulatory Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eukaryotic-promoter-database-promoter-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eukaryotic Promoter Database (Promoter Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -986,31 +1302,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -1028,7 +1341,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1043,37 +1356,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../models/" class="md-nav__link">
         
   
   
@@ -1089,336 +1375,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#neurology-brain-imaging-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🧠 Neurology / Brain Imaging Models
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧠 Neurology / Brain Imaging Models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#brainlm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BrainLM
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#brainjepa" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BrainJEPA
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#brainmt" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BrainMT
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#brainharmony" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BrainHarmony
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#uni" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        UNI
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#genomics-single-cell-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🧬 Genomics / Single-Cell Models
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧬 Genomics / Single-Cell Models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#geneformer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Geneformer
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#caduceus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Caduceus
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dnabert-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DNABERT-2
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#evo2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Evo2
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hyenadna" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        HyenaDNA
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nucleotide-transformer-generator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Nucleotide Transformer (Generator)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#multi-modal-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔬 Multi-Modal Models
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🔬 Multi-Modal Models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#m3fm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        M3FM
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flamingo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flamingo
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vlm-dev-clinical" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        VLM Dev Clinical
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#specialized-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🧪 Specialized Models
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🧪 Specialized Models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#swift" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SWIFT
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tabpfn" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        TabPFN
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#titan" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Titan
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#me-llama" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ME-LLaMA
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#llm-semantic-bridge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LLM Semantic Bridge
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#model-configuration-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📝 Model Configuration Format
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-your-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🎯 Adding Your Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#model-performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📊 Model Performance
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1567,149 +1523,391 @@
   
 
 
-<h1 id="foundation-models-catalog">Foundation Models Catalog</h1>
-<p>This page provides an overview of the foundation models evaluated in this benchmark hub. Each model is defined by a YAML configuration file in the <code>models/</code> directory.</p>
-<h2 id="neurology-brain-imaging-models">🧠 Neurology / Brain Imaging Models</h2>
-<h3 id="brainlm">BrainLM</h3>
-<p><strong>Model ID</strong>: <code>brainlm</code><br />
-<strong>Modality</strong>: fMRI (Brain functional imaging)<br />
-<strong>Architecture</strong>: ViT-MAE + Nystromformer encoder/decoder<br />
-<strong>Parameters</strong>: 111M / 650M<br />
-<strong>Repository</strong>: <a href="https://github.com/vandijklab/BrainLM">github.com/vandijklab/BrainLM</a></p>
-<p>Masked autoencoding language model for fMRI voxel time-series. Uses ViT-MAE scaffolding with custom BrainLM embeddings that mix voxel coordinates and patched time windows to learn denoised cortical dynamics.</p>
+<h1 id="free-data-sources-for-fm-benchmarking">Free Data Sources for FM Benchmarking</h1>
+<p>This page lists the <strong>real, publicly available datasets</strong> included in this benchmark hub, with proper attribution to their original sources.</p>
 <hr />
-<h3 id="brainjepa">BrainJEPA</h3>
-<p><strong>Model ID</strong>: <code>brainjepa</code><br />
-<strong>Modality</strong>: fMRI, EEG<br />
-<strong>Repository</strong>: <a href="https://github.com/brain-jepa">Brain-JEPA Repository</a></p>
-<p>Joint-Embedding Predictive Architecture for brain signals. Self-supervised learning approach that learns representations by predicting latent representations rather than raw pixels/signals.</p>
-<hr />
-<h3 id="brainmt">BrainMT</h3>
-<p><strong>Model ID</strong>: <code>brainmt</code><br />
-<strong>Modality</strong>: Multi-modal brain imaging<br />
-<strong>Repository</strong>: <a href="https://github.com/brainmt">BrainMT Repository</a></p>
-<p>Multi-modal brain transformer for integrating structural and functional brain imaging data.</p>
-<hr />
-<h3 id="brainharmony">BrainHarmony</h3>
-<p><strong>Model ID</strong>: <code>brainharmony</code><br />
-<strong>Modality</strong>: Multi-site neuroimaging<br />
-<strong>Repository</strong>: <a href="https://github.com/brainharmony">BrainHarmony Repository</a></p>
-<p>Harmonization framework for multi-site neuroimaging studies, addressing scanner and acquisition protocol variability.</p>
-<hr />
-<h3 id="uni">UNI</h3>
-<p><strong>Model ID</strong>: <code>MOD-UNI</code><br />
-<strong>Modality</strong>: MRI (Structural brain imaging)<br />
-<strong>Repository</strong>: <a href="https://github.com/insitro/uni">github.com/insitro/uni</a></p>
-<p>Vision Transformer trained on massive MRI datasets for general-purpose brain imaging analysis.</p>
-<hr />
-<h2 id="genomics-single-cell-models">🧬 Genomics / Single-Cell Models</h2>
-<h3 id="geneformer">Geneformer</h3>
-<p><strong>Model ID</strong>: <code>MOD-GENEFORMER</code><br />
-<strong>Modality</strong>: scRNA-seq (Single-cell transcriptomics)<br />
-<strong>Repository</strong>: <a href="https://huggingface.co/ctheodoris/Geneformer">huggingface.co/ctheodoris/Geneformer</a></p>
-<p>Transformer model pretrained on 30 million single cell transcriptomes. Learns context-aware gene embeddings for cell type annotation, gene regulatory network inference, and therapeutic target discovery.</p>
-<hr />
-<h3 id="caduceus">Caduceus</h3>
-<p><strong>Model ID</strong>: <code>caduceus</code><br />
-<strong>Modality</strong>: DNA sequences<br />
-<strong>Repository</strong>: <a href="https://github.com/caduceus">Caduceus Repository</a></p>
-<p>Long-range DNA sequence model using efficient attention mechanisms for genomic variant interpretation.</p>
-<hr />
-<h3 id="dnabert-2">DNABERT-2</h3>
-<p><strong>Model ID</strong>: <code>dnabert2</code><br />
-<strong>Modality</strong>: DNA sequences<br />
-<strong>Repository</strong>: <a href="https://github.com/dnabert2">DNABERT-2 Repository</a></p>
-<p>BERT-based model for DNA sequence understanding, supporting tasks like promoter prediction, splice site detection, and variant effect prediction.</p>
-<hr />
-<h3 id="evo2">Evo2</h3>
-<p><strong>Model ID</strong>: <code>evo2</code><br />
-<strong>Modality</strong>: DNA/RNA sequences<br />
-<strong>Repository</strong>: <a href="https://github.com/evo2">Evo2 Repository</a></p>
-<p>Evolution-inspired foundation model for sequence analysis and generation.</p>
-<hr />
-<h3 id="hyenadna">HyenaDNA</h3>
-<p><strong>Model ID</strong>: <code>hyenadna</code><br />
-<strong>Modality</strong>: Long DNA sequences<br />
-<strong>Repository</strong>: <a href="https://github.com/hyenadna">HyenaDNA Repository</a></p>
-<p>Efficient long-range sequence model using Hyena operators for genomic analysis at scale.</p>
-<hr />
-<h3 id="nucleotide-transformer-generator">Nucleotide Transformer (Generator)</h3>
-<p><strong>Model ID</strong>: <code>generator</code><br />
-<strong>Modality</strong>: Nucleotide sequences<br />
-<strong>Repository</strong>: <a href="https://github.com/generator">Generator Repository</a></p>
-<p>Transformer-based generative model for nucleotide sequence synthesis and analysis.</p>
-<hr />
-<h2 id="multi-modal-models">🔬 Multi-Modal Models</h2>
-<h3 id="m3fm">M3FM</h3>
-<p><strong>Model ID</strong>: <code>m3fm</code><br />
-<strong>Modality</strong>: Multi-modal (imaging + genomics)<br />
-<strong>Repository</strong>: <a href="https://github.com/m3fm">M3FM Repository</a></p>
-<p>Multi-modal foundation model integrating imaging, genomics, and clinical data.</p>
-<hr />
-<h3 id="flamingo">Flamingo</h3>
-<p><strong>Model ID</strong>: <code>flamingo</code><br />
-<strong>Modality</strong>: Vision-Language (Medical imaging + text)<br />
-<strong>Repository</strong>: <a href="https://github.com/flamingo">Flamingo Repository</a></p>
-<p>Vision-language model adapted for medical imaging and clinical text understanding.</p>
-<hr />
-<h3 id="vlm-dev-clinical">VLM Dev Clinical</h3>
-<p><strong>Model ID</strong>: <code>vlm_dev_clinical</code><br />
-<strong>Modality</strong>: Vision-Language (Clinical)<br />
-<strong>Repository</strong>: Clinical VLM Development</p>
-<p>Vision-language model specifically developed for clinical applications.</p>
-<hr />
-<h2 id="specialized-models">🧪 Specialized Models</h2>
-<h3 id="swift">SWIFT</h3>
-<p><strong>Model ID</strong>: <code>swift</code><br />
-<strong>Modality</strong>: Time-series analysis<br />
-<strong>Repository</strong>: <a href="https://github.com/swift">SWIFT Repository</a></p>
-<p>Specialized model for time-series analysis in biological signals.</p>
-<hr />
-<h3 id="tabpfn">TabPFN</h3>
-<p><strong>Model ID</strong>: <code>tabpfn</code><br />
-<strong>Modality</strong>: Tabular data<br />
-<strong>Repository</strong>: <a href="https://github.com/tabpfn">TabPFN Repository</a></p>
-<p>Prior-data fitted network for tabular data classification, useful for clinical structured data.</p>
-<hr />
-<h3 id="titan">Titan</h3>
-<p><strong>Model ID</strong>: <code>titan</code><br />
-<strong>Modality</strong>: Large-scale biological data<br />
-<strong>Repository</strong>: <a href="https://github.com/titan">Titan Repository</a></p>
-<p>Large-scale foundation model for integrative biological data analysis.</p>
-<hr />
-<h3 id="me-llama">ME-LLaMA</h3>
-<p><strong>Model ID</strong>: <code>me_llama</code><br />
-<strong>Modality</strong>: Medical language<br />
-<strong>Repository</strong>: <a href="https://github.com/me-llama">ME-LLaMA Repository</a></p>
-<p>Medical-specialized language model based on LLaMA architecture.</p>
-<hr />
-<h3 id="llm-semantic-bridge">LLM Semantic Bridge</h3>
-<p><strong>Model ID</strong>: <code>llm_semantic_bridge</code><br />
-<strong>Modality</strong>: Multi-modal semantic alignment<br />
-<strong>Repository</strong>: Semantic Bridge Development</p>
-<p>Model for bridging semantic representations across different medical data modalities.</p>
-<hr />
-<h2 id="model-configuration-format">📝 Model Configuration Format</h2>
-<p>Each model is defined in a YAML file with the following structure:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">model_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unique_identifier</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Human-Readable Name</span>
-<span class="nt">modality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">primary_modality</span>
-<span class="nt">upstream_repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/org/repo</span>
-<span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Description of the model architecture and capabilities</span>
-<span class="nt">arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Architecture details (optional)</span>
-<span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Parameter count (optional)</span>
+<h2 id="dna-sequence-data-genomic-benchmarks">🧬 DNA Sequence Data (Genomic Benchmarks)</h2>
+<p>These datasets are from the <strong>Genomic Benchmarks</strong> collection and are ready to use in <code>toy_data/genomics/dna_sequences/</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Data Source</p>
+<p>DNA sequence benchmarks are from <a href="https://huggingface.co/datasets/katielink/genomic-benchmarks">Genomic Benchmarks</a> by Grešová et al.</p>
+</div>
+<h3 id="enhancer-classification-cohn-et-al">Enhancer Classification (Cohn et al.)</h3>
+<p><strong>Real ChIP-seq derived enhancer sequences</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>20,843</td>
+<td>ChIP-seq experiments</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>6,948</td>
+<td>ChIP-seq experiments</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/enhancers_cohn/
+├── train.tsv  (sequence, label)
+└── test.tsv   (sequence, label)
 </code></pre></div>
-<h2 id="adding-your-model">🎯 Adding Your Model</h2>
-<p>To add your foundation model to the benchmark:</p>
-<ol>
-<li>Create a model configuration YAML in <code>models/</code></li>
-<li>Implement the model interface (see <code>fmbench/models.py</code>)</li>
-<li>Run the benchmark suite(s) relevant to your model's modality</li>
-<li>Submit results for leaderboard inclusion</li>
-</ol>
-<p>See the <a href="../#contributing">contributing guide</a> for more details.</p>
-<h2 id="model-performance">📊 Model Performance</h2>
-<p>For detailed performance metrics and rankings, see the <a href="../leaderboards/">Leaderboards</a>.</p>
+<p><strong>Run benchmark:</strong></p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>run<span class="w"> </span>--suite<span class="w"> </span>SUITE-DNA-CLASS<span class="w"> </span>--model<span class="w"> </span>configs/model_evo2.yaml<span class="w"> </span>--out<span class="w"> </span>results/
+</code></pre></div>
+<hr />
+<h3 id="promoter-classification-epd-database">Promoter Classification (EPD Database)</h3>
+<p><strong>Real curated promoters from Eukaryotic Promoter Database</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>27,097</td>
+<td>EPD database</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>9,034</td>
+<td>EPD database</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/promoters_nontata/
+├── train.tsv
+└── test.tsv
+</code></pre></div>
+<hr />
+<h3 id="regulatory-elements-ensembl">Regulatory Elements (Ensembl)</h3>
+<p><strong>Real annotations from ENCODE + Roadmap Epigenomics</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Classes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>231,348</td>
+<td>enhancer, promoter, open_chromatin</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>57,713</td>
+<td>enhancer, promoter, open_chromatin</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/regulatory_ensembl/
+├── train.tsv
+└── test.tsv
+</code></pre></div>
+<hr />
+<h3 id="nucleotide-transformer-benchmark-suite">Nucleotide Transformer Benchmark Suite</h3>
+<p><strong>The standard multi-task benchmark for DNA FMs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>493,242</td>
+<td>18 tasks</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>38,822</td>
+<td>18 tasks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tasks include:</strong></p>
+<ul>
+<li>Enhancer prediction</li>
+<li>Promoter prediction (TATA / non-TATA)</li>
+<li>Splice site prediction (donor / acceptor)</li>
+<li>Histone modifications (H3, H3K4me3, H3K36me3, etc.)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/nucleotide_transformer/
+├── train.tsv  (sequence, name, label, task)
+└── test.tsv
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Data Source</p>
+<p>From <a href="https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised">InstaDeepAI/nucleotide_transformer_downstream_tasks_revised</a>. See <a href="https://www.biorxiv.org/content/10.1101/2023.01.11.523679">Dalla-Torre et al. (2023)</a>.</p>
+</div>
+<hr />
+<h2 id="what-makes-this-data-real">What makes this data "real"?</h2>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Experimental Source</th>
+<th>Not Synthetic Because</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enhancers (Cohn)</td>
+<td>ChIP-seq</td>
+<td>Binding sites measured in cells</td>
+</tr>
+<tr>
+<td>Promoters (EPD)</td>
+<td>TSS mapping</td>
+<td>Curated from experimental evidence</td>
+</tr>
+<tr>
+<td>Regulatory (Ensembl)</td>
+<td>ENCODE + Roadmap</td>
+<td>1000s of ChIP-seq/DNase-seq experiments</td>
+</tr>
+<tr>
+<td>NT Benchmark</td>
+<td>Multiple</td>
+<td>Industry-standard benchmark from papers</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="single-cell-rna-seq-data">🧬 Single-Cell RNA-seq Data</h2>
+<h3 id="pbmc-3k-dataset">PBMC 3K Dataset</h3>
+<p><strong>Pre-processed with real cell type labels</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cells</td>
+<td>2,638</td>
+</tr>
+<tr>
+<td>Genes</td>
+<td>1,838</td>
+</tr>
+<tr>
+<td>Classes</td>
+<td>8 cell types</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/pbmc_classification/
+├── X.npy      (expression matrix)
+├── y.npy      (labels)
+├── metadata.csv
+└── label_map.csv
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Data Source</p>
+<p>PBMC data from <a href="https://www.10xgenomics.com/datasets/3-k-pbm-cs-from-a-healthy-donor-1-standard-1-1-0">10x Genomics</a> - "3k PBMCs from a Healthy Donor" dataset. Processed using <a href="https://scanpy.readthedocs.io/">Scanpy</a> with cell type annotations from Louvain clustering.</p>
+</div>
+<p><strong>Run benchmark:</strong></p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>run<span class="w"> </span>--suite<span class="w"> </span>SUITE-GEN-CLASS-001<span class="w"> </span>--model<span class="w"> </span>configs/model_geneformer.yaml<span class="w"> </span>--dataset<span class="w"> </span>DS-PBMC<span class="w"> </span>--out<span class="w"> </span>results/
+</code></pre></div>
+<hr />
+<h2 id="additional-data-sources">Additional Data Sources</h2>
+<h3 id="more-dna-sequence-data">More DNA Sequence Data</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>URL</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UCSC Genome Browser</strong></td>
+<td><a href="https://hgdownload.soe.ucsc.edu">hgdownload.soe.ucsc.edu</a></td>
+<td>Reference genomes</td>
+</tr>
+<tr>
+<td><strong>ENCODE Portal</strong></td>
+<td><a href="https://www.encodeproject.org">encodeproject.org</a></td>
+<td>ChIP-seq, ATAC-seq</td>
+</tr>
+<tr>
+<td><strong>Roadmap Epigenomics</strong></td>
+<td><a href="http://www.roadmapepigenomics.org">roadmapepigenomics.org</a></td>
+<td>Epigenomic marks</td>
+</tr>
+<tr>
+<td><strong>ClinVar</strong></td>
+<td><a href="https://www.ncbi.nlm.nih.gov/clinvar/">ncbi.nlm.nih.gov/clinvar</a></td>
+<td>Pathogenic variants</td>
+</tr>
+</tbody>
+</table>
+<h3 id="more-single-cell-data">More Single-Cell Data</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>URL</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>10x Genomics</strong></td>
+<td><a href="https://www.10xgenomics.com/resources/datasets">10xgenomics.com/datasets</a></td>
+<td>scRNA-seq</td>
+</tr>
+<tr>
+<td><strong>CellxGene</strong></td>
+<td><a href="https://cellxgene.cziscience.com">cellxgene.cziscience.com</a></td>
+<td>Annotated atlases</td>
+</tr>
+<tr>
+<td><strong>Human Cell Atlas</strong></td>
+<td><a href="https://www.humancellatlas.org">humancellatlas.org</a></td>
+<td>Multi-tissue atlases</td>
+</tr>
+</tbody>
+</table>
+<h3 id="brain-imaging-data">Brain Imaging Data</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>URL</th>
+<th>Registration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OpenNeuro</strong></td>
+<td><a href="https://openneuro.org">openneuro.org</a></td>
+<td>None required</td>
+</tr>
+<tr>
+<td><strong>HCP</strong></td>
+<td><a href="https://www.humanconnectome.org">humanconnectome.org</a></td>
+<td>Required</td>
+</tr>
+<tr>
+<td><strong>UK Biobank</strong></td>
+<td><a href="https://www.ukbiobank.ac.uk">ukbiobank.ac.uk</a></td>
+<td>Application required</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="download-more-data">Download More Data</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Activate environment</span>
+<span class="nb">source</span><span class="w"> </span>scripts/activate_fmbench.sh
+
+<span class="c1"># Download additional genomic benchmarks</span>
+python<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">from datasets import load_dataset</span>
+
+<span class="s"># Drosophila enhancers</span>
+<span class="s">ds = load_dataset(&quot;katarinagresova/Genomic_Benchmarks_drosophila_enhancers_stark&quot;)</span>
+
+<span class="s"># Mouse enhancers  </span>
+<span class="s">ds = load_dataset(&quot;katarinagresova/Genomic_Benchmarks_dummy_mouse_enhancers_ensembl&quot;)</span>
+
+<span class="s"># Coding vs intergenic</span>
+<span class="s">ds = load_dataset(&quot;katarinagresova/Genomic_Benchmarks_demo_coding_vs_intergenomic_seqs&quot;)</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<hr />
+<h2 id="citations-acknowledgments">📚 Citations &amp; Acknowledgments</h2>
+<p>If you use data from this benchmark hub, please cite the original sources:</p>
+<h3 id="genomic-benchmarks-dna-sequence-data">Genomic Benchmarks (DNA Sequence Data)</h3>
+<blockquote>
+<p>GREŠOVÁ, Katarína, et al. <strong>Genomic Benchmarks: A Collection of Datasets for Genomic Sequence Classification.</strong> <em>bioRxiv</em>, 2022.</p>
+<p>URL: <a href="https://www.biorxiv.org/content/10.1101/2022.06.08.495248">https://www.biorxiv.org/content/10.1101/2022.06.08.495248</a></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">gresova2022genomic</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Genomic Benchmarks: A Collection of Datasets for Genomic Sequence Classification}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Gresova, Katarina and Martinek, Vlastimil and Cechak, David and Simecek, Petr and Alexiou, Panagiotis}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{bioRxiv}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2022}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="p">=</span><span class="s">{Cold Spring Harbor Laboratory}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="p">=</span><span class="s">{https://www.biorxiv.org/content/10.1101/2022.06.08.495248}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="nucleotide-transformer-nt-benchmark-data">Nucleotide Transformer (NT Benchmark Data)</h3>
+<blockquote>
+<p>DALLA-TORRE, Hugo, et al. <strong>The Nucleotide Transformer: Building and Evaluating Robust Foundation Models for Human Genomics.</strong> <em>bioRxiv</em>, 2023.</p>
+<p>URL: <a href="https://www.biorxiv.org/content/10.1101/2023.01.11.523679">https://www.biorxiv.org/content/10.1101/2023.01.11.523679</a></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">dalla2023nucleotide</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{The Nucleotide Transformer: Building and Evaluating Robust Foundation Models for Human Genomics}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Dalla-Torre, Hugo and Gonzalez, Liam and Mendoza-Revilla, Javier and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{bioRxiv}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="p">=</span><span class="s">{Cold Spring Harbor Laboratory}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="10x-genomics-pbmc-3k-single-cell-rna-seq-data">10x Genomics PBMC 3K (Single-Cell RNA-seq Data)</h3>
+<blockquote>
+<p><strong>10x Genomics.</strong> 3k PBMCs from a Healthy Donor. 10x Genomics Datasets, 2016.</p>
+<p>URL: <a href="https://www.10xgenomics.com/datasets/3-k-pbm-cs-from-a-healthy-donor-1-standard-1-1-0">https://www.10xgenomics.com/datasets/3-k-pbm-cs-from-a-healthy-donor-1-standard-1-1-0</a></p>
+</blockquote>
+<h3 id="scanpy-single-cell-analysis">Scanpy (Single-Cell Analysis)</h3>
+<blockquote>
+<p>WOLF, F. Alexander, ANGERER, Philipp, and THEIS, Fabian J. <strong>SCANPY: large-scale single-cell gene expression data analysis.</strong> <em>Genome Biology</em>, 2018.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">wolf2018scanpy</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{SCANPY: large-scale single-cell gene expression data analysis}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Wolf, F Alexander and Angerer, Philipp and Theis, Fabian J}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{Genome biology}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="p">=</span><span class="s">{19}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">number</span><span class="p">=</span><span class="s">{1}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="p">=</span><span class="s">{1--5}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2018}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="p">=</span><span class="s">{Springer}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="encode-consortium-regulatory-data">ENCODE Consortium (Regulatory Data)</h3>
+<blockquote>
+<p><strong>The ENCODE Project Consortium.</strong> An integrated encyclopedia of DNA elements in the human genome. <em>Nature</em>, 2012.</p>
+</blockquote>
+<h3 id="roadmap-epigenomics-regulatory-data">Roadmap Epigenomics (Regulatory Data)</h3>
+<blockquote>
+<p><strong>Roadmap Epigenomics Consortium.</strong> Integrative analysis of 111 reference human epigenomes. <em>Nature</em>, 2015.</p>
+</blockquote>
+<h3 id="eukaryotic-promoter-database-promoter-data">Eukaryotic Promoter Database (Promoter Data)</h3>
+<blockquote>
+<p>DREOS, René, et al. <strong>The eukaryotic promoter database in its 30th year: focus on non-vertebrate organisms.</strong> <em>Nucleic Acids Research</em>, 2017.</p>
+</blockquote>
+<hr />
+<h2 id="license">License</h2>
+<ul>
+<li><strong>Genomic Benchmarks</strong>: Apache 2.0</li>
+<li><strong>10x Genomics PBMC</strong>: Free for research use</li>
+<li><strong>ENCODE/Roadmap data</strong>: Public domain</li>
+</ul>
+<hr />
+<p><a class="md-button" href="../">Back to Home</a>
+<a class="md-button" href="../leaderboards/">View Benchmarks</a></p>
 
 
 
