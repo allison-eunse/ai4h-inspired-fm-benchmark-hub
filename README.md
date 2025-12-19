@@ -65,7 +65,7 @@ This produces **rAUC (Reverse Area Under Curve)** scores that quantify how stabl
 ### 4. Domain Focus
 
 *   🧬 **Genomics**: Single-cell analysis, DNA sequence modeling, gene expression analysis.
-*   🧠 **Neurology**: Brain imaging (fMRI, sMRI) analysis, robustness testing, representation quality evaluation.
+*   🧠 **Neurology**: Brain fMRI/sMRI analysis, robustness testing, representation quality evaluation.
 
 ## Alignment with ITU/WHO FG-AI4H Standards
 

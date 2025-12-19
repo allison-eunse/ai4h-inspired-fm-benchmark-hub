@@ -1,0 +1,19 @@
+benchmark_id: BM-DNA-PROMOTER
+dataset_id: DS-DNA-PROMOTERS-NONTATA
+eval_id: DNA-promoters-caduceus-20251219-120012
+metrics:
+  AUROC: 0.8594
+  Accuracy: 0.554
+  F1-Score: 0.395
+model_ids:
+  candidate: caduceus
+run_metadata:
+  date: '2025-12-19T12:00:12.829913'
+  encoding: k-mer_6
+  hardware: CPU
+  n_test: 500
+  n_train: 2000
+  runner: fmbench
+  runtime_seconds: 10.0
+  suite_id: SUITE-DNA-CLASS
+status: Completed

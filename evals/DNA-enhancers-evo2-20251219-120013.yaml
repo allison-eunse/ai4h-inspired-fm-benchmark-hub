@@ -1,0 +1,19 @@
+benchmark_id: BM-DNA-ENHANCER
+dataset_id: DS-DNA-ENHANCERS-COHN
+eval_id: DNA-enhancers-evo2-20251219-120013
+metrics:
+  AUROC: 0.7453
+  Accuracy: 0.618
+  F1-Score: 0.5571
+model_ids:
+  candidate: evo2
+run_metadata:
+  date: '2025-12-19T12:00:13.160707'
+  encoding: k-mer_6
+  hardware: CPU
+  n_test: 500
+  n_train: 2000
+  runner: fmbench
+  runtime_seconds: 10.0
+  suite_id: SUITE-DNA-CLASS
+status: Completed

@@ -1,5 +1,5 @@
 eval_id: ROBUSTNESS-swift-20251218-212536
-benchmark_id: BM-ROBUSTNESS
+benchmark_id: robustness_testing
 model_ids:
   candidate: swift
 dataset_id: DS-TOY-FMRI-ROBUSTNESS

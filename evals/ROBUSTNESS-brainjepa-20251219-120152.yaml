@@ -1,0 +1,23 @@
+benchmark_id: robustness_testing
+dataset_id: DS-TOY-FMRI-ROBUSTNESS
+eval_id: ROBUSTNESS-brainjepa-20251219-120152
+metrics:
+  dropout_rAUC: 0.8345
+  noise_rAUC: 0.9164
+  perm_equivariance: 1.0
+  robustness_score: 0.9377
+  shift_rAUC: 1.0
+model_ids:
+  candidate: brainjepa
+run_metadata:
+  date: '2025-12-19T12:01:52.789369'
+  hardware: CPU
+  modality: fmri
+  probes:
+  - dropout
+  - noise
+  - permutation
+  - shift
+  runner: fmbench
+  suite_id: SUITE-ROBUSTNESS
+status: Completed

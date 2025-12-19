@@ -1,0 +1,18 @@
+benchmark_id: BM-FMRI-GRANULAR
+dataset_id: DS-TOY-FMRI
+eval_id: FMRI-brainjepa-20251219-120049
+metrics:
+  AUROC: 1.0
+  Accuracy: 0.98
+  F1-Score: 0.98
+model_ids:
+  candidate: brainjepa
+run_metadata:
+  date: '2025-12-19T12:00:49.427678'
+  encoding: connectivity_features
+  hardware: CPU
+  n_test: 50
+  n_train: 150
+  runner: fmbench
+  suite_id: SUITE-FMRI-CLASS
+status: Completed
