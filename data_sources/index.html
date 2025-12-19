@@ -1599,21 +1599,28 @@
 <th>Split</th>
 <th>Sequences</th>
 <th>Classes</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Train</td>
-<td>231,348</td>
+<td>1,500</td>
 <td>enhancer, promoter, open_chromatin</td>
+<td>Toy version (500/class)</td>
 </tr>
 <tr>
 <td>Test</td>
 <td>57,713</td>
 <td>enhancer, promoter, open_chromatin</td>
+<td>Full test set</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Full Dataset</p>
+<p>The toy train set is a stratified subsample. Full training set (231,348 samples) available from <a href="https://huggingface.co/datasets/katielink/genomic-benchmarks">Genomic Benchmarks</a>.</p>
+</div>
 <div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/regulatory_ensembl/
 ├── train.tsv
 └── test.tsv
@@ -1627,21 +1634,28 @@
 <th>Split</th>
 <th>Sequences</th>
 <th>Tasks</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Train</td>
-<td>493,242</td>
+<td>1,500</td>
 <td>18 tasks</td>
+<td>Toy version (500/class)</td>
 </tr>
 <tr>
 <td>Test</td>
 <td>38,822</td>
 <td>18 tasks</td>
+<td>Full test set</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Full Dataset</p>
+<p>The toy train set is a stratified subsample. Full training set (493,242 samples) available from <a href="https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised">InstaDeepAI</a>.</p>
+</div>
 <p><strong>Tasks include:</strong></p>
 <ul>
 <li>Enhancer prediction</li>
