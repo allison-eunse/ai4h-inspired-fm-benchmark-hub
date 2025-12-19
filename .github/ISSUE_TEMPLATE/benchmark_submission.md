@@ -12,6 +12,7 @@ assignees: allison-eunse
 **Model Type**: (e.g., fMRI Foundation Model, Genomics FM, etc.)
 **Paper/Preprint**: (link if available)
 **Code Repository**: (link if public)
+**Model ID**: (a short stable ID, e.g. `my_model_v1`)
 
 ## Benchmark Results
 
@@ -55,6 +56,34 @@ assignees: allison-eunse
 **Runtime**: 
 **Reproducibility Seed**: 
 **fmbench Version**: 
+
+## eval.yaml (required for automatic processing)
+
+Paste your `eval.yaml` content here. This will be automatically processed and added to the leaderboard:
+
+```yaml
+# Paste your eval.yaml content here
+eval_id: 
+benchmark_id: 
+model_ids:
+  candidate: 
+dataset_id: 
+run_metadata:
+  date: 
+  runner: fmbench
+  suite_id: 
+  hardware: 
+  runtime_seconds: 
+metrics:
+  AUROC: 
+  Accuracy: 
+  F1-Score: 
+status: Completed
+```
+
+## Attachments (optional)
+
+- [ ] (Optional) I also attached `report.md` for human review
 
 ## Checklist
 

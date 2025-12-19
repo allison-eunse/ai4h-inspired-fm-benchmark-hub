@@ -1,0 +1,64 @@
+# DEL5.4: Test Data Specification
+# Nucleotide Transformer Downstream Tasks
+# Source: InstaDeepAI - Multiple real benchmark tasks
+
+dataset_id: "DS-DNA-NT-BENCHMARK"
+name: "Nucleotide Transformer Benchmark Suite"
+path: toy_data/genomics/dna_sequences/nucleotide_transformer
+source: "InstaDeepAI/nucleotide_transformer_downstream_tasks_revised"
+
+description: |
+  Comprehensive DNA benchmark suite from the Nucleotide Transformer paper.
+  Contains multiple real downstream tasks for evaluating DNA foundation models:
+  - Enhancer prediction
+  - Promoter prediction (TATA and non-TATA)
+  - Splice site prediction
+  - Histone modification prediction
+  - Chromatin accessibility
+
+modalities:
+  - "DNA sequence"
+
+data_type: "multi_task_classification"
+
+# Toy version: stratified subsample for quick testing
+# Full dataset (493,242 samples): https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised
+n_train: 1500  # Subsampled: 500 per class (labels 0, 1, 2)
+n_test: 38822  # Test set unchanged
+
+tasks:
+  - enhancers
+  - enhancers_types
+  - promoter_all
+  - promoter_no_tata
+  - promoter_tata
+  - splice_sites_acceptors
+  - splice_sites_all
+  - splice_sites_donors
+  - H3
+  - H3K14ac
+  - H3K36me3
+  - H3K4me1
+  - H3K4me2
+  - H3K4me3
+  - H3K79me3
+  - H3K9ac
+  - H4
+  - H4ac
+
+format:
+  file_type: "tsv"
+  columns: ["sequence", "name", "label", "task"]
+  
+origin:
+  paper: "The Nucleotide Transformer (Dalla-Torre et al., 2023)"
+  url: "https://huggingface.co/InstaDeepAI"
+  experimental_sources:
+    - "ENCODE"
+    - "Roadmap Epigenomics"
+    - "GENCODE"
+
+notes: |
+  The standard benchmark suite for evaluating DNA foundation models.
+  Used in Nucleotide Transformer, HyenaDNA, Caduceus, Evo papers.
+

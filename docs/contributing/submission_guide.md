@@ -2,9 +2,45 @@
 
 Welcome! This guide explains how to submit your Foundation Model's evaluation results to the leaderboard.
 
+---
+
+## 🔄 How it works (fully automated)
+
+Our submission pipeline is **fully automated** — your results appear on the leaderboard within minutes, not days.
+
+```mermaid
+flowchart TB
+    subgraph local ["🖥️ Your Machine"]
+        A["1. Run fmbench locally"] --> B["2. Get eval.yaml"]
+    end
+    
+    subgraph submit ["📤 Submit"]
+        B --> C["3. Open GitHub Issue"]
+        C --> D["4. Paste eval.yaml"]
+    end
+    
+    subgraph auto ["🤖 Automated (GitHub Actions)"]
+        D --> E["5. Bot validates YAML"]
+        E --> F["6. Commits to evals/"]
+        F --> G["7. Rebuilds leaderboard"]
+        G --> H["8. Deploys to Pages"]
+    end
+    
+    H --> I["🎉 Live on leaderboard!"]
+    
+    style local fill:#e8f5e9,stroke:#4caf50
+    style submit fill:#fff3e0,stroke:#ff9800
+    style auto fill:#e3f2fd,stroke:#2196f3
+```
+
+!!! success "No manual review required"
+    The bot validates your submission automatically. If the YAML is valid, it's added immediately. If there's an error, you'll get feedback in the issue comments.
+
+---
+
 ## Quick Start
 
-### Option 1: Use the CLI (Recommended)
+### Option 1: Use the CLI + GitHub Issue (Recommended)
 
 ```bash
 # 1. Clone and install
@@ -21,10 +57,16 @@ python -m fmbench run \
     --model path/to/your_model_config.yaml \
     --out results/my_model_run
 
-# 4. Submit via Pull Request (see below)
+# 4. Submit via GitHub Issue (attach eval.yaml)
 ```
 
-### Option 2: Manual YAML Submission
+Submit here:
+
+[Open a pre-filled submission issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md){ .md-button .md-button--primary }
+
+---
+
+### Option 2: Manual YAML Submission (Pull Request)
 
 Create evaluation YAML files manually and submit via PR.
 
@@ -84,6 +126,49 @@ results/my_fm_neuro/
 ├── eval.yaml      # Evaluation record (submit this!)
 └── report.md      # Human-readable report
 ```
+
+---
+
+## What to submit (minimum required)
+
+To get onto the leaderboard, you only need to submit **one file**: your `eval.yaml`.
+
+Minimum required fields (anything else is optional but encouraged):
+
+- **`eval_id`**: unique run identifier
+- **`benchmark_id`**: must match an existing benchmark in `benchmarks/`
+- **`model_ids.candidate`**: your model ID (string)
+- **`dataset_id`**: dataset identifier used for the run
+- **`run_metadata`**: at least `runner`, plus hardware/runtime if available
+- **`metrics`**: task-appropriate metrics (e.g., `AUROC`, `Accuracy`, robustness rAUCs)
+- **`status`**: `Completed` (or explain failures)
+
+Minimal example:
+
+```yaml
+eval_id: SUITE-TOY-CLASS-my_model-2025-12-18-120000
+benchmark_id: BM-TOY-CLASS
+model_ids:
+  candidate: my_model_id
+dataset_id: DS-TOY-FMRI-CLASS
+run_metadata:
+  date: "2025-12-18"
+  runner: fmbench
+  suite_id: SUITE-TOY-CLASS
+  hardware: "1x A100 40GB"
+  runtime_seconds: 123.4
+metrics:
+  AUROC: 0.82
+  Accuracy: 0.76
+status: Completed
+```
+
+What a “good” submission includes (recommended):
+
+- **Exact command + config** used (`suite_id`, `model_config`, `output_dir`)
+- **Robustness metrics** when applicable (`dropout_rAUC`, `noise_rAUC`, etc.)
+- **Stratified metrics** under `metrics.stratified` (site/sex/age_group/etc.)
+- Optional: attach `report.md` for quick human review
 
 ### 4. Submit via Pull Request
 

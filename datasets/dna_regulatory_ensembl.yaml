@@ -1,0 +1,49 @@
+# DEL5.4: Test Data Specification
+# Human Regulatory Elements (Ensembl)
+# Source: Ensembl Regulatory Build
+
+dataset_id: "DS-DNA-REGULATORY-ENSEMBL"
+name: "Human Regulatory Elements (Ensembl)"
+path: toy_data/genomics/dna_sequences/regulatory_ensembl
+source: "Genomic Benchmarks - Ensembl Regulatory Build"
+
+description: |
+  Multi-class classification of DNA sequences into regulatory element types.
+  Based on Ensembl Regulatory Build annotations derived from ENCODE and 
+  Roadmap Epigenomics experimental data.
+
+modalities:
+  - "DNA sequence"
+
+data_type: "sequence_classification"
+sequence_length: 200  # bp
+
+# Toy version: stratified subsample for quick testing
+# Full dataset (231,348 samples): https://huggingface.co/datasets/katielink/genomic-benchmarks
+n_train: 1500  # Subsampled: 500 per class (enhancer, promoter, open_chromatin)
+n_test: 57713  # Test set unchanged
+n_classes: 3  # enhancer, promoter, open_chromatin
+
+labels:
+  - "enhancer"
+  - "promoter"  
+  - "open_chromatin"
+
+format:
+  file_type: "tsv"
+  columns: ["sequence", "label"]
+  
+origin:
+  database: "Ensembl Regulatory Build"
+  data_sources:
+    - "ENCODE ChIP-seq"
+    - "Roadmap Epigenomics"
+    - "ENCODE DNase-seq"
+  species: "Homo sapiens"
+  genome_build: "GRCh38"
+  url: "https://www.ensembl.org/info/genome/funcgen/regulatory_build.html"
+
+notes: |
+  Large-scale benchmark with real regulatory annotations from Ensembl.
+  Integrates multiple experimental data types to define regulatory regions.
+

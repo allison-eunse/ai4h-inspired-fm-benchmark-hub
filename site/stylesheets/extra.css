@@ -1,5 +1,38 @@
 /* Extra CSS for AI4H-Inspired FM Benchmarks Documentation */
 
+/* ============================================
+   LAYOUT: Full-width content (no right TOC)
+   ============================================ */
+
+/* Hide the right-side TOC completely */
+.md-sidebar--secondary {
+    display: none;
+}
+
+/* Make content area take full width */
+.md-content {
+    max-width: 100%;
+}
+
+/* Expand content container */
+.md-main__inner {
+    max-width: 100%;
+}
+
+/* Wider content area on large screens */
+@media screen and (min-width: 76.25em) {
+    .md-content__inner {
+        max-width: 60rem; /* Wider content */
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .md-content {
+        margin-left: 0;
+    }
+}
+
 /* Enhance code blocks */
 .highlight {
     border-radius: 4px;
@@ -188,6 +221,137 @@ a code {
 .metrics-table td:first-child {
     text-align: left;
     font-weight: 600;
+}
+
+/* ============================================
+   GAMIFIED LEADERBOARD STYLES
+   ============================================ */
+
+/* Leaderboard table enhancements */
+table tr:first-child td {
+    background: linear-gradient(135deg, #ffd70020 0%, #fff8e120 100%);
+    font-weight: 700;
+}
+
+table tr:nth-child(2) td {
+    background: linear-gradient(135deg, #c0c0c020 0%, #e8e8e820 100%);
+}
+
+table tr:nth-child(3) td {
+    background: linear-gradient(135deg, #cd7f3220 0%, #daa06d20 100%);
+}
+
+/* Rank column styling */
+table td:first-child {
+    font-size: 1.2em;
+    text-align: center !important;
+    min-width: 60px;
+}
+
+/* Trophy/medal animations */
+@keyframes trophy-glow {
+    0%, 100% { filter: drop-shadow(0 0 3px #ffd700); }
+    50% { filter: drop-shadow(0 0 8px #ffd700); }
+}
+
+/* Champion row highlight */
+table tr:first-child {
+    position: relative;
+}
+
+/* Score column */
+table td:nth-child(3) {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Details expandable sections */
+details {
+    margin: 0.5em 0;
+    padding: 0.5em;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest);
+    border-left: 4px solid var(--md-primary-fg-color);
+}
+
+details[open] {
+    background: linear-gradient(180deg, var(--md-default-fg-color--lightest) 0%, transparent 100%);
+}
+
+details summary {
+    cursor: pointer;
+    padding: 0.5em;
+    font-weight: 600;
+    user-select: none;
+}
+
+details summary:hover {
+    color: var(--md-primary-fg-color);
+}
+
+/* Stratified table styling */
+details table {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+}
+
+details table tr:first-child td {
+    background: linear-gradient(135deg, #4caf5020 0%, #81c78420 100%);
+}
+
+/* Stats banner styling */
+.md-typeset .admonition.success {
+    border-color: #4caf50;
+    background: linear-gradient(135deg, #4caf5010 0%, #81c78410 100%);
+}
+
+/* Quick nav styling */
+.md-typeset ul a {
+    text-decoration: none;
+}
+
+.md-typeset ul a:hover {
+    text-decoration: underline;
+}
+
+/* Submission CTA section */
+h2:has(+ p > strong:first-child) {
+    background: linear-gradient(90deg, var(--md-primary-fg-color) 0%, var(--md-accent-fg-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Model name styling in tables */
+table td strong {
+    color: var(--md-primary-fg-color);
+}
+
+/* Crown emoji special styling */
+table td:contains("👑") {
+    font-size: 1.1em;
+}
+
+/* Hover effects for table rows */
+table tbody tr:hover {
+    background-color: var(--md-accent-fg-color--transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+/* Performance tier badges */
+.tier-excellent { color: #ffd700; font-weight: bold; }
+.tier-good { color: #4caf50; }
+.tier-fair { color: #ff9800; }
+.tier-developing { color: #2196f3; }
+
+/* Methodology note styling */
+table + hr + p {
+    font-style: italic;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.85em;
+    text-align: center;
+    margin-top: 1em;
 }
 
 /* Add subtle animation to interactive elements */

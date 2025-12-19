@@ -1,0 +1,40 @@
+# DEL5.4: Test Data Specification
+# Human Enhancer Classification (Cohn et al.)
+# Source: Real ChIP-seq derived enhancer sequences
+
+dataset_id: "DS-DNA-ENHANCERS-COHN"
+name: "Human Enhancers (Cohn et al.)"
+path: toy_data/genomics/dna_sequences/enhancers_cohn
+source: "Genomic Benchmarks - Cohn et al. ChIP-seq data"
+
+description: |
+  Binary classification of DNA sequences as enhancers or non-enhancers.
+  Derived from real ChIP-seq experiments identifying active enhancer regions.
+
+modalities:
+  - "DNA sequence"
+
+data_type: "sequence_classification"
+sequence_length: 500  # bp
+
+n_train: 20843
+n_test: 6948
+n_classes: 2
+
+labels:
+  - "non-enhancer"
+  - "enhancer"
+
+format:
+  file_type: "tsv"
+  columns: ["sequence", "label"]
+  
+origin:
+  paper: "Cohn et al. (2018)"
+  experimental_method: "ChIP-seq"
+  species: "Homo sapiens"
+  genome_build: "hg38"
+
+notes: |
+  Standard benchmark for evaluating DNA foundation models on regulatory 
+  element prediction. Real experimental data, not synthetic.

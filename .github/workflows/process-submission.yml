@@ -1,0 +1,149 @@
+# Process benchmark submissions from GitHub Issues
+# This workflow extracts eval.yaml from issue attachments and adds them to the repo
+#
+# AI4H alignment:
+# - DEL3: Validates submission against system requirements
+# - DEL0.1: Ensures consistent terminology (benchmark_id, model_id, etc.)
+# - DEL7.x: Automated test specification validation
+
+name: Process Submission
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-submission:
+    if: contains(github.event.issue.labels.*.name, 'submission') || contains(github.event.issue.title, '[Submission]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml requests
+
+      - name: Extract and validate submission
+        id: extract
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python << 'EOF'
+          import os
+          import re
+          import yaml
+          import requests
+          import sys
+
+          issue_body = os.environ.get('ISSUE_BODY', '')
+          issue_number = os.environ.get('ISSUE_NUMBER', 'unknown')
+
+          # Look for YAML code blocks in issue body
+          yaml_pattern = r'```ya?ml\s*([\s\S]*?)```'
+          matches = re.findall(yaml_pattern, issue_body)
+
+          if not matches:
+              print('⚠️ No YAML code block found in issue body')
+              print('Looking for attachment URLs...')
+              # Look for GitHub attachment URLs
+              url_pattern = r'https://github\.com/[^/]+/[^/]+/files/\d+/[^\s)]+\.yaml'
+              urls = re.findall(url_pattern, issue_body)
+              if urls:
+                  print(f'Found attachment URLs: {urls}')
+                  # Would need to download - for now, exit gracefully
+                  print('::set-output name=found::false')
+                  sys.exit(0)
+              else:
+                  print('::set-output name=found::false')
+                  sys.exit(0)
+
+          # Parse the first YAML block
+          yaml_content = matches[0]
+          try:
+              data = yaml.safe_load(yaml_content)
+          except yaml.YAMLError as e:
+              print(f'❌ Invalid YAML: {e}')
+              print('::set-output name=found::false')
+              sys.exit(1)
+
+          # Validate required fields
+          REQUIRED = ['eval_id', 'benchmark_id', 'model_ids', 'metrics', 'status']
+          missing = [f for f in REQUIRED if f not in data]
+          if missing:
+              print(f'❌ Missing required fields: {missing}')
+              print('::set-output name=found::false')
+              sys.exit(1)
+
+          # Save to evals/
+          eval_id = data.get('eval_id', f'submission-{issue_number}')
+          filename = f"evals/{eval_id}.yaml"
+          
+          # Add submission metadata
+          data['submission_metadata'] = {
+              'source': 'github_issue',
+              'issue_number': int(issue_number),
+          }
+
+          with open(filename, 'w') as f:
+              yaml.dump(data, f, default_flow_style=False, sort_keys=False)
+
+          print(f'✅ Saved submission to {filename}')
+          print(f'::set-output name=found::true')
+          print(f'::set-output name=filename::{filename}')
+          print(f'::set-output name=eval_id::{eval_id}')
+          EOF
+
+      - name: Commit new submission
+        if: steps.extract.outputs.found == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add evals/
+          if git diff --staged --quiet; then
+            echo "No new files to commit"
+          else
+            git commit -m "📥 Add submission from issue #${{ github.event.issue.number }}"
+            git push
+          fi
+
+      - name: Comment on issue
+        if: steps.extract.outputs.found == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ **Submission processed!**
+              
+              Your eval.yaml has been added to the repository:
+              - File: \`${{ steps.extract.outputs.filename }}\`
+              - Eval ID: \`${{ steps.extract.outputs.eval_id }}\`
+              
+              The leaderboard will be updated automatically within a few minutes.
+              
+              Thank you for contributing to AI4H-Inspired FM Benchmarks! 🏆`
+            })
+
+      - name: Add processed label
+        if: steps.extract.outputs.found == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['processed']
+            })

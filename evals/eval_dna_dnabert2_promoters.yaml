@@ -1,0 +1,19 @@
+eval_id: DNA-PROMOTERS-dnabert2-20251218-184427
+benchmark_id: BM-DNA-PROMOTER
+model_ids:
+  candidate: dnabert2
+dataset_id: DS-DNA-PROMOTERS-NONTATA
+run_metadata:
+  date: '2025-12-18T18:44:27.391206'
+  runner: fmbench
+  suite_id: SUITE-DNA-CLASS
+  hardware: CPU
+  runtime_seconds: 2.7
+  n_train: 5000
+  n_test: 1250
+  encoding: k-mer
+metrics:
+  AUROC: 0.8357
+  Accuracy: 0.6648
+  F1-Score: 0.6358
+status: Completed

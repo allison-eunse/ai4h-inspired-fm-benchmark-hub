@@ -1,0 +1,20 @@
+eval_id: DNA-PROMOTER-hyenadna_real-20251218-210312
+benchmark_id: BM-DNA-PROMOTER
+model_ids:
+  candidate: HyenaDNA
+dataset_id: DS-DNA-PROMOTER
+run_metadata:
+  date: '2025-12-18T21:03:12.030852'
+  runner: fmbench
+  suite_id: SUITE-DNA-CLASS
+  hardware: CPU
+  runtime_seconds: 8.6
+  n_train: 500
+  n_test: 125
+  encoding: hyenadna_mamba_embeddings
+  embedding_dim: 128
+metrics:
+  AUROC: 0.872
+  Accuracy: 0.768
+  F1-Score: 0.7684
+status: Completed

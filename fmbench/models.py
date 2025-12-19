@@ -42,7 +42,7 @@ def _load_adapter(config: Dict[str, Any]) -> Any:
         if k not in ("type", "adapter_name", "model_id")
     }
     
-    adapter = get_adapter(adapter_name, **adapter_kwargs)
+    adapter = get_adapter(adapter_name=adapter_name, **adapter_kwargs)
     adapter.load()
     return adapter
 

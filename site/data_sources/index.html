@@ -1,0 +1,1973 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Benchmarking Hub for Genetics & Brain Foundation Models">
+      
+      
+      
+        <link rel="canonical" href="https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub/data_sources/">
+      
+      
+        <link rel="prev" href="../integration/analysis_recipes/partial_correlations/">
+      
+      
+        <link rel="next" href="../integration/modality_features/fmri/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Free Data Sources - AI4H-Inspired FM Benchmarks</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#free-data-sources-for-fm-benchmarking" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI4H-Inspired FM Benchmarks" class="md-header__button md-logo" aria-label="AI4H-Inspired FM Benchmarks" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.33 12.91c.09 1.55-.62 3.04-1.89 3.95l.77 1.49c.23.45.26.98.06 1.45-.19.47-.58.84-1.06 1l-.79.25a1.687 1.687 0 0 1-1.86-.55L14.44 18c-.89-.15-1.73-.53-2.44-1.1-.5.15-1 .23-1.5.23-.88 0-1.76-.27-2.5-.79-.53.16-1.07.23-1.62.22-.79.01-1.57-.15-2.3-.45a4.1 4.1 0 0 1-2.43-3.61c-.08-.72.04-1.45.35-2.11-.29-.75-.32-1.57-.07-2.33C2.3 7.11 3 6.32 3.87 5.82c.58-1.69 2.21-2.82 4-2.7 1.6-1.5 4.05-1.66 5.83-.37.42-.11.86-.17 1.3-.17 1.36-.03 2.65.57 3.5 1.64 2.04.53 3.5 2.35 3.58 4.47.05 1.11-.25 2.2-.86 3.13.07.36.11.72.11 1.09m-5-1.41c.57.07 1.02.5 1.02 1.07a1 1 0 0 1-1 1h-.63c-.32.9-.88 1.69-1.62 2.29.25.09.51.14.77.21 5.13-.07 4.53-3.2 4.53-3.25a2.59 2.59 0 0 0-2.69-2.49 1 1 0 0 1-1-1 1 1 0 0 1 1-1c1.23.03 2.41.49 3.33 1.3.05-.29.08-.59.08-.89-.06-1.24-.62-2.32-2.87-2.53-1.25-2.96-4.4-1.32-4.4-.4-.03.23.21.72.25.75a1 1 0 0 1 1 1c0 .55-.45 1-1 1-.53-.02-1.03-.22-1.43-.56-.48.31-1.03.5-1.6.56-.57.05-1.04-.35-1.07-.9a.97.97 0 0 1 .88-1.1c.16-.02.94-.14.94-.77 0-.66.25-1.29.68-1.79-.92-.25-1.91.08-2.91 1.29C6.75 5 6 5.25 5.45 7.2 4.5 7.67 4 8 3.78 9c1.08-.22 2.19-.13 3.22.25.5.19.78.75.59 1.29-.19.52-.77.78-1.29.59-.73-.32-1.55-.34-2.3-.06-.32.27-.32.83-.32 1.27 0 .74.37 1.43 1 1.83.53.27 1.12.41 1.71.4q-.225-.39-.39-.81a1.038 1.038 0 0 1 1.96-.68c.4 1.14 1.42 1.92 2.62 2.05 1.37-.07 2.59-.88 3.19-2.13.23-1.38 1.34-1.5 2.56-1.5m2 7.47-.62-1.3-.71.16 1 1.25zm-4.65-8.61a1 1 0 0 0-.91-1.03c-.71-.04-1.4.2-1.93.67-.57.58-.87 1.38-.84 2.19a1 1 0 0 0 1 1c.57 0 1-.45 1-1 0-.27.07-.54.23-.76.12-.1.27-.15.43-.15.55.03 1.02-.38 1.02-.92"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI4H-Inspired FM Benchmarks
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Free Data Sources
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai4h-inspired-fm-benchmark-hub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../start_here/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start Here
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../how_it_works/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  How It Works
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../leaderboards/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Leaderboards
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contributing/submission_guide/" class="md-tabs__link">
+          
+  
+  
+  Submit Results
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../integration/analysis_recipes/cca_permutation/" class="md-tabs__link">
+          
+  
+  
+  Protocols (Recipes)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Data Specs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../models/" class="md-tabs__link">
+          
+  
+  
+  Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../design/ai4h_alignment/" class="md-tabs__link">
+          
+  
+  
+  Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../credits/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Credits
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI4H-Inspired FM Benchmarks" class="md-nav__button md-logo" aria-label="AI4H-Inspired FM Benchmarks" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.33 12.91c.09 1.55-.62 3.04-1.89 3.95l.77 1.49c.23.45.26.98.06 1.45-.19.47-.58.84-1.06 1l-.79.25a1.687 1.687 0 0 1-1.86-.55L14.44 18c-.89-.15-1.73-.53-2.44-1.1-.5.15-1 .23-1.5.23-.88 0-1.76-.27-2.5-.79-.53.16-1.07.23-1.62.22-.79.01-1.57-.15-2.3-.45a4.1 4.1 0 0 1-2.43-3.61c-.08-.72.04-1.45.35-2.11-.29-.75-.32-1.57-.07-2.33C2.3 7.11 3 6.32 3.87 5.82c.58-1.69 2.21-2.82 4-2.7 1.6-1.5 4.05-1.66 5.83-.37.42-.11.86-.17 1.3-.17 1.36-.03 2.65.57 3.5 1.64 2.04.53 3.5 2.35 3.58 4.47.05 1.11-.25 2.2-.86 3.13.07.36.11.72.11 1.09m-5-1.41c.57.07 1.02.5 1.02 1.07a1 1 0 0 1-1 1h-.63c-.32.9-.88 1.69-1.62 2.29.25.09.51.14.77.21 5.13-.07 4.53-3.2 4.53-3.25a2.59 2.59 0 0 0-2.69-2.49 1 1 0 0 1-1-1 1 1 0 0 1 1-1c1.23.03 2.41.49 3.33 1.3.05-.29.08-.59.08-.89-.06-1.24-.62-2.32-2.87-2.53-1.25-2.96-4.4-1.32-4.4-.4-.03.23.21.72.25.75a1 1 0 0 1 1 1c0 .55-.45 1-1 1-.53-.02-1.03-.22-1.43-.56-.48.31-1.03.5-1.6.56-.57.05-1.04-.35-1.07-.9a.97.97 0 0 1 .88-1.1c.16-.02.94-.14.94-.77 0-.66.25-1.29.68-1.79-.92-.25-1.91.08-2.91 1.29C6.75 5 6 5.25 5.45 7.2 4.5 7.67 4 8 3.78 9c1.08-.22 2.19-.13 3.22.25.5.19.78.75.59 1.29-.19.52-.77.78-1.29.59-.73-.32-1.55-.34-2.3-.06-.32.27-.32.83-.32 1.27 0 .74.37 1.43 1 1.83.53.27 1.12.41 1.71.4q-.225-.39-.39-.81a1.038 1.038 0 0 1 1.96-.68c.4 1.14 1.42 1.92 2.62 2.05 1.37-.07 2.59-.88 3.19-2.13.23-1.38 1.34-1.5 2.56-1.5m2 7.47-.62-1.3-.71.16 1 1.25zm-4.65-8.61a1 1 0 0 0-.91-1.03c-.71-.04-1.4.2-1.93.67-.57.58-.87 1.38-.84 2.19a1 1 0 0 0 1 1c.57 0 1-.45 1-1 0-.27.07-.54.23-.76.12-.1.27-.15.43-.15.55.03 1.02-.38 1.02-.92"/></svg>
+
+    </a>
+    AI4H-Inspired FM Benchmarks
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai4h-inspired-fm-benchmark-hub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start_here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start Here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how_it_works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leaderboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Leaderboards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Submit Results
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Submit Results
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/submission_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Submission Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocols (Recipes)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocols (Recipes)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/analysis_recipes/cca_permutation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CCA & Permutation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/analysis_recipes/prediction_baselines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prediction Baselines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/analysis_recipes/partial_correlations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partial Correlations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Specs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Specs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Free Data Sources
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Free Data Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dna-sequence-data-genomic-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧬 DNA Sequence Data (Genomic Benchmarks)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧬 DNA Sequence Data (Genomic Benchmarks)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enhancer-classification-cohn-et-al" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancer Classification (Cohn et al.)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promoter-classification-epd-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promoter Classification (EPD Database)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regulatory-elements-ensembl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regulatory Elements (Ensembl)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nucleotide-transformer-benchmark-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nucleotide Transformer Benchmark Suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-this-data-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What makes this data "real"?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-cell-rna-seq-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧬 Single-Cell RNA-seq Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧬 Single-Cell RNA-seq Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pbmc-3k-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PBMC 3K Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Data Sources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Data Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-dna-sequence-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        More DNA Sequence Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-single-cell-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        More Single-Cell Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brain-imaging-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brain Imaging Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-more-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download More Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citations-acknowledgments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Citations &amp; Acknowledgments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 Citations &amp; Acknowledgments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#genomic-benchmarks-dna-sequence-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genomic Benchmarks (DNA Sequence Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nucleotide-transformer-nt-benchmark-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nucleotide Transformer (NT Benchmark Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10x-genomics-pbmc-3k-single-cell-rna-seq-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10x Genomics PBMC 3K (Single-Cell RNA-seq Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scanpy-single-cell-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scanpy (Single-Cell Analysis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode-consortium-regulatory-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ENCODE Consortium (Regulatory Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadmap-epigenomics-regulatory-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap Epigenomics (Regulatory Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eukaryotic-promoter-database-promoter-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eukaryotic Promoter Database (Promoter Data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/modality_features/fmri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fMRI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/modality_features/smri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    sMRI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/modality_features/genomics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genomics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Models
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/ai4h_alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI4H Alignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="free-data-sources-for-fm-benchmarking">Free Data Sources for FM Benchmarking</h1>
+<p>This page lists the <strong>real, publicly available datasets</strong> included in this benchmark hub, with proper attribution to their original sources.</p>
+<hr />
+<h2 id="dna-sequence-data-genomic-benchmarks">🧬 DNA Sequence Data (Genomic Benchmarks)</h2>
+<p>These datasets are from the <strong>Genomic Benchmarks</strong> collection and are ready to use in <code>toy_data/genomics/dna_sequences/</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Data Source</p>
+<p>DNA sequence benchmarks are from <a href="https://huggingface.co/datasets/katielink/genomic-benchmarks">Genomic Benchmarks</a> by Grešová et al.</p>
+</div>
+<h3 id="enhancer-classification-cohn-et-al">Enhancer Classification (Cohn et al.)</h3>
+<p><strong>Real ChIP-seq derived enhancer sequences</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>20,843</td>
+<td>ChIP-seq experiments</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>6,948</td>
+<td>ChIP-seq experiments</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/enhancers_cohn/
+├── train.tsv  (sequence, label)
+└── test.tsv   (sequence, label)
+</code></pre></div>
+<p><strong>Run benchmark:</strong></p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>run<span class="w"> </span>--suite<span class="w"> </span>SUITE-DNA-CLASS<span class="w"> </span>--model<span class="w"> </span>configs/model_evo2.yaml<span class="w"> </span>--out<span class="w"> </span>results/
+</code></pre></div>
+<hr />
+<h3 id="promoter-classification-epd-database">Promoter Classification (EPD Database)</h3>
+<p><strong>Real curated promoters from Eukaryotic Promoter Database</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>27,097</td>
+<td>EPD database</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>9,034</td>
+<td>EPD database</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/promoters_nontata/
+├── train.tsv
+└── test.tsv
+</code></pre></div>
+<hr />
+<h3 id="regulatory-elements-ensembl">Regulatory Elements (Ensembl)</h3>
+<p><strong>Real annotations from ENCODE + Roadmap Epigenomics</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Classes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>231,348</td>
+<td>enhancer, promoter, open_chromatin</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>57,713</td>
+<td>enhancer, promoter, open_chromatin</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/regulatory_ensembl/
+├── train.tsv
+└── test.tsv
+</code></pre></div>
+<hr />
+<h3 id="nucleotide-transformer-benchmark-suite">Nucleotide Transformer Benchmark Suite</h3>
+<p><strong>The standard multi-task benchmark for DNA FMs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Split</th>
+<th>Sequences</th>
+<th>Tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Train</td>
+<td>493,242</td>
+<td>18 tasks</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>38,822</td>
+<td>18 tasks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tasks include:</strong></p>
+<ul>
+<li>Enhancer prediction</li>
+<li>Promoter prediction (TATA / non-TATA)</li>
+<li>Splice site prediction (donor / acceptor)</li>
+<li>Histone modifications (H3, H3K4me3, H3K36me3, etc.)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/dna_sequences/nucleotide_transformer/
+├── train.tsv  (sequence, name, label, task)
+└── test.tsv
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Data Source</p>
+<p>From <a href="https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised">InstaDeepAI/nucleotide_transformer_downstream_tasks_revised</a>. See <a href="https://www.biorxiv.org/content/10.1101/2023.01.11.523679">Dalla-Torre et al. (2023)</a>.</p>
+</div>
+<hr />
+<h2 id="what-makes-this-data-real">What makes this data "real"?</h2>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Experimental Source</th>
+<th>Not Synthetic Because</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enhancers (Cohn)</td>
+<td>ChIP-seq</td>
+<td>Binding sites measured in cells</td>
+</tr>
+<tr>
+<td>Promoters (EPD)</td>
+<td>TSS mapping</td>
+<td>Curated from experimental evidence</td>
+</tr>
+<tr>
+<td>Regulatory (Ensembl)</td>
+<td>ENCODE + Roadmap</td>
+<td>1000s of ChIP-seq/DNase-seq experiments</td>
+</tr>
+<tr>
+<td>NT Benchmark</td>
+<td>Multiple</td>
+<td>Industry-standard benchmark from papers</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="single-cell-rna-seq-data">🧬 Single-Cell RNA-seq Data</h2>
+<h3 id="pbmc-3k-dataset">PBMC 3K Dataset</h3>
+<p><strong>Pre-processed with real cell type labels</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cells</td>
+<td>2,638</td>
+</tr>
+<tr>
+<td>Genes</td>
+<td>1,838</td>
+</tr>
+<tr>
+<td>Classes</td>
+<td>8 cell types</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>toy_data/genomics/pbmc_classification/
+├── X.npy      (expression matrix)
+├── y.npy      (labels)
+├── metadata.csv
+└── label_map.csv
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Data Source</p>
+<p>PBMC data from <a href="https://www.10xgenomics.com/datasets/3-k-pbm-cs-from-a-healthy-donor-1-standard-1-1-0">10x Genomics</a> - "3k PBMCs from a Healthy Donor" dataset. Processed using <a href="https://scanpy.readthedocs.io/">Scanpy</a> with cell type annotations from Louvain clustering.</p>
+</div>
+<p><strong>Run benchmark:</strong></p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>run<span class="w"> </span>--suite<span class="w"> </span>SUITE-GEN-CLASS-001<span class="w"> </span>--model<span class="w"> </span>configs/model_geneformer.yaml<span class="w"> </span>--dataset<span class="w"> </span>DS-PBMC<span class="w"> </span>--out<span class="w"> </span>results/
+</code></pre></div>
+<hr />
+<h2 id="additional-data-sources">Additional Data Sources</h2>
+<h3 id="more-dna-sequence-data">More DNA Sequence Data</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>URL</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UCSC Genome Browser</strong></td>
+<td><a href="https://hgdownload.soe.ucsc.edu">hgdownload.soe.ucsc.edu</a></td>
+<td>Reference genomes</td>
+</tr>
+<tr>
+<td><strong>ENCODE Portal</strong></td>
+<td><a href="https://www.encodeproject.org">encodeproject.org</a></td>
+<td>ChIP-seq, ATAC-seq</td>
+</tr>
+<tr>
+<td><strong>Roadmap Epigenomics</strong></td>
+<td><a href="http://www.roadmapepigenomics.org">roadmapepigenomics.org</a></td>
+<td>Epigenomic marks</td>
+</tr>
+<tr>
+<td><strong>ClinVar</strong></td>
+<td><a href="https://www.ncbi.nlm.nih.gov/clinvar/">ncbi.nlm.nih.gov/clinvar</a></td>
+<td>Pathogenic variants</td>
+</tr>
+</tbody>
+</table>
+<h3 id="more-single-cell-data">More Single-Cell Data</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>URL</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>10x Genomics</strong></td>
+<td><a href="https://www.10xgenomics.com/resources/datasets">10xgenomics.com/datasets</a></td>
+<td>scRNA-seq</td>
+</tr>
+<tr>
+<td><strong>CellxGene</strong></td>
+<td><a href="https://cellxgene.cziscience.com">cellxgene.cziscience.com</a></td>
+<td>Annotated atlases</td>
+</tr>
+<tr>
+<td><strong>Human Cell Atlas</strong></td>
+<td><a href="https://www.humancellatlas.org">humancellatlas.org</a></td>
+<td>Multi-tissue atlases</td>
+</tr>
+</tbody>
+</table>
+<h3 id="brain-imaging-data">Brain Imaging Data</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>URL</th>
+<th>Registration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OpenNeuro</strong></td>
+<td><a href="https://openneuro.org">openneuro.org</a></td>
+<td>None required</td>
+</tr>
+<tr>
+<td><strong>HCP</strong></td>
+<td><a href="https://www.humanconnectome.org">humanconnectome.org</a></td>
+<td>Required</td>
+</tr>
+<tr>
+<td><strong>UK Biobank</strong></td>
+<td><a href="https://www.ukbiobank.ac.uk">ukbiobank.ac.uk</a></td>
+<td>Application required</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="download-more-data">Download More Data</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Activate environment</span>
+<span class="nb">source</span><span class="w"> </span>scripts/activate_fmbench.sh
+
+<span class="c1"># Download additional genomic benchmarks</span>
+python<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">from datasets import load_dataset</span>
+
+<span class="s"># Drosophila enhancers</span>
+<span class="s">ds = load_dataset(&quot;katarinagresova/Genomic_Benchmarks_drosophila_enhancers_stark&quot;)</span>
+
+<span class="s"># Mouse enhancers  </span>
+<span class="s">ds = load_dataset(&quot;katarinagresova/Genomic_Benchmarks_dummy_mouse_enhancers_ensembl&quot;)</span>
+
+<span class="s"># Coding vs intergenic</span>
+<span class="s">ds = load_dataset(&quot;katarinagresova/Genomic_Benchmarks_demo_coding_vs_intergenomic_seqs&quot;)</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<hr />
+<h2 id="citations-acknowledgments">📚 Citations &amp; Acknowledgments</h2>
+<p>If you use data from this benchmark hub, please cite the original sources:</p>
+<h3 id="genomic-benchmarks-dna-sequence-data">Genomic Benchmarks (DNA Sequence Data)</h3>
+<blockquote>
+<p>GREŠOVÁ, Katarína, et al. <strong>Genomic Benchmarks: A Collection of Datasets for Genomic Sequence Classification.</strong> <em>bioRxiv</em>, 2022.</p>
+<p>URL: <a href="https://www.biorxiv.org/content/10.1101/2022.06.08.495248">https://www.biorxiv.org/content/10.1101/2022.06.08.495248</a></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">gresova2022genomic</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Genomic Benchmarks: A Collection of Datasets for Genomic Sequence Classification}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Gresova, Katarina and Martinek, Vlastimil and Cechak, David and Simecek, Petr and Alexiou, Panagiotis}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{bioRxiv}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2022}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="p">=</span><span class="s">{Cold Spring Harbor Laboratory}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="p">=</span><span class="s">{https://www.biorxiv.org/content/10.1101/2022.06.08.495248}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="nucleotide-transformer-nt-benchmark-data">Nucleotide Transformer (NT Benchmark Data)</h3>
+<blockquote>
+<p>DALLA-TORRE, Hugo, et al. <strong>The Nucleotide Transformer: Building and Evaluating Robust Foundation Models for Human Genomics.</strong> <em>bioRxiv</em>, 2023.</p>
+<p>URL: <a href="https://www.biorxiv.org/content/10.1101/2023.01.11.523679">https://www.biorxiv.org/content/10.1101/2023.01.11.523679</a></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">dalla2023nucleotide</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{The Nucleotide Transformer: Building and Evaluating Robust Foundation Models for Human Genomics}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Dalla-Torre, Hugo and Gonzalez, Liam and Mendoza-Revilla, Javier and others}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{bioRxiv}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="p">=</span><span class="s">{Cold Spring Harbor Laboratory}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="10x-genomics-pbmc-3k-single-cell-rna-seq-data">10x Genomics PBMC 3K (Single-Cell RNA-seq Data)</h3>
+<blockquote>
+<p><strong>10x Genomics.</strong> 3k PBMCs from a Healthy Donor. 10x Genomics Datasets, 2016.</p>
+<p>URL: <a href="https://www.10xgenomics.com/datasets/3-k-pbm-cs-from-a-healthy-donor-1-standard-1-1-0">https://www.10xgenomics.com/datasets/3-k-pbm-cs-from-a-healthy-donor-1-standard-1-1-0</a></p>
+</blockquote>
+<h3 id="scanpy-single-cell-analysis">Scanpy (Single-Cell Analysis)</h3>
+<blockquote>
+<p>WOLF, F. Alexander, ANGERER, Philipp, and THEIS, Fabian J. <strong>SCANPY: large-scale single-cell gene expression data analysis.</strong> <em>Genome Biology</em>, 2018.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">wolf2018scanpy</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{SCANPY: large-scale single-cell gene expression data analysis}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Wolf, F Alexander and Angerer, Philipp and Theis, Fabian J}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{Genome biology}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="p">=</span><span class="s">{19}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">number</span><span class="p">=</span><span class="s">{1}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="p">=</span><span class="s">{1--5}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2018}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="p">=</span><span class="s">{Springer}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="encode-consortium-regulatory-data">ENCODE Consortium (Regulatory Data)</h3>
+<blockquote>
+<p><strong>The ENCODE Project Consortium.</strong> An integrated encyclopedia of DNA elements in the human genome. <em>Nature</em>, 2012.</p>
+</blockquote>
+<h3 id="roadmap-epigenomics-regulatory-data">Roadmap Epigenomics (Regulatory Data)</h3>
+<blockquote>
+<p><strong>Roadmap Epigenomics Consortium.</strong> Integrative analysis of 111 reference human epigenomes. <em>Nature</em>, 2015.</p>
+</blockquote>
+<h3 id="eukaryotic-promoter-database-promoter-data">Eukaryotic Promoter Database (Promoter Data)</h3>
+<blockquote>
+<p>DREOS, René, et al. <strong>The eukaryotic promoter database in its 30th year: focus on non-vertebrate organisms.</strong> <em>Nucleic Acids Research</em>, 2017.</p>
+</blockquote>
+<hr />
+<h2 id="license">License</h2>
+<ul>
+<li><strong>Genomic Benchmarks</strong>: Apache 2.0</li>
+<li><strong>10x Genomics PBMC</strong>: Free for research use</li>
+<li><strong>ENCODE/Roadmap data</strong>: Public domain</li>
+</ul>
+<hr />
+<p><a class="md-button" href="../">Back to Home</a>
+<a class="md-button" href="../leaderboards/">View Benchmarks</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.expand", "toc.integrate", "content.code.copy", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -47,6 +47,8 @@ extra_css:
 
 nav:
   - Home: index.md
+  - Start Here: start_here.md
+  - How It Works: how_it_works.md
   - Leaderboards: leaderboards/index.md
   - Submit Results:
     - Submission Guide: contributing/submission_guide.md
@@ -55,6 +57,7 @@ nav:
     - Prediction Baselines: integration/analysis_recipes/prediction_baselines.md
     - Partial Correlations: integration/analysis_recipes/partial_correlations.md
   - Data Specs:
+    - Free Data Sources: data_sources.md
     - fMRI: integration/modality_features/fmri.md
     - sMRI: integration/modality_features/smri.md
     - Genomics: integration/modality_features/genomics.md
@@ -62,6 +65,7 @@ nav:
     - Overview: models/index.md
   - Design:
     - AI4H Alignment: design/ai4h_alignment.md
+  - Credits: credits.md
 
 markdown_extensions:
   - admonition

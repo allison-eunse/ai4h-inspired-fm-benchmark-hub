@@ -1,0 +1,25 @@
+eval_id: ROBUSTNESS-evo2-20251218-212536
+benchmark_id: BM-ROBUSTNESS
+model_ids:
+  candidate: evo2
+dataset_id: DS-TOY-GENOMICS-ROBUSTNESS
+run_metadata:
+  date: '2025-12-18T21:25:36.507015'
+  runner: fmbench
+  suite_id: SUITE-ROBUSTNESS
+  hardware: CPU
+  modality: genomics
+  probes:
+  - dropout
+  - noise
+  - permutation
+  - masking
+  - expression
+metrics:
+  dropout_rAUC: 0.9841
+  noise_rAUC: 0.9949
+  perm_equivariance: 0.6154
+  masking_rAUC: 0.994
+  expression_rAUC: 0.9987
+  robustness_score: 0.993
+status: Completed

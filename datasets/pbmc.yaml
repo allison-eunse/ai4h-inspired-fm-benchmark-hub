@@ -1,9 +1,21 @@
 # DEL5.4: Test Data Specification
 dataset_id: "DS-PBMC"
-name: "PBMC 68k"
-source: "10x Genomics"
-n_subjects: 1
+name: "PBMC 3k (processed, with cell type labels)"
+path: toy_data/genomics/pbmc_classification
+source: "10x Genomics via Scanpy tutorial"
+n_samples: 2638
+n_features: 1838
+n_classes: 8
 modalities: 
   - "scRNA-seq"
-notes: "Peripheral Blood Mononuclear Cells."
+labels:
+  - "CD4 T cells"
+  - "CD14+ Monocytes"
+  - "B cells"
+  - "CD8 T cells"
+  - "NK cells"
+  - "FCGR3A+ Monocytes"
+  - "Dendritic cells"
+  - "Megakaryocytes"
+notes: "Pre-annotated PBMC 3k with 8 cell type labels from Scanpy tutorial."
 

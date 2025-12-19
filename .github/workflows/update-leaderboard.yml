@@ -1,0 +1,108 @@
+# Automatic leaderboard update when new eval.yaml is submitted
+# Aligned with AI4H guidelines: DEL7.x (test specifications) → automated validation
+#
+# Triggers:
+# 1. Push to main with new evals/*.yaml files
+# 2. Manual workflow dispatch
+# 3. Scheduled daily rebuild (ensures consistency)
+
+name: Update Leaderboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'evals/*.yaml'
+      - 'benchmarks/*.yaml'
+      - 'models/*.yaml'
+      - 'fmbench/leaderboard.py'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual trigger'
+        required: false
+        default: 'Manual leaderboard rebuild'
+  schedule:
+    # Daily at 00:00 UTC to catch any missed updates
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  validate-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Validate new eval.yaml files (AI4H compliance)
+        run: |
+          echo "🔍 Validating eval.yaml files..."
+          python -c "
+          import yaml
+          import glob
+          import sys
+
+          REQUIRED_FIELDS = ['eval_id', 'benchmark_id', 'model_ids', 'metrics', 'status']
+          errors = []
+
+          for f in glob.glob('evals/*.yaml'):
+              try:
+                  with open(f) as stream:
+                      data = yaml.safe_load(stream)
+                  if not data:
+                      continue
+                  missing = [field for field in REQUIRED_FIELDS if field not in data]
+                  if missing:
+                      errors.append(f'{f}: missing required fields: {missing}')
+                  # Validate status
+                  if data.get('status') not in ['Completed', 'Failed', 'Partial']:
+                      errors.append(f'{f}: invalid status (must be Completed/Failed/Partial)')
+              except Exception as e:
+                  errors.append(f'{f}: parse error: {e}')
+
+          if errors:
+              print('❌ Validation errors:')
+              for e in errors:
+                  print(f'  - {e}')
+              sys.exit(1)
+          else:
+              print('✅ All eval.yaml files are valid')
+          "
+
+      - name: Rebuild leaderboard
+        run: |
+          echo "📊 Building leaderboard..."
+          python -m fmbench build-leaderboard
+          echo "✅ Leaderboard updated"
+
+      - name: Commit updated leaderboard
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/leaderboards/index.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🏆 Auto-update leaderboard [skip ci]"
+            git push
+          fi
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        run: mkdocs gh-deploy --force

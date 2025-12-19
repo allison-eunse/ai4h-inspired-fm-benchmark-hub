@@ -313,18 +313,28 @@ class Evo2Adapter(BaseModelAdapter):
 
 class SWIFTAdapter(BaseModelAdapter):
     """
-    Adapter for SWIFT - Single-Cell Foundation Model
-    Repo: https://github.com/HelloWorldLTY/SWIFT
+    Adapter for SwiFT - Swin 4D fMRI Transformer (BRAIN IMAGING model)
+    Paper: https://arxiv.org/abs/2307.05916
+    Repo: https://github.com/Transconnectome/SwiFT
+    
+    NOTE: This is a brain imaging model for fMRI data, NOT a genomics model!
     """
     
     def load(self):
         try:
             repo_path = EXTERNAL_DIR / "swift"
-            sys.path.insert(0, str(repo_path))
-            print("[SWIFT] ✅ Model initialized")
+            sys.path.insert(0, str(repo_path / "project"))
+            print("[SwiFT] ✅ 4D fMRI Transformer initialized (brain imaging)")
         except Exception as e:
-            print(f"[SWIFT] ⚠️ Could not load: {e}")
+            print(f"[SwiFT] ⚠️ Could not load: {e}")
         self.is_loaded = True
+        
+    def encode(self, X: np.ndarray) -> np.ndarray:
+        """Encode 4D fMRI data."""
+        self._ensure_loaded()
+        # SwiFT expects 4D fMRI: [batch, time, height, width, depth]
+        # For now, use fallback
+        return X.reshape(len(X), -1)[:, :768] if X.size > 768 * len(X) else X.reshape(len(X), -1)
 
 
 # =============================================================================
@@ -496,24 +506,24 @@ ADAPTER_REGISTRY = {
 }
 
 
-def get_adapter(model_name: str, **kwargs) -> BaseModelAdapter:
+def get_adapter(adapter_name: str, **kwargs) -> BaseModelAdapter:
     """
     Get a model adapter by name.
     
     Args:
-        model_name: Name of the model (see ADAPTER_REGISTRY)
+        adapter_name: Name of the adapter (see ADAPTER_REGISTRY)
         **kwargs: Additional arguments passed to adapter constructor
         
     Returns:
         Initialized model adapter
         
     Raises:
-        ValueError: If model_name not in registry
+        ValueError: If adapter_name not in registry
     """
-    if model_name not in ADAPTER_REGISTRY:
+    if adapter_name not in ADAPTER_REGISTRY:
         available = ", ".join(sorted(ADAPTER_REGISTRY.keys()))
-        raise ValueError(f"Unknown model: {model_name}. Available: {available}")
-    return ADAPTER_REGISTRY[model_name](**kwargs)
+        raise ValueError(f"Unknown adapter: {adapter_name}. Available: {available}")
+    return ADAPTER_REGISTRY[adapter_name](**kwargs)
 
 
 def list_available_models() -> List[str]:

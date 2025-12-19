@@ -1,0 +1,45 @@
+# DEL3: System Requirement Specifications
+# DNA Enhancer Classification Benchmark
+
+benchmark_id: "BM-DNA-ENHANCER"
+name: "DNA Enhancer Classification"
+version: "1.0.0"
+
+health_topic: "Genomics - Regulatory Element Prediction"
+health_domain: "Genetics"
+description: |
+  Benchmark for classifying DNA sequences as enhancers or non-enhancers.
+  Enhancers are distal regulatory elements that activate gene expression.
+  Accurate enhancer prediction is critical for understanding gene regulation
+  and identifying disease-associated variants.
+
+ai_task: "Classification"
+modality: "DNA sequence"
+
+default_dataset: "DS-DNA-ENHANCERS-COHN"
+
+metrics:
+  primary:
+    - AUROC
+  secondary:
+    - Accuracy
+    - F1-Score
+    - Precision
+    - Recall
+
+evaluation_protocol:
+  split: "predefined"  # train/test split provided
+  stratification: "label"
+  
+performance_targets:
+  good: 0.85
+  excellent: 0.90
+
+clinical_relevance: |
+  Enhancer variants are implicated in many diseases including cancer,
+  cardiovascular disease, and developmental disorders. Accurate enhancer
+  prediction helps prioritize variants for functional follow-up.
+
+references:
+  - "Cohn et al. - Enhancer identification using ChIP-seq"
+  - "ENCODE Consortium - Encyclopedia of DNA Elements"

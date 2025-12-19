@@ -1,0 +1,9 @@
+# SwiFT - Swin 4D fMRI Transformer (Brain Imaging Model)
+# Paper: https://arxiv.org/abs/2307.05916
+# Repo: https://github.com/Transconnectome/SwiFT
+# NOTE: This is a BRAIN IMAGING model, not genomics!
+model_id: swift
+type: adapter
+adapter_name: swift
+device: "cpu"
+modality: "fMRI"

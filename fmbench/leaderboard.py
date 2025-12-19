@@ -11,6 +11,7 @@ import glob
 import os
 import sys
 from collections import defaultdict
+from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 
 import yaml
@@ -80,6 +81,121 @@ def get_rank_badge(rank: int) -> str:
         return "🎖️"
     else:
         return f"#{rank}"
+
+
+def _parse_iso_date(date_str: Optional[str]) -> Optional[datetime]:
+    """Parse a YYYY-MM-DD date string; return None if unknown/invalid."""
+    if not date_str:
+        return None
+    try:
+        return datetime.strptime(date_str, "%Y-%m-%d")
+    except Exception:
+        return None
+
+
+def get_latest_eval_for_model(
+    evals: List[Dict],
+    *,
+    benchmark_id: str,
+    model_id: str,
+) -> Optional[Dict]:
+    """
+    Pick a single representative eval for (benchmark_id, model_id).
+
+    Preference order:
+    - Newer run_metadata.date (YYYY-MM-DD)
+    - Then lexicographically larger eval_id / filename (timestamps are embedded)
+    """
+    candidates: List[Dict] = []
+    for ev in evals:
+        if ev.get("benchmark_id") != benchmark_id:
+            continue
+        mids = ev.get("model_ids", {}) or {}
+        if model_id not in set(mids.values()):
+            continue
+        candidates.append(ev)
+
+    if not candidates:
+        return None
+
+    def _key(ev: Dict) -> Tuple[int, str, str]:
+        dt = _parse_iso_date((ev.get("run_metadata") or {}).get("date"))
+        dt_score = int(dt.timestamp()) if dt else -1
+        eval_id = str(ev.get("eval_id") or "")
+        fname = str(ev.get("_filename") or "")
+        # Bigger is better for eval_id/fname because they contain timestamps.
+        return (dt_score, eval_id, fname)
+
+    return sorted(candidates, key=_key, reverse=True)[0]
+
+
+def generate_example_submission_block(evals: List[Dict]) -> str:
+    """Add a concrete example block near the top of the leaderboard page."""
+    # Use the repo's built-in baseline so the example always exists for new users.
+    model_id = "dummy_classifier"
+
+    toy = get_latest_eval_for_model(evals, benchmark_id="BM-TOY-CLASS", model_id=model_id)
+    rob = get_latest_eval_for_model(evals, benchmark_id="robustness_testing", model_id=model_id)
+
+    if not toy and not rob:
+        return ""
+
+    md = "## Example: what a real submission looks like\n\n"
+    md += (
+        "This is a **real, end-to-end** run using the built-in baseline model. "
+        "Your submission should look like this: a local run that produces `report.md` + `eval.yaml`.\n\n"
+    )
+
+    # Metric tooltips (Material supports md_in_html).
+    auroc_label = '<abbr title="Area Under the Receiver Operating Characteristic curve">AUROC</abbr>'
+    dropout_label = '<abbr title="Reverse area-under-curve for channel dropout robustness">dropout rAUC</abbr>'
+    noise_label = '<abbr title="Reverse area-under-curve for Gaussian noise robustness">noise rAUC</abbr>'
+
+    toy_auroc = (toy.get("metrics") or {}).get("AUROC") if toy else None
+    dropout_rauc = (rob.get("metrics") or {}).get("dropout_rAUC") if rob else None
+    noise_rauc = (rob.get("metrics") or {}).get("noise_rAUC") if rob else None
+
+    toy_eval_file = (toy or {}).get("_filename")
+    rob_eval_file = (rob or {}).get("_filename")
+    toy_report_file = f"{(toy or {}).get('eval_id')}.md" if toy else None
+    rob_report_file = f"{(rob or {}).get('eval_id')}.md" if rob else None
+
+    md += "| Model ID | Suite / Benchmark | Task | " + auroc_label + " | " + dropout_label + " | " + noise_label + " |\n"
+    md += "|:---|:---|:---|---:|---:|---:|\n"
+
+    auroc_str = f"{toy_auroc:.4f}" if isinstance(toy_auroc, (int, float)) else "-"
+    dropout_str = f"{dropout_rauc:.4f}" if isinstance(dropout_rauc, (int, float)) else "-"
+    noise_str = f"{noise_rauc:.4f}" if isinstance(noise_rauc, (int, float)) else "-"
+
+    md += (
+        f"| `{model_id}` | `SUITE-TOY-CLASS` / `BM-TOY-CLASS` | Toy fMRI-like classification | "
+        f"{auroc_str} | {dropout_str} | {noise_str} |\n\n"
+    )
+
+    # Link to live artifacts in the repository (useful even when browsing docs).
+    links: List[str] = []
+    if toy_eval_file:
+        links.append(
+            f"[Example classification eval.yaml](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/blob/main/evals/{toy_eval_file})"
+        )
+    if toy_report_file:
+        links.append(
+            f"[Example classification report.md](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/blob/main/reports/{toy_report_file})"
+        )
+    if rob_eval_file:
+        links.append(
+            f"[Example robustness eval.yaml](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/blob/main/evals/{rob_eval_file})"
+        )
+    if rob_report_file:
+        links.append(
+            f"[Example robustness report.md](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/blob/main/reports/{rob_report_file})"
+        )
+
+    if links:
+        md += "**Artifacts:** " + " · ".join(links) + "\n\n"
+
+    md += "---\n\n"
+    return md
 
 
 def detect_modality(benchmark: Dict) -> str:
@@ -678,8 +794,8 @@ def generate_overall_leaderboard(
     sorted_models = sorted(best_by_model.items(), key=lambda x: x[1][0], reverse=True)
     
     # Table
-    md += "| Rank | Model | Best Score | Benchmark | Modality |\n"
-    md += "|:---:|:---|:---:|:---|:---|\n"
+    md += "| Rank | Model | Best Score | Metric | Benchmark | Modality |\n"
+    md += "|:---:|:---|:---:|:---|:---|:---|\n"
     
     for rank, (model_id, (score, metric, ev, bm)) in enumerate(sorted_models, 1):
         badge = get_rank_badge(rank)
@@ -692,14 +808,14 @@ def generate_overall_leaderboard(
             model_name = f"**{model_name}**"
         
         score_str = f"{score:.4f}"
-        bm_name = bm.get("name", "-")[:25]
+        bm_name = bm.get("name", "-")
         
         # Detect modality
         mod_key = detect_modality(bm)
         mod_emoji = MODALITIES.get(mod_key, {}).get("emoji", "📊")
-        mod_name = MODALITIES.get(mod_key, {}).get("name", "Other")[:15]
-        
-        md += f"| {badge} | {model_name} | {score_str} | {bm_name} | {mod_emoji} {mod_name} |\n"
+        mod_name = MODALITIES.get(mod_key, {}).get("name", "Other")
+
+        md += f"| {badge} | {model_name} | {score_str} | `{metric}` | {bm_name} | {mod_emoji} {mod_name} |\n"
     
     md += "\n"
     
@@ -787,6 +903,9 @@ def build_leaderboard(
 > Click "How are scores calculated?" for details on what the numbers mean.
 
 """
+
+    # Concrete example block (makes the hub feel "alive" immediately)
+    content += generate_example_submission_block(evals)
 
     # Quick navigation
     content += "## 🧭 Jump To\n\n"

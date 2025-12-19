@@ -1,0 +1,45 @@
+# DEL3: System Requirement Specifications
+# DNA Promoter Classification Benchmark
+
+benchmark_id: "BM-DNA-PROMOTER"
+name: "DNA Promoter Classification"
+version: "1.0.0"
+
+health_topic: "Genomics - Promoter Prediction"
+health_domain: "Genetics"
+description: |
+  Benchmark for classifying DNA sequences as promoters or non-promoters.
+  Promoters are regulatory regions at transcription start sites (TSS).
+  This benchmark focuses on non-TATA promoters, which lack the canonical
+  TATA box and represent ~75% of human promoters.
+
+ai_task: "Classification"
+modality: "DNA sequence"
+
+default_dataset: "DS-DNA-PROMOTERS-NONTATA"
+
+metrics:
+  primary:
+    - AUROC
+  secondary:
+    - Accuracy
+    - F1-Score
+    - Precision
+    - Recall
+
+evaluation_protocol:
+  split: "predefined"
+  stratification: "label"
+  
+performance_targets:
+  good: 0.85
+  excellent: 0.92
+
+clinical_relevance: |
+  Promoter variants can disrupt gene expression and cause disease.
+  Accurate promoter prediction is essential for interpreting variants
+  in non-coding regions near gene starts.
+
+references:
+  - "Eukaryotic Promoter Database (EPD)"
+  - "Dreos et al. (2017) - EPD and EPDnew"

@@ -1,0 +1,16 @@
+eval_id: SUITE-GEN-CLASS-001-dummy_classifier-20251218-085740
+benchmark_id: BM-002
+model_ids:
+  candidate: dummy_classifier
+dataset_id: DS-PBMC
+run_metadata:
+  date: '2025-12-18'
+  runner: fmbench
+  suite_id: SUITE-GEN-CLASS-001
+  model_config: configs/model_dummy_classifier.yaml
+  output_dir: results/pbmc_dummy
+metrics:
+  AUROC: 0.0
+  Accuracy: 0.3089
+  F1-Score: 0.0914
+status: Completed

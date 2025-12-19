@@ -1,0 +1,45 @@
+# DEL7.x: Test Suite Specification
+# DNA Sequence Classification Suite
+
+suite_id: "SUITE-DNA-CLASS"
+name: "DNA Sequence Classification Suite"
+version: "1.0.0"
+
+description: |
+  Standard benchmark suite for evaluating DNA foundation models on 
+  regulatory element classification tasks. Uses real experimental data
+  from ENCODE, Roadmap Epigenomics, and curated databases.
+
+applicable_models:
+  - "evo2"
+  - "hyenadna"
+  - "caduceus"
+  - "dnabert2"
+  - "nucleotide_transformer"
+
+benchmarks:
+  - benchmark_id: "BM-DNA-ENHANCER"
+    dataset_id: "DS-DNA-ENHANCERS-COHN"
+    description: "Enhancer vs non-enhancer classification"
+    
+  - benchmark_id: "BM-DNA-PROMOTER"
+    dataset_id: "DS-DNA-PROMOTERS-NONTATA"
+    description: "Promoter vs non-promoter classification"
+
+evaluation:
+  metrics:
+    - AUROC
+    - Accuracy
+    - F1-Score
+  
+  output_artifacts:
+    - eval.yaml
+    - report.md
+
+usage: |
+  python -m fmbench run --suite SUITE-DNA-CLASS --model configs/model_evo2.yaml --out results/
+
+notes: |
+  This suite tests DNA FMs on their core competency: understanding
+  regulatory grammar in DNA sequences. All data is real experimental
+  data, not synthetic.

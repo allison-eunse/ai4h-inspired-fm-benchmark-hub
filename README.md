@@ -4,6 +4,27 @@
 
 [![Documentation](https://img.shields.io/badge/docs-mkdocs-blue)](https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Leaderboard](https://img.shields.io/badge/leaderboard-live-success)](https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub/leaderboards/)
+
+<p align="center">
+  <strong>🧬 Genomics</strong> • <strong>🧠 Brain Imaging</strong> • <strong>🔒 Privacy-Preserving</strong> • <strong>🤖 Fully Automated</strong>
+</p>
+
+---
+
+## 🚀 Quick Start (30 seconds)
+
+```bash
+git clone https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
+cd ai4h-inspired-fm-benchmark-hub
+pip install -e .
+python -m fmbench generate-toy-data
+python -m fmbench run --suite SUITE-TOY-CLASS --model configs/model_dummy_classifier.yaml --out results/test
+```
+
+**That's it!** You now have `results/test/eval.yaml` ready for submission.
+
+---
 
 ## Mission
 
@@ -16,7 +37,7 @@ We gratefully acknowledge the work of the ITU-T Focus Group on AI for Health as 
 ### 1. Interactive Evaluation Tool
 We provide a downloadable evaluation suite that allows researchers to test their models against standardized baselines, following the **AI4H System Requirement Specifications (DEL3)**.
 
-*   **Toy Samples**: The tool provides representative "toy" datasets for initial testing and debugging.
+*   **Toy Samples**: The tool provides representative "toy" datasets for initial testing and debugging. See [Toy Data Disclaimer](#️-toy-data-disclaimer) for details on sample sizes.
 *   **Local Evaluation**: Run evaluations on your own infrastructure to ensure data privacy and reproducibility.
 *   **Automated Reporting**: The tool analyzes your model's outputs and generates a detailed performance report, characterizing your model's functions and capabilities.
 
@@ -123,19 +144,103 @@ python -m fmbench run --suite SUITE-TOY-CLASS --model my_config.yaml --out resul
 
 **Your model weights and code NEVER leave your machine!**
 
-## Getting Started
+---
 
-For full documentation, including installation instructions, benchmark definitions, and current leaderboards, please visit our [Documentation Site](https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub).
+## ⚠️ Toy Data Disclaimer
 
-### Quick Start
+The `toy_data/` directory contains **subsampled datasets** optimized for quick testing and Git hosting. These are real experimental data (not synthetic), but with reduced sample sizes.
+
+### Subsampled Datasets (Stratified Random Sampling)
+
+| Dataset | Toy Train | Full Train | Notes |
+|---------|-----------|------------|-------|
+| `nucleotide_transformer` | 1,500 | 493,242 | 500 samples/class |
+| `regulatory_ensembl` | 1,500 | 231,348 | 500 samples/class |
+| `open_chromatin` | 1,000 | 139,804 | 500 samples/class |
+
+### Full Datasets (Included As-Is)
+
+| Dataset | Train | Test | Size |
+|---------|-------|------|------|
+| `enhancers_cohn` | 20,843 | 6,948 | ~10 MB |
+| `promoters_nontata` | 27,097 | 9,034 | ~6.5 MB |
+
+### Neuro Toy Data (Small by Design)
+
+| Dataset | Samples | Purpose |
+|---------|---------|---------|
+| `fmri_classification` | 200 | Quick fMRI pipeline testing |
+| `regression` | 200 | Phenotype prediction testing |
+| `eeg_classification` | 150 | EEG model testing |
+| `robustness` | 100 | Robustness probe testing |
+
+### Leaderboard Tiers
+
+We maintain **two leaderboard tiers** to accommodate different data availability:
+
+| Tier | Data Type | Purpose | Datasets |
+|------|-----------|---------|----------|
+| 🧪 **Toy** | Subsampled / synthetic | Quick testing, pipeline validation | All datasets |
+| 📊 **Full** | Complete public datasets | Official benchmarking | Genomic Benchmarks, NT Benchmark |
+
+**Note on restricted data**: Brain imaging datasets (UK Biobank, ADNI, etc.) are subject to data use agreements and cannot be redistributed. These will only appear in the Toy tier with synthetic/representative samples.
+
+### Getting Full Datasets
+
+For 📊 **Full tier** submissions, download the complete public datasets:
+
+| Dataset | Full Size | Download |
+|---------|-----------|----------|
+| Nucleotide Transformer | 493,242 | [InstaDeepAI](https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised) |
+| Regulatory Ensembl | 231,348 | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
+| Open Chromatin | 139,804 | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
+
+Replace `train.tsv` with the full version, then run your benchmark.
+
+### Reproducibility
+
+All toy data subsampling uses **fixed random seed (42)** for reproducibility.
+
+---
+
+## 🛠️ Installation
+
+### Option A: pip (quick start)
 
 ```bash
-# Clone the repository
+git clone https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
+cd ai4h-inspired-fm-benchmark-hub
+pip install -e .
+```
+
+### Option B: conda (recommended for Geneformer/genomics FMs)
+
+```bash
 git clone https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub.git
 cd ai4h-inspired-fm-benchmark-hub
 
-# Install dependencies
-pip install -r requirements.txt
+# Create environment with all dependencies
+conda env create -f environment.yml
+conda activate fmbench
+
+# Or use the activation script (sets all environment variables)
+source scripts/activate_fmbench.sh
+```
+
+The conda environment includes:
+- Python 3.11 (compatible with numba/Geneformer)
+- PyTorch, Transformers, Scanpy
+- All genomics FM dependencies
+
+---
+
+## Getting Started
+
+For full documentation, visit our [Documentation Site](https://allison-eunse.github.io/ai4h-inspired-fm-benchmark-hub).
+
+### Run Your First Benchmark
+
+```bash
 
 # 1. Generate toy data (includes robustness test data)
 python -m fmbench generate-toy-data
@@ -172,24 +277,59 @@ The robustness evaluation produces:
 - **Similarity curves** showing output stability vs perturbation strength  
 - **Aggregate robustness score** for overall comparison
 
-## 📤 Submit Your Model for Benchmarking
+## 📤 Submit Your Model (Fully Automated)
 
-Want your Foundation Model evaluated and ranked on our leaderboards?
+Our leaderboard updates **automatically** — no manual review delay!
 
-### Option 1: Run Locally & Submit Results
-1. Run the benchmark suite on your model locally
-2. Open an [Issue](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md) with your results
-3. We'll review and add your model to the leaderboard
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  YOUR MACHINE                        │  GITHUB (automated)              │
+│                                      │                                  │
+│  1. python -m fmbench run ...        │                                  │
+│         ↓                            │                                  │
+│  2. eval.yaml generated              │                                  │
+│         ↓                            │                                  │
+│  3. Open Issue, paste YAML    ──────►│  4. Bot validates & commits      │
+│                                      │         ↓                        │
+│                                      │  5. Leaderboard rebuilds         │
+│                                      │         ↓                        │
+│                                      │  6. Live on GitHub Pages! 🎉     │
+└─────────────────────────────────────────────────────────────────────────┘
+```
 
-### Option 2: Propose New Evaluation Protocols
-Have ideas for new benchmarks or metrics? Open a [Discussion](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions) to propose:
-- New evaluation tasks or datasets
-- Additional robustness probes
-- Domain-specific metrics
+### How to submit
 
-> **Note**: This is a curated benchmark hub. All submissions are reviewed before being added to the leaderboards.
+```bash
+# 1. Run locally
+python -m fmbench run --suite SUITE-GEN-CLASS-001 --model my_config.yaml --out results/
+
+# 2. Open a GitHub Issue:
+#    https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/issues/new?template=benchmark_submission.md
+
+# 3. Paste your eval.yaml in the YAML code block
+
+# 4. Submit — done! Leaderboard updates in ~2-3 minutes
+```
+
+**Your model weights and code NEVER leave your machine!**
+
+### Propose New Evaluation Protocols
+Have ideas for new benchmarks? Open a [Discussion](https://github.com/allison-eunse/ai4h-inspired-fm-benchmark-hub/discussions).
 
 ## Credits & Attribution
+
+See [CREDITS.md](CREDITS.md) for full citations and acknowledgments.
+
+### Data Sources
+
+| Data | Source | Citation |
+|------|--------|----------|
+| **DNA Benchmarks** | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) | [Grešová et al. (2022)](https://www.biorxiv.org/content/10.1101/2022.06.08.495248) |
+| **NT Benchmark** | [InstaDeepAI](https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised) | [Dalla-Torre et al. (2023)](https://www.biorxiv.org/content/10.1101/2023.01.11.523679) |
+| **PBMC scRNA-seq** | [10x Genomics](https://www.10xgenomics.com/datasets/3-k-pbm-cs-from-a-healthy-donor-1-standard-1-1-0) | 10x Genomics (2016) |
+| **Regulatory Data** | [ENCODE](https://www.encodeproject.org/) | ENCODE Consortium (2012) |
+
+### Framework
 
 The methodology and framework of this benchmark suite are derived from the public deliverables of the **ITU/WHO Focus Group on Artificial Intelligence for Health (FG-AI4H)**.
 

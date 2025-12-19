@@ -1,0 +1,41 @@
+# DEL5.4: Test Data Specification
+# Human Non-TATA Promoter Classification
+# Source: Eukaryotic Promoter Database (EPD)
+
+dataset_id: "DS-DNA-PROMOTERS-NONTATA"
+name: "Human Non-TATA Promoters (EPD)"
+path: toy_data/genomics/dna_sequences/promoters_nontata
+source: "Genomic Benchmarks - Eukaryotic Promoter Database"
+
+description: |
+  Binary classification of DNA sequences as promoters or non-promoters.
+  Focuses on non-TATA promoters (the majority of human promoters).
+  Curated from the Eukaryotic Promoter Database (EPD).
+
+modalities:
+  - "DNA sequence"
+
+data_type: "sequence_classification"
+sequence_length: 251  # bp centered on TSS
+
+n_train: 27097
+n_test: 9034
+n_classes: 2
+
+labels:
+  - "non-promoter"
+  - "promoter"
+
+format:
+  file_type: "tsv"
+  columns: ["sequence", "label"]
+  
+origin:
+  database: "Eukaryotic Promoter Database (EPD)"
+  species: "Homo sapiens"
+  genome_build: "hg38"
+  url: "https://epd.expasy.org/epd/"
+
+notes: |
+  Standard benchmark for promoter prediction. Non-TATA promoters lack 
+  the TATA box motif and represent ~75% of human promoters.

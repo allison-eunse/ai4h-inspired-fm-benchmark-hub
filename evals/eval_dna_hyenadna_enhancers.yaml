@@ -1,0 +1,19 @@
+eval_id: DNA-ENHANCERS-hyenadna-20251218-184417
+benchmark_id: BM-DNA-ENHANCER
+model_ids:
+  candidate: hyenadna
+dataset_id: DS-DNA-ENHANCERS-COHN
+run_metadata:
+  date: '2025-12-18T18:44:17.006557'
+  runner: fmbench
+  suite_id: SUITE-DNA-CLASS
+  hardware: CPU
+  runtime_seconds: 2.8
+  n_train: 5000
+  n_test: 1250
+  encoding: k-mer
+metrics:
+  AUROC: 0.7365
+  Accuracy: 0.6792
+  F1-Score: 0.6789
+status: Completed

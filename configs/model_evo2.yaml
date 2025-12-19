@@ -1,0 +1,7 @@
+# Evo 2 - Large-Scale DNA Foundation Model
+# Paper: https://www.science.org/doi/10.1126/science.ado9336
+# Repo: https://github.com/ArcInstitute/evo2
+model_id: evo2
+type: adapter
+adapter_name: evo2
+device: "cpu"

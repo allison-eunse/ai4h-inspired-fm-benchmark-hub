@@ -1,39 +1,70 @@
+# Main CI workflow for testing and docs deployment
+# Leaderboard updates are handled by update-leaderboard.yml
+
 name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+    paths-ignore:
+      - 'evals/*.yaml'  # Handled by update-leaderboard.yml
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
-# Allow GitHub Actions to write to gh-pages branch
 permissions:
   contents: write
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for git info
+          fetch-depth: 0
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install -e .
 
-      - name: Build Leaderboard
+      - name: Verify fmbench CLI
+        run: |
+          python -m fmbench --help
+          python -m fmbench list-suites
+
+      - name: Generate toy data and run sanity check
+        run: |
+          python -m fmbench generate-toy-data
+          python -m fmbench run --suite SUITE-TOY-CLASS --model configs/model_dummy_classifier.yaml --out /tmp/test_run
+          test -f /tmp/test_run/eval.yaml
+
+  docs:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Build leaderboard
         run: python -m fmbench build-leaderboard
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
         run: mkdocs gh-deploy --force
 

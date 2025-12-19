@@ -1,0 +1,25 @@
+eval_id: ROBUSTNESS-neuroclips-20251218-212536
+benchmark_id: BM-ROBUSTNESS
+model_ids:
+  candidate: neuroclips
+dataset_id: DS-TOY-FMRI-ROBUSTNESS
+run_metadata:
+  date: '2025-12-18T21:25:36.008057'
+  runner: fmbench
+  suite_id: SUITE-ROBUSTNESS
+  hardware: CPU
+  modality: timeseries
+  probes:
+  - dropout
+  - noise
+  - line_noise
+  - permutation
+  - shift
+metrics:
+  dropout_rAUC: 0.9999
+  noise_rAUC: 1.0
+  line_noise_rAUC: 1.0
+  perm_equivariance: 0.6746
+  shift_rAUC: 0.6937
+  robustness_score: 0.9234
+status: Completed

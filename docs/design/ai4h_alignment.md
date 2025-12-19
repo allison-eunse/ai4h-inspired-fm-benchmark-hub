@@ -4,6 +4,17 @@
 
 This benchmark hub is explicitly designed to align with the **ITU/WHO Focus Group on Artificial Intelligence for Health (FG-AI4H)** standards and deliverables. This page documents how our framework implements and extends these standards for foundation model evaluation.
 
+---
+
+## Quick mapping: deliverables → concrete implementation
+
+| AI4H deliverable / concept | What it means (short) | Where it shows up in this hub |
+|---|---|---|
+| **DEL3 — System Requirement Specifications (SyRS)** | Define what an evaluation must do and how it’s validated | **Benchmark definitions** in `benchmarks/*.yaml` (functional requirements + metrics), and **runner outputs** (`report.md`, `eval.yaml`) produced by `fmbench` |
+| **DEL0.1 — Common unified terms** | Shared vocabulary so runs are comparable | Consistent IDs/terms across YAMLs: `benchmark_id`, `dataset_id`, `model_id`, `eval_id` used in `benchmarks/`, `datasets/`, `models/`, `evals/` and the docs |
+| **DEL10.8 — Neurology TDD** | Neurology benchmark structure: topic, scope, inputs, metrics | Neurology-style benchmark schemas reflected in `benchmarks/*.yaml` and supported by stratified metrics in `evals/*.yaml` (`metrics.stratified`) |
+| **DEL7.x / test specifications (in practice)** | A runnable test suite definition | **Suites** in `tests/suite_*.yaml` (e.g., `SUITE-TOY-CLASS`) that define how to run + what artifacts should be produced |
+
 ## ITU FG-AI4H Background
 
 The [ITU/WHO Focus Group on AI for Health](https://www.itu.int/en/ITU-T/focusgroups/ai4h/Pages/default.aspx) was established to develop international standards for AI in healthcare, focusing on:
