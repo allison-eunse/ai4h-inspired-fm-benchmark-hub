@@ -116,6 +116,26 @@ This matches the AI4H DEL3 idea of **local evaluation with standardized reportin
 
 ---
 
+## ⚠️ Data disclaimer
+
+!!! warning "This repo contains TOY DATA only"
+    
+    **Full-scale datasets are NOT included.** We provide small subsamples for pipeline testing.
+    
+    - **Toy data (included)**: 100–27,000 samples for validating your integration
+    - **Full genomics data**: Download from [HuggingFace](https://huggingface.co/datasets/katielink/genomic-benchmarks)
+    - **Brain imaging data**: Requires institutional access (UK Biobank, HCP, etc.)
+
+| Using Toy Data | Using Full Data |
+|----------------|-----------------|
+| ✅ Verify pipeline works | ✅ Get publishable metrics |
+| ⚠️ High variance metrics | ✅ Stable, reproducible scores |
+| ⚠️ Not for publication | ⚠️ Requires external download |
+
+See [Data Sources](data_sources.md) for download links.
+
+---
+
 ## Start here (recommended workflow)
 
 - **Pick a suite**: start with `SUITE-TOY-CLASS` (toy fMRI-like classification).

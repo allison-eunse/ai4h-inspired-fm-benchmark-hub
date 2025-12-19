@@ -65,7 +65,7 @@ This produces **rAUC (Reverse Area Under Curve)** scores that quantify how stabl
 ### 4. Domain Focus
 
 *   🧬 **Genomics**: Single-cell analysis, DNA sequence modeling, gene expression analysis.
-*   🧠 **Neurology**: Brain fMRI/sMRI analysis, robustness testing, representation quality evaluation.
+*   🧠 **Neurology**: Brain imaging (fMRI, sMRI) analysis, robustness testing, representation quality evaluation.
 
 ## Alignment with ITU/WHO FG-AI4H Standards
 
@@ -146,55 +146,70 @@ python -m fmbench run --suite SUITE-TOY-CLASS --model my_config.yaml --out resul
 
 ---
 
-## 📊 What to Expect from This Repository
+## ⚠️ Important: Data Disclaimer
 
-This repository provides a **standardized evaluation framework** for foundation models. Here's what researchers should realistically expect:
+> **This repository does NOT include production-scale datasets.**
+> 
+> We provide only **toy data** (small subsamples) for testing your pipeline. Full-scale benchmarking requires you to download datasets from their original sources.
 
-### Included Data: Toy vs Full
+### What's Included vs What You Need to Download
 
-| Aspect | Toy Data (Included) | Full Data (External) |
-|--------|---------------------|----------------------|
-| **Purpose** | Pipeline testing, quick iteration | Production benchmarking |
-| **Size** | 1,000–27,000 samples | 100,000–500,000 samples |
-| **Runtime** | Seconds to minutes | Minutes to hours |
-| **Metric stability** | Higher variance | Stable, publishable |
-| **Git-friendly** | ✅ Yes (<50MB) | ❌ Too large for Git |
+| What | Included in Repo? | What to Expect |
+|------|-------------------|----------------|
+| **Toy data** | ✅ Yes | Small samples (100–27,000) for pipeline validation |
+| **Full genomics datasets** | ❌ No | Download from HuggingFace (links below) |
+| **Brain imaging data** | ❌ No | Requires institutional access (UK Biobank, HCP, etc.) |
+| **Evaluation framework** | ✅ Yes | CLI tools, adapters, metrics, leaderboard |
 
-### Genomics Datasets
+### Expected Outcomes
 
-| Dataset | Toy (Included) | Full (Download) | Source |
-|---------|----------------|-----------------|--------|
-| `enhancers_cohn` | 20,843 ✅ | — | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
-| `promoters_nontata` | 27,097 ✅ | — | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
+| Using Toy Data | Using Full Data |
+|----------------|-----------------|
+| ✅ Verify your model wrapper works | ✅ Get publishable benchmark scores |
+| ✅ Test the evaluation pipeline | ✅ Compare fairly against leaderboard |
+| ✅ Debug integration issues | ✅ Produce stable, reproducible metrics |
+| ⚠️ Metrics have high variance | ⚠️ Requires more compute time |
+| ⚠️ Not suitable for publication | ⚠️ May require downloading 1–10GB |
+
+### Genomics Data Sources
+
+| Dataset | Toy Samples | Full Size | Download From |
+|---------|-------------|-----------|---------------|
+| `enhancers_cohn` | 20,843 ✅ | 20,843 (complete) | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
+| `promoters_nontata` | 27,097 ✅ | 27,097 (complete) | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
 | `nucleotide_transformer` | 1,500 | 493,242 | [InstaDeepAI](https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised) |
 | `regulatory_ensembl` | 1,500 | 231,348 | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
 | `open_chromatin` | 1,000 | 139,804 | [Genomic Benchmarks](https://huggingface.co/datasets/katielink/genomic-benchmarks) |
 
-### Brain Imaging Datasets
+### Brain Imaging Data
 
-| Dataset | Samples | Notes |
-|---------|---------|-------|
-| `fmri_classification` | 200 | Synthetic/representative (real UKB data requires DUA) |
-| `eeg_classification` | 150 | Synthetic/representative |
-| `robustness` | 100 | For perturbation testing |
+| Dataset | Included Samples | Notes |
+|---------|------------------|-------|
+| `fmri_classification` | 200 (synthetic) | Real fMRI requires UK Biobank or HCP access |
+| `eeg_classification` | 150 (synthetic) | For pipeline testing only |
+| `robustness_probes` | 100 (synthetic) | For robustness testing |
 
-**Note**: Brain imaging data from UK Biobank and similar sources cannot be redistributed due to data use agreements. The toy data here is for pipeline validation only. Researchers with access to these datasets can run the framework on their own data.
+> **Why no real brain imaging data?**  
+> Datasets like UK Biobank and HCP have strict Data Use Agreements (DUAs) that prohibit redistribution. If you have institutional access, you can run this framework on your own data locally.
 
-### Realistic Use Cases
+### Recommended Workflow
 
-| If you want to... | Use this approach |
-|-------------------|-------------------|
-| **Test if your model integrates** | Run on toy data (~seconds) |
-| **Debug your model wrapper** | Run on toy data, check logs |
-| **Get publishable benchmarks** | Download full datasets, run locally |
-| **Compare against leaderboard** | Use same datasets as leaderboard entries |
-| **Benchmark on private data** | Use framework locally, submit only metrics |
+```
+1. VALIDATE PIPELINE (toy data, included)
+   └─► python -m fmbench run --suite SUITE-TOY-CLASS ...
+   └─► Expected: Quick run, verify outputs work
+   
+2. FULL BENCHMARKING (external data, download yourself)
+   └─► Download full datasets from HuggingFace
+   └─► Point fmbench to your local data directory
+   └─► Expected: Production-quality metrics for publication
+```
 
 ### Reproducibility
 
 - All toy data subsampling uses **fixed random seed (42)**
 - Re-running produces identical subsamples
-- Full datasets available from original sources (links above)
+- Full datasets available from original sources (linked above)
 
 ---
 
