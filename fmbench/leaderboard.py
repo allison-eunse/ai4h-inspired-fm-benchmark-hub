@@ -380,8 +380,42 @@ METRIC_EXPLANATIONS = {
 }
 
 
+def generate_metrics_cheatsheet() -> str:
+    """Generate a once-per-page metric cheat sheet to avoid repetition."""
+    md = "## 📐 Metric Cheat Sheet\n\n"
+    md += "Use this as a general reference for the metrics that appear on the leaderboards.\n\n"
+
+    # Order the most common metrics first
+    metric_order = [
+        "AUROC",
+        "Accuracy",
+        "F1-Score",
+        "Correlation",
+        "robustness_score",
+        "report_quality_score",
+        "clinical_accuracy",
+        "hallucination_rate",
+        "bertscore",
+    ]
+
+    for key in metric_order:
+        info = METRIC_EXPLANATIONS.get(key)
+        if not info:
+            continue
+        md += f"### {info['name']}\n\n"
+        md += f"- **What it measures:** {info['simple']}\n"
+        md += f"- **Typical range:** {info['range']}\n"
+        example = info.get("example")
+        if example:
+            md += f"- **Example:** {example}\n"
+        md += "\n"
+
+    md += "---\n\n"
+    return md
+
+
 def explain_metric(metric_name: str) -> str:
-    """Get human-readable explanation of a metric."""
+    """Get human-readable one-line explanation of a metric."""
     if metric_name in METRIC_EXPLANATIONS:
         info = METRIC_EXPLANATIONS[metric_name]
         return f"**{info['name']}**: {info['simple']} ({info['range']})"
@@ -501,36 +535,16 @@ def generate_scoring_methodology(
     md += "<br>\n\n"
 
     # ------------------------------------------------------------------
-    # 2. Primary metric card with detailed explanation
+    # 2. Primary metric summary (full details are in the cheat sheet)
     # ------------------------------------------------------------------
-    
     metric_info = METRIC_EXPLANATIONS.get(primary_metric, {})
     md += "---\n\n"
-    md += f"## 🎯 How `{primary_metric}` works\n\n"
-    
+    md += "## 🎯 Primary metric for this leaderboard\n\n"
+    md += f"- **Metric:** `{primary_metric}`\n"
     if metric_info:
-        md += f"### {metric_info.get('name', primary_metric)}\n\n"
-        md += f"**In simple terms:**\n\n"
-        md += f"> {metric_info.get('simple', 'A performance measure')}\n\n"
-        
-        # Add detailed explanation if available
-        if metric_info.get('detailed'):
-            md += f"<br>\n\n"
-            md += f"**How it works:**\n\n"
-            md += f"{metric_info.get('detailed')}\n\n"
-        
-        md += f"<br>\n\n"
-        md += f"**Score range:**\n\n"
-        md += f"```\n{metric_info.get('range', '0 to 1')}\n```\n\n"
-        
-        # Add example if available
-        if metric_info.get('example'):
-            md += f"<br>\n\n"
-            md += f"!!! example \"Example\"\n"
-            md += f"    {metric_info.get('example')}\n\n"
-    else:
-        md += f"This metric measures model performance. Higher values generally indicate better performance.\n\n"
-    
+        md += f"- **What it measures:** {metric_info.get('simple', 'Performance measure')}\n"
+        md += f"- **Typical range:** {metric_info.get('range', '0–1')}\n"
+    md += "\n> 🔎 For a full explanation of this and other metrics, see the **Metric Cheat Sheet** near the top of this page.\n\n"
     md += "<br>\n\n"
     
     # ------------------------------------------------------------------
@@ -1024,6 +1038,9 @@ def build_leaderboard(
 
     # Concrete example block (makes the hub feel "alive" immediately)
     content += generate_example_submission_block(evals)
+
+    # Global metric cheat sheet (to avoid repeating AUROC explanation everywhere)
+    content += generate_metrics_cheatsheet()
 
     # Quick navigation
     content += "## 🧭 Jump To\n\n"
