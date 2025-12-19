@@ -437,7 +437,7 @@ def generate_podium(ranked_evals: List[Tuple], models: List[Dict]) -> str:
 
 def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     """Generate clean, readable scoring methodology with beginner-friendly explanations."""
-    md = "\n<details>\n<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>\n\n"
+    md = '\n<details class="score-details" markdown="1">\n<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>\n\n'
     
     # Introduction for beginners
     md += "<br>\n\n"
