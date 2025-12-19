@@ -440,122 +440,173 @@ def generate_scoring_methodology(primary_metric: str, ai_task: str) -> str:
     md = "\n<details>\n<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>\n\n"
     
     # Introduction for beginners
-    md += "---\n\n"
-    md += "### 📖 Understanding This Leaderboard\n\n"
-    md += "This section explains how we measure and compare AI models. "
-    md += "Don't worry if you're new to AI metrics — we'll break it down step by step.\n\n"
+    md += "<br>\n\n"
+    md += "## 📖 Understanding This Leaderboard\n\n"
+    md += "This section explains how we measure and compare AI models.\n\n"
+    md += "> 💡 **Don't worry if you're new to AI metrics** — we'll break it down step by step.\n\n"
+    md += "<br>\n\n"
     
     # Primary metric card with detailed explanation
     metric_info = METRIC_EXPLANATIONS.get(primary_metric, {})
     md += "---\n\n"
-    md += f"### 🎯 The Main Metric: `{primary_metric}`\n\n"
+    md += f"## 🎯 The Main Metric: `{primary_metric}`\n\n"
     
     if metric_info:
-        md += f"**{metric_info.get('name', primary_metric)}**\n\n"
-        md += f"**In simple terms:** {metric_info.get('simple', 'A performance measure')}\n\n"
+        md += f"### {metric_info.get('name', primary_metric)}\n\n"
+        md += f"**In simple terms:**\n\n"
+        md += f"> {metric_info.get('simple', 'A performance measure')}\n\n"
         
         # Add detailed explanation if available
         if metric_info.get('detailed'):
-            md += f"**How it works:** {metric_info.get('detailed')}\n\n"
+            md += f"<br>\n\n"
+            md += f"**How it works:**\n\n"
+            md += f"{metric_info.get('detailed')}\n\n"
         
-        md += f"**Score range:** {metric_info.get('range', '0 to 1')}\n\n"
+        md += f"<br>\n\n"
+        md += f"**Score range:**\n\n"
+        md += f"```\n{metric_info.get('range', '0 to 1')}\n```\n\n"
         
         # Add example if available
         if metric_info.get('example'):
-            md += f"💡 **Example:** {metric_info.get('example')}\n\n"
+            md += f"<br>\n\n"
+            md += f"!!! example \"Example\"\n"
+            md += f"    {metric_info.get('example')}\n\n"
     else:
         md += f"This metric measures model performance. Higher values generally indicate better performance.\n\n"
     
+    md += "<br>\n\n"
+    
     # Task-specific context
     md += "---\n\n"
-    md += "### 🧠 How This Metric Fits This Task\n\n"
-    md += "Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:\n\n"
+    md += "## 🧠 How This Metric Fits This Task\n\n"
+    md += "Different tasks emphasize different aspects of performance.\n\n"
+    md += "**Here's how this metric should be interpreted for this benchmark:**\n\n"
+    md += "<br>\n\n"
+    
     lower_ai_task = (ai_task or "").lower()
     if "generation" in lower_ai_task:
         md += (
-            "- For **report generation**, we care not only about language quality but also clinical safety.\n"
-            "  This metric is usually combined with others (e.g., clinical accuracy, hallucination rate,\n"
-            "  and completeness of findings) to judge whether the generated report is both readable **and**\n"
-            "  medically reliable.\n\n"
+            "For **report generation**, we care not only about language quality but also clinical safety.\n\n"
+            "This metric is usually combined with others:\n\n"
+            "- Clinical accuracy\n"
+            "- Hallucination rate\n"
+            "- Completeness of findings\n\n"
+            "...to judge whether the generated report is both readable **and** medically reliable.\n\n"
         )
     elif "robustness" in lower_ai_task:
         md += (
-            "- For **robustness assessment**, this metric summarizes how much the model's outputs change\n"
-            "  when we add realistic perturbations (e.g., noise, signal dropout, channel permutations,\n"
-            "  or temporal shifts). A higher score means the model is more stable under these stress tests.\n"
-            "  In this benchmark, we probe robustness using:\n"
-            "  - **Dropout**: randomly masking channels or features to mimic sensor failure or missing data\n"
-            "  - **Gaussian noise**: adding noise at different signal-to-noise ratios (SNR) to simulate\n"
-            "    electrical or physiological noise\n"
-            "  - **Line noise**: injecting 50/60 Hz interference similar to mains power artifacts\n"
-            "  - **Channel permutation**: shuffling channels to test invariance to channel ordering\n"
-            "  - **Temporal shifts**: misaligning signals in time to simulate timing jitter\n"
-            "  This reflects real-world variability between scanners, hospitals, and acquisition protocols.\n\n"
+            "For **robustness assessment**, this metric summarizes how much the model's outputs change "
+            "when we add realistic perturbations.\n\n"
+            "> A higher score means the model is more stable under stress tests.\n\n"
+            "<br>\n\n"
+            "**In this benchmark, we probe robustness using:**\n\n"
+            "| Probe | What it tests |\n"
+            "|:------|:--------------|\n"
+            "| **Dropout** | Randomly masking channels/features to mimic sensor failure |\n"
+            "| **Gaussian noise** | Adding noise at different SNR levels |\n"
+            "| **Line noise** | Injecting 50/60 Hz interference (mains power artifacts) |\n"
+            "| **Channel permutation** | Shuffling channels to test ordering invariance |\n"
+            "| **Temporal shifts** | Misaligning signals in time to simulate timing jitter |\n\n"
+            "<br>\n\n"
+            "This reflects real-world variability between scanners, hospitals, and acquisition protocols.\n\n"
         )
     elif "reconstruction" in lower_ai_task and "classification" not in lower_ai_task or "regression" in lower_ai_task:
         md += (
-            "- For **regression / continuous prediction** tasks, this metric captures how closely the model's\n"
-            "  predicted values track the true values over a range (e.g., symptom severity, signal amplitude).\n"
-            "  We are usually interested in both overall fit (correlation) and error magnitude.\n\n"
+            "For **regression / continuous prediction** tasks, this metric captures how closely "
+            "the model's predicted values track the true values.\n\n"
+            "Examples include:\n\n"
+            "- Symptom severity scores\n"
+            "- Signal amplitude\n"
+            "- Age prediction\n\n"
+            "We are usually interested in both overall fit (correlation) and error magnitude.\n\n"
         )
     else:
         md += (
-            "- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand\n"
-            "  how reliably the model separates different outcome groups. In addition to raw accuracy,\n"
-            "  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are\n"
-            "  imbalanced (for example, when positive cases are rare).\n\n"
+            "For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand "
+            "how reliably the model separates different outcome groups.\n\n"
+            "> 💡 **Tip:** In addition to raw accuracy, look at metrics like **AUROC** and **F1 Score**, "
+            "especially when classes are imbalanced (when positive cases are rare).\n\n"
         )
+    
+    md += "<br>\n\n"
     
     # Performance tiers - with more context
     md += "---\n\n"
-    md += "### 📊 Performance Tiers: What Do the Scores Mean?\n\n"
-    md += "We group models into performance tiers to help you quickly understand how ready they are for different uses:\n\n"
+    md += "## 📊 Performance Tiers\n\n"
+    md += "### What Do the Scores Mean?\n\n"
+    md += "We group models into performance tiers to help you quickly understand how ready they are for different uses.\n\n"
+    md += "<br>\n\n"
     md += "| Score Range | Rating | Interpretation | Suitable For |\n"
     md += "|:---:|:---:|:---|:---|\n"
-    md += "| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |\n"
-    md += "| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |\n"
-    md += "| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |\n"
-    md += "| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |\n\n"
+    md += "| **≥ 0.90** | ⭐ Excellent | Top-tier, consistently reliable | Clinical pilots (with oversight) |\n"
+    md += "| **0.80 – 0.89** | ✅ Good | Strong performance, real promise | Validation studies |\n"
+    md += "| **0.70 – 0.79** | 🔶 Fair | Moderate, has limitations | Research only |\n"
+    md += "| **< 0.70** | 📈 Developing | Needs improvement | Early research |\n\n"
+    md += "<br>\n\n"
     
-    md += "!!! tip \"Important Context\"\n"
-    md += "    These thresholds are general guidelines. The acceptable score depends on the specific "
-    md += "clinical application, risk level, and whether the AI assists or replaces human judgment. "
-    md += "Always consult domain experts when evaluating fitness for a particular use case.\n\n"
+    md += "!!! warning \"Important Context\"\n"
+    md += "    These thresholds are **general guidelines**.\n\n"
+    md += "    The acceptable score depends on:\n\n"
+    md += "    - The specific clinical application\n"
+    md += "    - Risk level of the use case\n"
+    md += "    - Whether AI assists or replaces human judgment\n\n"
+    md += "    **Always consult domain experts** when evaluating fitness for a particular use case.\n\n"
+    
+    md += "<br>\n\n"
     
     # Ranking rules - more detailed
     md += "---\n\n"
-    md += "### 📏 How We Determine Rankings\n\n"
+    md += "## 📏 How We Determine Rankings\n\n"
     md += "Models are ranked following these principles:\n\n"
-    md += "1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. "
-    md += "For metrics where lower is better (like error rates), the lowest score wins.\n\n"
-    md += "2. **Ties are broken by secondary metrics** — If two models have identical primary scores, "
-    md += "we look at other relevant metrics to determine which performs better overall.\n\n"
-    md += "3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), "
-    md += "only its best result appears on the leaderboard. This ensures fair comparison.\n\n"
-    md += "4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, "
-    md += "dataset used, and configuration to ensure transparency.\n\n"
+    md += "<br>\n\n"
+    md += "### 1️⃣ Primary metric determines rank\n\n"
+    md += "The model with the highest score in the main metric ranks first.\n\n"
+    md += "> For metrics where **lower is better** (like error rates), the lowest score wins.\n\n"
+    md += "<br>\n\n"
+    md += "### 2️⃣ Ties are broken by secondary metrics\n\n"
+    md += "If two models have identical primary scores, we look at other relevant metrics.\n\n"
+    md += "<br>\n\n"
+    md += "### 3️⃣ Best run per model\n\n"
+    md += "If a model was evaluated multiple times (e.g., with different settings), "
+    md += "only its **best result** appears on the leaderboard.\n\n"
+    md += "<br>\n\n"
+    md += "### 4️⃣ Reproducibility required\n\n"
+    md += "All results must be reproducible. We record:\n\n"
+    md += "- Evaluation date\n"
+    md += "- Dataset used\n"
+    md += "- Configuration details\n\n"
+    
+    md += "<br>\n\n"
     
     # Why this matters
     md += "---\n\n"
-    md += "### 🏥 Why This Matters for Healthcare AI\n\n"
-    md += "Healthcare AI has higher stakes than many other AI applications. A model that works "
-    md += "95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. "
-    md += "That's why we:\n\n"
-    md += "- Use **multiple metrics** to capture different aspects of performance\n"
-    md += "- Test **robustness** to real-world data quality issues\n"
-    md += "- Require **transparency** about evaluation conditions\n"
-    md += "- Follow **international standards** for healthcare AI assessment\n\n"
+    md += "## 🏥 Why This Matters for Healthcare AI\n\n"
+    md += "Healthcare AI has **higher stakes** than many other AI applications.\n\n"
+    md += "> A model that works 95% of the time might sound good, but that 5% could mean "
+    md += "**missed diagnoses** or **incorrect treatments**.\n\n"
+    md += "<br>\n\n"
+    md += "**That's why we:**\n\n"
+    md += "✅ Use **multiple metrics** to capture different aspects of performance\n\n"
+    md += "✅ Test **robustness** to real-world data quality issues\n\n"
+    md += "✅ Require **transparency** about evaluation conditions\n\n"
+    md += "✅ Follow **international standards** for healthcare AI assessment\n\n"
+    
+    md += "<br>\n\n"
     
     # AI4H note
     md += "---\n\n"
-    md += "### 🌍 Standards Alignment\n\n"
+    md += "## 🌍 Standards Alignment\n\n"
     md += "This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) "
-    md += "framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. "
+    md += "framework.\n\n"
+    md += "<br>\n\n"
     md += "This ensures our evaluations are:\n\n"
-    md += "- **Rigorous** — Following established scientific methodology\n"
-    md += "- **Comparable** — Using standardized metrics across different models\n"
-    md += "- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI\n\n"
+    md += "| Quality | What it means |\n"
+    md += "|:--------|:--------------|\n"
+    md += "| **Rigorous** | Following established scientific methodology |\n"
+    md += "| **Comparable** | Using standardized metrics across models |\n"
+    md += "| **Trustworthy** | Aligned with WHO/ITU recommendations |\n\n"
     
+    md += "<br>\n\n"
     md += "</details>\n\n"
     return md
 
