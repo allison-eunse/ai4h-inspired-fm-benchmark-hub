@@ -567,6 +567,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#data-disclaimer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Data disclaimer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#start-here-recommended-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1452,6 +1463,40 @@ You only share metrics + metadata.</p>
 </tbody>
 </table>
 <p>This matches the AI4H DEL3 idea of <strong>local evaluation with standardized reporting</strong>. See <a href="design/ai4h_alignment/">AI4H Alignment</a>.</p>
+<hr />
+<h2 id="data-disclaimer">⚠️ Data disclaimer</h2>
+<div class="admonition warning">
+<p class="admonition-title">This repo contains TOY DATA only</p>
+<p><strong>Full-scale datasets are NOT included.</strong> We provide small subsamples for pipeline testing.</p>
+<ul>
+<li><strong>Toy data (included)</strong>: 100–27,000 samples for validating your integration</li>
+<li><strong>Full genomics data</strong>: Download from <a href="https://huggingface.co/datasets/katielink/genomic-benchmarks">HuggingFace</a></li>
+<li><strong>Brain imaging data</strong>: Requires institutional access (UK Biobank, HCP, etc.)</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr>
+<th>Using Toy Data</th>
+<th>Using Full Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Verify pipeline works</td>
+<td>✅ Get publishable metrics</td>
+</tr>
+<tr>
+<td>⚠️ High variance metrics</td>
+<td>✅ Stable, reproducible scores</td>
+</tr>
+<tr>
+<td>⚠️ Not for publication</td>
+<td>⚠️ Requires external download</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="data_sources/">Data Sources</a> for download links.</p>
 <hr />
 <h2 id="start-here-recommended-workflow">Start here (recommended workflow)</h2>
 <ul>
