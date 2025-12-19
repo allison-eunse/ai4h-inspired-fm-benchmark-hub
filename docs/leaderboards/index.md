@@ -36,16 +36,16 @@ This is a **real, end-to-end** run using the built-in baseline model. Your submi
 
 | Rank | Model | Best Score | Metric | Benchmark | Modality |
 |:---:|:---|:---:|:---|:---|:---|
-| 🥇 | **BrainMT** 👑 | 0.9999 | `dropout_rAUC` | - | 📊 Other |
-| 🥈 | **SWIFT** | 0.9999 | `dropout_rAUC` | - | 📊 Other |
+| 🥇 | **SWIFT** 👑 | 0.9999 | `dropout_rAUC` | - | 📊 Other |
+| 🥈 | **BrainMT** | 0.9999 | `dropout_rAUC` | - | 📊 Other |
 | 🥉 | **neuroclips** | 0.9999 | `dropout_rAUC` | - | 📊 Other |
 | 🏅 | geneformer | 0.9995 | `robustness_score` | Foundation Model Robustness Evaluation | 📊 Other |
-| 🏅 | Caduceus | 0.9841 | `dropout_rAUC` | - | 📊 Other |
-| 🎖️ | Evo 2 | 0.9841 | `dropout_rAUC` | - | 📊 Other |
+| 🏅 | Evo 2 | 0.9841 | `dropout_rAUC` | - | 📊 Other |
+| 🎖️ | Caduceus | 0.9841 | `dropout_rAUC` | - | 📊 Other |
 | 🎖️ | Brain-JEPA | 0.9350 | `AUROC` | Alzheimer's Disease Classification using Brain MRI | 🧠 Brain Imaging (MRI/fMRI) |
 | 🎖️ | UNI | 0.9200 | `AUROC` | Alzheimer's Disease Classification using Brain MRI | 🧠 Brain Imaging (MRI/fMRI) |
+| 🎖️ | BrainLM | 0.9100 | `AUROC` | Alzheimer's Disease Classification using Brain MRI | 🧠 Brain Imaging (MRI/fMRI) |
 | 🎖️ | Geneformer | 0.9100 | `Accuracy` | Cell Type Annotation | 🧬 Genomics |
-| 🎖️ | BrainLM | 0.9100 | `AUROC` | fMRI Foundation Model Benchmark (Granular) | 🧠 Brain Imaging (MRI/fMRI) |
 | #11 | Me-LLaMA | 0.8750 | `report_quality_score` | Clinical Report Generation Quality | 🧬 Genomics |
 | #12 | HyenaDNA | 0.8720 | `AUROC` | DNA Promoter Classification | 🧬 Genomics |
 | #13 | HyenaDNA | 0.8700 | `Accuracy` | Cell Type Annotation | 🧬 Genomics |
@@ -88,7 +88,7 @@ TATA box and represent ~75% of human promoters.
                  (0.872)                 
              ╔═══════════════╗             
              ║               ║             
-   🥈 DNABERT-2   ║               ║   🥉  HyenaDNA   
+   🥈  kmer_k6    ║               ║   🥉 DNABERT-2   
       (0.836)      ║               ║      (0.836)      
   ╔═══════════╝               ╚═══════════╗  
   ║                                       ║  
@@ -102,147 +102,15 @@ TATA box and represent ~75% of human promoters.
 | Rank | Model | Score | Level | Details |
 |:---:|:---|:---:|:---:|:---|
 | 🥇 | **HyenaDNA** 👑 | 0.8720 | ✅ Good | DS-DNA-PROMOTER, 2025-12-18T21:03:12.030852 |
-| 🥈 | **DNABERT-2** | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:27.391206 |
-| 🥉 | **HyenaDNA** | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:19.651418 |
-| 🏅 | kmer_k6 | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:10.847321 |
+| 🥈 | **kmer_k6** | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:10.847321 |
+| 🥉 | **DNABERT-2** | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:27.391206 |
+| 🏅 | HyenaDNA | 0.8357 | ✅ Good | Human Non-TATA Promo, 2025-12-18T18:44:19.651418 |
 
 !!! tip "Quick Comparison"
     **🥇 HyenaDNA** leads with AUROC = **0.8720**
 
-    - Gap to 🥈 DNABERT-2: +0.0363
+    - Gap to 🥈 kmer_k6: +0.0363
     - Score spread (best to worst): 0.0363
-
-
-<details>
-<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
-
----
-
-### 📖 Understanding This Leaderboard
-
-This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
-
----
-
-### 🎯 The Main Metric: `AUROC`
-
-**Area Under ROC Curve (AUROC)**
-
-**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
-
-**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
-
-**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
-
-💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
-
----
-
-### 🧠 How This Metric Fits This Task
-
-Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
-
-- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
-  how reliably the model separates different outcome groups. In addition to raw accuracy,
-  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
-  imbalanced (for example, when positive cases are rare).
-
----
-
-### 📊 Performance Tiers: What Do the Scores Mean?
-
-We group models into performance tiers to help you quickly understand how ready they are for different uses:
-
-| Score Range | Rating | Interpretation | Suitable For |
-|:---:|:---:|:---|:---|
-| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
-| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
-| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
-| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
-
-!!! tip "Important Context"
-    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
-
----
-
-### 📏 How We Determine Rankings
-
-Models are ranked following these principles:
-
-1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
-
-2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
-
-3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
-
-4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
-
----
-
-### 🏥 Why This Matters for Healthcare AI
-
-Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
-
-- Use **multiple metrics** to capture different aspects of performance
-- Test **robustness** to real-world data quality issues
-- Require **transparency** about evaluation conditions
-- Follow **international standards** for healthcare AI assessment
-
----
-
-### 🌍 Standards Alignment
-
-This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
-
-- **Rigorous** — Following established scientific methodology
-- **Comparable** — Using standardized metrics across different models
-- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
-
-</details>
-
----
-
-#### DNA Enhancer Classification
-
-*Benchmark for classifying DNA sequences as enhancers or non-enhancers.
-Enhancers are distal regulatory elements that activate gene expression.
-Accurate enhancer prediction is critical for understanding gene regulation
-and identifying disease-associated variants.
-*
-
-
-<div align="center">
-
-```
-                    🏆                    
-                                          
-              🥇  HyenaDNA              
-                 (0.788)                 
-             ╔═══════════════╗             
-             ║               ║             
-   🥈 DNABERT-2   ║               ║   🥉  HyenaDNA   
-      (0.737)      ║               ║      (0.737)      
-  ╔═══════════╝               ╚═══════════╗  
-  ║                                       ║  
-══╩═══════════════════════════════════════╩══
-```
-
-</div>
-
-**4 models ranked by `AUROC`:**
-
-| Rank | Model | Score | Level | Details |
-|:---:|:---|:---:|:---:|:---|
-| 🥇 | **HyenaDNA** 👑 | 0.7883 | 🔶 Fair | DS-DNA-ENHANCER, 2025-12-18T21:03:03.285801 |
-| 🥈 | **DNABERT-2** | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:24.678525 |
-| 🥉 | **HyenaDNA** | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:17.006557 |
-| 🏅 | kmer_k6 | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:08.075706 |
-
-!!! tip "Quick Comparison"
-    **🥇 HyenaDNA** leads with AUROC = **0.7883**
-
-    - Gap to 🥈 DNABERT-2: +0.0518
-    - Score spread (best to worst): 0.0518
 
 
 <details>
@@ -367,8 +235,8 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 | 🏅 | Caduceus | 0.8850 | ✅ Good | PBMC 68k, 2024-01-12 |
 | 🏅 | HyenaDNA | 0.8700 | ✅ Good | PBMC 68k, 2024-01-08 |
 | 🎖️ | DNABERT-2 | 0.8500 | ✅ Good | PBMC 68k, 2024-01-05 |
-| 🎖️ | geneformer | 0.0000 | 📈 Developing | PBMC 3k (processed, , 2025-12-18 |
 | 🎖️ | Baseline (Random/Majority) | 0.0000 | 📈 Developing | PBMC 3k (processed, , 2025-12-18 |
+| 🎖️ | geneformer | 0.0000 | 📈 Developing | PBMC 3k (processed, , 2025-12-18 |
 
 !!! tip "Quick Comparison"
     **🥇 Evo 2** leads with Accuracy = **0.9250**
@@ -399,6 +267,138 @@ This section explains how we measure and compare AI models. Don't worry if you'r
 **Score range:** 0.0 (all wrong) → 1.0 (all correct)
 
 💡 **Example:** An accuracy of 0.92 means the model correctly classified 92 out of every 100 samples.
+
+---
+
+### 🧠 How This Metric Fits This Task
+
+Different tasks emphasize different aspects of performance. Here's how this metric should be interpreted for this benchmark:
+
+- For **classification** tasks (e.g., disease vs. no disease), this metric helps you understand
+  how reliably the model separates different outcome groups. In addition to raw accuracy,
+  we recommend also looking at metrics like AUROC and F1 Score, especially when classes are
+  imbalanced (for example, when positive cases are rare).
+
+---
+
+### 📊 Performance Tiers: What Do the Scores Mean?
+
+We group models into performance tiers to help you quickly understand how ready they are for different uses:
+
+| Score Range | Rating | Interpretation | Suitable For |
+|:---:|:---:|:---|:---|
+| **≥ 0.90** | ⭐ Excellent | Top-tier performance, consistently reliable | Clinical pilots with physician oversight |
+| **0.80 – 0.89** | ✅ Good | Strong performance, shows real promise | Validation studies, controlled testing |
+| **0.70 – 0.79** | 🔶 Fair | Moderate performance, has limitations | Research and development only |
+| **< 0.70** | 📈 Developing | Below typical benchmarks, needs improvement | Early research, not for clinical use |
+
+!!! tip "Important Context"
+    These thresholds are general guidelines. The acceptable score depends on the specific clinical application, risk level, and whether the AI assists or replaces human judgment. Always consult domain experts when evaluating fitness for a particular use case.
+
+---
+
+### 📏 How We Determine Rankings
+
+Models are ranked following these principles:
+
+1. **Primary metric determines rank** — The model with the highest score in the main metric ranks first. For metrics where lower is better (like error rates), the lowest score wins.
+
+2. **Ties are broken by secondary metrics** — If two models have identical primary scores, we look at other relevant metrics to determine which performs better overall.
+
+3. **Best run per model** — If a model was evaluated multiple times (e.g., with different settings), only its best result appears on the leaderboard. This ensures fair comparison.
+
+4. **Reproducibility required** — All results must be reproducible. We record the evaluation date, dataset used, and configuration to ensure transparency.
+
+---
+
+### 🏥 Why This Matters for Healthcare AI
+
+Healthcare AI has higher stakes than many other AI applications. A model that works 95% of the time might sound good, but that 5% could mean missed diagnoses or incorrect treatments. That's why we:
+
+- Use **multiple metrics** to capture different aspects of performance
+- Test **robustness** to real-world data quality issues
+- Require **transparency** about evaluation conditions
+- Follow **international standards** for healthcare AI assessment
+
+---
+
+### 🌍 Standards Alignment
+
+This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](https://www.itu.int/pub/T-FG-AI4H) framework, which provides internationally recognized guidelines for evaluating healthcare AI systems. This ensures our evaluations are:
+
+- **Rigorous** — Following established scientific methodology
+- **Comparable** — Using standardized metrics across different models
+- **Trustworthy** — Aligned with WHO/ITU recommendations for health AI
+
+</details>
+
+---
+
+#### DNA Enhancer Classification
+
+*Benchmark for classifying DNA sequences as enhancers or non-enhancers.
+Enhancers are distal regulatory elements that activate gene expression.
+Accurate enhancer prediction is critical for understanding gene regulation
+and identifying disease-associated variants.
+*
+
+
+<div align="center">
+
+```
+                    🏆                    
+                                          
+              🥇  HyenaDNA              
+                 (0.788)                 
+             ╔═══════════════╗             
+             ║               ║             
+   🥈  kmer_k6    ║               ║   🥉 DNABERT-2   
+      (0.737)      ║               ║      (0.737)      
+  ╔═══════════╝               ╚═══════════╗  
+  ║                                       ║  
+══╩═══════════════════════════════════════╩══
+```
+
+</div>
+
+**4 models ranked by `AUROC`:**
+
+| Rank | Model | Score | Level | Details |
+|:---:|:---|:---:|:---:|:---|
+| 🥇 | **HyenaDNA** 👑 | 0.7883 | 🔶 Fair | DS-DNA-ENHANCER, 2025-12-18T21:03:03.285801 |
+| 🥈 | **kmer_k6** | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:08.075706 |
+| 🥉 | **DNABERT-2** | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:24.678525 |
+| 🏅 | HyenaDNA | 0.7365 | 🔶 Fair | Human Enhancers (Coh, 2025-12-18T18:44:17.006557 |
+
+!!! tip "Quick Comparison"
+    **🥇 HyenaDNA** leads with AUROC = **0.7883**
+
+    - Gap to 🥈 kmer_k6: +0.0518
+    - Score spread (best to worst): 0.0518
+
+
+<details>
+<summary>📐 <strong>How are scores calculated?</strong> (click to expand)</summary>
+
+---
+
+### 📖 Understanding This Leaderboard
+
+This section explains how we measure and compare AI models. Don't worry if you're new to AI metrics — we'll break it down step by step.
+
+---
+
+### 🎯 The Main Metric: `AUROC`
+
+**Area Under ROC Curve (AUROC)**
+
+**In simple terms:** Measures how well the model can tell apart different categories (e.g., healthy vs. diseased)
+
+**How it works:** Think of it like this: if you randomly pick one positive case and one negative case, AUROC tells you the probability that the model correctly identifies which is which. A score of 0.5 means the model is just guessing randomly (like flipping a coin), while 1.0 means it perfectly separates all cases.
+
+**Score range:** 0.5 (random guessing) → 1.0 (perfect separation)
+
+💡 **Example:** An AUROC of 0.85 means the model correctly ranks a positive case higher than a negative case 85% of the time.
 
 ---
 
@@ -600,21 +600,42 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 
 ### 🎯 Classification
 
-#### Toy Classification Benchmark
+#### Alzheimer's Disease Classification using Brain MRI
 
-*A toy benchmark for testing the pipeline.*
+*Binary classification of AD vs CN using structural MRI data.*
 
-**2 models ranked by `AUROC`:**
+
+<div align="center">
+
+```
+                    🏆                    
+                                          
+              🥇 Brain-JEPA              
+                 (0.935)                 
+             ╔═══════════════╗             
+             ║               ║             
+   🥈    UNI       ║               ║   🥉  BrainLM     
+      (0.920)      ║               ║      (0.910)      
+  ╔═══════════╝               ╚═══════════╗  
+  ║                                       ║  
+══╩═══════════════════════════════════════╩══
+```
+
+</div>
+
+**3 models ranked by `AUROC`:**
 
 | Rank | Model | Score | Level | Details |
 |:---:|:---|:---:|:---:|:---|
-| 🥇 | **Baseline (Random/Majority)** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classificat, 2025-11-27 |
-| 🥈 | **BrainLM** | 0.5193 | 📈 Developing | Toy fMRI Classificat, 2025-11-27 |
+| 🥇 | **Brain-JEPA** 👑 | 0.9350 | ⭐ Excellent | ADNI, 2024-01-20 |
+| 🥈 | **UNI** | 0.9200 | ⭐ Excellent | Alzheimer's Disease , 2023-10-27 |
+| 🥉 | **BrainLM** | 0.9100 | ⭐ Excellent | ADNI, 2024-01-15 |
 
 !!! tip "Quick Comparison"
-    **🥇 Baseline (Random/Majority)** leads with AUROC = **0.5597**
+    **🥇 Brain-JEPA** leads with AUROC = **0.9350**
 
-    - Gap to 🥈 BrainLM: +0.0404
+    - Gap to 🥈 UNI: +0.0150
+    - Score spread (best to worst): 0.0250
 
 
 <details>
@@ -706,42 +727,21 @@ This benchmark follows the [ITU/WHO Focus Group on AI for Health (FG-AI4H)](http
 
 ---
 
-#### Alzheimer's Disease Classification using Brain MRI
+#### Toy Classification Benchmark
 
-*Binary classification of AD vs CN using structural MRI data.*
+*A toy benchmark for testing the pipeline.*
 
-
-<div align="center">
-
-```
-                    🏆                    
-                                          
-              🥇 Brain-JEPA              
-                 (0.935)                 
-             ╔═══════════════╗             
-             ║               ║             
-   🥈    UNI       ║               ║   🥉  BrainLM     
-      (0.920)      ║               ║      (0.910)      
-  ╔═══════════╝               ╚═══════════╗  
-  ║                                       ║  
-══╩═══════════════════════════════════════╩══
-```
-
-</div>
-
-**3 models ranked by `AUROC`:**
+**2 models ranked by `AUROC`:**
 
 | Rank | Model | Score | Level | Details |
 |:---:|:---|:---:|:---:|:---|
-| 🥇 | **Brain-JEPA** 👑 | 0.9350 | ⭐ Excellent | ADNI, 2024-01-20 |
-| 🥈 | **UNI** | 0.9200 | ⭐ Excellent | Alzheimer's Disease , 2023-10-27 |
-| 🥉 | **BrainLM** | 0.9100 | ⭐ Excellent | ADNI, 2024-01-15 |
+| 🥇 | **Baseline (Random/Majority)** 👑 | 0.5597 | 📈 Developing | Toy fMRI Classificat, 2025-11-27 |
+| 🥈 | **BrainLM** | 0.5193 | 📈 Developing | Toy fMRI Classificat, 2025-11-27 |
 
 !!! tip "Quick Comparison"
-    **🥇 Brain-JEPA** leads with AUROC = **0.9350**
+    **🥇 Baseline (Random/Majority)** leads with AUROC = **0.5597**
 
-    - Gap to 🥈 UNI: +0.0150
-    - Score spread (best to worst): 0.0250
+    - Gap to 🥈 BrainLM: +0.0404
 
 
 <details>
