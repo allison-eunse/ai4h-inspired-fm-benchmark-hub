@@ -1664,12 +1664,12 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 <p>Your <code>evals/*.yaml</code> file should follow this format:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># evals/SUITE-NEURO-CLASS-my_fm-20240101-120000.yaml</span>
 <span class="nt">eval_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SUITE-NEURO-CLASS-my_fm-20240101-120000</span>
-<span class="nt">benchmark_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BM-001</span><span class="w">  </span><span class="c1"># Must match existing benchmark</span>
+<span class="nt">benchmark_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BM-FMRI-GRANULAR</span><span class="w">  </span><span class="c1"># Must match existing benchmark</span>
 
 <span class="nt">model_ids</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">candidate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_awesome_fm</span>
 
-<span class="nt">dataset_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DS-ADNI</span><span class="w">  </span><span class="c1"># Or your dataset</span>
+<span class="nt">dataset_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DS-TOY-FMRI-CLASS</span><span class="w">  </span><span class="c1"># Or your dataset</span>
 
 <span class="nt">run_metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-01&quot;</span>
@@ -1794,8 +1794,8 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 <td>age_20-40, age_40-60, age_60-80, age_80-100</td>
 </tr>
 <tr>
-<td><code>disease_stage</code></td>
-<td>CN, MCI, AD, etc.</td>
+<td><code>condition</code></td>
+<td>Healthy, Clinical, etc.</td>
 </tr>
 <tr>
 <td><code>ethnicity</code></td>

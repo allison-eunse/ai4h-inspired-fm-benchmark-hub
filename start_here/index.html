@@ -639,10 +639,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scenario-d-optional-neurology-mri-classification-suite-neuro-class-001" class="md-nav__link">
+  <a href="#scenario-d-optional-neurology-fmri-classification-suite-neuro-class-001" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scenario D (optional): Neurology MRI classification (SUITE-NEURO-CLASS-001)
+        Scenario D (optional): Neurology fMRI classification (SUITE-NEURO-CLASS-001)
       
     </span>
   </a>
@@ -1461,10 +1461,11 @@ python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> 
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>list-suites
 </code></pre></div>
 <hr />
-<h3 id="scenario-d-optional-neurology-mri-classification-suite-neuro-class-001">Scenario D (optional): Neurology MRI classification (<code>SUITE-NEURO-CLASS-001</code>)</h3>
-<p>This suite exists and is listed by <code>fmbench list-suites</code>, but it expects an MRI dataset (default <code>DS-ADNI</code> in <code>tests/suite_neurology_classification.yaml</code>).</p>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>run<span class="w"> </span>--suite<span class="w"> </span>SUITE-NEURO-CLASS-001<span class="w"> </span>--model<span class="w"> </span>my_model_config.yaml<span class="w"> </span>--out<span class="w"> </span>results/my_mri_run
+<h3 id="scenario-d-optional-neurology-fmri-classification-suite-neuro-class-001">Scenario D (optional): Neurology fMRI classification (<code>SUITE-NEURO-CLASS-001</code>)</h3>
+<p>This suite evaluates fMRI foundation models on classification tasks using toy data.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>fmbench<span class="w"> </span>run<span class="w"> </span>--suite<span class="w"> </span>SUITE-NEURO-CLASS-001<span class="w"> </span>--model<span class="w"> </span>my_model_config.yaml<span class="w"> </span>--out<span class="w"> </span>results/my_fmri_run
 </code></pre></div>
+<p>For full benchmarking, point to your own institutional data (UK Biobank, HCP, etc.).</p>
 
 
 
