@@ -331,7 +331,12 @@ def cmd_download_weights(args: argparse.Namespace) -> None:
     This is the recommended way to ensure evaluations use REAL weights while keeping
     model artifacts out of the repository.
     """
-    from .weights import ensure_hf_snapshot, resolve_weights_source, get_weights_dir
+    from .weights import (
+        ensure_hf_snapshot,
+        ensure_url_download,
+        resolve_weights_source,
+        get_weights_dir,
+    )
 
     # Load config if provided
     model_cfg: Dict[str, Any] = {}
@@ -353,6 +358,26 @@ def cmd_download_weights(args: argparse.Namespace) -> None:
         print("Error: provide --model <config.yaml> or --adapter <name>.", file=sys.stderr)
         sys.exit(1)
 
+    # Explicit URL override from CLI (useful for GitHub release assets)
+    if args.url:
+        target = ensure_url_download(
+            args.url,
+            sha256=args.sha256,
+            local_dir_name=args.name or adapter_name,
+            filename=args.filename,
+            extract=args.extract,
+        )
+        print("\n✅ Weights downloaded")
+        print(f"- Adapter:     {adapter_name}")
+        print(f"- URL:         {args.url}")
+        if args.sha256:
+            print(f"- SHA256:      {args.sha256}")
+        print(f"- Local path:  {target}")
+        print(f"- Cache root:  {get_weights_dir()}")
+        print("\nTip: Set in your model config:")
+        print(f'  checkpoint_path: "{target if target.is_dir() else target.parent}"')
+        return
+
     src = resolve_weights_source(adapter_name, model_cfg)
     if src.get("type") == "hf":
         repo_id = src["repo_id"]
@@ -367,6 +392,22 @@ def cmd_download_weights(args: argparse.Namespace) -> None:
         print(f"- Cache root:  {get_weights_dir()}")
         print("\nTip: To force using this local copy, set in your model config:")
         print(f'  checkpoint_path: "{local_dir}"')
+    elif src.get("type") == "url":
+        target = ensure_url_download(
+            src["url"],
+            sha256=src.get("sha256"),
+            local_dir_name=adapter_name,
+            extract=bool(src.get("extract", False)),
+        )
+        print("\n✅ Weights downloaded")
+        print(f"- Adapter:     {adapter_name}")
+        print(f"- URL:         {src['url']}")
+        if src.get("sha256"):
+            print(f"- SHA256:      {src.get('sha256')}")
+        print(f"- Local path:  {target}")
+        print(f"- Cache root:  {get_weights_dir()}")
+        print("\nTip: Set in your model config:")
+        print(f'  checkpoint_path: "{target if target.is_dir() else target.parent}"')
     else:
         raise ValueError(f"Unsupported weights source type: {src.get('type')}")
 
@@ -843,6 +884,31 @@ def build_parser() -> argparse.ArgumentParser:
         "--adapter",
         default=None,
         help="Adapter name (if not providing --model).",
+    )
+    p_dw.add_argument(
+        "--url",
+        default=None,
+        help="Direct URL to a checkpoint/archive (e.g., GitHub release asset).",
+    )
+    p_dw.add_argument(
+        "--sha256",
+        default=None,
+        help="Optional SHA256 checksum to verify the download.",
+    )
+    p_dw.add_argument(
+        "--name",
+        default=None,
+        help="Optional cache subfolder name (defaults to adapter name).",
+    )
+    p_dw.add_argument(
+        "--filename",
+        default=None,
+        help="Optional filename to save as (defaults to filename inferred from URL).",
+    )
+    p_dw.add_argument(
+        "--extract",
+        action="store_true",
+        help="If set, extract .zip/.tar(.gz) archives into a folder and return that folder path.",
     )
     p_dw.set_defaults(func=cmd_download_weights)
 
