@@ -45,6 +45,12 @@ models = [
     "huggingface_hub>=0.24.0",
     "sentencepiece>=0.2.0",
 ]
+models = [
+    "torch>=2.2.0",
+    "transformers>=4.45.0",
+    "huggingface_hub>=0.24.0",
+    "sentencepiece>=0.2.0",
+]
 
 [project.scripts]
 fmbench = "fmbench.cli:main"

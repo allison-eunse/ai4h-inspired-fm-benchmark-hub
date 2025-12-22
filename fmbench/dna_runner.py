@@ -392,7 +392,6 @@ class DNASequenceRunner:
                     y_prob = None
 
         elif self.use_baseline:
-elif self.use_baseline:
             # Use logistic regression baseline
             print("[DNA Runner] Using logistic regression baseline")
             clf = LogisticRegression(

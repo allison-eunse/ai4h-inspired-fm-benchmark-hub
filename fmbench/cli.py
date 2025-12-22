@@ -324,6 +324,53 @@ def cmd_generate_toy_data(args: argparse.Namespace) -> None:
     generate_all_toy_data(root_dir=args.output_dir)
 
 
+def cmd_download_weights(args: argparse.Namespace) -> None:
+    """
+    Download model weights into a local (non-git) cache directory.
+
+    This is the recommended way to ensure evaluations use REAL weights while keeping
+    model artifacts out of the repository.
+    """
+    from .weights import ensure_hf_snapshot, resolve_weights_source, get_weights_dir
+
+    # Load config if provided
+    model_cfg: Dict[str, Any] = {}
+    adapter_name: Optional[str] = None
+    if args.model:
+        if not os.path.exists(args.model):
+            print(f"Error: model config {args.model!r} does not exist.", file=sys.stderr)
+            sys.exit(1)
+        with open(args.model, "r") as f:
+            model_cfg = yaml.safe_load(f) or {}
+        if model_cfg.get("type") != "adapter":
+            print("Error: download-weights only supports type: adapter configs.", file=sys.stderr)
+            sys.exit(1)
+        adapter_name = model_cfg.get("adapter_name")
+    else:
+        adapter_name = args.adapter
+
+    if not adapter_name:
+        print("Error: provide --model <config.yaml> or --adapter <name>.", file=sys.stderr)
+        sys.exit(1)
+
+    src = resolve_weights_source(adapter_name, model_cfg)
+    if src.get("type") == "hf":
+        repo_id = src["repo_id"]
+        revision = src.get("revision")
+        local_dir = ensure_hf_snapshot(repo_id, revision=revision)
+        print("\n✅ Weights downloaded")
+        print(f"- Adapter:     {adapter_name}")
+        print(f"- HF repo:     {repo_id}")
+        if revision:
+            print(f"- Revision:    {revision}")
+        print(f"- Local dir:   {local_dir}")
+        print(f"- Cache root:  {get_weights_dir()}")
+        print("\nTip: To force using this local copy, set in your model config:")
+        print(f'  checkpoint_path: "{local_dir}"')
+    else:
+        raise ValueError(f"Unsupported weights source type: {src.get('type')}")
+
+
 def cmd_run_robustness(args: argparse.Namespace) -> None:
     """
     Run robustness evaluation suite for a model.
@@ -781,6 +828,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="Root directory for generated toy data (default: toy_data).",
     )
     p_gtd.set_defaults(func=cmd_generate_toy_data)
+
+    # download-weights
+    p_dw = subparsers.add_parser(
+        "download-weights",
+        help="Download model weights into local cache (kept out of git).",
+    )
+    p_dw.add_argument(
+        "--model",
+        default=None,
+        help="Path to a model config YAML (type: adapter).",
+    )
+    p_dw.add_argument(
+        "--adapter",
+        default=None,
+        help="Adapter name (if not providing --model).",
+    )
+    p_dw.set_defaults(func=cmd_download_weights)
 
     # run-robustness
     p_rob = subparsers.add_parser(
