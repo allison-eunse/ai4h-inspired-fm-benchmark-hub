@@ -26,23 +26,45 @@ EXTERNAL_DIR = Path(__file__).parent.parent / "external"
 
 
 class BaseModelAdapter:
-    """Base class for model adapters with sklearn-compatible interface."""
-    
-    def __init__(self, checkpoint_path: Optional[str] = None, device: str = "cpu", **kwargs):
+    """
+    Base class for model adapters with sklearn-compatible interface.
+
+    IMPORTANT POLICY:
+    - When `strict_weights=True` (default), adapters MUST load real weights.
+    - No random / placeholder embeddings are allowed in strict mode.
+    """
+
+    def __init__(
+        self,
+        checkpoint_path: Optional[str] = None,
+        device: str = "cpu",
+        strict_weights: bool = True,
+        **kwargs,
+    ):
         self.checkpoint_path = checkpoint_path
         self.device = device
+        self.strict_weights = strict_weights
         self.model = None
         self.is_loaded = False
+        self.weights_loaded = False
+        self.weights_source: Optional[str] = None
         self.config = kwargs
         
     def load(self):
         """Load the model. Override in subclasses."""
         self.is_loaded = True
+        self.weights_loaded = self.model is not None
         
     def _ensure_loaded(self):
         """Ensure model is loaded before inference."""
         if not self.is_loaded:
             self.load()
+        if self.strict_weights and not self.weights_loaded:
+            raise RuntimeError(
+                "This adapter did not load real weights (strict_weights=True). "
+                "Provide valid weights via `checkpoint_path` (or a model-specific weights config) "
+                "and re-run. Weights must NOT be committed to git."
+            )
         
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Generate class predictions."""
@@ -64,8 +86,10 @@ class BaseModelAdapter:
     def encode(self, X: np.ndarray) -> np.ndarray:
         """Generate embeddings/representations."""
         self._ensure_loaded()
-        # Default: return input flattened
-        return X.reshape(len(X), -1) if X.ndim > 2 else X
+        raise NotImplementedError(
+            "encode() is not implemented for this adapter. In strict_weights mode, "
+            "adapters must implement a real forward pass to produce embeddings."
+        )
 
 
 # =============================================================================
@@ -91,41 +115,42 @@ class BrainLMAdapter(BaseModelAdapter):
                 repo_path / "pretrained_models/2023-06-06-22_15_00-checkpoint-1400"
             )
             
-            if os.path.exists(ckpt_path):
-                config = BrainLMConfig.from_pretrained(ckpt_path)
-                self.model = BrainLMForPreTraining.from_pretrained(ckpt_path, config=config)
-                self.model.eval()
-                print(f"[BrainLM] ✅ Loaded from {ckpt_path}")
-            else:
-                print(f"[BrainLM] ⚠️ Checkpoint not found, using random init")
-                self.model = None
+            if not os.path.exists(ckpt_path):
+                raise FileNotFoundError(
+                    f"[BrainLM] Missing checkpoint at {ckpt_path}. "
+                    "Download the official weights to a local (non-git) cache and set `checkpoint_path`."
+                )
+
+            config = BrainLMConfig.from_pretrained(ckpt_path)
+            self.model = BrainLMForPreTraining.from_pretrained(ckpt_path, config=config)
+            self.model.eval()
+            self.weights_loaded = True
+            self.weights_source = ckpt_path
+            print(f"[BrainLM] ✅ Loaded weights from {ckpt_path}")
                 
         except Exception as e:
-            print(f"[BrainLM] ⚠️ Could not load: {e}")
             self.model = None
+            self.weights_loaded = False
+            print(f"[BrainLM] ❌ Could not load real weights: {e}")
+            if self.strict_weights:
+                raise
         self.is_loaded = True
             
     def encode(self, X: np.ndarray) -> np.ndarray:
         """Extract fMRI embeddings using BrainLM."""
         self._ensure_loaded()
-        
-        if self.model is not None:
-            try:
-                import torch
-                with torch.no_grad():
-                    # BrainLM expects [batch, timepoints, voxels]
-                    if X.ndim == 2:
-                        X = X.reshape(len(X), -1, 1)
-                    X_tensor = torch.tensor(X, dtype=torch.float32)
-                    outputs = self.model(X_tensor, output_hidden_states=True)
-                    # Return CLS token embeddings from last layer
-                    emb = outputs.hidden_states[-1][:, 0, :].numpy()
-                    return emb
-            except Exception as e:
-                print(f"[BrainLM] Encode error: {e}")
-                
-        # Fallback: simple PCA-like reduction
-        return X.reshape(len(X), -1)[:, :768] if X.size > 768 * len(X) else X.reshape(len(X), -1)
+
+        import torch
+
+        with torch.no_grad():
+            # BrainLM expects [batch, timepoints, voxels]
+            if X.ndim == 2:
+                X = X.reshape(len(X), -1, 1)
+            X_tensor = torch.tensor(X, dtype=torch.float32)
+            outputs = self.model(X_tensor, output_hidden_states=True)
+            # Return CLS token embeddings from last layer
+            emb = outputs.hidden_states[-1][:, 0, :].detach().cpu().numpy()
+            return emb
 
 
 class BrainJEPAAdapter(BaseModelAdapter):
@@ -278,21 +303,90 @@ class DNABERT2Adapter(BaseModelAdapter):
     Adapter for DNABERT-2 - DNA Language Model
     Paper: https://arxiv.org/abs/2306.15006
     Repo: https://github.com/MAGICS-LAB/DNABERT_2
+
+    Strict policy: must load real weights and provide sequence encodings.
     """
-    
+
+    def __init__(
+        self,
+        hf_repo_id: str = "MAGICS-LAB/DNABERT-2-117M",
+        max_length: int = 512,
+        batch_size: int = 16,
+        **kwargs,
+    ):
+        super().__init__(**kwargs)
+        self.hf_repo_id = hf_repo_id
+        self.max_length = max_length
+        self.batch_size = batch_size
+        self.tokenizer = None
+
     def load(self):
+        """
+        Load real DNABERT-2 weights via Transformers.
+
+        - If `checkpoint_path` is provided, it must point to a local directory containing weights.
+        - Otherwise, `hf_repo_id` is used and Transformers will download to the user's HF cache.
+        """
         try:
-            repo_path = EXTERNAL_DIR / "dnabert2"
-            sys.path.insert(0, str(repo_path))
-            print("[DNABERT-2] ✅ Model initialized")
+            from transformers import AutoTokenizer, AutoModel
+            import torch  # noqa: F401
+
+            model_ref = self.checkpoint_path or self.hf_repo_id
+            self.tokenizer = AutoTokenizer.from_pretrained(model_ref, trust_remote_code=True)
+            self.model = AutoModel.from_pretrained(model_ref, trust_remote_code=True)
+            self.model.eval()
+            if self.device and self.device != "cpu":
+                self.model.to(self.device)
+
+            self.weights_loaded = True
+            self.weights_source = str(model_ref)
+            print(f"[DNABERT-2] ✅ Loaded real weights from {model_ref}")
         except Exception as e:
-            print(f"[DNABERT-2] ⚠️ Could not load: {e}")
+            self.model = None
+            self.tokenizer = None
+            self.weights_loaded = False
+            print(f"[DNABERT-2] ❌ Could not load real weights: {e}")
+            if self.strict_weights:
+                raise
         self.is_loaded = True
-            
-    def encode(self, X: np.ndarray) -> np.ndarray:
+
+    def encode_sequences(self, sequences: List[str]) -> np.ndarray:
+        """Encode raw DNA sequences into embeddings (mean pooled)."""
         self._ensure_loaded()
-        # DNABERT-2 produces 768-dim embeddings
-        return X.reshape(len(X), -1)[:, :768] if X.size > 768 * len(X) else np.random.randn(len(X), 768) * 0.1
+
+        import torch
+
+        device = torch.device(self.device if self.device else "cpu")
+        embs: List[np.ndarray] = []
+
+        with torch.no_grad():
+            for i in range(0, len(sequences), self.batch_size):
+                batch = sequences[i : i + self.batch_size]
+                toks = self.tokenizer(
+                    batch,
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                    max_length=self.max_length,
+                )
+                toks = {k: v.to(device) for k, v in toks.items()}
+                out = self.model(**toks)
+                last = out.last_hidden_state
+                attn = toks.get("attention_mask")
+                if attn is None:
+                    pooled = last.mean(dim=1)
+                else:
+                    attn_f = attn.unsqueeze(-1).float()
+                    pooled = (last * attn_f).sum(dim=1) / attn_f.sum(dim=1).clamp(min=1.0)
+                embs.append(pooled.detach().cpu().numpy())
+
+        return np.concatenate(embs, axis=0)
+
+    def encode(self, X: np.ndarray) -> np.ndarray:
+        raise RuntimeError(
+            "DNABERT-2 adapter requires raw DNA sequences. "
+            "Use fmbench DNA runner sequence-aware path (encode_sequences)."
+        )
 
 
 class Evo2Adapter(BaseModelAdapter):

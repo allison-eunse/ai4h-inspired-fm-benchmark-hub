@@ -14,7 +14,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from collections import Counter
 
-
 # =============================================================================
 # DNA ENCODING UTILITIES
 # =============================================================================
@@ -22,7 +21,6 @@ from collections import Counter
 # Standard nucleotide mappings
 NUCLEOTIDE_MAP = {'A': 0, 'C': 1, 'G': 2, 'T': 3, 'N': 4}
 NUCLEOTIDE_COMPLEMENT = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C', 'N': 'N'}
-
 
 def one_hot_encode(sequence: str, max_len: Optional[int] = None) -> np.ndarray:
     """
@@ -48,7 +46,6 @@ def one_hot_encode(sequence: str, max_len: Optional[int] = None) -> np.ndarray:
             encoding[i, NUCLEOTIDE_MAP[nuc]] = 1.0
         # N is left as all zeros
     return encoding
-
 
 def kmer_encode(sequence: str, k: int = 6) -> np.ndarray:
     """
@@ -84,7 +81,6 @@ def kmer_encode(sequence: str, k: int = 6) -> np.ndarray:
     
     return kmer_counts
 
-
 def character_encode(sequence: str, max_len: Optional[int] = None) -> np.ndarray:
     """
     Encode DNA as integer character IDs.
@@ -105,7 +101,6 @@ def character_encode(sequence: str, max_len: Optional[int] = None) -> np.ndarray
     
     encoding = np.array([NUCLEOTIDE_MAP.get(c, 4) for c in seq], dtype=np.int32)
     return encoding
-
 
 def get_encoder(encoding_type: str, **kwargs) -> Callable:
     """
@@ -129,7 +124,6 @@ def get_encoder(encoding_type: str, **kwargs) -> Callable:
         return lambda seq: character_encode(seq, max_len)
     else:
         raise ValueError(f"Unknown encoding: {encoding_type}. Use 'one_hot', 'kmer', or 'character'")
-
 
 # =============================================================================
 # DNA DATA LOADING
@@ -175,7 +169,6 @@ def load_dna_tsv(
     
     return sequences, labels
 
-
 # =============================================================================
 # METRICS
 # =============================================================================
@@ -193,7 +186,6 @@ def _safe_auroc(y_true: np.ndarray, y_score: np.ndarray) -> float:
             return float(roc_auc_score(y_true, y_score))
     except ValueError:
         return 0.0
-
 
 def compute_classification_metrics(
     y_true: np.ndarray,
@@ -214,7 +206,6 @@ def compute_classification_metrics(
         "F1-Score": round(f1, 4),
         "N": int(len(y_true))
     }
-
 
 # =============================================================================
 # DNA CLASSIFICATION RUNNER
@@ -368,23 +359,40 @@ class DNASequenceRunner:
         """
         if self.X_train is None:
             self.load_data()
-        
+
         # Get predictions
         if self.model is not None:
-            # Use provided model
             print("[DNA Runner] Using provided model")
-            if hasattr(self.model, 'fit'):
-                # Model needs training
-                self.model.fit(self.X_train, self.train_labels)
-            
-            if hasattr(self.model, 'predict_proba'):
-                y_prob = self.model.predict_proba(self.X_test)
-                y_pred = np.argmax(y_prob, axis=1) if y_prob.ndim == 2 else (y_prob > 0.5).astype(int)
+
+            # Sequence-aware models (preferred for real DNA foundation models)
+            if hasattr(self.model, "encode_sequences") and callable(getattr(self.model, "encode_sequences")):
+                print("[DNA Runner] Detected sequence encoder (encode_sequences).")
+                Xtr = self.model.encode_sequences(self.train_seqs)
+                Xte = self.model.encode_sequences(self.test_seqs)
+
+                clf = LogisticRegression(
+                    max_iter=1000,
+                    random_state=self.random_state,
+                    class_weight='balanced'
+                )
+                clf.fit(Xtr, self.train_labels)
+                y_prob = clf.predict_proba(Xte)
+                y_pred = clf.predict(Xte)
+
             else:
-                y_pred = self.model.predict(self.X_test)
-                y_prob = None
-                
+                # Feature-based models (legacy)
+                if hasattr(self.model, 'fit'):
+                    self.model.fit(self.X_train, self.train_labels)
+
+                if hasattr(self.model, 'predict_proba'):
+                    y_prob = self.model.predict_proba(self.X_test)
+                    y_pred = np.argmax(y_prob, axis=1) if y_prob.ndim == 2 else (y_prob > 0.5).astype(int)
+                else:
+                    y_pred = self.model.predict(self.X_test)
+                    y_prob = None
+
         elif self.use_baseline:
+elif self.use_baseline:
             # Use logistic regression baseline
             print("[DNA Runner] Using logistic regression baseline")
             clf = LogisticRegression(
@@ -409,7 +417,6 @@ class DNASequenceRunner:
         print(f"  → F1-Score: {metrics['F1-Score']}")
         
         return metrics
-
 
 # =============================================================================
 # CONVENIENCE FUNCTIONS
@@ -440,7 +447,6 @@ def run_dna_benchmark(
         **kwargs
     )
     return runner.run()
-
 
 def benchmark_all_dna_datasets(
     toy_data_root: str = "toy_data/genomics/dna_sequences",
@@ -486,7 +492,6 @@ def benchmark_all_dna_datasets(
             results[dataset_name] = {"error": str(e)}
     
     return results
-
 
 # =============================================================================
 # MAIN (for testing)

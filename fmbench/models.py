@@ -41,6 +41,9 @@ def _load_adapter(config: Dict[str, Any]) -> Any:
         k: v for k, v in config.items() 
         if k not in ("type", "adapter_name", "model_id")
     }
+
+    # Enforce real-weights-only policy by default.
+    adapter_kwargs.setdefault("strict_weights", True)
     
     adapter = get_adapter(adapter_name=adapter_name, **adapter_kwargs)
     adapter.load()

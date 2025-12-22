@@ -26,6 +26,26 @@ Thumbs.db
 *.npz
 *_full.tsv
 
+# Model weights / caches (do NOT commit)
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+*.tflite
+
+# Common HF/torch caches (if someone sets them inside repo)
+.cache/
+.hf_cache/
+.torch_cache/
+.fmbench_cache/
+
+# External repos sometimes download weights into these folders
+external/**/pretrained_models/
+external/**/checkpoints/
+external/**/weights/
+
 # Results (user-generated)
 results/
 
