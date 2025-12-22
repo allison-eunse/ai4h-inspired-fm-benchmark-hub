@@ -1,6 +1,0 @@
-# OpenFlamingo - Vision-Language Model
-model_id: openflamingo
-type: adapter
-adapter_name: openflamingo
-device: "cpu"
-

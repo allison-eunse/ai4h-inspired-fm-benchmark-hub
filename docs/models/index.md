@@ -45,14 +45,23 @@ Multi-modal brain transformer for integrating structural and functional brain im
 Harmonization framework for multi-site neuroimaging studies, addressing scanner and acquisition protocol variability.
 
 ---
+### SwiFT
 
-### UNI
+**Model ID**: `swift`  
+**Modality**: fMRI (4D volumes / time series)  
+**Repository**: [github.com/Transconnectome/SwiFT](https://github.com/Transconnectome/SwiFT)
 
-**Model ID**: `MOD-UNI`  
-**Modality**: MRI (Structural brain imaging)  
-**Repository**: [github.com/insitro/uni](https://github.com/insitro/uni)
+Swin 4D fMRI Transformer for learning representations from spatiotemporal fMRI sequences.
 
-Vision Transformer trained on massive MRI datasets for general-purpose brain imaging analysis.
+---
+
+### NeuroClips
+
+**Model ID**: `neuroclips`  
+**Modality**: fMRI → video reconstruction  
+**Repository**: [github.com/gongzix/NeuroClips](https://github.com/gongzix/NeuroClips)
+
+Framework for fMRI-to-video reconstruction; included for neuro representation work (not genomics).
 
 ---
 
@@ -105,90 +114,6 @@ Evolution-inspired foundation model for sequence analysis and generation.
 **Repository**: [HyenaDNA Repository](https://github.com/hyenadna)
 
 Efficient long-range sequence model using Hyena operators for genomic analysis at scale.
-
----
-
-### Nucleotide Transformer (Generator)
-
-**Model ID**: `generator`  
-**Modality**: Nucleotide sequences  
-**Repository**: [Generator Repository](https://github.com/generator)
-
-Transformer-based generative model for nucleotide sequence synthesis and analysis.
-
----
-
-## 🔬 Multi-Modal Models
-
-### M3FM
-
-**Model ID**: `m3fm`  
-**Modality**: Multi-modal (imaging + genomics)  
-**Repository**: [M3FM Repository](https://github.com/m3fm)
-
-Multi-modal foundation model integrating imaging, genomics, and clinical data.
-
----
-
-### Flamingo
-
-**Model ID**: `flamingo`  
-**Modality**: Vision-Language (Medical imaging + text)  
-**Repository**: [Flamingo Repository](https://github.com/flamingo)
-
-Vision-language model adapted for medical imaging and clinical text understanding.
-
----
-
-### VLM Dev Clinical
-
-**Model ID**: `vlm_dev_clinical`  
-**Modality**: Vision-Language (Clinical)  
-**Repository**: Clinical VLM Development
-
-Vision-language model specifically developed for clinical applications.
-
----
-
-## 🧪 Specialized Models
-
-### SWIFT
-
-**Model ID**: `swift`  
-**Modality**: Time-series analysis  
-**Repository**: [SWIFT Repository](https://github.com/swift)
-
-Specialized model for time-series analysis in biological signals.
-
----
-
-### TabPFN
-
-**Model ID**: `tabpfn`  
-**Modality**: Tabular data  
-**Repository**: [TabPFN Repository](https://github.com/tabpfn)
-
-Prior-data fitted network for tabular data classification, useful for clinical structured data.
-
----
-
-### Titan
-
-**Model ID**: `titan`  
-**Modality**: Large-scale biological data  
-**Repository**: [Titan Repository](https://github.com/titan)
-
-Large-scale foundation model for integrative biological data analysis.
-
----
-
-### ME-LLaMA
-
-**Model ID**: `me_llama`  
-**Modality**: Medical language  
-**Repository**: [ME-LLaMA Repository](https://github.com/me-llama)
-
-Medical-specialized language model based on LLaMA architecture.
 
 ---
 

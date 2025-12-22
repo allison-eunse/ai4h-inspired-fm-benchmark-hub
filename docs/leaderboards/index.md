@@ -1,7 +1,7 @@
 # 🏆 Foundation Model Leaderboards
 
 !!! success "Benchmark Hub Overview"
-    📊 **8** Benchmarks | 🤖 **12** Models | 📈 **35** Evaluations
+    📊 **7** Benchmarks | 🤖 **12** Models | 📈 **35** Evaluations
 
 
 > **What is this?** This page ranks AI models for healthcare applications. 
@@ -671,13 +671,6 @@ This ensures our evaluations are:
 </details>
 
 ---
-
-### ✍️ Generation
-
-#### Clinical Report Generation Quality
-
-!!! warning "No submissions yet"
-    Be the first! See [Submission Guide](../contributing/submission_guide.md)
 
 ## 🧠 Brain Imaging (MRI/fMRI)
 

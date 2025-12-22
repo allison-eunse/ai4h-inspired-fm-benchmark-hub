@@ -45,15 +45,6 @@ MODEL_BENCHMARK_MAP = {
     "caduceus": ["BM-002", "robustness_testing"],
     "dnabert2": ["BM-002"],
     "evo2": ["BM-002"],
-    
-    # Vision-Language models → Report generation
-    "openflamingo": ["BM-REPORT-GEN"],
-    "medflamingo": ["BM-REPORT-GEN"],
-    "titan": ["BM-REPORT-GEN"],
-    "uni": ["BM-FMRI-GRANULAR"],  # Pathology/image classification
-    "radbert": ["BM-REPORT-GEN"],
-    "m3fm": ["BM-REPORT-GEN"],
-    "me_llama": ["BM-REPORT-GEN"],
 }
 
 # Benchmark metadata for explanations
@@ -72,11 +63,6 @@ BENCHMARK_INFO = {
         "name": "fMRI Granular",
         "primary_metric": "AUROC",
         "description": "Detailed fMRI analysis across scanners/sites"
-    },
-    "BM-REPORT-GEN": {
-        "name": "Report Generation",
-        "primary_metric": "report_quality_score",
-        "description": "Clinical report generation quality"
     },
     "robustness_testing": {
         "name": "Robustness",

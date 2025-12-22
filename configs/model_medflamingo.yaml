@@ -1,6 +1,0 @@
-# Med-Flamingo - Medical Vision-Language Model
-model_id: medflamingo
-type: adapter
-adapter_name: medflamingo
-device: "cpu"
-

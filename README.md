@@ -47,7 +47,6 @@ We maintain leaderboards for existing open-source Foundation Models (FMs), ranki
 *   **Task-Specific Rankings**: Separate leaderboards for distinct tasks like fMRI classification, single-cell variant interpretation, etc.
 *   **Granular Metrics**:
     *   **Data Sub-types**: Performance breakdowns by specific data characteristics (e.g., specific fMRI scanner types, sequencing depth).
-    *   **Output Quality**: Metrics for report generation quality, accuracy, and clinical utility.
     *   **Resource Usage**: Inference time and computational cost.
 
 ### 3. Robustness Testing

@@ -1,5 +1,4 @@
 import os
-import sys
 import yaml
 import numpy as np
 import pandas as pd
@@ -18,30 +17,28 @@ def check_external_integrations():
     
     # Check Caduceus
     try:
-        sys.path.append(os.path.join(os.getcwd(), 'external/caduceus'))
-        from caduceus.modeling_caduceus import CaduceusForMaskedLM
-        integrations['caduceus'] = "Available"
-    except ImportError as e:
-        if "mamba_ssm" in str(e):
-            integrations['caduceus'] = "Partial (Missing mamba-ssm - CUDA required)"
+        # Avoid importing heavyweight deps here; just check that the vendored folder exists.
+        caduceus_path = os.path.join(os.getcwd(), "external/caduceus")
+        if os.path.exists(caduceus_path):
+            integrations["caduceus"] = "Found (Folder exists)"
         else:
-            integrations['caduceus'] = f"Not found ({e})"
+            integrations["caduceus"] = "Not Found"
     except Exception as e:
-        integrations['caduceus'] = f"Error ({e})"
-        
-    # Check Bagel
-    try:
-        sys.path.append(os.path.join(os.getcwd(), 'external/bagel'))
-        import inferencer
-        integrations['bagel'] = "Available"
-    except ImportError:
-        integrations['bagel'] = "Not found"
+        integrations["caduceus"] = f"Error ({e})"
         
     # Check Other Integrations
     repo_list = [
-        'brainlm', 'dnabert2', 'evo2', 'generator', 'swift', 
-        'titan', 'me-lamma', 'brainjepa', 'brainharmony', 
-        'hyena', 'brainmt', 'M3FM', 'MoT'
+        'brainlm',
+        'brainjepa',
+        'brainharmony',
+        'brainmt',
+        'swift',
+        'neuroclips',
+        'geneformer',
+        'dnabert2',
+        'evo2',
+        'hyena',
+        'caduceus',
     ]
     
     for repo in repo_list:
@@ -143,8 +140,8 @@ def main():
     logging.info(f"Running {config['cross_validation']['k_folds']}-fold CV...")
     
     for fold, (train_idx, test_idx) in enumerate(cv.split(X_genes_pca, y, groups=groups)):
-        X_g_train, X_g_test = X_genes_pca[train_idx], X_genes_pca[test_idx]
-        X_s_train, X_s_test = X_smri_pca[train_idx], X_smri_pca[test_idx]
+        X_g_train = X_genes_pca[train_idx]
+        X_s_train = X_smri_pca[train_idx]
         
         # Fit CCA on train
         corrs, model = run_cca_analysis(X_g_train, X_s_train, n_components=config['analysis']['n_components'])

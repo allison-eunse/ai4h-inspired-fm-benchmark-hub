@@ -49,6 +49,9 @@ external/**/weights/
 # Results (user-generated)
 results/
 
+# MkDocs build output (do NOT commit)
+site/
+
 # Jupyter
 .ipynb_checkpoints/
 
