@@ -1,0 +1,11 @@
+# Brain Harmony / BrainHarmonix (hzlab/Brain-Harmony)
+model_id: brainharmony
+type: adapter
+adapter_name: brainharmony
+device: "cpu"
+modality: "Brain fMRI/sMRI"
+
+# Optional (overrides defaults in fmbench/weights.py):
+# weights_url: "https://drive.google.com/uc?id=1gBptjXQJluuzBtV4y0IB_qBV1wSKWHUD&export=download"  # harmonizer/model.pth (joint)
+# weights_url: "https://drive.google.com/uc?id=1M4SHZx4L09d8jvP_-kgEHPqeDoNqWtqB&export=download"  # harmonix-f/model.pth (fMRI)
+# weights_url: "https://drive.google.com/uc?id=1Ey2YAYkUU9s9DEwGZjr8275Y6fpvkBP5&export=download"  # harmonix-s/model.pth (sMRI)

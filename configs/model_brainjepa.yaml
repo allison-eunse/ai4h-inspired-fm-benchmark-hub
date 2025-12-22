@@ -4,3 +4,6 @@ type: adapter
 adapter_name: brainjepa
 device: "cpu"
 
+# Optional (overrides defaults in fmbench/weights.py):
+# weights_url: "https://drive.google.com/uc?id=1jYfqOiKFBI95RLlDtPdomBr74zULg5HZ&export=download"  # checkpoint.pth (downstream)
+# weights_url: "https://drive.google.com/uc?id=1LL3gM-i5SLDWCFyvj71M3peLeU6V2qMR&export=download"  # jepa-ep300.pth.tar (pretraining)
