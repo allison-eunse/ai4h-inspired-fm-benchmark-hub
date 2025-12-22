@@ -7,3 +7,7 @@ type: adapter
 adapter_name: swift
 device: "cpu"
 modality: "fMRI"
+
+# Optional (overrides defaults in fmbench/weights.py):
+# weights_url: "https://drive.google.com/uc?id=11u4GGeTB361X01sge86U7JbGyEzZC7KJ&export=download"  # contrastive_pretrained.ckpt
+# weights_url: "https://drive.google.com/uc?id=1h4WzF-bYPb9U5VpQppLX91OokTahykX5&export=download"  # last.ckpt (from default/)

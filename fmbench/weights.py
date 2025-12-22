@@ -258,6 +258,12 @@ DEFAULT_WEIGHT_SOURCES: Dict[str, Dict] = {
         "url": "https://drive.google.com/uc?id=1gBptjXQJluuzBtV4y0IB_qBV1wSKWHUD&export=download",
         "extract": False,
     },
+    "swift": {
+        "type": "url",
+        # SwiFT pretrained_models/contrastive_pretrained.ckpt (Drive)
+        "url": "https://drive.google.com/uc?id=11u4GGeTB361X01sge86U7JbGyEzZC7KJ&export=download",
+        "extract": False,
+    },
 }
 
 
